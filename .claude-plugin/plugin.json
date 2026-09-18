@@ -6,7 +6,7 @@
     "./skills/slop-explain"
   ],
   "description": "Detect, score, and explain AI-generated text. Three skills: slop-sense (detect + rewrite + ai;dr), slop-check (score only, no rewrite), slop-explain (per-pattern deep-dives). 36 AI writing patterns, algorithmic SLOP scorer (0-100), plus a rhythm checker for burstiness and structural tells.",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "author": {
     "name": "CyranoB"
   },

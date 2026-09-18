@@ -90,7 +90,14 @@ npx skills@latest add CyranoB/slop-sense -a claude-code -g
 <details>
 <summary><strong>Codex CLI</strong></summary>
 
-Install the skill for the current project:
+Install all three skills from the plugin marketplace:
+
+```bash
+codex plugin marketplace add CyranoB/slop-sense
+codex plugin add slop-sense@slop-sense
+```
+
+Or install as a skill for the current project:
 
 ```bash
 npx skills@latest add CyranoB/slop-sense -a codex

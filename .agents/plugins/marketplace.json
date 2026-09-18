@@ -1,0 +1,20 @@
+{
+  "name": "slop-sense",
+  "interface": {
+    "displayName": "Slop Sense"
+  },
+  "plugins": [
+    {
+      "name": "slop-sense",
+      "source": {
+        "source": "local",
+        "path": "./"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}
