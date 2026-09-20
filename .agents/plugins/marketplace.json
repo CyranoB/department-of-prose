@@ -1,0 +1,20 @@
+{
+  "name": "department-of-prose",
+  "interface": {
+    "displayName": "The Department of Prose"
+  },
+  "plugins": [
+    {
+      "name": "department-of-prose",
+      "source": {
+        "source": "local",
+        "path": "./"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

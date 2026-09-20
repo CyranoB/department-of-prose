@@ -1,0 +1,134 @@
+{
+  "schema_version": 1,
+  "scope_statement": "The deterministic scope is the public behavior of rhythm.py, score.sh, and representative rule families exposed by the exactly pinned slop-detector integration. The integration inventory covers each scorer metric family and stable CLI output contract; it does not claim one fixture per private upstream word, trigram, or regex entry.",
+  "inventory": [
+    {
+      "target": "rhythm sentence-length mean, population standard deviation, coefficient of variation, short/long counts, and classification boundaries",
+      "positive": ["DET-RHY-BURST-001", "DET-RHY-MEASURE-001", "DET-RHY-MEASURE-002"],
+      "negative": ["DET-RHY-BURST-002"],
+      "boundary": ["DET-RHY-BURST-003", "DET-RHY-BURST-004", "DET-RHY-LENGTH-001"]
+    },
+    {
+      "target": "rhythm.contraction and formal-form counts, including Unicode apostrophes",
+      "positive": ["DET-RHY-CONTRACT-001"],
+      "negative": ["DET-RHY-CONTRACT-002"],
+      "boundary": [],
+      "not_applicable": {"boundary": "The function counts matches and calculates a ratio; it has no classification threshold."}
+    },
+    {
+      "target": "rhythm.anaphora run detection and minimum run length",
+      "positive": ["DET-RHY-ANAPHORA-001"],
+      "negative": ["DET-RHY-ANAPHORA-002"],
+      "boundary": ["DET-RHY-ANAPHORA-003"]
+    },
+    {
+      "target": "rhythm.aphoristic closer candidate extraction",
+      "positive": ["DET-RHY-CLOSER-001", "DET-RHY-CLOSER-005"],
+      "negative": ["DET-RHY-CLOSER-002"],
+      "boundary": ["DET-RHY-CLOSER-003", "DET-RHY-CLOSER-004", "DET-RHY-CLOSER-006", "DET-RHY-CLOSER-007"]
+    },
+    {
+      "target": "sentence segmentation across terminals, decimals, and abbreviations",
+      "positive": ["DET-SEGMENT-001"],
+      "negative": ["DET-SEGMENT-002"],
+      "boundary": [],
+      "not_applicable": {"boundary": "Segmentation has discrete protected-token cases rather than a numeric threshold."}
+    },
+    {
+      "target": "Markdown prose extraction for headings, code, lists, quotes, tables, links, entities, and Unicode",
+      "positive": ["DET-EXTRACT-001"],
+      "negative": ["DET-EXTRACT-002"],
+      "boundary": ["DET-EXTRACT-003"]
+    },
+    {
+      "target": "rhythm CLI stdin, file, UTF-8, empty-input, and missing-file contracts",
+      "positive": ["DET-CLI-001", "DET-CLI-002"],
+      "negative": ["DET-CLI-004"],
+      "boundary": ["DET-CLI-003"]
+    },
+    {
+      "target": "raw punctuation counts and contextual guidance/severity",
+      "positive": ["DET-PUNCT-001"],
+      "negative": ["DET-PUNCT-002"],
+      "boundary": ["DET-PUNCT-003"]
+    },
+    {
+      "target": "score.sh selection order, exact npx pin, forwarding, status, and unavailable behavior",
+      "positive": ["DET-WRAP-001", "DET-WRAP-002"],
+      "negative": ["DET-WRAP-004"],
+      "boundary": ["DET-WRAP-003"]
+    },
+    {
+      "target": "slop-detector 1.2.0 lexical rules: base forms, inflections, boundaries, meanings, isolation/repetition, passage length, and technical register",
+      "positive": ["DET-SCORER-WORD-001"],
+      "negative": ["DET-SCORER-WORD-002", "DET-SCORER-WORD-003", "DET-SCORER-WORD-005"],
+      "boundary": ["DET-SCORER-WORD-004", "DET-SCORER-WORD-006"]
+    },
+    {
+      "target": "slop-detector 1.2.0 trigram rules",
+      "positive": ["DET-SCORER-TRIGRAM-001"],
+      "negative": ["DET-SCORER-TRIGRAM-002"],
+      "boundary": [],
+      "not_applicable": {"boundary": "The covered contract is exact normalized trigram membership; there is no per-rule threshold."}
+    },
+    {
+      "target": "slop-detector 1.2.0 formal and contracted contrast constructions",
+      "positive": ["DET-SCORER-CONSTRUCT-001"],
+      "negative": ["DET-SCORER-CONSTRUCT-002"],
+      "boundary": [],
+      "not_applicable": {"boundary": "The covered construction regexes are discrete matches; density is reported separately by the scorer."}
+    },
+    {
+      "target": "slop-detector 1.2.0 trope phrase rules",
+      "positive": ["DET-SCORER-TROPE-001"],
+      "negative": ["DET-SCORER-TROPE-002"],
+      "boundary": [],
+      "not_applicable": {"boundary": "The covered phrase trope is an exact phrase-family match with no threshold."}
+    },
+    {
+      "target": "slop-detector 1.2.0 list/tricolon density measurement",
+      "positive": [],
+      "negative": [],
+      "boundary": ["DET-SCORER-LIST-001"],
+      "not_applicable": {
+        "positive": "Whether a three-item construction is abusive is contextual; the deterministic contract covers only the raw threshold result.",
+        "negative": "GOLD-LIST-001 carries the no-action contextual assessment rather than claiming the raw match should disappear."
+      }
+    }
+  ],
+  "bundled_metrics": [
+    "sentence-length mean, population standard deviation, and coefficient of variation",
+    "short (<=8 words) and long (>=30 words) sentence counts",
+    "contraction and enumerated formal-form counts plus contraction ratio",
+    "candidate aphoristic paragraph closers",
+    "three-or-more identical sentence-opening runs",
+    "em-dash and curly-quote raw counts"
+  ],
+  "external_integration": {
+    "package": "slop-detector",
+    "version": "1.2.0",
+    "verified_metric_families": [
+      "slop-list word hits",
+      "slop-list trigram hits",
+      "contrast construction matches",
+      "trope phrase matches",
+      "normalized final score and component metric rendering"
+    ],
+    "reproducibility": "package.json uses an exact version, package-lock.json locks the full dependency graph, npm ci installs it, and run.py verifies node_modules/slop-detector/package.json before invoking the repository-local binary."
+  },
+  "exclusions": [
+    "The private upstream catalogue is not copied into this repository and is not exhaustively tested entry by entry; representative public rule-family contracts are pinned to version 1.2.0.",
+    "Patterns 1-33 that require contextual or semantic judgment do not have deterministic implementations merely because they appear in the qualitative catalogue.",
+    "Golden rewrites are not executed by CI and never use exact-string equality.",
+    "URL fetching and model behavior are outside the deterministic harness.",
+    "Register, voice, author intent, and whether a raw signal warrants editing remain editorial unless a later deterministic policy explicitly implements them."
+  ],
+  "future_behavior": [
+    {"owner": "#7", "decision": "Fact-preservation behavior may become enforceable beyond the golden rubric."},
+    {"owner": "#8", "decision": "Link destinations and other Markdown extraction gaps should be excluded from prose metrics."},
+    {"owner": "#9", "decision": "Punctuation advice should account for quotations and deliberate authorial use."},
+    {"owner": "#10", "decision": "Verification behavior may add deterministic evidence checks while preserving qualified claims."},
+    {"owner": "#13", "decision": "Severity should use passage context instead of any-match escalation."},
+    {"owner": "#14", "decision": "Catalogue policy must decide how literal and legitimate domain uses affect actionable findings."}
+  ]
+}

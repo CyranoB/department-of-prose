@@ -30,6 +30,21 @@ Both scripts are optional. The SLOP scorer needs Node.js; the rhythm checker nee
 
 Accepts pasted text, URLs (fetches and analyzes the page), or file paths.
 
+## Evaluation
+
+The repository includes a two-layer evaluation set: deterministic regression
+fixtures for measurements, extraction, CLI behavior, wrapper behavior, and the
+exact pinned scorer; plus rubric-reviewed golden rewrite cases for contextual
+judgment, fact preservation, and voice. Run the deterministic suite with:
+
+```bash
+npm ci
+npm run evaluate
+```
+
+See [`evaluation/README.md`](evaluation/README.md) for the coverage inventory,
+known expected failures, scorer-upgrade policy, and golden review procedure.
+
 ## What slop-check does
 
 A read-only verdict skill for when you want a score but plan to fix the text yourself (or run it in CI). Same input handling, same 36-pattern scan, same scoring scripts (lexical + rhythm). Output is a compact table of patterns found with one-line evidence per pattern, plus the verdict band. No rewrite, no audit, no edits to your text.
@@ -96,7 +111,14 @@ npx skills@latest add CyranoB/department-of-prose -a claude-code -g
 <details>
 <summary><strong>Codex CLI</strong></summary>
 
-Install the skill for the current project:
+Install all three skills from the plugin marketplace:
+
+```bash
+codex plugin marketplace add CyranoB/department-of-prose
+codex plugin add department-of-prose@department-of-prose
+```
+
+Or install as a skill for the current project:
 
 ```bash
 npx skills@latest add CyranoB/department-of-prose -a codex

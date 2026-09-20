@@ -1,0 +1,189 @@
+{
+  "schema_version": 1,
+  "cases": [
+    {
+      "id": "GOLD-AI-001",
+      "target": "stock AI vocabulary, inflated significance, tricolon, and generic conclusion",
+      "layer": "editorial",
+      "expected_outcome": "Rewrite the inflated framing into a direct account while preserving the concrete release facts.",
+      "rationale": "Representative multi-pattern AI prose should lose generic claims without losing its useful payload.",
+      "source": {
+        "provenance": "original",
+        "text": "In today's rapidly evolving landscape, Northstar 2.0 represents a transformative milestone that redefines how teams plan, build, and deliver. The update adds offline drafts and CSV export, helping users unlock seamless productivity. Ultimately, Northstar 2.0 paves the way for a brighter collaborative future."
+      },
+      "required_findings": ["significance inflation", "AI vocabulary overuse", "rule of three", "generic positive conclusion"],
+      "permitted_findings": ["promotional language", "filler phrases"],
+      "forbidden_findings": ["knowledge-cutoff disclaimer", "quotation misuse"],
+      "facts_to_preserve": ["The product is Northstar 2.0.", "The update adds offline drafts.", "The update adds CSV export."],
+      "qualifications_to_preserve": [],
+      "prohibited_additions": ["release date", "performance improvement", "customer adoption", "compatibility claims"],
+      "voice_markers_to_retain": ["confident product-announcement register"],
+      "rewrite_expectations": {
+        "must_change": ["Remove landscape, milestone, transformative, unlock, seamless, paves-the-way, and brighter-future framing."],
+        "may_change": ["Sentence order and product-name repetition."],
+        "must_not_change": ["The two named features."]
+      }
+    },
+    {
+      "id": "GOLD-TECH-001",
+      "target": "legitimate technical language with a raw lexical match",
+      "layer": "editorial",
+      "expected_outcome": "No actionable finding for `robust`; either leave the passage alone or make only clarity edits.",
+      "rationale": "A raw scorer hit is not an editorial defect when the term has a precise statistical meaning.",
+      "source": {
+        "provenance": "original",
+        "text": "We report a robust covariance estimate because three observations have unusually high leverage. The ordinary least-squares coefficients are unchanged, but the robust standard errors are wider."
+      },
+      "required_findings": [],
+      "permitted_findings": ["raw lexical match for robust"],
+      "forbidden_findings": ["AI vocabulary overuse", "promotional language", "excessive hedging"],
+      "facts_to_preserve": ["Three observations have unusually high leverage.", "The coefficients are unchanged.", "The robust standard errors are wider."],
+      "qualifications_to_preserve": ["The covariance estimate is robust in the statistical sense."],
+      "prohibited_additions": ["sample size", "p-values", "causal claims", "model quality claims"],
+      "voice_markers_to_retain": ["compact technical register", "standard statistical terminology"],
+      "rewrite_expectations": {
+        "must_change": [],
+        "may_change": ["Minor syntax for clarity."],
+        "must_not_change": ["robust covariance", "robust standard errors", "the contrast between coefficients and errors"]
+      }
+    },
+    {
+      "id": "GOLD-QUOTE-001",
+      "target": "quotation fidelity and reported speech",
+      "layer": "editorial",
+      "expected_outcome": "Preserve the quotation verbatim and do not treat its wording as the narrator's voice.",
+      "rationale": "Editing a cited speaker's words would fabricate the source record.",
+      "source": {
+        "provenance": "original",
+        "text": "At the meeting, Imani said, “This isn't a revolution; it's a repair job.” The minutes record no vote, and the committee will revisit the proposal in June."
+      },
+      "required_findings": [],
+      "permitted_findings": ["raw curly-quote count", "raw contrast-construction match inside the quotation"],
+      "forbidden_findings": ["negative parallelism attributed to the narrator", "invented vote outcome"],
+      "facts_to_preserve": ["Imani spoke at the meeting.", "The minutes record no vote.", "The proposal returns in June."],
+      "qualifications_to_preserve": ["The sentence reports what the minutes record, not whether a private vote occurred."],
+      "prohibited_additions": ["committee decision", "reason for delay", "Imani's role"],
+      "voice_markers_to_retain": ["Imani's exact quoted contrast", "curly quotation marks as supplied"],
+      "rewrite_expectations": {
+        "must_change": [],
+        "may_change": ["The reporting clause outside the quotation."],
+        "must_not_change": ["“This isn't a revolution; it's a repair job.”", "the no-vote qualification", "June"]
+      }
+    },
+    {
+      "id": "GOLD-FORMAL-001",
+      "target": "legitimate formal prose and contraction avoidance",
+      "layer": "editorial",
+      "expected_outcome": "Retain the formal register and legal qualification; do not add contractions merely to sound casual.",
+      "rationale": "Formality can be required by genre and is not by itself evidence of AI authorship.",
+      "source": {
+        "provenance": "original",
+        "text": "The permit does not authorize work beyond the surveyed boundary. It is valid only while the insurance certificate remains in force. Nothing in this notice waives the municipality's statutory remedies."
+      },
+      "required_findings": [],
+      "permitted_findings": ["raw formal-form count", "low contraction ratio"],
+      "forbidden_findings": ["reflexive formality as an actionable defect", "generic positive conclusion"],
+      "facts_to_preserve": ["Work beyond the surveyed boundary is unauthorized.", "Validity depends on the insurance certificate.", "Statutory remedies are not waived."],
+      "qualifications_to_preserve": ["The permit is conditionally valid, not categorically valid."],
+      "prohibited_additions": ["penalties", "deadlines", "appeal rights", "legal advice"],
+      "voice_markers_to_retain": ["formal notice register", "uncontracted negatives", "precise legal limitation"],
+      "rewrite_expectations": {
+        "must_change": [],
+        "may_change": ["Minor repetition if legal meaning is untouched."],
+        "must_not_change": ["scope limitation", "condition of validity", "non-waiver clause"]
+      }
+    },
+    {
+      "id": "GOLD-VOICE-001",
+      "target": "intentional anaphora and repetition",
+      "layer": "editorial",
+      "expected_outcome": "Allow the raw anaphora measurement but make no actionable finding and preserve the repeated opening.",
+      "rationale": "The repetition supplies deliberate cadence in a short personal passage.",
+      "source": {
+        "provenance": "original",
+        "text": "We waited when the first bus failed to come. We waited while the rain filled our shoes. We waited until the station lights went dark. Then we walked home."
+      },
+      "required_findings": [],
+      "permitted_findings": ["raw anaphora run of three sentences"],
+      "forbidden_findings": ["anaphora abuse", "uniform sentence rhythm"],
+      "facts_to_preserve": ["The first bus did not come.", "It rained.", "The station lights went dark.", "The group walked home."],
+      "qualifications_to_preserve": ["The passage does not say that no later bus came."],
+      "prohibited_additions": ["length of the wait", "location", "speaker's emotion", "cause of the bus failure"],
+      "voice_markers_to_retain": ["three consecutive `We waited` openings", "short final sentence"],
+      "rewrite_expectations": {
+        "must_change": [],
+        "may_change": ["Punctuation outside the repeated openings."],
+        "must_not_change": ["the anaphora", "event order", "the restrained tone"]
+      }
+    },
+    {
+      "id": "GOLD-PUNCT-001",
+      "target": "authorial em dashes and fragments",
+      "layer": "editorial",
+      "expected_outcome": "Retain the sparse em dashes and fragments because they carry the narrator's timing.",
+      "rationale": "Punctuation frequency is evidence to inspect, not a universal instruction to normalize voice.",
+      "source": {
+        "provenance": "original",
+        "text": "The key turned—almost. A click, a pause, another try. Then nothing. I kept my hand on the lock—as if patience could move brass."
+      },
+      "required_findings": [],
+      "permitted_findings": ["raw em-dash count of two", "sentence fragments"],
+      "forbidden_findings": ["em-dash overuse", "rule of three", "aphoristic closer"],
+      "facts_to_preserve": ["The key nearly turned.", "The lock clicked.", "A later attempt produced nothing.", "The narrator kept a hand on the lock."],
+      "qualifications_to_preserve": ["The text compares patience to a force; it does not claim patience moved the lock."],
+      "prohibited_additions": ["why the lock failed", "where the door leads", "whether it later opened"],
+      "voice_markers_to_retain": ["both em dashes", "fragments", "dry closing comparison"],
+      "rewrite_expectations": {
+        "must_change": [],
+        "may_change": ["No change is preferred; a reviewer may flag ambiguity without rewriting."],
+        "must_not_change": ["punctuation rhythm", "fragment structure", "the brass image"]
+      }
+    },
+    {
+      "id": "GOLD-VERIFY-001",
+      "target": "fact preservation, qualification, and verification behavior",
+      "layer": "editorial",
+      "expected_outcome": "Remove filler while preserving uncertainty and never converting an unverified estimate into a fact.",
+      "rationale": "Records desired behavior for #7 and #10 without making model execution part of issue #6.",
+      "source": {
+        "provenance": "original",
+        "text": "It is important to note that the pilot may have reduced queue time by roughly 12 percent, according to an internal estimate that has not been independently checked. The result could potentially reshape how the office schedules morning appointments."
+      },
+      "required_findings": ["filler phrase", "significance inflation", "excessive hedging"],
+      "permitted_findings": ["vague attribution"],
+      "forbidden_findings": ["fabricated source", "claim that the pilot definitively caused the reduction"],
+      "facts_to_preserve": ["An internal estimate reports roughly a 12 percent queue-time reduction."],
+      "qualifications_to_preserve": ["The reduction is uncertain.", "The estimate is internal.", "The estimate has not been independently checked."],
+      "prohibited_additions": ["sample size", "measurement period", "causal certainty", "external validation", "appointment volume"],
+      "voice_markers_to_retain": ["cautious reporting voice"],
+      "rewrite_expectations": {
+        "must_change": ["Remove `It is important to note`, stacked hedging, and `reshape how`."],
+        "may_change": ["Put the source and caveat in separate sentences."],
+        "must_not_change": ["roughly 12 percent", "may-have/reported uncertainty", "lack of independent verification"]
+      }
+    },
+    {
+      "id": "GOLD-LIST-001",
+      "target": "legitimate three-item inventory",
+      "layer": "editorial",
+      "expected_outcome": "Allow the raw tricolon metric but make no actionable finding and retain the compact inventory.",
+      "rationale": "A factual three-item list is not rhetorical rule-of-three abuse merely because a density threshold fires on a short passage.",
+      "source": {
+        "provenance": "original",
+        "text": "The repair kit contains a wrench, two sockets, and a roll of tape. Replace any missing item before returning the kit."
+      },
+      "required_findings": [],
+      "permitted_findings": ["raw tricolon threshold result"],
+      "forbidden_findings": ["rule-of-three abuse", "promotional language"],
+      "facts_to_preserve": ["The kit contains a wrench.", "The kit contains two sockets.", "The kit contains a roll of tape.", "Missing items must be replaced before return."],
+      "qualifications_to_preserve": [],
+      "prohibited_additions": ["brand", "socket sizes", "replacement cost", "return deadline"],
+      "voice_markers_to_retain": ["compact instruction-manual register", "single three-item inventory"],
+      "rewrite_expectations": {
+        "must_change": [],
+        "may_change": ["No change is preferred; list punctuation may change without changing inventory."],
+        "must_not_change": ["item identities", "socket quantity", "replacement instruction"]
+      }
+    }
+  ]
+}

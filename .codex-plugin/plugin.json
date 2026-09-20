@@ -1,0 +1,35 @@
+{
+  "name": "department-of-prose",
+  "version": "2.4.0",
+  "description": "Detect, score, explain, and rewrite AI-generated text.",
+  "author": {
+    "name": "CyranoB"
+  },
+  "homepage": "https://github.com/CyranoB/department-of-prose",
+  "repository": "https://github.com/CyranoB/department-of-prose",
+  "license": "MIT",
+  "keywords": [
+    "ai-detection",
+    "slop-score",
+    "humanizer",
+    "writing"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "The Department of Prose",
+    "shortDescription": "Detect and rewrite AI-sounding text.",
+    "longDescription": "Score text for AI writing patterns, rewrite it in a more natural voice, or explain individual patterns.",
+    "developerName": "CyranoB",
+    "category": "Productivity",
+    "capabilities": [
+      "Analyze",
+      "Write"
+    ],
+    "websiteURL": "https://github.com/CyranoB/department-of-prose",
+    "defaultPrompt": [
+      "Check this text for AI writing patterns.",
+      "Rewrite this text so it sounds natural and human.",
+      "Explain why em-dash overuse can read as AI-written."
+    ]
+  }
+}

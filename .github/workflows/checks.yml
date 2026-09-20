@@ -1,0 +1,30 @@
+name: Checks
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  packaging:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Test marketplace packaging
+        run: python -m unittest discover -s tests -v
+      - name: Check plugin release version
+        if: github.event_name == 'pull_request'
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: python scripts/plugin_version.py check --base "$BASE_SHA"
+      - name: Check current plugin version
+        if: github.event_name != 'pull_request'
+        run: python scripts/plugin_version.py check
