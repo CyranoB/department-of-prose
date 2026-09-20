@@ -124,7 +124,9 @@ Before (clean but soulless):
 > The experiment produced interesting results. The agents generated 3 million lines of code. Some developers were impressed while others were skeptical.
 
 After (has a pulse):
-> I genuinely don't know how to feel about this one. 3 million lines of code, generated while the humans presumably slept. Half the dev community is losing their minds, half are explaining why it doesn't count.
+> I genuinely don't know how to feel about this one. 3 million lines of code, all of it agent-written. Some developers are impressed. Some are sceptical. I can't tell which camp I'm in either.
+
+Note what the rewrite does *not* do. It keeps "some" instead of sharpening it to "half", and it keeps "developers" instead of widening to "the dev community". The voice comes from the narrator taking a position, not from making someone else's facts more definite than they were.
 
 ---
 
@@ -252,6 +254,8 @@ Goal: compress AI-generated verbosity back to the instruction that likely produc
 ## The 36 patterns catalog
 
 Used by Modes 1 and 2 for scanning. Pattern deep-dives (Mode 3) live in `patterns/NN-name.md`.
+
+Some After-examples below draw on facts from elsewhere in the source document (a date, a named outlet, a place). They are shorthand for "replace the puffery with the specifics the source already gives you", never licence to supply specifics the text does not contain. See [Fact preservation](#fact-preservation).
 
 ### Content patterns (1-7)
 
