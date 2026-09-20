@@ -13,8 +13,8 @@ npm run evaluate
 ```
 
 `npm run evaluate` is the single CI evaluation command. It makes no model calls.
-It exercises the Python rhythm measurements, Markdown/input handling, CLI
-failure behavior, the shell wrapper with controlled substitute programs, the
+It exercises the Python rhythm measurements, the factcheck comparison and its
+CLI, Markdown/input handling, CLI failure behavior, the shell wrapper with controlled substitute programs, the
 repository-local pinned scorer, fixture contracts, coverage inventory, expected
 failure baseline, and golden-case schemas. To isolate a case while debugging:
 

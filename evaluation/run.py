@@ -24,6 +24,7 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[1]
 EVALUATION = ROOT / "evaluation"
 RHYTHM_PATH = ROOT / "skills/slop-sense/scripts/rhythm.py"
+FACTCHECK_PATH = ROOT / "skills/slop-sense/scripts/factcheck.py"
 WRAPPER_PATH = ROOT / "skills/slop-sense/scripts/score.sh"
 SCORER_PATH = ROOT / "node_modules/.bin/slop-score"
 SCORER_PACKAGE = ROOT / "node_modules/slop-detector/package.json"
@@ -34,16 +35,18 @@ def load_json(path: Path) -> Any:
         return json.load(handle)
 
 
-def load_rhythm():
-    spec = importlib.util.spec_from_file_location("slop_sense_rhythm", RHYTHM_PATH)
+def load_module(name, path):
+    spec = importlib.util.spec_from_file_location(name, path)
     if spec is None or spec.loader is None:
-        raise RuntimeError(f"cannot import {RHYTHM_PATH}")
+        raise RuntimeError(f"cannot import {path}")
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
     return module
 
 
-RHYTHM = load_rhythm()
+RHYTHM = load_module("slop_sense_rhythm", RHYTHM_PATH)
+FACTCHECK = load_module("slop_sense_factcheck", FACTCHECK_PATH)
+MODULES = {"rhythm": RHYTHM, "factcheck": FACTCHECK}
 
 
 class FixtureMismatch(AssertionError):
@@ -97,7 +100,8 @@ def compare(actual: Any, assertion: dict[str, Any], path: str = "value") -> None
 
 def run_python_call(fixture: dict[str, Any]) -> Any:
     call = fixture["call"]
-    function = getattr(RHYTHM, call["function"])
+    module = MODULES[call.get("module", "rhythm")]
+    function = getattr(module, call["function"])
     result = function(*call.get("args", []), **call.get("kwargs", {}))
     for index in call.get("select", []):
         result = result[index]
@@ -131,6 +135,37 @@ def run_rhythm_cli(fixture: dict[str, Any]) -> dict[str, Any]:
     finally:
         if temporary_file:
             Path(temporary_file.name).unlink(missing_ok=True)
+    return {
+        "returncode": completed.returncode,
+        "stdout": completed.stdout,
+        "stderr": completed.stderr,
+    }
+
+
+def run_factcheck_cli(fixture: dict[str, Any]) -> dict[str, Any]:
+    cli = fixture["cli"]
+    command = [sys.executable, str(FACTCHECK_PATH)]
+    written: list[Path] = []
+    try:
+        for key in ("original_text", "rewrite_text"):
+            if key not in cli:
+                continue
+            handle = tempfile.NamedTemporaryFile(
+                mode="w", encoding="utf-8", suffix=".txt", delete=False
+            )
+            handle.write(cli[key])
+            handle.close()
+            written.append(Path(handle.name))
+            command.append(handle.name)
+        if cli.get("missing_original"):
+            command.insert(2, str(ROOT / "evaluation/fixtures/does-not-exist.txt"))
+        command.extend(cli.get("flags", []))
+        completed = subprocess.run(
+            command, text=True, capture_output=True, timeout=20, check=False
+        )
+    finally:
+        for path in written:
+            path.unlink(missing_ok=True)
     return {
         "returncode": completed.returncode,
         "stdout": completed.stdout,
@@ -230,6 +265,8 @@ def execute(fixture: dict[str, Any]) -> None:
         compare(run_python_call(fixture), fixture["assert"])
     elif kind == "rhythm_cli":
         assert_process(run_rhythm_cli(fixture), fixture["assert"])
+    elif kind == "factcheck_cli":
+        assert_process(run_factcheck_cli(fixture), fixture["assert"])
     elif kind == "wrapper":
         assert_process(run_wrapper(fixture), fixture["assert"])
     elif kind == "real_scorer":

@@ -19,6 +19,7 @@ mkdir -p "$STAGE/scripts" "$STAGE/patterns"
 cp "$REPO/dist-src/slop-sense-bundle/SKILL.md" "$STAGE/SKILL.md"
 cp "$REPO/skills/slop-sense/scripts/score.sh"  "$STAGE/scripts/score.sh"
 cp "$REPO/skills/slop-sense/scripts/rhythm.py" "$STAGE/scripts/rhythm.py"
+cp "$REPO/skills/slop-sense/scripts/factcheck.py" "$STAGE/scripts/factcheck.py"
 cp "$REPO/skills/slop-explain/patterns/"*.md   "$STAGE/patterns/"
 
 find "$STAGE" -name '.DS_Store' -delete

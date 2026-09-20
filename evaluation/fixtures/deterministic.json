@@ -10,8 +10,25 @@
       "expected_outcome": "Variable sentence lengths produce a non-zero coefficient of variation.",
       "rationale": "Protects the raw calculation independently of editorial interpretation.",
       "kind": "python_call",
-      "call": {"function": "burstiness", "args": [[4, 8, 12]], "select": [2]},
-      "assert": {"approx": {"value": 0.408248, "tolerance": 0.00001}}
+      "call": {
+        "function": "burstiness",
+        "args": [
+          [
+            4,
+            8,
+            12
+          ]
+        ],
+        "select": [
+          2
+        ]
+      },
+      "assert": {
+        "approx": {
+          "value": 0.408248,
+          "tolerance": 1e-05
+        }
+      }
     },
     {
       "id": "DET-RHY-MEASURE-001",
@@ -22,8 +39,22 @@
       "expected_outcome": "The mean of 4, 8, and 12 words is 8.",
       "rationale": "Protects the raw mean promised by the bundled metric inventory.",
       "kind": "python_call",
-      "call": {"function": "burstiness", "args": [[4, 8, 12]], "select": [0]},
-      "assert": {"equals": 8}
+      "call": {
+        "function": "burstiness",
+        "args": [
+          [
+            4,
+            8,
+            12
+          ]
+        ],
+        "select": [
+          0
+        ]
+      },
+      "assert": {
+        "equals": 8
+      }
     },
     {
       "id": "DET-RHY-MEASURE-002",
@@ -34,8 +65,25 @@
       "expected_outcome": "The population standard deviation of 4, 8, and 12 words is approximately 3.266.",
       "rationale": "Protects the raw standard-deviation measurement independently of CV.",
       "kind": "python_call",
-      "call": {"function": "burstiness", "args": [[4, 8, 12]], "select": [1]},
-      "assert": {"approx": {"value": 3.265986, "tolerance": 0.00001}}
+      "call": {
+        "function": "burstiness",
+        "args": [
+          [
+            4,
+            8,
+            12
+          ]
+        ],
+        "select": [
+          1
+        ]
+      },
+      "assert": {
+        "approx": {
+          "value": 3.265986,
+          "tolerance": 1e-05
+        }
+      }
     },
     {
       "id": "DET-RHY-BURST-002",
@@ -46,8 +94,17 @@
       "expected_outcome": "CV values below 0.40 are labeled LOW.",
       "rationale": "Fixes the lower threshold without claiming that low variation always merits a rewrite.",
       "kind": "python_call",
-      "call": {"function": "band", "args": [0.3999]},
-      "assert": {"contains": ["LOW"]}
+      "call": {
+        "function": "band",
+        "args": [
+          0.3999
+        ]
+      },
+      "assert": {
+        "contains": [
+          "LOW"
+        ]
+      }
     },
     {
       "id": "DET-RHY-BURST-003",
@@ -58,8 +115,17 @@
       "expected_outcome": "CV 0.40 is MODERATE rather than LOW.",
       "rationale": "Locks the inclusive lower threshold boundary.",
       "kind": "python_call",
-      "call": {"function": "band", "args": [0.4]},
-      "assert": {"contains": ["MODERATE"]}
+      "call": {
+        "function": "band",
+        "args": [
+          0.4
+        ]
+      },
+      "assert": {
+        "contains": [
+          "MODERATE"
+        ]
+      }
     },
     {
       "id": "DET-RHY-BURST-004",
@@ -70,8 +136,17 @@
       "expected_outcome": "CV 0.55 is HEALTHY rather than MODERATE.",
       "rationale": "Locks the inclusive upper threshold boundary.",
       "kind": "python_call",
-      "call": {"function": "band", "args": [0.55]},
-      "assert": {"contains": ["HEALTHY"]}
+      "call": {
+        "function": "band",
+        "args": [
+          0.55
+        ]
+      },
+      "assert": {
+        "contains": [
+          "HEALTHY"
+        ]
+      }
     },
     {
       "id": "DET-RHY-CONTRACT-001",
@@ -82,8 +157,19 @@
       "expected_outcome": "Straight and curly apostrophe contractions are counted alongside formal forms.",
       "rationale": "Unicode apostrophes must not change the contraction metric.",
       "kind": "python_call",
-      "call": {"function": "contraction_stats", "args": ["It isn't late, we’re ready, and it is open."]},
-      "assert": {"equals": [2, 1, 0.6666666666666666]}
+      "call": {
+        "function": "contraction_stats",
+        "args": [
+          "It isn't late, we’re ready, and it is open."
+        ]
+      },
+      "assert": {
+        "equals": [
+          2,
+          1,
+          0.6666666666666666
+        ]
+      }
     },
     {
       "id": "DET-RHY-CONTRACT-002",
@@ -94,8 +180,19 @@
       "expected_outcome": "Text without contractions or listed formal forms returns zero counts.",
       "rationale": "Avoids inventing a formality signal from unrelated prose.",
       "kind": "python_call",
-      "call": {"function": "contraction_stats", "args": ["The copper latch held through Tuesday."]},
-      "assert": {"equals": [0, 0, 0.0]}
+      "call": {
+        "function": "contraction_stats",
+        "args": [
+          "The copper latch held through Tuesday."
+        ]
+      },
+      "assert": {
+        "equals": [
+          0,
+          0,
+          0.0
+        ]
+      }
     },
     {
       "id": "DET-RHY-ANAPHORA-001",
@@ -106,8 +203,24 @@
       "expected_outcome": "Three repeated sentence openings register one raw anaphora run.",
       "rationale": "This is a measurement only; GOLD-VOICE-001 separately says deliberate anaphora need not be rewritten.",
       "kind": "python_call",
-      "call": {"function": "anaphora_runs", "args": [["We waited.", "We listened.", "We left."]]},
-      "assert": {"equals": [["we", 3]]}
+      "call": {
+        "function": "anaphora_runs",
+        "args": [
+          [
+            "We waited.",
+            "We listened.",
+            "We left."
+          ]
+        ]
+      },
+      "assert": {
+        "equals": [
+          [
+            "we",
+            3
+          ]
+        ]
+      }
     },
     {
       "id": "DET-RHY-ANAPHORA-002",
@@ -118,8 +231,19 @@
       "expected_outcome": "Different sentence openings do not register an anaphora run.",
       "rationale": "Prevents the detector from treating mere proximity as repetition.",
       "kind": "python_call",
-      "call": {"function": "anaphora_runs", "args": [["We waited.", "Rain started.", "They left."]]},
-      "assert": {"equals": []}
+      "call": {
+        "function": "anaphora_runs",
+        "args": [
+          [
+            "We waited.",
+            "Rain started.",
+            "They left."
+          ]
+        ]
+      },
+      "assert": {
+        "equals": []
+      }
     },
     {
       "id": "DET-RHY-ANAPHORA-003",
@@ -130,8 +254,18 @@
       "expected_outcome": "Two repeated openings remain below the three-sentence threshold.",
       "rationale": "Locks the minimum run boundary.",
       "kind": "python_call",
-      "call": {"function": "anaphora_runs", "args": [["We waited.", "We left."]]},
-      "assert": {"equals": []}
+      "call": {
+        "function": "anaphora_runs",
+        "args": [
+          [
+            "We waited.",
+            "We left."
+          ]
+        ]
+      },
+      "assert": {
+        "equals": []
+      }
     },
     {
       "id": "DET-RHY-CLOSER-001",
@@ -142,8 +276,26 @@
       "expected_outcome": "A short generalizing paragraph closer is surfaced as a candidate.",
       "rationale": "Protects the raw candidate extraction, not an editorial verdict.",
       "kind": "python_call",
-      "call": {"function": "aphoristic_closers", "args": [["The logs disagree. That is the problem."]], "select": [0]},
-      "assert": {"equals": [["short", 4, "That is the problem."]]}
+      "call": {
+        "function": "aphoristic_closers",
+        "args": [
+          [
+            "The logs disagree. That is the problem."
+          ]
+        ],
+        "select": [
+          0
+        ]
+      },
+      "assert": {
+        "equals": [
+          [
+            "short",
+            4,
+            "That is the problem."
+          ]
+        ]
+      }
     },
     {
       "id": "DET-RHY-CLOSER-002",
@@ -154,8 +306,20 @@
       "expected_outcome": "A concrete short ending is not classified as a generalizing kicker.",
       "rationale": "Protects ordinary concise prose from the closer heuristic.",
       "kind": "python_call",
-      "call": {"function": "aphoristic_closers", "args": [["The logs disagree. Mara closed the file."]], "select": [0]},
-      "assert": {"equals": []}
+      "call": {
+        "function": "aphoristic_closers",
+        "args": [
+          [
+            "The logs disagree. Mara closed the file."
+          ]
+        ],
+        "select": [
+          0
+        ]
+      },
+      "assert": {
+        "equals": []
+      }
     },
     {
       "id": "DET-RHY-CLOSER-003",
@@ -166,8 +330,26 @@
       "expected_outcome": "A 14-word generalizing ending remains eligible as a short closer.",
       "rationale": "Locks the inclusive short-closer threshold.",
       "kind": "python_call",
-      "call": {"function": "aphoristic_closers", "args": [["After every retry and timeout today, the missing lock still remains the only problem."]], "select": [0]},
-      "assert": {"equals": [["short", 14, "After every retry and timeout today, the missing lock still remains the only problem."]]}
+      "call": {
+        "function": "aphoristic_closers",
+        "args": [
+          [
+            "After every retry and timeout today, the missing lock still remains the only problem."
+          ]
+        ],
+        "select": [
+          0
+        ]
+      },
+      "assert": {
+        "equals": [
+          [
+            "short",
+            14,
+            "After every retry and timeout today, the missing lock still remains the only problem."
+          ]
+        ]
+      }
     },
     {
       "id": "DET-RHY-CLOSER-004",
@@ -178,8 +360,20 @@
       "expected_outcome": "A 15-word generalizing ending without a comma tail is not a short closer.",
       "rationale": "Protects the first value above the short-closer threshold.",
       "kind": "python_call",
-      "call": {"function": "aphoristic_closers", "args": [["After every retry plus timeout today the missing lock still remains the only unresolved problem."]], "select": [0]},
-      "assert": {"equals": []}
+      "call": {
+        "function": "aphoristic_closers",
+        "args": [
+          [
+            "After every retry plus timeout today the missing lock still remains the only unresolved problem."
+          ]
+        ],
+        "select": [
+          0
+        ]
+      },
+      "assert": {
+        "equals": []
+      }
     },
     {
       "id": "DET-RHY-CLOSER-005",
@@ -190,8 +384,26 @@
       "expected_outcome": "A long sentence resolving into a short generalizing comma tail is surfaced.",
       "rationale": "Exercises the separate comma-tail detection branch.",
       "kind": "python_call",
-      "call": {"function": "aphoristic_closers", "args": [["The team checked the logs, interviewed both operators, and replayed the transaction twice, but that is the problem."]], "select": [0]},
-      "assert": {"equals": [["tail", 18, "The team checked the logs, interviewed both operators, and replayed the transaction twice, but that is the problem."]]}
+      "call": {
+        "function": "aphoristic_closers",
+        "args": [
+          [
+            "The team checked the logs, interviewed both operators, and replayed the transaction twice, but that is the problem."
+          ]
+        ],
+        "select": [
+          0
+        ]
+      },
+      "assert": {
+        "equals": [
+          [
+            "tail",
+            18,
+            "The team checked the logs, interviewed both operators, and replayed the transaction twice, but that is the problem."
+          ]
+        ]
+      }
     },
     {
       "id": "DET-RHY-CLOSER-006",
@@ -202,8 +414,26 @@
       "expected_outcome": "A 10-word generalizing comma tail remains eligible.",
       "rationale": "Locks the inclusive comma-tail threshold.",
       "kind": "python_call",
-      "call": {"function": "aphoristic_closers", "args": [["The team checked the logs and replayed every transaction before dawn, and that is still the central unresolved question before us."]], "select": [0]},
-      "assert": {"equals": [["tail", 21, "The team checked the logs and replayed every transaction before dawn, and that is still the central unresolved question before us."]]}
+      "call": {
+        "function": "aphoristic_closers",
+        "args": [
+          [
+            "The team checked the logs and replayed every transaction before dawn, and that is still the central unresolved question before us."
+          ]
+        ],
+        "select": [
+          0
+        ]
+      },
+      "assert": {
+        "equals": [
+          [
+            "tail",
+            21,
+            "The team checked the logs and replayed every transaction before dawn, and that is still the central unresolved question before us."
+          ]
+        ]
+      }
     },
     {
       "id": "DET-RHY-CLOSER-007",
@@ -214,8 +444,20 @@
       "expected_outcome": "An 11-word comma tail is not surfaced.",
       "rationale": "Protects the first value above the comma-tail threshold.",
       "kind": "python_call",
-      "call": {"function": "aphoristic_closers", "args": [["The team checked the logs and replayed every transaction before dawn, and that is still the central unresolved question before us today."]], "select": [0]},
-      "assert": {"equals": []}
+      "call": {
+        "function": "aphoristic_closers",
+        "args": [
+          [
+            "The team checked the logs and replayed every transaction before dawn, and that is still the central unresolved question before us today."
+          ]
+        ],
+        "select": [
+          0
+        ]
+      },
+      "assert": {
+        "equals": []
+      }
     },
     {
       "id": "DET-SEGMENT-001",
@@ -226,8 +468,19 @@
       "expected_outcome": "Ordinary terminal punctuation separates sentences.",
       "rationale": "Sentence counts drive all rhythm measurements.",
       "kind": "python_call",
-      "call": {"function": "split_sentences", "args": ["The alarm rang. We left! Did Lee call?"]},
-      "assert": {"equals": ["The alarm rang.", "We left!", "Did Lee call?"]}
+      "call": {
+        "function": "split_sentences",
+        "args": [
+          "The alarm rang. We left! Did Lee call?"
+        ]
+      },
+      "assert": {
+        "equals": [
+          "The alarm rang.",
+          "We left!",
+          "Did Lee call?"
+        ]
+      }
     },
     {
       "id": "DET-SEGMENT-002",
@@ -238,8 +491,18 @@
       "expected_outcome": "Decimals and known abbreviations do not create false sentence boundaries.",
       "rationale": "Numeric technical prose and titles are legitimate inputs.",
       "kind": "python_call",
-      "call": {"function": "split_sentences", "args": ["Dr. Lee measured 2.5 volts. The relay opened."]},
-      "assert": {"equals": ["dr. Lee measured 2.5 volts.", "The relay opened."]}
+      "call": {
+        "function": "split_sentences",
+        "args": [
+          "Dr. Lee measured 2.5 volts. The relay opened."
+        ]
+      },
+      "assert": {
+        "equals": [
+          "dr. Lee measured 2.5 volts.",
+          "The relay opened."
+        ]
+      }
     },
     {
       "id": "DET-EXTRACT-001",
@@ -250,8 +513,26 @@
       "expected_outcome": "Headings and code are excluded while prose, list text, quotes, and table cells remain available.",
       "rationale": "Code tokens must not pollute prose metrics, while prose-bearing block forms stay measurable.",
       "kind": "python_call",
-      "call": {"function": "strip_markdown", "args": ["# Heading\n\nProse stays.\n\n```py\ndelve = 1\n```\n\n- List item\n> Quoted words\n\n| Name | Value |\n| --- | --- |\n| Cell | 3 |\n\nUse `delve()` here."]},
-      "assert": {"contains": ["Prose stays.", "List item", "Quoted words", "Cell", "Use  here."], "not_contains": ["Heading", "delve = 1", "delve()"]}
+      "call": {
+        "function": "strip_markdown",
+        "args": [
+          "# Heading\n\nProse stays.\n\n```py\ndelve = 1\n```\n\n- List item\n> Quoted words\n\n| Name | Value |\n| --- | --- |\n| Cell | 3 |\n\nUse `delve()` here."
+        ]
+      },
+      "assert": {
+        "contains": [
+          "Prose stays.",
+          "List item",
+          "Quoted words",
+          "Cell",
+          "Use  here."
+        ],
+        "not_contains": [
+          "Heading",
+          "delve = 1",
+          "delve()"
+        ]
+      }
     },
     {
       "id": "DET-EXTRACT-002",
@@ -262,12 +543,27 @@
       "owner": "#8",
       "desired_result": "Keep link label prose but exclude destination URLs from rhythm measurements.",
       "current_failure": "strip_markdown preserves the full Markdown destination.",
-      "expected_failure": {"path": "value.not_contains", "contains": "https://example.test/a.b"},
+      "expected_failure": {
+        "path": "value.not_contains",
+        "contains": "https://example.test/a.b"
+      },
       "expected_outcome": "The extracted prose contains the label and no URL destination.",
       "rationale": "URL path segments can distort words and sentence boundaries.",
       "kind": "python_call",
-      "call": {"function": "strip_markdown", "args": ["Read the [setup guide](https://example.test/a.b) before lunch."]},
-      "assert": {"contains": ["setup guide"], "not_contains": ["https://example.test/a.b"]}
+      "call": {
+        "function": "strip_markdown",
+        "args": [
+          "Read the [setup guide](https://example.test/a.b) before lunch."
+        ]
+      },
+      "assert": {
+        "contains": [
+          "setup guide"
+        ],
+        "not_contains": [
+          "https://example.test/a.b"
+        ]
+      }
     },
     {
       "id": "DET-EXTRACT-003",
@@ -278,8 +574,15 @@
       "expected_outcome": "UTF-8 punctuation, accented text, and HTML entities survive extraction without decoding errors.",
       "rationale": "The metric layer must accept real-world UTF-8 input deterministically.",
       "kind": "python_call",
-      "call": {"function": "strip_markdown", "args": ["Renée said “hello”—then wrote café &amp; tea."]},
-      "assert": {"equals": "Renée said “hello”—then wrote café &amp; tea."}
+      "call": {
+        "function": "strip_markdown",
+        "args": [
+          "Renée said “hello”—then wrote café &amp; tea."
+        ]
+      },
+      "assert": {
+        "equals": "Renée said “hello”—then wrote café &amp; tea."
+      }
     },
     {
       "id": "DET-CLI-001",
@@ -290,8 +593,21 @@
       "expected_outcome": "Piped prose is analyzed successfully and reports counts.",
       "rationale": "stdin is the primary skill integration path.",
       "kind": "rhythm_cli",
-      "cli": {"stdin": "One short line. This second sentence contains several additional words for contrast."},
-      "assert": {"returncode": 0, "stdout": {"contains": ["Paragraphs: 1 | Sentences: 2", "Burstiness"]}, "stderr": {"equals": ""}}
+      "cli": {
+        "stdin": "One short line. This second sentence contains several additional words for contrast."
+      },
+      "assert": {
+        "returncode": 0,
+        "stdout": {
+          "contains": [
+            "Paragraphs: 1 | Sentences: 2",
+            "Burstiness"
+          ]
+        },
+        "stderr": {
+          "equals": ""
+        }
+      }
     },
     {
       "id": "DET-CLI-002",
@@ -302,8 +618,20 @@
       "expected_outcome": "A UTF-8 file is read and analyzed successfully.",
       "rationale": "The documented file-path interface must use UTF-8.",
       "kind": "rhythm_cli",
-      "cli": {"file_text": "Renée measured the café sign. It glowed blue."},
-      "assert": {"returncode": 0, "stdout": {"contains": ["Sentences: 2"]}, "stderr": {"equals": ""}}
+      "cli": {
+        "file_text": "Renée measured the café sign. It glowed blue."
+      },
+      "assert": {
+        "returncode": 0,
+        "stdout": {
+          "contains": [
+            "Sentences: 2"
+          ]
+        },
+        "stderr": {
+          "equals": ""
+        }
+      }
     },
     {
       "id": "DET-CLI-003",
@@ -314,8 +642,20 @@
       "expected_outcome": "Empty piped input exits cleanly and reports that no prose was found.",
       "rationale": "Empty input is not a crash or an invented measurement.",
       "kind": "rhythm_cli",
-      "cli": {"stdin": ""},
-      "assert": {"returncode": 0, "stdout": {"contains": ["No prose sentences found."]}, "stderr": {"equals": ""}}
+      "cli": {
+        "stdin": ""
+      },
+      "assert": {
+        "returncode": 0,
+        "stdout": {
+          "contains": [
+            "No prose sentences found."
+          ]
+        },
+        "stderr": {
+          "equals": ""
+        }
+      }
     },
     {
       "id": "DET-CLI-004",
@@ -326,8 +666,21 @@
       "expected_outcome": "A missing file exits non-zero and identifies the file error.",
       "rationale": "Failure behavior must be visible to the caller.",
       "kind": "rhythm_cli",
-      "cli": {"missing_file": true},
-      "assert": {"returncode": 1, "stdout": {"equals": ""}, "stderr": {"contains": ["FileNotFoundError", "does-not-exist.txt"]}}
+      "cli": {
+        "missing_file": true
+      },
+      "assert": {
+        "returncode": 1,
+        "stdout": {
+          "equals": ""
+        },
+        "stderr": {
+          "contains": [
+            "FileNotFoundError",
+            "does-not-exist.txt"
+          ]
+        }
+      }
     },
     {
       "id": "DET-RHY-LENGTH-001",
@@ -338,8 +691,21 @@
       "expected_outcome": "Sentences of exactly 8 and 30 words increment the short and long counters respectively.",
       "rationale": "Locks both inclusive sentence-length count boundaries exposed by the CLI.",
       "kind": "rhythm_cli",
-      "cli": {"stdin": "One two three four five six seven eight. One two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen nineteen twenty twentyone twentytwo twentythree twentyfour twentyfive twentysix twentyseven twentyeight twentynine thirty."},
-      "assert": {"returncode": 0, "stdout": {"contains": ["short (<=8w): 1    long (>=30w): 1", "shortest 8w   longest 30w"]}, "stderr": {"equals": ""}}
+      "cli": {
+        "stdin": "One two three four five six seven eight. One two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen nineteen twenty twentyone twentytwo twentythree twentyfour twentyfive twentysix twentyseven twentyeight twentynine thirty."
+      },
+      "assert": {
+        "returncode": 0,
+        "stdout": {
+          "contains": [
+            "short (<=8w): 1    long (>=30w): 1",
+            "shortest 8w   longest 30w"
+          ]
+        },
+        "stderr": {
+          "equals": ""
+        }
+      }
     },
     {
       "id": "DET-PUNCT-001",
@@ -350,8 +716,21 @@
       "expected_outcome": "Em dashes and curly quotation marks are reported as raw counts.",
       "rationale": "Raw measurements are distinct from whether punctuation warrants an edit.",
       "kind": "rhythm_cli",
-      "cli": {"stdin": "Mara wrote “keep it”—and underlined it. The memo remained on the desk for two weeks."},
-      "assert": {"returncode": 0, "stdout": {"contains": ["em dashes (— or --): 1", "curly quotes: 2"]}, "stderr": {"equals": ""}}
+      "cli": {
+        "stdin": "Mara wrote “keep it”—and underlined it. The memo remained on the desk for two weeks."
+      },
+      "assert": {
+        "returncode": 0,
+        "stdout": {
+          "contains": [
+            "em dashes (— or --): 1",
+            "curly quotes: 2"
+          ]
+        },
+        "stderr": {
+          "equals": ""
+        }
+      }
     },
     {
       "id": "DET-PUNCT-002",
@@ -362,12 +741,27 @@
       "owner": "#9",
       "desired_result": "Quoted typography should be measured without a blanket ChatGPT-tell judgment.",
       "current_failure": "The CLI labels every curly quote as a ChatGPT tell.",
-      "expected_failure": {"path": "stdout.not_contains", "contains": "curly quotes are a ChatGPT tell"},
+      "expected_failure": {
+        "path": "stdout.not_contains",
+        "contains": "curly quotes are a ChatGPT tell"
+      },
       "expected_outcome": "A quotation using curly marks has no blanket provenance claim.",
       "rationale": "Quotation typography can be intentional or source-preserving.",
       "kind": "rhythm_cli",
-      "cli": {"stdin": "The plaque reads “Mind the step.” Visitors see it before the narrow stair."},
-      "assert": {"returncode": 0, "stdout": {"not_contains": ["curly quotes are a ChatGPT tell"]}, "stderr": {"equals": ""}}
+      "cli": {
+        "stdin": "The plaque reads “Mind the step.” Visitors see it before the narrow stair."
+      },
+      "assert": {
+        "returncode": 0,
+        "stdout": {
+          "not_contains": [
+            "curly quotes are a ChatGPT tell"
+          ]
+        },
+        "stderr": {
+          "equals": ""
+        }
+      }
     },
     {
       "id": "DET-PUNCT-003",
@@ -378,12 +772,27 @@
       "owner": "#13",
       "desired_result": "One contextual em dash should not trigger a zero-tolerance fix instruction.",
       "current_failure": "Any non-zero count prints `target zero em dashes`.",
-      "expected_failure": {"path": "stdout.not_contains", "contains": "target zero em dashes"},
+      "expected_failure": {
+        "path": "stdout.not_contains",
+        "contains": "target zero em dashes"
+      },
       "expected_outcome": "A single em dash is counted without a zero-tolerance severity instruction.",
       "rationale": "Severity requires passage context, not only a non-zero raw count.",
       "kind": "rhythm_cli",
-      "cli": {"stdin": "The gate opened—slowly. We crossed after the rain stopped and the guard waved us through."},
-      "assert": {"returncode": 0, "stdout": {"not_contains": ["target zero em dashes"]}, "stderr": {"equals": ""}}
+      "cli": {
+        "stdin": "The gate opened—slowly. We crossed after the rain stopped and the guard waved us through."
+      },
+      "assert": {
+        "returncode": 0,
+        "stdout": {
+          "not_contains": [
+            "target zero em dashes"
+          ]
+        },
+        "stderr": {
+          "equals": ""
+        }
+      }
     },
     {
       "id": "DET-WRAP-001",
@@ -394,8 +803,31 @@
       "expected_outcome": "A PATH slop-score binary is selected before npx.",
       "rationale": "Preserves the documented selection order under controlled substitutes.",
       "kind": "wrapper",
-      "wrapper": {"stdin": "payload\n", "args": ["--flag"], "programs": {"slop-score": "#!/bin/sh\nprintf 'GLOBAL:%s\\n' \"$*\"\nIFS= read -r line\nprintf 'STDIN:%s\\n' \"$line\"\n", "npx": "#!/bin/sh\nprintf 'NPX SHOULD NOT RUN\\n'\nexit 99\n"}},
-      "assert": {"returncode": 0, "stdout": {"contains": ["GLOBAL:--flag", "STDIN:payload"], "not_contains": ["NPX"]}, "stderr": {"equals": ""}}
+      "wrapper": {
+        "stdin": "payload\n",
+        "args": [
+          "--flag"
+        ],
+        "programs": {
+          "slop-score": "#!/bin/sh\nprintf 'GLOBAL:%s\\n' \"$*\"\nIFS= read -r line\nprintf 'STDIN:%s\\n' \"$line\"\n",
+          "npx": "#!/bin/sh\nprintf 'NPX SHOULD NOT RUN\\n'\nexit 99\n"
+        }
+      },
+      "assert": {
+        "returncode": 0,
+        "stdout": {
+          "contains": [
+            "GLOBAL:--flag",
+            "STDIN:payload"
+          ],
+          "not_contains": [
+            "NPX"
+          ]
+        },
+        "stderr": {
+          "equals": ""
+        }
+      }
     },
     {
       "id": "DET-WRAP-002",
@@ -406,8 +838,27 @@
       "expected_outcome": "npx receives the exact package version, scorer command, caller arguments, and stdin.",
       "rationale": "The fallback must be pinned and transparent to the scorer CLI.",
       "kind": "wrapper",
-      "wrapper": {"stdin": "payload\n", "args": ["-"], "programs": {"npx": "#!/bin/sh\nprintf 'ARGS:%s\\n' \"$*\"\nIFS= read -r line\nprintf 'STDIN:%s\\n' \"$line\"\n"}},
-      "assert": {"returncode": 0, "stdout": {"contains": ["ARGS:-y -p slop-detector@1.2.0 slop-score -", "STDIN:payload"]}, "stderr": {"equals": ""}}
+      "wrapper": {
+        "stdin": "payload\n",
+        "args": [
+          "-"
+        ],
+        "programs": {
+          "npx": "#!/bin/sh\nprintf 'ARGS:%s\\n' \"$*\"\nIFS= read -r line\nprintf 'STDIN:%s\\n' \"$line\"\n"
+        }
+      },
+      "assert": {
+        "returncode": 0,
+        "stdout": {
+          "contains": [
+            "ARGS:-y -p slop-detector@1.2.0 slop-score -",
+            "STDIN:payload"
+          ]
+        },
+        "stderr": {
+          "equals": ""
+        }
+      }
     },
     {
       "id": "DET-WRAP-003",
@@ -418,8 +869,20 @@
       "expected_outcome": "The selected scorer's non-zero exit status is returned unchanged.",
       "rationale": "Callers must be able to distinguish scorer failure.",
       "kind": "wrapper",
-      "wrapper": {"programs": {"slop-score": "#!/bin/sh\nexit 23\n"}},
-      "assert": {"returncode": 23, "stdout": {"equals": ""}, "stderr": {"equals": ""}}
+      "wrapper": {
+        "programs": {
+          "slop-score": "#!/bin/sh\nexit 23\n"
+        }
+      },
+      "assert": {
+        "returncode": 23,
+        "stdout": {
+          "equals": ""
+        },
+        "stderr": {
+          "equals": ""
+        }
+      }
     },
     {
       "id": "DET-WRAP-004",
@@ -430,8 +893,20 @@
       "expected_outcome": "With neither scorer nor npx available, the wrapper exits 1 with its sentinel.",
       "rationale": "The skills rely on this failure to fall back to qualitative analysis.",
       "kind": "wrapper",
-      "wrapper": {"programs": {}},
-      "assert": {"returncode": 1, "stdout": {"equals": ""}, "stderr": {"contains": ["SCORER_NOT_AVAILABLE"]}}
+      "wrapper": {
+        "programs": {}
+      },
+      "assert": {
+        "returncode": 1,
+        "stdout": {
+          "equals": ""
+        },
+        "stderr": {
+          "contains": [
+            "SCORER_NOT_AVAILABLE"
+          ]
+        }
+      }
     },
     {
       "id": "DET-SCORER-WORD-001",
@@ -442,8 +917,26 @@
       "expected_outcome": "The pinned scorer reports base and inflected forms as separate lexical hits.",
       "rationale": "Exercises the external scorer's word-list stemming behavior.",
       "kind": "real_scorer",
-      "scorer": {"stdin": "We delve into records. She delves into maps. They are delving into notes."},
-      "assert": {"returncode": 0, "version": "1.2.0", "score": {"min": 20}, "stdout": {"contains": ["\"delve\": 1×", "\"delves\": 1×", "\"delving\": 1×"]}, "stderr": {"equals": ""}}
+      "scorer": {
+        "stdin": "We delve into records. She delves into maps. They are delving into notes."
+      },
+      "assert": {
+        "returncode": 0,
+        "version": "1.2.0",
+        "score": {
+          "min": 20
+        },
+        "stdout": {
+          "contains": [
+            "\"delve\": 1×",
+            "\"delves\": 1×",
+            "\"delving\": 1×"
+          ]
+        },
+        "stderr": {
+          "equals": ""
+        }
+      }
     },
     {
       "id": "DET-SCORER-WORD-002",
@@ -454,8 +947,25 @@
       "expected_outcome": "Lexical fragments inside longer words do not match.",
       "rationale": "Prevents broadening a word rule into substring matching.",
       "kind": "real_scorer",
-      "scorer": {"stdin": "The redelved trench is old. A robustly fitted model converged."},
-      "assert": {"returncode": 0, "version": "1.2.0", "score": {"max": 1}, "stdout": {"not_contains": ["\"delve\"", "\"robust\""]}, "stderr": {"equals": ""}}
+      "scorer": {
+        "stdin": "The redelved trench is old. A robustly fitted model converged."
+      },
+      "assert": {
+        "returncode": 0,
+        "version": "1.2.0",
+        "score": {
+          "max": 1
+        },
+        "stdout": {
+          "not_contains": [
+            "\"delve\"",
+            "\"robust\""
+          ]
+        },
+        "stderr": {
+          "equals": ""
+        }
+      }
     },
     {
       "id": "DET-SCORER-WORD-003",
@@ -466,12 +976,28 @@
       "owner": "#14",
       "desired_result": "Catalogue policy decides whether an ordinary noun sense should avoid the AI-vocabulary hit.",
       "current_failure": "The scorer reports the noun `delves` exactly like the verb.",
-      "expected_failure": {"path": "stdout.not_contains", "contains": "\"delves\":"},
+      "expected_failure": {
+        "path": "stdout.not_contains",
+        "contains": "\"delves\":"
+      },
       "expected_outcome": "The geographic noun use of `delves` has no actionable lexical hit.",
       "rationale": "Meaning-sensitive catalogue policy is unresolved and must not be silently baselined.",
       "kind": "real_scorer",
-      "scorer": {"stdin": "The delves were narrow valleys marked on the survey."},
-      "assert": {"returncode": 0, "version": "1.2.0", "stdout": {"not_contains": ["\"delves\":"]}, "stderr": {"equals": ""}}
+      "scorer": {
+        "stdin": "The delves were narrow valleys marked on the survey."
+      },
+      "assert": {
+        "returncode": 0,
+        "version": "1.2.0",
+        "stdout": {
+          "not_contains": [
+            "\"delves\":"
+          ]
+        },
+        "stderr": {
+          "equals": ""
+        }
+      }
     },
     {
       "id": "DET-SCORER-WORD-004",
@@ -482,8 +1008,21 @@
       "expected_outcome": "Repeated vocabulary preserves its exact hit count.",
       "rationale": "Raw repetition is auditable even though context determines whether it is actionable.",
       "kind": "real_scorer",
-      "scorer": {"stdin": "A robust latch held. The robust hinge moved. Another robust pin stayed fixed."},
-      "assert": {"returncode": 0, "version": "1.2.0", "stdout": {"contains": ["\"robust\": 3×"]}, "stderr": {"equals": ""}}
+      "scorer": {
+        "stdin": "A robust latch held. The robust hinge moved. Another robust pin stayed fixed."
+      },
+      "assert": {
+        "returncode": 0,
+        "version": "1.2.0",
+        "stdout": {
+          "contains": [
+            "\"robust\": 3×"
+          ]
+        },
+        "stderr": {
+          "equals": ""
+        }
+      }
     },
     {
       "id": "DET-SCORER-WORD-005",
@@ -494,8 +1033,27 @@
       "expected_outcome": "A longer plain passage reports no word, trigram, contrast, or trope hits.",
       "rationale": "Provides a clean partner to dense lexical fixtures and exercises length normalization.",
       "kind": "real_scorer",
-      "scorer": {"stdin": "The ceramic mug sat beside the kitchen sink overnight. I moved it to the upper shelf before breakfast. Sam opened the window after the morning rain stopped. We wrote the delivery date on a paper card. The card remained near the front door until Tuesday."},
-      "assert": {"returncode": 0, "version": "1.2.0", "score": {"max": 1}, "stdout": {"contains": ["Word Score: 0.00", "Trigram Score: 0.00", "Contrast Pattern Score: 0.00", "Trope Pattern Score: 0.00"]}, "stderr": {"equals": ""}}
+      "scorer": {
+        "stdin": "The ceramic mug sat beside the kitchen sink overnight. I moved it to the upper shelf before breakfast. Sam opened the window after the morning rain stopped. We wrote the delivery date on a paper card. The card remained near the front door until Tuesday."
+      },
+      "assert": {
+        "returncode": 0,
+        "version": "1.2.0",
+        "score": {
+          "max": 1
+        },
+        "stdout": {
+          "contains": [
+            "Word Score: 0.00",
+            "Trigram Score: 0.00",
+            "Contrast Pattern Score: 0.00",
+            "Trope Pattern Score: 0.00"
+          ]
+        },
+        "stderr": {
+          "equals": ""
+        }
+      }
     },
     {
       "id": "DET-SCORER-WORD-006",
@@ -506,8 +1064,21 @@
       "expected_outcome": "A legitimate technical use still produces the raw lexical match.",
       "rationale": "`Must stay clean` here means no actionable editorial finding, not zero raw matches; see GOLD-TECH-001.",
       "kind": "real_scorer",
-      "scorer": {"stdin": "The estimator uses a robust covariance matrix because the sample contains outliers."},
-      "assert": {"returncode": 0, "version": "1.2.0", "stdout": {"contains": ["\"robust\": 1×"]}, "stderr": {"equals": ""}}
+      "scorer": {
+        "stdin": "The estimator uses a robust covariance matrix because the sample contains outliers."
+      },
+      "assert": {
+        "returncode": 0,
+        "version": "1.2.0",
+        "stdout": {
+          "contains": [
+            "\"robust\": 1×"
+          ]
+        },
+        "stderr": {
+          "equals": ""
+        }
+      }
     },
     {
       "id": "DET-SCORER-TRIGRAM-001",
@@ -518,8 +1089,22 @@
       "expected_outcome": "A pinned trigram is reported by exact normalized text.",
       "rationale": "Covers the scorer's trigram metric independently of single-word hits.",
       "kind": "real_scorer",
-      "scorer": {"stdin": "The lamp was casting long shadows across the floor."},
-      "assert": {"returncode": 0, "version": "1.2.0", "stdout": {"contains": ["Top Slop Trigrams:", "\"casting long shadows\": 1×"]}, "stderr": {"equals": ""}}
+      "scorer": {
+        "stdin": "The lamp was casting long shadows across the floor."
+      },
+      "assert": {
+        "returncode": 0,
+        "version": "1.2.0",
+        "stdout": {
+          "contains": [
+            "Top Slop Trigrams:",
+            "\"casting long shadows\": 1×"
+          ]
+        },
+        "stderr": {
+          "equals": ""
+        }
+      }
     },
     {
       "id": "DET-SCORER-TRIGRAM-002",
@@ -530,8 +1115,21 @@
       "expected_outcome": "A semantically similar ordinary sentence without the exact trigram stays unmatched.",
       "rationale": "Guards against broad phrase matching.",
       "kind": "real_scorer",
-      "scorer": {"stdin": "The lamp cast a long shadow across the floor."},
-      "assert": {"returncode": 0, "version": "1.2.0", "stdout": {"not_contains": ["Top Slop Trigrams:"]}, "stderr": {"equals": ""}}
+      "scorer": {
+        "stdin": "The lamp cast a long shadow across the floor."
+      },
+      "assert": {
+        "returncode": 0,
+        "version": "1.2.0",
+        "stdout": {
+          "not_contains": [
+            "Top Slop Trigrams:"
+          ]
+        },
+        "stderr": {
+          "equals": ""
+        }
+      }
     },
     {
       "id": "DET-SCORER-CONSTRUCT-001",
@@ -542,8 +1140,23 @@
       "expected_outcome": "Formal and contracted stock contrast variants are both detected.",
       "rationale": "Protects construction coverage across contraction variants.",
       "kind": "real_scorer",
-      "scorer": {"stdin": "The choice is not merely local; it is regional. The second choice isn't merely local; it's regional."},
-      "assert": {"returncode": 0, "version": "1.2.0", "stdout": {"contains": ["Contrast Patterns Found:", "The choice is not merely local; it is", "The second choice isn't merely local; it's"]}, "stderr": {"equals": ""}}
+      "scorer": {
+        "stdin": "The choice is not merely local; it is regional. The second choice isn't merely local; it's regional."
+      },
+      "assert": {
+        "returncode": 0,
+        "version": "1.2.0",
+        "stdout": {
+          "contains": [
+            "Contrast Patterns Found:",
+            "The choice is not merely local; it is",
+            "The second choice isn't merely local; it's"
+          ]
+        },
+        "stderr": {
+          "equals": ""
+        }
+      }
     },
     {
       "id": "DET-SCORER-CONSTRUCT-002",
@@ -554,8 +1167,21 @@
       "expected_outcome": "An ordinary factual `not ... but ...` sentence does not match a stock construction.",
       "rationale": "Similar words alone must not imply the shaped contrast pattern.",
       "kind": "real_scorer",
-      "scorer": {"stdin": "The switch is not red but blue."},
-      "assert": {"returncode": 0, "version": "1.2.0", "stdout": {"not_contains": ["Contrast Patterns Found:"]}, "stderr": {"equals": ""}}
+      "scorer": {
+        "stdin": "The switch is not red but blue."
+      },
+      "assert": {
+        "returncode": 0,
+        "version": "1.2.0",
+        "stdout": {
+          "not_contains": [
+            "Contrast Patterns Found:"
+          ]
+        },
+        "stderr": {
+          "equals": ""
+        }
+      }
     },
     {
       "id": "DET-SCORER-TROPE-001",
@@ -566,8 +1192,22 @@
       "expected_outcome": "The false-suspense stock phrase is reported as a trope match.",
       "rationale": "Covers the scorer's phrase-trope component.",
       "kind": "real_scorer",
-      "scorer": {"stdin": "Here's the kicker: the lock was never engaged."},
-      "assert": {"returncode": 0, "version": "1.2.0", "stdout": {"contains": ["[tone] false_suspense", "Here's the kicker"]}, "stderr": {"equals": ""}}
+      "scorer": {
+        "stdin": "Here's the kicker: the lock was never engaged."
+      },
+      "assert": {
+        "returncode": 0,
+        "version": "1.2.0",
+        "stdout": {
+          "contains": [
+            "[tone] false_suspense",
+            "Here's the kicker"
+          ]
+        },
+        "stderr": {
+          "equals": ""
+        }
+      }
     },
     {
       "id": "DET-SCORER-LIST-001",
@@ -578,8 +1218,22 @@
       "expected_outcome": "A legitimate three-item inventory may register the raw tricolon metric.",
       "rationale": "`Must stay clean` means no actionable finding or rewrite here, not zero raw matches; see GOLD-LIST-001.",
       "kind": "real_scorer",
-      "scorer": {"stdin": "The repair kit contains a wrench, two sockets, and a roll of tape."},
-      "assert": {"returncode": 0, "version": "1.2.0", "stdout": {"contains": ["[sentence_structure] tricolon_abuse", "1 tricolon patterns"]}, "stderr": {"equals": ""}}
+      "scorer": {
+        "stdin": "The repair kit contains a wrench, two sockets, and a roll of tape."
+      },
+      "assert": {
+        "returncode": 0,
+        "version": "1.2.0",
+        "stdout": {
+          "contains": [
+            "[sentence_structure] tricolon_abuse",
+            "1 tricolon patterns"
+          ]
+        },
+        "stderr": {
+          "equals": ""
+        }
+      }
     },
     {
       "id": "DET-SCORER-TROPE-002",
@@ -590,8 +1244,374 @@
       "expected_outcome": "An ordinary sentence sharing one word with the trope does not match.",
       "rationale": "Protects literal sports language from phrase-level overreach.",
       "kind": "real_scorer",
-      "scorer": {"stdin": "The kicker scored before halftime."},
-      "assert": {"returncode": 0, "version": "1.2.0", "stdout": {"not_contains": ["false_suspense"]}, "stderr": {"equals": ""}}
+      "scorer": {
+        "stdin": "The kicker scored before halftime."
+      },
+      "assert": {
+        "returncode": 0,
+        "version": "1.2.0",
+        "stdout": {
+          "not_contains": [
+            "false_suspense"
+          ]
+        },
+        "stderr": {
+          "equals": ""
+        }
+      }
+    },
+    {
+      "id": "DET-FACT-NUM-001",
+      "target": "factcheck lost-number detection",
+      "layer": "deterministic",
+      "polarity": "positive",
+      "status": "pass",
+      "expected_outcome": "A figure present in the original and absent from the rewrite is reported as LOST and is a hard finding.",
+      "rationale": "Dropping a quantity is the failure #7 names first; it must be mechanical, not a judgement.",
+      "kind": "python_call",
+      "call": {
+        "module": "factcheck",
+        "function": "compare",
+        "args": [
+          "The pilot may have cut queue time by roughly 12 percent, according to an internal estimate.",
+          "The pilot cut queue time, according to an internal estimate."
+        ],
+        "select": [
+          "numbers",
+          "lost"
+        ]
+      },
+      "assert": {
+        "equals": [
+          "12 percent"
+        ]
+      }
+    },
+    {
+      "id": "DET-FACT-NUM-003",
+      "target": "factcheck added-number detection",
+      "layer": "deterministic",
+      "polarity": "positive",
+      "status": "pass",
+      "expected_outcome": "A figure in the rewrite that is absent from the original is reported as ADDED.",
+      "rationale": "An invented statistic is the fabrication GOLD-VERIFY-002 was built to catch.",
+      "kind": "python_call",
+      "call": {
+        "module": "factcheck",
+        "function": "compare",
+        "args": [
+          "Industry reports suggest teams catch more defects.",
+          "Industry reports suggest teams catch 37 percent more defects."
+        ],
+        "select": [
+          "numbers",
+          "added"
+        ]
+      },
+      "assert": {
+        "equals": [
+          "37 percent"
+        ]
+      }
+    },
+    {
+      "id": "DET-FACT-QUOTE-001",
+      "target": "factcheck broken-quotation detection",
+      "layer": "deterministic",
+      "polarity": "positive",
+      "status": "pass",
+      "expected_outcome": "A quoted span edited in the rewrite is reported as BROKEN.",
+      "rationale": "Quoted text is a record of what someone said; editing an em dash out of it alters the record.",
+      "kind": "python_call",
+      "call": {
+        "module": "factcheck",
+        "function": "compare",
+        "args": [
+          "She said, \"It works — most of the time.\"",
+          "She said, \"It works, most of the time.\""
+        ],
+        "select": [
+          "quotations",
+          "broken"
+        ]
+      },
+      "assert": {
+        "equals": [
+          "It works — most of the time."
+        ]
+      }
+    },
+    {
+      "id": "DET-FACT-ENT-001",
+      "target": "factcheck dropped-entity detection",
+      "layer": "deterministic",
+      "polarity": "positive",
+      "status": "pass",
+      "expected_outcome": "A named entity paraphrased away is reported as DROPPED.",
+      "rationale": "Fixing repetition (#12, #14) must reuse the name, not replace it with a description.",
+      "kind": "python_call",
+      "call": {
+        "module": "factcheck",
+        "function": "compare",
+        "args": [
+          "The filing named Meridian Freight Lines. Meridian Freight Lines expects a decision.",
+          "The filing named the carrier. It expects a decision."
+        ],
+        "select": [
+          "entities",
+          "dropped"
+        ]
+      },
+      "assert": {
+        "equals": [
+          "Meridian Freight Lines"
+        ]
+      }
+    },
+    {
+      "id": "DET-FACT-HEDGE-001",
+      "target": "factcheck attribution-bucket elimination",
+      "layer": "deterministic",
+      "polarity": "positive",
+      "status": "pass",
+      "expected_outcome": "Losing the only reporting verb empties the attribution bucket and is a hard finding.",
+      "rationale": "This is the exact GOLD-VERIFY-002 defect: \"reports suggest\" became \"reports say\".",
+      "kind": "python_call",
+      "call": {
+        "module": "factcheck",
+        "function": "compare",
+        "args": [
+          "Industry reports suggest teams catch more defects before release.",
+          "Unnamed industry reports say teams catch more defects before release."
+        ],
+        "select": [
+          "hedges",
+          "eliminated"
+        ]
+      },
+      "assert": {
+        "equals": [
+          "attribution"
+        ]
+      }
+    },
+    {
+      "id": "DET-FACT-NUM-002",
+      "target": "factcheck no-loss on preserved figures",
+      "layer": "deterministic",
+      "polarity": "negative",
+      "status": "pass",
+      "expected_outcome": "An unchanged figure set produces no lost and no added numbers.",
+      "rationale": "A checker that flags a faithful rewrite trains the reader to ignore it.",
+      "kind": "python_call",
+      "call": {
+        "module": "factcheck",
+        "function": "compare",
+        "args": [
+          "The pilot may have cut queue time by roughly 12 percent, according to an internal estimate.",
+          "An internal estimate suggests the pilot may have cut queue time by roughly 12 percent."
+        ],
+        "select": [
+          "numbers"
+        ]
+      },
+      "assert": {
+        "equals": {
+          "before": [
+            "12 percent"
+          ],
+          "after": [
+            "12 percent"
+          ],
+          "lost": [],
+          "added": []
+        }
+      }
+    },
+    {
+      "id": "DET-FACT-HEDGE-002",
+      "target": "factcheck tolerance for correct pattern-31 compression",
+      "layer": "deterministic",
+      "polarity": "negative",
+      "status": "pass",
+      "expected_outcome": "Compressing \"could potentially\" to \"may\" reports no hard finding, because the uncertainty bucket still carries doubt.",
+      "rationale": "Cutting stacked qualifiers is the prescribed #31 repair and must not be punished as lost uncertainty.",
+      "kind": "python_call",
+      "call": {
+        "module": "factcheck",
+        "function": "compare",
+        "args": [
+          "It is important to note that the pilot may have reduced queue time by roughly 12 percent, according to an internal estimate that has not been independently checked. The result could potentially reshape how the office schedules morning appointments.",
+          "An internal estimate suggests the pilot may have cut queue time by roughly 12 percent. Nobody has checked that number independently. If it holds up, morning scheduling may change."
+        ],
+        "select": [
+          "hedges",
+          "eliminated"
+        ]
+      },
+      "assert": {
+        "equals": []
+      }
+    },
+    {
+      "id": "DET-FACT-HEDGE-003",
+      "target": "factcheck scope bucket is advisory, never a hard finding",
+      "layer": "deterministic",
+      "polarity": "boundary",
+      "status": "pass",
+      "expected_outcome": "Emptying the scope bucket is reported in the bucket table but produces no hard finding.",
+      "rationale": "A scope limit can be carried by a clause with no keyword (\"among the 40 who finished\"), so keyword absence cannot gate.",
+      "kind": "python_call",
+      "call": {
+        "module": "factcheck",
+        "function": "compare",
+        "args": [
+          "The internal figures are preliminary.",
+          "The figures are ready."
+        ],
+        "select": [
+          "hedges",
+          "eliminated"
+        ]
+      },
+      "assert": {
+        "equals": []
+      }
+    },
+    {
+      "id": "DET-FACT-QUOTE-002",
+      "target": "factcheck quote matching across quote-mark and dash styles",
+      "layer": "deterministic",
+      "polarity": "boundary",
+      "status": "pass",
+      "expected_outcome": "A quotation re-typed with straight marks and a double hyphen is not reported as broken.",
+      "rationale": "Converting curly quotes (#22) is a permitted style fix; it must not read as tampering with the source.",
+      "kind": "python_call",
+      "call": {
+        "module": "factcheck",
+        "function": "compare",
+        "args": [
+          "Imani said, “It works — most of the time.”",
+          "Imani said, \"It works -- most of the time.\""
+        ],
+        "select": [
+          "quotations",
+          "broken"
+        ]
+      },
+      "assert": {
+        "equals": []
+      }
+    },
+    {
+      "id": "DET-FACT-CLI-001",
+      "target": "factcheck CLI positional form and report sections",
+      "layer": "deterministic",
+      "polarity": "positive",
+      "status": "pass",
+      "expected_outcome": "Two positional paths produce the full report on stdout and exit 0.",
+      "rationale": "The skill invokes the script positionally; the section headings are the contract it reads.",
+      "kind": "factcheck_cli",
+      "cli": {
+        "original_text": "The pilot may have cut queue time by roughly 12 percent, according to an internal estimate.",
+        "rewrite_text": "An internal estimate suggests the pilot may have cut queue time by roughly 12 percent."
+      },
+      "assert": {
+        "returncode": 0,
+        "stdout": {
+          "contains": [
+            "=== Fact Preservation Check ===",
+            "Numbers:",
+            "Quotations:",
+            "Named entities:",
+            "Hedges and qualifications:",
+            "Burstiness (computed, not asserted):",
+            "Verdict:"
+          ]
+        },
+        "stderr": {
+          "equals": ""
+        }
+      }
+    },
+    {
+      "id": "DET-FACT-CLI-002",
+      "target": "factcheck CLI missing-file behavior",
+      "layer": "deterministic",
+      "polarity": "negative",
+      "status": "pass",
+      "expected_outcome": "A missing input path exits non-zero with a message and prints no report.",
+      "rationale": "A silent empty comparison would read as a clean result.",
+      "kind": "factcheck_cli",
+      "cli": {
+        "missing_original": true,
+        "rewrite_text": "Any rewrite text."
+      },
+      "assert": {
+        "returncode": 1,
+        "stdout": {
+          "not_contains": [
+            "Fact Preservation Check"
+          ]
+        },
+        "stderr": {
+          "contains": [
+            "No such file"
+          ]
+        }
+      }
+    },
+    {
+      "id": "DET-FACT-CLI-003",
+      "target": "factcheck --strict exit status on a hard finding",
+      "layer": "deterministic",
+      "polarity": "boundary",
+      "status": "pass",
+      "expected_outcome": "--strict exits 1 when a figure is lost, and still prints the report.",
+      "rationale": "CI use needs a gate; the default stays advisory like rhythm.py.",
+      "kind": "factcheck_cli",
+      "cli": {
+        "original_text": "The pilot may have cut queue time by roughly 12 percent, according to an internal estimate.",
+        "rewrite_text": "The pilot cut queue time, according to an internal estimate.",
+        "flags": [
+          "--strict"
+        ]
+      },
+      "assert": {
+        "returncode": 1,
+        "stdout": {
+          "contains": [
+            "LOST: 12 percent",
+            "Hard findings:"
+          ]
+        }
+      }
+    },
+    {
+      "id": "DET-FACT-CLI-004",
+      "target": "factcheck --strict exit status when nothing is lost",
+      "layer": "deterministic",
+      "polarity": "boundary",
+      "status": "pass",
+      "expected_outcome": "--strict exits 0 on a faithful rewrite and says so without claiming a clean bill of health.",
+      "rationale": "The script must not imply it can see meaning; that is the editorial check's job.",
+      "kind": "factcheck_cli",
+      "cli": {
+        "original_text": "The pilot may have cut queue time by roughly 12 percent, according to an internal estimate.",
+        "rewrite_text": "An internal estimate suggests the pilot may have cut queue time by roughly 12 percent.",
+        "flags": [
+          "--strict"
+        ]
+      },
+      "assert": {
+        "returncode": 0,
+        "stdout": {
+          "contains": [
+            "No mechanical loss detected.",
+            "not a clean bill of health"
+          ]
+        }
+      }
     }
   ]
 }
