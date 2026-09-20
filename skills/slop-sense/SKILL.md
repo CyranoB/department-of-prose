@@ -54,9 +54,26 @@ Follow this sequence:
    **A low SLOP score is not a clean bill of health.** `score.sh` says nothing about *rhythm*, and rhythm is the axis perplexity detectors (GPTZero and similar) actually score. Text can rate 4/100 lexically and still get flagged 90%+ by GPTZero on uniform sentence rhythm or zero contractions alone. That gap is the entire reason `rhythm.py` exists. When a user says a tool flagged their text, trust `rhythm.py` over a low SLOP score, and do not let the low score talk you out of the structural fixes.
 2. **Scan** the text against the 36 patterns below. If you have scorer output, use it as evidence. If not, rely on your own reading. Either way, name exactly which patterns you found.
 3. **Score**: if the scorer ran, report its number. Add your qualitative assessment either way (clean / mild / moderate / heavy / pure slop).
-4. **Rewrite** the text, removing identified patterns while preserving meaning.
+4. **Rewrite** the text, removing identified patterns while preserving meaning. Meaning includes the factual record: read [Fact preservation](#fact-preservation) before you start.
 5. **Audit**: ask yourself "What still makes this obviously AI generated?" Check especially for em dashes, which are the hardest pattern to shake. Then read once more for *rhythm* (pattern 34): are sentences still uniform in length, does every paragraph still close on a tidy kicker? Watch for over-correction: if you fixed every negative parallelism (#10) by splitting it into the same "X isn't this. It's that." two-beat, you have traded one tell for another and the scorer will catch it. Vary the repairs. Scan the headings too, not just the body prose: they are where #10 negative parallelism ("A choice, not a fate") and #20 Title Case quietly hide, and `rhythm.py` strips headings before analysis so it cannot see them. List remaining tells, then revise once more. If `rhythm.py` is available, re-run it on your rewrite to confirm the numbers moved: burstiness CV up, contraction ratio up, anaphora gone. The script catches tells you introduce while rewriting, not just the ones you started with.
-6. **Present** the final version with a brief summary of what changed.
+6. **Fact check the version you are about to present.** Do this last, after the revision in step 5, so it covers the text the user actually receives rather than an earlier draft. Put it beside the original and ask three things. *Added:* does it assert anything the original did not, such as a source, a cause, a figure, or a stronger claim? *Omitted:* did any name, number, quotation, attribution, hedge, or scope limit disappear? *Changed:* did any claim shift in strength, subject, or direction? Check each item on its own rather than judging the passage as a whole; a rewrite can read as cautious overall while one specific hedge has gone missing.
+7. **Present** the final version, the fact-check result, and a brief summary of what changed.
+
+---
+
+## Fact preservation
+
+The rewrite changes how the text sounds, never what it claims. Names, numbers, dates, quotations, sources, hedges, and scope limits survive the edit even where cutting one would read better.
+
+The traps, each tied to the pattern that invites it:
+
+- Removing a vague attribution (#5) tempts you to supply the source it lacked. Report what the input said ("unnamed industry reports") or say it named none. The catalogue's "name the source" advice applies when the source is elsewhere in the document, not when you would have to make it up.
+- Cutting excessive hedging (#31) means dropping the redundant qualifiers, not the doubt they carried. "May have reduced" is not "reduced".
+- Fixing synonym cycling (#12) means repeating a name, not paraphrasing it. A legal name is not its trade name.
+- Quoted text is off limits even when full of tells. Report a #10, #17, or #22 hit inside a quotation as the speaker's and fix the reporting clause instead. This outranks #17's zero-em-dash target: a quoted dash stays.
+- Scope limits go first in any tightening pass. "In the pilot group", "self-reported", "among the 40 who finished" are load-bearing.
+
+If a pattern can only be removed by adding specifics the input does not contain, leave it. Keep the general phrasing, or mark the gap (`[source?]`, `[date?]`) and raise it in the summary. A gap the user can see is something they can go and fill. An invented fact they will probably never catch.
 
 ---
 
@@ -161,7 +178,7 @@ Every time you are about to write an em dash, stop and use a comma, a period, or
 > After: "The tools are useful, even essential, for modern teams."
 > Before: "It works — most of the time."
 > After: "It works most of the time."
-Zero em dashes in the final rewrite is the target. If you find yourself reaching for one, that is the habit talking.
+Zero em dashes *of your own* in the final rewrite is the target. If you find yourself reaching for one, that is the habit talking. A dash inside a quotation you are preserving belongs to the speaker: leave it, and do not count it against the rewrite.
 
 **18. Boldface overuse**
 Mechanical emphasis on terms.
@@ -304,9 +321,10 @@ When presenting results:
 1. **SLOP score** (if scorer available): the algorithmic score, plus interpretation
 2. **Detection summary**: which patterns you found and your qualitative assessment
 3. **Draft rewrite**: first pass with patterns removed
-4. **Anti-AI audit**: brief bullets listing what still reads as AI-generated, with special attention to any remaining em dashes
-5. **Final rewrite**: revised after the audit, with zero em dashes
-6. **Changes summary**: what was fixed (optional, if helpful)
+4. **Anti-AI audit**: brief bullets listing what still reads as AI-generated, with special attention to any remaining em dashes of your own
+5. **Final rewrite**: revised after the audit, with no em dashes of your own
+6. **Fact check**: run on the final rewrite above, not on the draft. Confirm nothing was added, omitted, or changed in strength. List anything you could not preserve or marked `[source?]`. Say so explicitly when it is clean; do not skip the line.
+7. **Changes summary**: what was fixed (optional, if helpful)
 
 ---
 

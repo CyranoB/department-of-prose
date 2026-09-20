@@ -92,7 +92,7 @@ class PluginVersionTests(unittest.TestCase):
         )
 
     def test_current_repository_packaging_is_valid(self):
-        self.assertEqual(HELPERS["check"](ROOT), "3.0.0")
+        self.assertEqual(HELPERS["check"](ROOT), "3.1.0")
 
     def test_plugin_change_requires_bump(self):
         (self.repository / "skills/example/SKILL.md").write_text("updated\n")
