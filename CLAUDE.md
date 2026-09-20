@@ -1,4 +1,4 @@
-# Slop Sense
+# The Department of Prose
 
 A Claude Code plugin / cross-agent skill family that detects, scores, and explains AI writing patterns. Three sibling skills ship together inside one plugin.
 
@@ -19,7 +19,7 @@ A Claude Code plugin / cross-agent skill family that detects, scores, and explai
 ## When making changes
 
 - **Bump `version` in BOTH `plugin.json` and `marketplace.json`** for any user-visible change. Claude Code uses `version` as the update cache key — installs report "already latest" without a bump.
-- The plugin is distributed two ways: marketplace install (Claude Code only) and `npx skills@latest add CyranoB/slop-sense` (50+ agents). Don't add Claude-specific paths in any SKILL.md — they have to work cross-agent.
+- The plugin is distributed two ways: marketplace install (Claude Code only) and `npx skills@latest add CyranoB/department-of-prose` (50+ agents). Don't add Claude-specific paths in any SKILL.md — they have to work cross-agent.
 - **Trigger disambiguation matters.** All three skills share vocabulary domain. When editing any SKILL.md description, keep the "Prefer X if..." cross-references intact so the agent's router picks the right skill.
 - The scorer is optional by design. Don't make `score.sh` a hard dependency; the skills must still do useful qualitative analysis when Node is unavailable.
 - The `slop-check` skill calls the scorer via the sibling path `../slop-sense/scripts/score.sh`. If a cross-agent install ever flattens directory structure such that the relative path breaks, vendor a per-skill copy inside `slop-check/scripts/` rather than refactoring the path scheme.

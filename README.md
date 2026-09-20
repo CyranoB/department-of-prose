@@ -1,8 +1,12 @@
-# Slop Sense
+# The Department of Prose
 
-[![skills.sh](https://skills.sh/b/CyranoB/slop-sense)](https://skills.sh/CyranoB/slop-sense)
+[![skills.sh](https://skills.sh/b/CyranoB/department-of-prose)](https://skills.sh/CyranoB/department-of-prose)
 
-A three-skill plugin that detects, scores, and explains AI-generated text. Paste text in, get back an analysis of which AI patterns it contains, a rewritten version that sounds human, or a deep-dive on a specific pattern you want to understand.
+The Department of Prose occupies a small office between what you wrote and what you meant. Its staff were originally employed to remove unnecessary words, but the arrival of artificial intelligence has required a second kettle.
+
+Documents are inspected for inflated importance, unlicensed metaphors, and conclusions which have continued trading after the point has closed. Most can be returned to their owners in working order. Occasionally a paragraph must be taken outside and quietly reduced to a sentence.
+
+A plugin for Claude Code and Codex with three writing skills: `slop-check` flags and scores common AI writing patterns, `slop-explain` explains them, and `slop-sense` rewrites the text. Accepts pasted text, URLs, or files.
 
 ## The three skills
 
@@ -40,10 +44,12 @@ Triggers on requests like "explain pattern N," "why is X a tell," "teach me abou
 
 ## Quickstart
 
+**Establish a local branch of the Department.**
+
 Install the skill with one command. It works for 50+ coding agents:
 
 ```bash
-npx skills@latest add CyranoB/slop-sense
+npx skills@latest add CyranoB/department-of-prose
 ```
 
 The installer detects your agents, asks which to install for, and places the skill
@@ -52,9 +58,9 @@ in the right location.
 Common variations:
 
 ```bash
-npx skills@latest add CyranoB/slop-sense --list
-npx skills@latest add CyranoB/slop-sense -a claude-code -y
-npx skills@latest add CyranoB/slop-sense -a claude-code -g
+npx skills@latest add CyranoB/department-of-prose --list
+npx skills@latest add CyranoB/department-of-prose -a claude-code -y
+npx skills@latest add CyranoB/department-of-prose -a claude-code -g
 ```
 
 ## Install For Your Coding Tool
@@ -69,20 +75,20 @@ specifics.
 Install from the plugin marketplace:
 
 ```
-/plugin marketplace add CyranoB/slop-sense
-/plugin install slop-sense@slop-sense
+/plugin marketplace add CyranoB/department-of-prose
+/plugin install department-of-prose@department-of-prose
 ```
 
 Or install as a skill via the cross-agent command:
 
 ```bash
-npx skills@latest add CyranoB/slop-sense -a claude-code
+npx skills@latest add CyranoB/department-of-prose -a claude-code
 ```
 
 Install globally instead:
 
 ```bash
-npx skills@latest add CyranoB/slop-sense -a claude-code -g
+npx skills@latest add CyranoB/department-of-prose -a claude-code -g
 ```
 
 </details>
@@ -93,13 +99,13 @@ npx skills@latest add CyranoB/slop-sense -a claude-code -g
 Install the skill for the current project:
 
 ```bash
-npx skills@latest add CyranoB/slop-sense -a codex
+npx skills@latest add CyranoB/department-of-prose -a codex
 ```
 
 Install globally instead:
 
 ```bash
-npx skills@latest add CyranoB/slop-sense -a codex -g
+npx skills@latest add CyranoB/department-of-prose -a codex -g
 ```
 
 </details>
@@ -110,13 +116,13 @@ npx skills@latest add CyranoB/slop-sense -a codex -g
 Install the skill for the current project:
 
 ```bash
-npx skills@latest add CyranoB/slop-sense -a gemini-cli
+npx skills@latest add CyranoB/department-of-prose -a gemini-cli
 ```
 
 Install globally instead:
 
 ```bash
-npx skills@latest add CyranoB/slop-sense -a gemini-cli -g
+npx skills@latest add CyranoB/department-of-prose -a gemini-cli -g
 ```
 
 </details>
@@ -127,13 +133,13 @@ npx skills@latest add CyranoB/slop-sense -a gemini-cli -g
 Install the skill for the current project:
 
 ```bash
-npx skills@latest add CyranoB/slop-sense -a pi
+npx skills@latest add CyranoB/department-of-prose -a pi
 ```
 
 Install globally instead:
 
 ```bash
-npx skills@latest add CyranoB/slop-sense -a pi -g
+npx skills@latest add CyranoB/department-of-prose -a pi -g
 ```
 
 </details>
@@ -144,13 +150,13 @@ npx skills@latest add CyranoB/slop-sense -a pi -g
 Install the skill for the current workspace:
 
 ```bash
-npx skills@latest add CyranoB/slop-sense -a kiro-cli
+npx skills@latest add CyranoB/department-of-prose -a kiro-cli
 ```
 
 Install globally instead:
 
 ```bash
-npx skills@latest add CyranoB/slop-sense -a kiro-cli -g
+npx skills@latest add CyranoB/department-of-prose -a kiro-cli -g
 ```
 
 </details>
@@ -159,13 +165,13 @@ npx skills@latest add CyranoB/slop-sense -a kiro-cli -g
 <summary><strong>Other Agent Skills-compatible tools</strong></summary>
 
 ```bash
-npx skills@latest add CyranoB/slop-sense
+npx skills@latest add CyranoB/department-of-prose
 ```
 
 Direct skill URLs also work:
 
 ```bash
-npx skills@latest add https://github.com/CyranoB/slop-sense/tree/main/skills/slop-sense
+npx skills@latest add https://github.com/CyranoB/department-of-prose/tree/main/skills/slop-sense
 ```
 
 </details>
