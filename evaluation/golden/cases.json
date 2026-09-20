@@ -216,7 +216,7 @@
       "rationale": "Scope limits are the first casualty of compression. A result measured on self-report among completers must not be reported as a result for the whole cohort.",
       "source": {
         "provenance": "original",
-        "text": "In an effort to enhance productivity, the pilot delved into focus tracking. Among the 40 volunteers who completed all six sessions, self-reported focus improved; results for the wider cohort of 118 participants who left early are not yet available."
+        "text": "In an effort to enhance productivity, the pilot delved into focus tracking. Among the 40 volunteers who completed all six sessions, self-reported focus improved; results for the remaining 118 participants, who left early, are not yet available."
       },
       "required_findings": ["filler phrase", "AI vocabulary overuse"],
       "permitted_findings": ["copula avoidance"],

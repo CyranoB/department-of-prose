@@ -1,0 +1,125 @@
+{
+  "review_schema_revision": 1,
+  "golden_case_schema_revision": 1,
+  "rubric_revision": 1,
+  "reviewed_at": "2026-09-20T17:31:16Z",
+  "reviewer": "Claude Code (self-review; see reviewer_independence)",
+  "reviewer_independence": "NOT INDEPENDENT. The same model and session produced the outputs and scored them. Treat every result here as a smoke test of the #7 safeguard, not as validated evidence. A human or a different model should re-review before this record is used to justify a baseline change.",
+  "skill_revision": "f16a773cbae8fd51f00e54aa83f44440783f8cfa",
+  "purpose": "First review of the GOLD-VERIFY-* family after the #7 fact-preservation safeguard landed in skills/slop-sense/SKILL.md. Question under test: does the two-pass audit (fact check before style audit) actually stop a rewrite from hardening, dropping, or inventing a claim?",
+  "model": {
+    "identifier": "us.anthropic.claude-opus-5[1m]",
+    "version_or_date": "unknown",
+    "settings": {
+      "temperature": "unknown",
+      "seed": "unknown",
+      "reasoning": "unknown",
+      "other": "Run inside Claude Code with the repository CLAUDE.md loaded. The skill text was read from the working tree at the revision above, not loaded through the plugin's skill router, so router-level trigger behavior is not covered by this review."
+    }
+  },
+  "scorer_evidence": {
+    "note": "score.sh (slop-detector 1.2.0) and rhythm.py were run on each source text before rewriting. Recorded because the rubric scores editorial judgment, and the reviewer should be able to see what evidence the workflow had.",
+    "GOLD-VERIFY-001": "SLOP 15.5/100; trope filler_transitions \"It is important to note\"; burstiness CV 0.44; contractions 0",
+    "GOLD-VERIFY-002": "SLOP 51/100; slop word \"underscoring\"; burstiness CV 0.00 (single sentence)",
+    "GOLD-VERIFY-003": "SLOP 16.6/100; trope filler_transitions \"It is important to note\"; burstiness CV 0.20; 1/1 paragraphs close on a kicker",
+    "GOLD-VERIFY-004": "SLOP 51/100; slop words \"enhance\", \"delved\"; burstiness CV 0.40; contractions 0",
+    "GOLD-VERIFY-005": "SLOP 55/100; slop word \"vibrant\"; tropes serves_as_dodge \"operates as\" and anaphora_abuse (3 consecutive sentences opening \"meridian\"); burstiness CV 0.32"
+  },
+  "reviews": [
+    {
+      "case_id": "GOLD-VERIFY-001",
+      "output_reviewed": "DETECTION: #30 filler (\"It is important to note that\"), #31 excessive hedging (\"could potentially\"), #1 significance inflation (\"reshape how\"); permitted #5 vague attribution (\"an internal estimate\"). Qualitative band: mild.\n\nDRAFT REWRITE: \"An internal estimate puts the pilot's queue-time reduction at roughly 12 percent. Nobody has checked that number independently. If it holds up, morning scheduling may change.\"\n\nFACT CHECK: CHANGED — \"the pilot's queue-time reduction\" asserts the pilot caused the reduction. The source says \"the pilot may have reduced queue time\". This is the forbidden causal certainty; the draft failed and must be repaired before the style audit.\nADDED — none.\nOMITTED — none; roughly 12 percent, the internal source, and the unchecked status all survive.\n\nSTYLE AUDIT: no em dashes. Burstiness improved (three sentences of 14w/6w/8w against the source's 2 sentences at CV 0.44). No contractions, which is acceptable in this report register.\n\nFINAL REWRITE: \"An internal estimate suggests the pilot may have cut queue time by roughly 12 percent. Nobody has checked that number independently. If it holds up, morning scheduling may change.\"\n\nCHANGES: deleted the filler opener, reduced \"could potentially\" to one modal, dropped \"reshape how\". Kept the figure, the internal attribution, the unverified status, and the may-have framing.",
+      "dimensions": {
+        "finding_coverage": {"result": "pass", "reason": "All three required findings named (filler phrase, significance inflation, excessive hedging); #5 correctly labelled permitted rather than required."},
+        "contextual_assessment": {"result": "pass", "reason": "\"an internal estimate\" is treated as a scoped attribution to report, not a defect to replace with a named source."},
+        "fact_preservation": {"result": "pass", "reason": "\"roughly 12 percent\" survives verbatim in the final output."},
+        "qualification_and_verification": {"result": "pass", "reason": "\"may have cut\" retains the source's \"may have reduced\"; \"Nobody has checked that number independently\" retains the unverified status."},
+        "no_invention": {"result": "pass", "reason": "No sample size, measurement period, or external validation appears. An earlier draft of the phrase \"nobody outside the office\" was rejected as an inference about what internal meant."},
+        "voice_and_register": {"result": "pass", "reason": "The cautious reporting voice survives; the final output still leads with the estimate rather than the result."},
+        "pattern_reduction": {"result": "pass", "reason": "All three must_change items removed: the filler opener, the stacked hedge, and \"reshape how\"."},
+        "readability": {"result": "pass", "reason": "Three short sentences, no loss of coherence."}
+      },
+      "overall": "pass",
+      "overall_reason": "The most informative result in this set. The unguarded draft failed qualification_and_verification by converting \"the pilot may have reduced queue time\" into \"the pilot's queue-time reduction\", and the new fact-check pass caught it before output. This is direct evidence the #7 step does work that the style audit alone did not do. It is also evidence that the failure mode is real and easy to hit."
+    },
+    {
+      "case_id": "GOLD-VERIFY-002",
+      "output_reviewed": "DETECTION: #5 vague attribution (\"Industry reports suggest\"), #3 superficial -ing analysis (\"underscoring the importance of\"), #1 significance inflation; #8 AI vocabulary (\"underscoring\", confirmed by the scorer). Qualitative band: moderate.\n\nDRAFT REWRITE: \"Unnamed industry reports say teams using automated review catch significantly more defects before release. Neither the reports nor the size of that difference is specified [source?].\"\n\nFACT CHECK: ADDED — none. No percentage, multiple, study name, year, or vendor appears. \"significantly more\" is left exactly as vague as the source left it.\nOMITTED — the \"invest in tooling early\" clause is gone, which is what must_change requires; it is the -ing analysis, not a fact the case lists.\nCHANGED — the attribution moves from implicit to explicit (\"Industry reports suggest\" to \"Unnamed industry reports say\"), which weakens nothing.\n\nSTYLE AUDIT: no em dashes. The source was a single 22-word sentence at CV 0.00; the rewrite is 19w + 12w. \"[source?]\" is retained deliberately as the visible gap marker.\n\nFINAL REWRITE: unchanged from the draft.\n\nCHANGES: removed \"underscoring the importance of\" and the tooling-investment inflation. Named the attribution as unnamed rather than supplying a source, and flagged the missing citation.",
+      "dimensions": {
+        "finding_coverage": {"result": "pass", "reason": "vague attribution, superficial -ing analysis, and significance inflation all named; AI vocabulary correctly treated as permitted."},
+        "contextual_assessment": {"result": "pass", "reason": "The rewrite does not treat the unquantified comparison as something to fix, because quantifying it is not available from the input."},
+        "fact_preservation": {"result": "pass", "reason": "Automated review, defects caught before release, and the industry-reports attribution all survive."},
+        "qualification_and_verification": {"result": "pass", "reason": "\"Neither the reports nor the size of that difference is specified\" makes the source limits more explicit than the original did, without strengthening the claim."},
+        "no_invention": {"result": "pass", "reason": "This is the central test and it passes: no figure and no named source appear. The `[source?]` marker prescribed by the skill is used instead."},
+        "voice_and_register": {"result": "pass", "reason": "Flat advisory register retained."},
+        "pattern_reduction": {"result": "pass", "reason": "The -ing clause and the inflated framing are both gone."},
+        "readability": {"result": "pass", "reason": "Shorter and clearer than the source."}
+      },
+      "overall": "pass",
+      "overall_reason": "The case is designed so that following pattern #5's catalogue advice literally (\"name the source, date, and specific claim\") would fabricate evidence. The safeguard's carve-out was applied correctly: report the gap, do not fill it."
+    },
+    {
+      "case_id": "GOLD-VERIFY-003",
+      "output_reviewed": "DETECTION: #30 filler (\"It is important to note that\"), #31 excessive hedging (\"could potentially\"); permitted #5 vague attribution, plus a raw contrast match on \"confirm or contradict\". rhythm.py also flags 1/1 paragraphs closing on a kicker. Qualitative band: mild.\n\nDRAFT REWRITE: \"The committee's early figures suggest the new intake form might be cutting abandoned applications, though they cover only three weeks. More data could confirm that or overturn it.\"\n\nFACT CHECK: CHANGED — \"though they cover only three weeks\" attaches the three-week limit to the figures. The source attaches it to the sample. Small, but the sample and the figures are not the same object; repaired.\nADDED — none. No percentage, application volume, committee name, or projected outcome.\nOMITTED — none.\n\nSTYLE AUDIT: no em dashes. 21w + 9w against the source's CV 0.20.\n\nFINAL REWRITE: \"The committee's early figures suggest the new intake form might be cutting abandoned applications, though the sample covers only three weeks. More data could confirm that or overturn it.\"\n\nCHANGES: deleted \"It is important to note that\", reduced \"could potentially\" to \"could\". Kept suggest/might, the three-week sample limit, and the possibility of contradiction.",
+      "dimensions": {
+        "finding_coverage": {"result": "pass", "reason": "Filler phrase and excessive hedging both named; vague attribution and the raw contrast match correctly treated as permitted."},
+        "contextual_assessment": {"result": "pass", "reason": "\"confirm or contradict\" registers as a raw contrast match but is not rewritten, because it states two real possibilities rather than performing a negative parallelism."},
+        "fact_preservation": {"result": "pass", "reason": "Committee, early figures, new intake form, abandoned applications, and three weeks all survive."},
+        "qualification_and_verification": {"result": "pass", "reason": "\"suggest ... might be cutting\" is preserved intact; this is the exact upgrade (\"reduces\") the case forbids and it did not happen."},
+        "no_invention": {"result": "pass", "reason": "No prohibited addition appears."},
+        "voice_and_register": {"result": "pass", "reason": "Provisional committee-report register retained."},
+        "pattern_reduction": {"result": "minor", "reason": "The filler and the stacked hedge are gone, but \"More data could confirm that or overturn it\" is still a balanced closer of the kind rhythm.py flagged in the source (#35). Noncritical dimension."},
+        "readability": {"result": "pass", "reason": "Two clear sentences."}
+      },
+      "overall": "pass",
+      "overall_reason": "Every critical dimension passes. The one minor is on pattern_reduction, a noncritical dimension: the residual aphoristic closer is a style residue with no effect on any factual contract, and the passage is two sentences long, which is too short for #35's tell (relentlessness across many paragraphs) to apply."
+    },
+    {
+      "case_id": "GOLD-VERIFY-004",
+      "output_reviewed": "DETECTION: #30 filler (\"In an effort to\"), #8 AI vocabulary (\"enhance\", \"delved into\", both confirmed by the scorer); permitted #9 copula avoidance. Qualitative band: moderate.\n\nDRAFT REWRITE: \"The pilot tried focus tracking to see whether it helped productivity. Among the 40 volunteers who finished all six sessions, self-reported focus improved. Results for the remaining 118, who left early, are not in yet.\"\n\nFACT CHECK: CHANGED — \"to see whether it helped productivity\" turns the pilot's stated aim (\"In an effort to enhance productivity\") into a hypothesis test. Different claim about intent; repaired to \"as a way to improve productivity\".\nOMITTED — none. self-reported, 40, six sessions, 118, and the not-yet-available status all survive.\nADDED — none. No effect size, objective measure, wider-cohort result, dropout reason, or pilot duration.\n\nSTYLE AUDIT: no em dashes. Three sentences of 11w/15w/13w, so burstiness is still flat; acceptable for a three-sentence report and not a required finding here.\n\nFINAL REWRITE: \"The pilot tried focus tracking as a way to improve productivity. Among the 40 volunteers who finished all six sessions, self-reported focus improved. Results for the remaining 118, who left early, are not in yet.\"\n\nCHANGES: deleted \"In an effort to\", replaced \"enhance\" and \"delved into\". Kept every scope limit attached to the result it qualifies.",
+      "dimensions": {
+        "finding_coverage": {"result": "pass", "reason": "Filler phrase and AI vocabulary both named."},
+        "contextual_assessment": {"result": "pass", "reason": "\"self-reported\" is treated as a load-bearing qualifier rather than a hedge to cut."},
+        "fact_preservation": {"result": "pass", "reason": "40, six sessions, and 118 all survive as numerals with the same relationships."},
+        "qualification_and_verification": {"result": "pass", "reason": "\"self-reported\" survives, the improvement stays scoped to \"the 40 volunteers who finished all six sessions\", and the wider results stay unavailable."},
+        "no_invention": {"result": "pass", "reason": "No effect size or objective measurement is supplied, and no result is asserted for the 118."},
+        "voice_and_register": {"result": "pass", "reason": "Plain report register retained."},
+        "pattern_reduction": {"result": "pass", "reason": "Both must_change items removed; \"delved into\" and \"enhance\" are gone without collateral loss."},
+        "readability": {"result": "pass", "reason": "Splitting the semicolon into two sentences improved it."}
+      },
+      "overall": "pass",
+      "overall_reason": "All critical dimensions pass. The fact check also caught a non-obvious drift in the claim about the pilot's intent, which no factual contract in the case had listed; that suggests the added/omitted/changed prompt generalizes beyond the specific traps the fixture enumerates."
+    },
+    {
+      "case_id": "GOLD-VERIFY-005",
+      "output_reviewed": "DETECTION: #4 promotional language (\"vibrant plans\", confirmed by the scorer), #14 anaphora abuse (3 consecutive sentences opening \"Meridian Freight Lines\", confirmed by both scripts). The scorer's serves_as_dodge hit on \"operates as\" is a raw match only: for a trade name, \"operates as\" is the correct term and \"is\" would be wrong. Qualitative band: moderate.\n\nDRAFT REWRITE: \"Meridian Freight Lines, which operates as Meridian in three provinces, wants to expand. It filed the application in March and expects a decision by autumn.\"\n\nFACT CHECK: ADDED — none. No province names, regulator, decision outcome, expansion destination, fleet size, or exact date.\nOMITTED — none. The legal name appears in full on first mention, the trade name Meridian is kept as a separate fact, three provinces, March, and autumn all survive.\nCHANGED — \"expects a decision by autumn\" is carried over verbatim, so the decision stays expected rather than scheduled.\n\nSTYLE AUDIT: no em dashes. Anaphora run resolved by pronominalising the second and third mentions rather than paraphrasing the company.\n\nFINAL REWRITE: unchanged from the draft.\n\nCHANGES: \"vibrant plans to expand\" became \"wants to expand\"; the second and third repetitions of the legal name became \"It\" and a coordinated clause.",
+      "dimensions": {
+        "finding_coverage": {"result": "pass", "reason": "Promotional language and anaphora abuse both named; the \"operates as\" hit reported as a raw match rather than a finding."},
+        "contextual_assessment": {"result": "pass", "reason": "This is the case's second test and it passes: the scorer's serves_as_dodge hit on \"operates as\" is explicitly declined, because replacing it with \"is\" would merge the legal and trade names."},
+        "fact_preservation": {"result": "pass", "reason": "\"Meridian Freight Lines\" on first mention, the distinct trade name \"Meridian\", three provinces, and March all survive."},
+        "qualification_and_verification": {"result": "pass", "reason": "\"expects a decision by autumn\" is unchanged, preserving expected rather than scheduled."},
+        "no_invention": {"result": "pass", "reason": "No prohibited addition appears."},
+        "voice_and_register": {"result": "pass", "reason": "Neutral trade-press register retained."},
+        "pattern_reduction": {"result": "pass", "reason": "\"vibrant\" is gone and the three-way repetition is resolved by pronoun, which is the may_change route the case allows."},
+        "readability": {"result": "pass", "reason": "Two sentences, clearer than three."}
+      },
+      "overall": "pass",
+      "overall_reason": "Passes on both axes the case tests: the repetition fix reuses the name rather than paraphrasing it, and a real scorer hit (\"operates as\") is correctly declined as a raw match because acting on it would destroy a factual distinction."
+    }
+  ],
+  "findings": [
+    "The fact-check pass earned its place. Two of five cases had a first draft that changed a claim (GOLD-VERIFY-001 asserted causation the source hedged; GOLD-VERIFY-004 restated the pilot's aim as a hypothesis test). Both were repaired by the added/omitted/changed prompt, and neither is the kind of error the style audit looks for.",
+    "The #5 carve-out is load-bearing. Without it, GOLD-VERIFY-002 pushes directly toward inventing a statistic, because the catalogue entry for vague attribution says to name the source and the specific claim.",
+    "Fixture defect found and fixed in this pass: GOLD-VERIFY-004 originally read \"the wider cohort of 118 participants who left early\", which can be parsed as either a 118-person cohort or 118 dropouts within a larger one. An ambiguous fixture cannot adjudicate an omission, so the text now reads \"the remaining 118 participants, who left early\".",
+    "Scope not covered: this review exercised the skill text read from the working tree, not the packaged bundle in dist-src/, and not the plugin skill router. Whether the bundle's compressed wording produces the same behavior is untested."
+  ],
+  "limitations": [
+    "Self-review by the producing model. Every overall pass should be read as 'no failure detected by an interested party'.",
+    "Five cases, one run each, one model, unknown temperature. Nothing here measures how often the safeguard holds.",
+    "No negative control: the same cases were not run against the pre-#7 skill revision, so the counterfactual (would the unguarded skill have shipped the GOLD-VERIFY-001 draft?) is argued rather than measured."
+  ],
+  "recommended_next_steps": [
+    "Re-run this case set against skill revision 3738607 (pre-#7) to get the negative control, ideally with outputs reviewed blind to revision as RUBRIC.md prescribes.",
+    "Have a human or a different model re-score these five outputs before this record backs any baseline change."
+  ]
+}
