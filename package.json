@@ -1,5 +1,5 @@
 {
-  "name": "slop-sense-evaluation",
+  "name": "department-of-prose-evaluation",
   "private": true,
   "scripts": {
     "evaluate": "python3 evaluation/run.py"

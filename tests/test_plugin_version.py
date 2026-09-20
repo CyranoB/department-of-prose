@@ -24,16 +24,16 @@ class PluginVersionTests(unittest.TestCase):
             (self.repository / folder).mkdir(parents=True, exist_ok=True)
         self.write_json(
             ".claude-plugin/plugin.json",
-            {"name": "slop-sense", "version": "2.1.0", "skills": ["./skills/example"]},
+            {"name": "department-of-prose", "version": "2.1.0", "skills": ["./skills/example"]},
         )
         self.write_json(
             ".claude-plugin/marketplace.json",
             {
-                "name": "slop-sense",
+                "name": "department-of-prose",
                 "metadata": {"version": "2.1.0"},
                 "plugins": [
                     {
-                        "name": "slop-sense",
+                        "name": "department-of-prose",
                         "source": "./",
                         "version": "2.1.0",
                     }
@@ -42,15 +42,15 @@ class PluginVersionTests(unittest.TestCase):
         )
         self.write_json(
             ".codex-plugin/plugin.json",
-            {"name": "slop-sense", "version": "2.1.0", "skills": "./skills/"},
+            {"name": "department-of-prose", "version": "2.1.0", "skills": "./skills/"},
         )
         self.write_json(
             ".agents/plugins/marketplace.json",
             {
-                "name": "slop-sense",
+                "name": "department-of-prose",
                 "plugins": [
                     {
-                        "name": "slop-sense",
+                        "name": "department-of-prose",
                         "source": {"source": "local", "path": "./"},
                         "policy": {
                             "installation": "AVAILABLE",
@@ -92,7 +92,7 @@ class PluginVersionTests(unittest.TestCase):
         )
 
     def test_current_repository_packaging_is_valid(self):
-        self.assertEqual(HELPERS["check"](ROOT), "2.3.0")
+        self.assertEqual(HELPERS["check"](ROOT), "3.0.0")
 
     def test_plugin_change_requires_bump(self):
         (self.repository / "skills/example/SKILL.md").write_text("updated\n")

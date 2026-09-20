@@ -1,11 +1,11 @@
 {
-  "name": "slop-sense",
+  "name": "department-of-prose",
   "interface": {
-    "displayName": "Slop Sense"
+    "displayName": "The Department of Prose"
   },
   "plugins": [
     {
-      "name": "slop-sense",
+      "name": "department-of-prose",
       "source": {
         "source": "local",
         "path": "./"

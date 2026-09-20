@@ -1,4 +1,4 @@
-# Slop Sense
+# The Department of Prose
 
 A Claude Code plugin / cross-agent skill family that detects, scores, and explains AI writing patterns. Three sibling skills ship together inside one plugin.
 
@@ -13,7 +13,7 @@ A Claude Code plugin / cross-agent skill family that detects, scores, and explai
 - `.claude-plugin/plugin.json` — plugin manifest. Lists all three skills in `skills[]` so `npx skills@latest` can enumerate them together.
 - `.claude-plugin/marketplace.json` — Claude Code marketplace listing. Mirrors the shared plugin version from `plugin.json`.
 - `.codex-plugin/plugin.json` — Codex plugin manifest. Points at the same top-level `skills/` directory and includes Codex install-surface metadata.
-- `.agents/plugins/marketplace.json` — Codex repository marketplace. Exposes the repository root as the `slop-sense` plugin.
+- `.agents/plugins/marketplace.json` — Codex repository marketplace. Exposes the repository root as the `department-of-prose` plugin.
 - `scripts/plugin_version.py` — checks or bumps the shared version across both plugin formats and enforces version bumps for plugin changes.
 - `scripts/link-skills.sh` — dogfooding helper; auto-discovers every `SKILL.md` under `skills/` and symlinks each into `~/.claude/skills` (override with `SKILLS_DEST`).
 - `dist-src/slop-sense-bundle/SKILL.md` — hand-crafted merged super-skill for the claude.ai / Claude Desktop upload path (one ZIP per skill, so all three modes collapse into one `slop-sense` skill). Source of truth for the bundle.
@@ -25,7 +25,7 @@ A Claude Code plugin / cross-agent skill family that detects, scores, and explai
 ## When making changes
 
 - **Bump the shared plugin version with `python scripts/plugin_version.py bump X.Y.Z`** for any user-visible change. The helper updates both plugin manifests plus the Claude marketplace mirrors; installed clients use this version as the update cache key.
-- The plugin is distributed through Claude Code and Codex marketplaces plus `npx skills@latest add CyranoB/slop-sense` (50+ agents). Don't add client-specific paths in any SKILL.md — they have to work cross-agent.
+- The plugin is distributed through Claude Code and Codex marketplaces plus `npx skills@latest add CyranoB/department-of-prose` (50+ agents). Don't add client-specific paths in any SKILL.md — they have to work cross-agent.
 - **Trigger disambiguation matters.** All three skills share vocabulary domain. When editing any SKILL.md description, keep the "Prefer X if..." cross-references intact so the agent's router picks the right skill.
 - The scorer is optional by design. Don't make `score.sh` a hard dependency; the skills must still do useful qualitative analysis when Node is unavailable.
 - The `slop-check` skill calls the scorer via the sibling path `../slop-sense/scripts/score.sh`. If a cross-agent install ever flattens directory structure such that the relative path breaks, vendor a per-skill copy inside `slop-check/scripts/` rather than refactoring the path scheme.

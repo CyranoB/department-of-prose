@@ -7,7 +7,7 @@ import re
 import subprocess
 from pathlib import Path
 
-PLUGIN_NAME = "slop-sense"
+PLUGIN_NAME = "department-of-prose"
 CLAUDE_MANIFEST = Path(".claude-plugin/plugin.json")
 CLAUDE_MARKETPLACE = Path(".claude-plugin/marketplace.json")
 CODEX_MANIFEST = Path(".codex-plugin/plugin.json")
@@ -71,13 +71,13 @@ def validate_packaging(root, claude_manifest, claude_marketplace, codex_manifest
     if codex_manifest["skills"].rstrip("/") != "./skills":
         raise ValueError("Codex manifest must load the shared ./skills/ directory")
     if claude_manifest["name"] != PLUGIN_NAME or codex_manifest["name"] != PLUGIN_NAME:
-        raise ValueError("Plugin manifest names must be slop-sense")
+        raise ValueError("Plugin manifest names must be department-of-prose")
     if claude_plugin_entry(claude_marketplace)["source"] != "./":
         raise ValueError("Claude marketplace must install from the repository root")
 
     codex_marketplace = load_json(root, CODEX_MARKETPLACE)
     if codex_marketplace["name"] != PLUGIN_NAME:
-        raise ValueError("Codex marketplace name must be slop-sense")
+        raise ValueError("Codex marketplace name must be department-of-prose")
     entry = codex_plugin_entry(codex_marketplace)
     expected_source = {"source": "local", "path": "./"}
     expected_policy = {"installation": "AVAILABLE", "authentication": "ON_INSTALL"}

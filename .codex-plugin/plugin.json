@@ -1,12 +1,12 @@
 {
-  "name": "slop-sense",
-  "version": "2.3.0",
+  "name": "department-of-prose",
+  "version": "3.0.0",
   "description": "Detect, score, explain, and rewrite AI-generated text.",
   "author": {
     "name": "CyranoB"
   },
-  "homepage": "https://github.com/CyranoB/slop-sense",
-  "repository": "https://github.com/CyranoB/slop-sense",
+  "homepage": "https://github.com/CyranoB/department-of-prose",
+  "repository": "https://github.com/CyranoB/department-of-prose",
   "license": "MIT",
   "keywords": [
     "ai-detection",
@@ -16,7 +16,7 @@
   ],
   "skills": "./skills/",
   "interface": {
-    "displayName": "Slop Sense",
+    "displayName": "The Department of Prose",
     "shortDescription": "Detect and rewrite AI-sounding text.",
     "longDescription": "Score text for AI writing patterns, rewrite it in a more natural voice, or explain individual patterns.",
     "developerName": "CyranoB",
@@ -25,7 +25,7 @@
       "Analyze",
       "Write"
     ],
-    "websiteURL": "https://github.com/CyranoB/slop-sense",
+    "websiteURL": "https://github.com/CyranoB/department-of-prose",
     "defaultPrompt": [
       "Check this text for AI writing patterns.",
       "Rewrite this text so it sounds natural and human.",
