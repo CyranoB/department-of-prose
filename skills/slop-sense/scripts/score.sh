@@ -11,9 +11,11 @@ if command -v slop-score &>/dev/null; then
   exec slop-score "$@"
 fi
 
-# 2. npx (downloads on the fly, no install needed)
+# 2. npx with an exact package version. Keep this in sync with package.json
+# and evaluation/SCORER_VERSION. The explicit version avoids silently testing or
+# running a newly-published scorer with different rules.
 if command -v npx &>/dev/null; then
-  exec npx -y -p slop-detector slop-score "$@"
+  exec npx -y -p slop-detector@1.2.0 slop-score "$@"
 fi
 
 echo "SCORER_NOT_AVAILABLE" >&2

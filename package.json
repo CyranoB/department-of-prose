@@ -1,0 +1,10 @@
+{
+  "name": "slop-sense-evaluation",
+  "private": true,
+  "scripts": {
+    "evaluate": "python3 evaluation/run.py"
+  },
+  "devDependencies": {
+    "slop-detector": "1.2.0"
+  }
+}
