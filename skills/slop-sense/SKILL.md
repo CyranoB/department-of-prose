@@ -55,11 +55,13 @@ Follow this sequence:
 2. **Scan** the text against the 36 patterns below. If you have scorer output, use it as evidence. If not, rely on your own reading. Either way, name exactly which patterns you found.
 3. **Score**: if the scorer ran, report its number. Add your qualitative assessment either way (clean / mild / moderate / heavy / pure slop).
 4. **Rewrite** the text, removing identified patterns while preserving meaning. Meaning includes the factual record: read [Fact preservation](#fact-preservation) before you start. Names, numbers, dates, quotations, sources, hedges, and scope limits carry over unchanged.
-5. **Audit** in two passes.
+5. **Audit** in three passes. Pass b edits the text again, so the factual check has to run on both sides of it.
 
-   **a. Fact check.** Put the rewrite next to the original and ask three questions. *Added:* does the rewrite assert anything the original did not, such as a source, a cause, a figure, a date, or a stronger claim? *Omitted:* did any name, number, quotation, attribution, hedge, or scope limit disappear? *Changed:* did any claim shift in strength, subject, or direction? Anything in the rewrite you cannot trace back to a specific span of the input is a fabrication, and a fabrication is a worse failure than an em dash. Fix these before you touch anything stylistic.
+   **a. Fact check the draft.** Put the rewrite next to the original and ask three questions. *Added:* does the rewrite assert anything the original did not, such as a source, a cause, a figure, a date, or a stronger claim? *Omitted:* did any name, number, quotation, attribution, hedge, or scope limit disappear? *Changed:* did any claim shift in strength, subject, or direction? Check each item individually rather than judging the passage as a whole: a rewrite can read as cautious overall while a specific hedge has gone missing. Anything in the rewrite you cannot trace back to a specific span of the input is a fabrication, and a fabrication is a worse failure than an em dash. Fix these before you touch anything stylistic.
 
-   **b. Style audit.** Ask yourself "What still makes this obviously AI generated?" Check especially for em dashes, which are the hardest pattern to shake. Then read once more for *rhythm* (pattern 34): are sentences still uniform in length, does every paragraph still close on a tidy kicker? Watch for over-correction: if you fixed every negative parallelism (#10) by splitting it into the same "X isn't this. It's that." two-beat, you have traded one tell for another and the scorer will catch it. Vary the repairs. Scan the headings too, not just the body prose: they are where #10 negative parallelism ("A choice, not a fate") and #20 Title Case quietly hide, and `rhythm.py` strips headings before analysis so it cannot see them. List remaining tells, then revise once more. If `rhythm.py` is available, re-run it on your rewrite to confirm the numbers moved: burstiness CV up, contraction ratio up, anaphora gone. The script catches tells you introduce while rewriting, not just the ones you started with.
+   **b. Style audit.** Ask yourself "What still makes this obviously AI generated?" Check especially for em dashes, which are the hardest pattern to shake. Dashes inside a quotation you are preserving are the speaker's and stay where they are; only your own count. Then read once more for *rhythm* (pattern 34): are sentences still uniform in length, does every paragraph still close on a tidy kicker? Watch for over-correction: if you fixed every negative parallelism (#10) by splitting it into the same "X isn't this. It's that." two-beat, you have traded one tell for another and the scorer will catch it. Vary the repairs. Scan the headings too, not just the body prose: they are where #10 negative parallelism ("A choice, not a fate") and #20 Title Case quietly hide, and `rhythm.py` strips headings before analysis so it cannot see them. List remaining tells, then revise once more. If `rhythm.py` is available, re-run it on your rewrite to confirm the numbers moved: burstiness CV up, contraction ratio up, anaphora gone. The script catches tells you introduce while rewriting, not just the ones you started with.
+
+   **c. Fact check the final text.** Repeat the added / omitted / changed comparison on the version you are about to present, not the draft you already cleared in pass a. A tightening edit in pass b is exactly how a scope limit or a hedge goes missing after it has been signed off once. This second result is the one you report, because it is the only one that describes what the user actually receives.
 6. **Present** the final version with a brief summary of what changed.
 
 ---
@@ -74,7 +76,7 @@ Six ways a pattern fix turns into a factual error:
 - **Strengthened certainty.** "May have reduced" is not "reduced". "An internal estimate suggests" is not "the data shows". Cutting excessive hedging (#31) means collapsing stacked qualifiers ("could potentially possibly be argued that it might" becomes "may"), not deleting the uncertainty those qualifiers were carrying.
 - **Lost qualifications.** Scope limits are the first casualty of a tightening pass: "in the pilot group", "self-reported", "among the 40 who finished", "before the 2023 revision", "not yet independently checked". They are load-bearing. A sentence that drops one says something the writer did not say.
 - **Altered entities.** Synonym cycling (#12) is fixed by repeating the same name, not by paraphrasing it. A legal name is not its trade name, an acting director is not a director, and "Northstar 2.0" is not "the platform". First mentions, titles, and affiliations stay verbatim.
-- **Edited quotations.** Text inside quotation marks is a record of what somebody said. It is off limits even when it is full of tells. Report a #10, #17, or #22 hit inside a quotation as the speaker's, and fix the reporting clause around it instead.
+- **Edited quotations.** Text inside quotation marks is a record of what somebody said. It is off limits even when it is full of tells. Report a #10, #17, or #22 hit inside a quotation as the speaker's, and fix the reporting clause around it instead. This rule outranks #17's zero-em-dash target: a quoted dash stays.
 - **Rewritten numbers.** Rounding, changing units, dropping a "roughly", or turning a range into a midpoint are all fabrication, however tidy the result.
 
 When a pattern can only be removed by adding specifics the input does not contain, do not remove it. Keep the general phrasing, or leave a visible marker of what is missing (`[source?]`, `[date?]`) and raise it in the changes summary. A gap the user can see is something they can go and fill. An invented fact they will probably never catch.
@@ -182,7 +184,7 @@ Every time you are about to write an em dash, stop and use a comma, a period, or
 > After: "The tools are useful, even essential, for modern teams."
 > Before: "It works — most of the time."
 > After: "It works most of the time."
-Zero em dashes in the final rewrite is the target. If you find yourself reaching for one, that is the habit talking.
+Zero em dashes *of your own* in the final rewrite is the target. If you find yourself reaching for one, that is the habit talking. The exception is quoted text: a dash inside a quotation you are preserving belongs to the speaker, and removing it would edit the quotation. Report it as the speaker's and leave it, and do not count it against the rewrite.
 
 **18. Boldface overuse**
 Mechanical emphasis on terms.
@@ -325,9 +327,9 @@ When presenting results:
 1. **SLOP score** (if scorer available): the algorithmic score, plus interpretation
 2. **Detection summary**: which patterns you found and your qualitative assessment
 3. **Draft rewrite**: first pass with patterns removed
-4. **Fact check**: confirm nothing was added, omitted, or changed in strength. If anything could not be preserved, or you left a `[source?]`-style marker, list it here. Say so explicitly when the draft is clean; do not skip the line.
-5. **Anti-AI audit**: brief bullets listing what still reads as AI-generated, with special attention to any remaining em dashes
-6. **Final rewrite**: revised after the audit, with zero em dashes
+4. **Anti-AI audit**: brief bullets listing what still reads as AI-generated, with special attention to any remaining em dashes of your own
+5. **Final rewrite**: revised after the audit, with no em dashes of your own
+6. **Fact check**: run on the final rewrite above, not on the draft. Confirm nothing was added, omitted, or changed in strength, and note anything the draft check caught and repaired on the way. If anything could not be preserved, or you left a `[source?]`-style marker, list it here. Say so explicitly when it is clean; do not skip the line.
 7. **Changes summary**: what was fixed (optional, if helpful)
 
 ---

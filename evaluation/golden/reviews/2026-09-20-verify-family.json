@@ -33,7 +33,7 @@
         "finding_coverage": {"result": "pass", "reason": "All three required findings named (filler phrase, significance inflation, excessive hedging); #5 correctly labelled permitted rather than required."},
         "contextual_assessment": {"result": "pass", "reason": "\"an internal estimate\" is treated as a scoped attribution to report, not a defect to replace with a named source."},
         "fact_preservation": {"result": "pass", "reason": "\"roughly 12 percent\" survives verbatim in the final output."},
-        "qualification_and_verification": {"result": "pass", "reason": "\"may have cut\" retains the source's \"may have reduced\"; \"Nobody has checked that number independently\" retains the unverified status."},
+        "qualification_and_verification": {"result": "pass", "reason": "Re-audited item-by-item under AMD-001, verdict unchanged. All three listed qualifications are individually present: uncertainty in \"suggests ... may have cut\", internal source in \"An internal estimate\", and unverified status in \"Nobody has checked that number independently\"."},
         "no_invention": {"result": "pass", "reason": "No sample size, measurement period, or external validation appears. An earlier draft of the phrase \"nobody outside the office\" was rejected as an inference about what internal meant."},
         "voice_and_register": {"result": "pass", "reason": "The cautious reporting voice survives; the final output still leads with the estimate rather than the result."},
         "pattern_reduction": {"result": "pass", "reason": "All three must_change items removed: the filler opener, the stacked hedge, and \"reshape how\"."},
@@ -49,14 +49,15 @@
         "finding_coverage": {"result": "pass", "reason": "vague attribution, superficial -ing analysis, and significance inflation all named; AI vocabulary correctly treated as permitted."},
         "contextual_assessment": {"result": "pass", "reason": "The rewrite does not treat the unquantified comparison as something to fix, because quantifying it is not available from the input."},
         "fact_preservation": {"result": "pass", "reason": "Automated review, defects caught before release, and the industry-reports attribution all survive."},
-        "qualification_and_verification": {"result": "pass", "reason": "\"Neither the reports nor the size of that difference is specified\" makes the source limits more explicit than the original did, without strengthening the claim."},
+        "qualification_and_verification": {"result": "minor", "reason": "CORRECTED by AMD-001; originally scored pass. \"Industry reports suggest\" became \"Unnamed industry reports say\", dropping the tentative verb. The fixture lists \"The reports suggest rather than establish the effect\" as a qualification to preserve, and nothing in the output carries it. Minor rather than fail because the added sentence \"Neither the reports nor the size of that difference is specified\" leaves the passage at least as cautious overall, so the reader's practical conclusion is unchanged; but the specific listed qualification is absent."},
         "no_invention": {"result": "pass", "reason": "This is the central test and it passes: no figure and no named source appear. The `[source?]` marker prescribed by the skill is used instead."},
         "voice_and_register": {"result": "pass", "reason": "Flat advisory register retained."},
         "pattern_reduction": {"result": "pass", "reason": "The -ing clause and the inflated framing are both gone."},
         "readability": {"result": "pass", "reason": "Shorter and clearer than the source."}
       },
-      "overall": "pass",
-      "overall_reason": "The case is designed so that following pattern #5's catalogue advice literally (\"name the source, date, and specific claim\") would fabricate evidence. The safeguard's carve-out was applied correctly: report the gap, do not fill it."
+      "overall": "fail",
+      "amended_by": "AMD-001",
+      "overall_reason": "CORRECTED by AMD-001; originally recorded pass. The safeguard's #5 carve-out did work as designed: no figure and no source were invented, which is what the case was built to test. But RUBRIC.md:36 makes any critical minor an overall fail, and qualification_and_verification is critical. The rewrite lost the source's tentative \"suggest\" while preserving the source gap, so the case fails on a qualification the fixture lists explicitly."
     },
     {
       "case_id": "GOLD-VERIFY-003",
@@ -65,7 +66,7 @@
         "finding_coverage": {"result": "pass", "reason": "Filler phrase and excessive hedging both named; vague attribution and the raw contrast match correctly treated as permitted."},
         "contextual_assessment": {"result": "pass", "reason": "\"confirm or contradict\" registers as a raw contrast match but is not rewritten, because it states two real possibilities rather than performing a negative parallelism."},
         "fact_preservation": {"result": "pass", "reason": "Committee, early figures, new intake form, abandoned applications, and three weeks all survive."},
-        "qualification_and_verification": {"result": "pass", "reason": "\"suggest ... might be cutting\" is preserved intact; this is the exact upgrade (\"reduces\") the case forbids and it did not happen."},
+        "qualification_and_verification": {"result": "pass", "reason": "Re-audited item-by-item under AMD-001, verdict unchanged. All three listed qualifications are individually present: \"suggest ... might be cutting\" for suggested-not-established, \"early figures\" for earliness, and \"or overturn it\" for possible contradiction. The forbidden upgrade to \"reduces\" did not happen."},
         "no_invention": {"result": "pass", "reason": "No prohibited addition appears."},
         "voice_and_register": {"result": "pass", "reason": "Provisional committee-report register retained."},
         "pattern_reduction": {"result": "minor", "reason": "The filler and the stacked hedge are gone, but \"More data could confirm that or overturn it\" is still a balanced closer of the kind rhythm.py flagged in the source (#35). Noncritical dimension."},
@@ -81,7 +82,7 @@
         "finding_coverage": {"result": "pass", "reason": "Filler phrase and AI vocabulary both named."},
         "contextual_assessment": {"result": "pass", "reason": "\"self-reported\" is treated as a load-bearing qualifier rather than a hedge to cut."},
         "fact_preservation": {"result": "pass", "reason": "40, six sessions, and 118 all survive as numerals with the same relationships."},
-        "qualification_and_verification": {"result": "pass", "reason": "\"self-reported\" survives, the improvement stays scoped to \"the 40 volunteers who finished all six sessions\", and the wider results stay unavailable."},
+        "qualification_and_verification": {"result": "pass", "reason": "Re-audited item-by-item under AMD-001, verdict unchanged. All three listed qualifications are individually present: \"self-reported\", the scope clause \"Among the 40 volunteers who finished all six sessions\", and \"are not in yet\" for the wider results."},
         "no_invention": {"result": "pass", "reason": "No effect size or objective measurement is supplied, and no result is asserted for the 118."},
         "voice_and_register": {"result": "pass", "reason": "Plain report register retained."},
         "pattern_reduction": {"result": "pass", "reason": "Both must_change items removed; \"delved into\" and \"enhance\" are gone without collateral loss."},
@@ -97,7 +98,7 @@
         "finding_coverage": {"result": "pass", "reason": "Promotional language and anaphora abuse both named; the \"operates as\" hit reported as a raw match rather than a finding."},
         "contextual_assessment": {"result": "pass", "reason": "This is the case's second test and it passes: the scorer's serves_as_dodge hit on \"operates as\" is explicitly declined, because replacing it with \"is\" would merge the legal and trade names."},
         "fact_preservation": {"result": "pass", "reason": "\"Meridian Freight Lines\" on first mention, the distinct trade name \"Meridian\", three provinces, and March all survive."},
-        "qualification_and_verification": {"result": "pass", "reason": "\"expects a decision by autumn\" is unchanged, preserving expected rather than scheduled."},
+        "qualification_and_verification": {"result": "pass", "reason": "Re-audited item-by-item under AMD-001, verdict unchanged. Both listed qualifications are individually present: \"expects a decision by autumn\" keeps expected rather than scheduled, and \"which operates as Meridian\" keeps the operating name distinct from the legal one."},
         "no_invention": {"result": "pass", "reason": "No prohibited addition appears."},
         "voice_and_register": {"result": "pass", "reason": "Neutral trade-press register retained."},
         "pattern_reduction": {"result": "pass", "reason": "\"vibrant\" is gone and the three-way repetition is resolved by pronoun, which is the may_change route the case allows."},
@@ -107,19 +108,48 @@
       "overall_reason": "Passes on both axes the case tests: the repetition fix reuses the name rather than paraphrasing it, and a real scorer hit (\"operates as\") is correctly declined as a raw match because acting on it would destroy a factual distinction."
     }
   ],
+  "result_summary": {
+    "as_originally_recorded": "5 pass, 0 fail",
+    "as_amended": "4 pass, 1 fail (GOLD-VERIFY-002)",
+    "note": "The original figure was wrong. See amendments AMD-001."
+  },
+  "amendments": [
+    {
+      "id": "AMD-001",
+      "amended_at": "2026-09-20T18:12:04Z",
+      "raised_by": "CyranoB, PR #17 inline review at evaluation/golden/reviews/2026-09-20-verify-family.json:52",
+      "affects": ["GOLD-VERIFY-002"],
+      "what_was_wrong": "GOLD-VERIFY-002 was scored pass on qualification_and_verification. The recorded rewrite changed \"Industry reports suggest\" to \"Unnamed industry reports say\", dropping the tentative verb. The fixture lists \"The reports suggest rather than establish the effect\" as a qualification to preserve, and the output does not carry it.",
+      "why_the_original_reviewer_missed_it": "The recorded reason cited the second sentence (\"Neither the reports nor the size of that difference is specified\"), which preserves the *source gap*. That is a different qualification from the *tentativeness of the reports' own claim*; the fixture lists both separately. The dimension was judged holistically (\"the passage is at least as cautious overall\") instead of item-by-item against the fixture's list, so an adjacent qualification was accepted as an answer for the missing one.",
+      "verdict_change": "qualification_and_verification pass -> minor; overall pass -> fail, per RUBRIC.md:36 (any critical minor or fail makes the overall fail).",
+      "evidence_integrity": "The output_reviewed string for GOLD-VERIFY-002 is unchanged. Only reviewer verdicts and reasons were corrected, and each carries a CORRECTED marker.",
+      "corrected_rewrite_not_yet_reviewed": "\"Unnamed industry reports suggest teams using automated review catch significantly more defects before release. Neither the reports nor the size of that difference is specified [source?].\" Changing \"say\" back to \"suggest\" restores the tentative verb while keeping the source gap explicit and still inventing nothing. This candidate has NOT been scored: it was written by the reviewer during amendment, not produced by a workflow run, so scoring it here would be reviewing a hand-edited reconstruction, which RUBRIC.md step 3 forbids. It needs a fresh run to earn a verdict.",
+      "re_audit": {
+        "why": "If one critical dimension was mis-scored by accepting an adjacent qualification, the same reasoning error could sit in the other four cases.",
+        "method": "Re-checked qualification_and_verification on GOLD-VERIFY-001, 003, 004, and 005 by walking each fixture's qualifications_to_preserve list item by item and locating the specific span in the recorded output that carries it, rather than judging the passage as a whole.",
+        "result": "No further verdict changes. All listed qualifications are individually present in those four outputs; the affected reasons were rewritten to name each one and are tagged as re-audited under this amendment.",
+        "scope": "This re-audit covered qualification_and_verification only. The other seven dimensions were not re-walked item-by-item."
+      },
+      "process_change_adopted": "The skill's fact-check instruction now says to check each item individually rather than judging the passage as a whole, since the same holistic shortcut that produced this mis-score would produce the underlying rewrite error."
+    }
+  ],
   "findings": [
     "The fact-check pass earned its place. Two of five cases had a first draft that changed a claim (GOLD-VERIFY-001 asserted causation the source hedged; GOLD-VERIFY-004 restated the pilot's aim as a hypothesis test). Both were repaired by the added/omitted/changed prompt, and neither is the kind of error the style audit looks for.",
+    "GOLD-VERIFY-002 fails as amended, and the split matters: the safeguard's #5 carve-out worked (no statistic and no source were invented, which is what the case was built to test) while a different qualification was lost in the same sentence. Preserving a source limit is not the same as preserving a hedge, and the case now records that they have to be checked separately.",
     "The #5 carve-out is load-bearing. Without it, GOLD-VERIFY-002 pushes directly toward inventing a statistic, because the catalogue entry for vague attribution says to name the source and the specific claim.",
     "Fixture defect found and fixed in this pass: GOLD-VERIFY-004 originally read \"the wider cohort of 118 participants who left early\", which can be parsed as either a 118-person cohort or 118 dropouts within a larger one. An ambiguous fixture cannot adjudicate an omission, so the text now reads \"the remaining 118 participants, who left early\".",
     "Scope not covered: this review exercised the skill text read from the working tree, not the packaged bundle in dist-src/, and not the plugin skill router. Whether the bundle's compressed wording produces the same behavior is untested."
   ],
   "limitations": [
-    "Self-review by the producing model. Every overall pass should be read as 'no failure detected by an interested party'.",
+    "Self-review by the producing model. Every overall pass should be read as 'no failure detected by an interested party'. This limitation was not hypothetical: an independent reviewer found a mis-scored critical dimension on the first pass (AMD-001), which is exactly what this caveat predicted and what the self-review missed.",
     "Five cases, one run each, one model, unknown temperature. Nothing here measures how often the safeguard holds.",
-    "No negative control: the same cases were not run against the pre-#7 skill revision, so the counterfactual (would the unguarded skill have shipped the GOLD-VERIFY-001 draft?) is argued rather than measured."
+    "No negative control: the same cases were not run against the pre-#7 skill revision, so the counterfactual (would the unguarded skill have shipped the GOLD-VERIFY-001 draft?) is argued rather than measured.",
+    "This record reviews skill revision f16a773, whose audit had two passes. PR #17 review then added a closing fact check on the final text (three passes) and a quoted-em-dash exemption. The shipped instruction therefore differs from the reviewed one, and the shipped version has not itself been reviewed. Treat the outputs here as evidence about the draft-side check only."
   ],
   "recommended_next_steps": [
     "Re-run this case set against skill revision 3738607 (pre-#7) to get the negative control, ideally with outputs reviewed blind to revision as RUBRIC.md prescribes.",
-    "Have a human or a different model re-score these five outputs before this record backs any baseline change."
+    "Have a human or a different model re-score these five outputs before this record backs any baseline change.",
+    "Re-run the case set against the three-pass revision shipped by PR #17, since this record no longer describes the shipped instruction. A rerun of GOLD-VERIFY-002 is the priority: it is the one open failure, and the corrected rewrite in AMD-001 is a candidate awaiting a verdict rather than a result.",
+    "Re-walk the other seven dimensions item-by-item. AMD-001's re-audit covered qualification_and_verification only, so the same holistic-shortcut error could still sit in fact_preservation or no_invention."
   ]
 }
