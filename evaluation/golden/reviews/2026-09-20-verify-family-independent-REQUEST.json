@@ -17,7 +17,8 @@
     "known_scope_limits": [
       "These outputs were produced against skill revision f16a773, whose audit had two passes. PR #17 then changed the audit to three passes. Scoring these outputs therefore checks whether the self-review's verdicts were right. It does not measure the shipped three-pass instruction; that needs a fresh run.",
       "GOLD-VERIFY-002 carries a corrected rewrite candidate in AMD-001 of the self-review record. It is deliberately unscored, because it was written by hand during amendment and RUBRIC.md step 3 forbids reviewing a hand-edited reconstruction. Do not score it here.",
-      "The self-review re-audited qualification_and_verification item-by-item on the other four cases but did not re-walk the remaining seven dimensions. Those are the least checked."
+      "The self-review re-audited qualification_and_verification item-by-item on the other four cases but did not re-walk the remaining seven dimensions. Those are the least checked.",
+      "Numbers inside the output_reviewed strings are hand-counted and four are wrong; AMD-002 in the self-review record corrects them from captured rhythm.py output and withdraws a false burstiness-improvement claim. Do not treat any figure in an output string as evidence. Score the editorial contract, not the arithmetic."
     ]
   },
   "critical_dimensions": [
