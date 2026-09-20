@@ -97,6 +97,11 @@ fix with a factual trap the fix walks into:
   name or turn an expected date into a scheduled one.
 
 Start a review by copying [`golden/review-template.json`](golden/review-template.json).
+When you request a review from someone else, hand them a `*-REQUEST.json`
+scaffold instead: same schema, with the case contracts and the outputs filled in
+and every verdict left as a placeholder. `RUBRIC.md` asks for review blind where
+practical, and a scaffold that already carries someone else's verdicts anchors
+the next reviewer.
 Review records belong in a branch or PR under `evaluation/golden/reviews/`; they
 are evidence for a proposed skill, prompt, model, or baseline change, not a
 required artifact for ordinary deterministic runs.
