@@ -57,6 +57,12 @@ A teaching skill. Ask "explain pattern 17" or "why is the rule of three a tell" 
 
 Triggers on requests like "explain pattern N," "why is X a tell," "teach me about em dash overuse."
 
+## Upgrading from Slop Sense
+
+Version 3.0.0 renames the plugin and marketplace to `department-of-prose`. Existing users should remove the old `slop-sense` plugin and marketplace registration in their client, then follow the installation instructions below using `CyranoB/department-of-prose` and `department-of-prose@department-of-prose`.
+
+The individual skills remain `slop-sense`, `slop-check`, and `slop-explain`; their names and behavior are unchanged.
+
 ## Quickstart
 
 **Establish a local branch of the Department.**
