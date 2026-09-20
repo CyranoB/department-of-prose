@@ -54,9 +54,30 @@ Follow this sequence:
    **A low SLOP score is not a clean bill of health.** `score.sh` says nothing about *rhythm*, and rhythm is the axis perplexity detectors (GPTZero and similar) actually score. Text can rate 4/100 lexically and still get flagged 90%+ by GPTZero on uniform sentence rhythm or zero contractions alone. That gap is the entire reason `rhythm.py` exists. When a user says a tool flagged their text, trust `rhythm.py` over a low SLOP score, and do not let the low score talk you out of the structural fixes.
 2. **Scan** the text against the 36 patterns below. If you have scorer output, use it as evidence. If not, rely on your own reading. Either way, name exactly which patterns you found.
 3. **Score**: if the scorer ran, report its number. Add your qualitative assessment either way (clean / mild / moderate / heavy / pure slop).
-4. **Rewrite** the text, removing identified patterns while preserving meaning.
-5. **Audit**: ask yourself "What still makes this obviously AI generated?" Check especially for em dashes, which are the hardest pattern to shake. Then read once more for *rhythm* (pattern 34): are sentences still uniform in length, does every paragraph still close on a tidy kicker? Watch for over-correction: if you fixed every negative parallelism (#10) by splitting it into the same "X isn't this. It's that." two-beat, you have traded one tell for another and the scorer will catch it. Vary the repairs. Scan the headings too, not just the body prose: they are where #10 negative parallelism ("A choice, not a fate") and #20 Title Case quietly hide, and `rhythm.py` strips headings before analysis so it cannot see them. List remaining tells, then revise once more. If `rhythm.py` is available, re-run it on your rewrite to confirm the numbers moved: burstiness CV up, contraction ratio up, anaphora gone. The script catches tells you introduce while rewriting, not just the ones you started with.
+4. **Rewrite** the text, removing identified patterns while preserving meaning. Meaning includes the factual record: read [Fact preservation](#fact-preservation) before you start. Names, numbers, dates, quotations, sources, hedges, and scope limits carry over unchanged.
+5. **Audit** in two passes.
+
+   **a. Fact check.** Put the rewrite next to the original and ask three questions. *Added:* does the rewrite assert anything the original did not, such as a source, a cause, a figure, a date, or a stronger claim? *Omitted:* did any name, number, quotation, attribution, hedge, or scope limit disappear? *Changed:* did any claim shift in strength, subject, or direction? Anything in the rewrite you cannot trace back to a specific span of the input is a fabrication, and a fabrication is a worse failure than an em dash. Fix these before you touch anything stylistic.
+
+   **b. Style audit.** Ask yourself "What still makes this obviously AI generated?" Check especially for em dashes, which are the hardest pattern to shake. Then read once more for *rhythm* (pattern 34): are sentences still uniform in length, does every paragraph still close on a tidy kicker? Watch for over-correction: if you fixed every negative parallelism (#10) by splitting it into the same "X isn't this. It's that." two-beat, you have traded one tell for another and the scorer will catch it. Vary the repairs. Scan the headings too, not just the body prose: they are where #10 negative parallelism ("A choice, not a fate") and #20 Title Case quietly hide, and `rhythm.py` strips headings before analysis so it cannot see them. List remaining tells, then revise once more. If `rhythm.py` is available, re-run it on your rewrite to confirm the numbers moved: burstiness CV up, contraction ratio up, anaphora gone. The script catches tells you introduce while rewriting, not just the ones you started with.
 6. **Present** the final version with a brief summary of what changed.
+
+---
+
+## Fact preservation
+
+The rewrite changes how the text sounds. It never changes what the text claims. Every name, number, date, unit, quotation, citation, attribution, hedge, and scope limit in the input survives the edit intact, even where cutting one would read better.
+
+Six ways a pattern fix turns into a factual error:
+
+- **Invented support.** Removing a vague attribution (#5) tempts you to supply the source it was missing. You do not have one. Report what the input actually said ("unnamed industry reports"), or say the input named no source. The catalogue's "name the source, date, and specific claim" advice applies when the source is elsewhere in the document, not when you would have to make it up.
+- **Strengthened certainty.** "May have reduced" is not "reduced". "An internal estimate suggests" is not "the data shows". Cutting excessive hedging (#31) means collapsing stacked qualifiers ("could potentially possibly be argued that it might" becomes "may"), not deleting the uncertainty those qualifiers were carrying.
+- **Lost qualifications.** Scope limits are the first casualty of a tightening pass: "in the pilot group", "self-reported", "among the 40 who finished", "before the 2023 revision", "not yet independently checked". They are load-bearing. A sentence that drops one says something the writer did not say.
+- **Altered entities.** Synonym cycling (#12) is fixed by repeating the same name, not by paraphrasing it. A legal name is not its trade name, an acting director is not a director, and "Northstar 2.0" is not "the platform". First mentions, titles, and affiliations stay verbatim.
+- **Edited quotations.** Text inside quotation marks is a record of what somebody said. It is off limits even when it is full of tells. Report a #10, #17, or #22 hit inside a quotation as the speaker's, and fix the reporting clause around it instead.
+- **Rewritten numbers.** Rounding, changing units, dropping a "roughly", or turning a range into a midpoint are all fabrication, however tidy the result.
+
+When a pattern can only be removed by adding specifics the input does not contain, do not remove it. Keep the general phrasing, or leave a visible marker of what is missing (`[source?]`, `[date?]`) and raise it in the changes summary. A gap the user can see is something they can go and fill. An invented fact they will probably never catch.
 
 ---
 
@@ -304,9 +325,10 @@ When presenting results:
 1. **SLOP score** (if scorer available): the algorithmic score, plus interpretation
 2. **Detection summary**: which patterns you found and your qualitative assessment
 3. **Draft rewrite**: first pass with patterns removed
-4. **Anti-AI audit**: brief bullets listing what still reads as AI-generated, with special attention to any remaining em dashes
-5. **Final rewrite**: revised after the audit, with zero em dashes
-6. **Changes summary**: what was fixed (optional, if helpful)
+4. **Fact check**: confirm nothing was added, omitted, or changed in strength. If anything could not be preserved, or you left a `[source?]`-style marker, list it here. Say so explicitly when the draft is clean; do not skip the line.
+5. **Anti-AI audit**: brief bullets listing what still reads as AI-generated, with special attention to any remaining em dashes
+6. **Final rewrite**: revised after the audit, with zero em dashes
+7. **Changes summary**: what was fixed (optional, if helpful)
 
 ---
 

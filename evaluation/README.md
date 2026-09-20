@@ -82,6 +82,20 @@ behavior. These cases are reviewed with [`RUBRIC.md`](RUBRIC.md), not exact
 rewrite equality. CI validates that every golden case contains all required
 contract fields but does not call a model.
 
+The `GOLD-VERIFY-*` family covers the fact-preservation safeguard in
+`skills/slop-sense/SKILL.md`. Each case pairs a real pattern the rewrite must
+fix with a factual trap the fix walks into:
+
+- `GOLD-VERIFY-001` — filler removal must not harden an unverified estimate;
+- `GOLD-VERIFY-002` — removing a vague attribution must not invent a statistic
+  or a source, because the input supplies neither;
+- `GOLD-VERIFY-003` — reducing stacked hedges must not upgrade a suggested
+  effect to an established one;
+- `GOLD-VERIFY-004` — compression must not detach a result from its scope limits
+  (`self-reported`, `among the 40 who finished`);
+- `GOLD-VERIFY-005` — fixing repetition must not merge a legal name into a trade
+  name or turn an expected date into a scheduled one.
+
 Start a review by copying [`golden/review-template.json`](golden/review-template.json).
 Review records belong in a branch or PR under `evaluation/golden/reviews/`; they
 are evidence for a proposed skill, prompt, model, or baseline change, not a
