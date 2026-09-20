@@ -1,0 +1,36 @@
+{
+  "review_schema_revision": 1,
+  "golden_case_schema_revision": 1,
+  "rubric_revision": 1,
+  "reviewed_at": "YYYY-MM-DDTHH:MM:SSZ",
+  "reviewer": "name or handle",
+  "skill_revision": "git commit SHA",
+  "model": {
+    "identifier": "provider/model",
+    "version_or_date": "reported version/date or unknown",
+    "settings": {
+      "temperature": "value or unknown",
+      "seed": "value or unknown",
+      "reasoning": "value or unknown",
+      "other": "system/prompt/tool settings relevant to reproduction"
+    }
+  },
+  "reviews": [
+    {
+      "case_id": "GOLD-AI-001",
+      "output_reviewed": "complete unedited output or immutable artifact path",
+      "dimensions": {
+        "finding_coverage": {"result": "pass|minor|fail", "reason": "concrete reason"},
+        "contextual_assessment": {"result": "pass|minor|fail", "reason": "concrete reason"},
+        "fact_preservation": {"result": "pass|minor|fail", "reason": "concrete reason"},
+        "qualification_and_verification": {"result": "pass|minor|fail", "reason": "concrete reason"},
+        "no_invention": {"result": "pass|minor|fail", "reason": "concrete reason"},
+        "voice_and_register": {"result": "pass|minor|fail", "reason": "concrete reason"},
+        "pattern_reduction": {"result": "pass|minor|fail", "reason": "concrete reason"},
+        "readability": {"result": "pass|minor|fail", "reason": "concrete reason"}
+      },
+      "overall": "pass|fail",
+      "overall_reason": "why this outcome follows from the rubric"
+    }
+  ]
+}

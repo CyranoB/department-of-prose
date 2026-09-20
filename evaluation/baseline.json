@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "scorer": "slop-detector@1.2.0",
+  "expected_failures": [
+    {
+      "id": "DET-EXTRACT-002",
+      "owner": "#8",
+      "desired_result": "Exclude Markdown link destinations while retaining label prose.",
+      "current_failure": "The destination remains in extracted prose."
+    },
+    {
+      "id": "DET-PUNCT-002",
+      "owner": "#9",
+      "desired_result": "Measure quotation punctuation without a blanket provenance judgment.",
+      "current_failure": "Any curly quote is labeled a ChatGPT tell."
+    },
+    {
+      "id": "DET-PUNCT-003",
+      "owner": "#13",
+      "desired_result": "Use passage context before assigning punctuation severity.",
+      "current_failure": "One em dash triggers a zero-tolerance instruction."
+    },
+    {
+      "id": "DET-SCORER-WORD-003",
+      "owner": "#14",
+      "desired_result": "Apply the eventual catalogue policy to literal noun uses.",
+      "current_failure": "The pinned scorer reports the noun `delves` as a lexical hit."
+    }
+  ],
+  "policy": "Expected failures execute their desired assertions. A failure is reported as XFAIL; an unexpected pass exits non-zero until the exemption and baseline entry are deliberately removed. All other assertion failures also exit non-zero."
+}
