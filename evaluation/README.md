@@ -67,9 +67,11 @@ red today. These are executable expected failures, never skips:
 - `DET-PUNCT-003` — contextual severity, owned by #13;
 - `DET-SCORER-WORD-003` — unresolved catalogue policy, owned by #14.
 
-An expected failure prints `XFAIL`. If its desired assertion begins to pass, the
-runner prints `XPASS` and exits non-zero so the exemption cannot remain silently.
-Unexpected failures also exit non-zero.
+An expected failure prints `XFAIL` only when its documented assertion path and
+message fragment both match. Execution errors, precondition failures, process or
+version failures, and unrelated assertion mismatches remain hard failures. If a
+desired assertion begins to pass, the runner prints `XPASS` and exits non-zero
+so the exemption cannot remain silently. Unexpected failures also exit non-zero.
 
 ## Golden editorial cases
 

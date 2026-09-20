@@ -14,6 +14,30 @@
       "assert": {"approx": {"value": 0.408248, "tolerance": 0.00001}}
     },
     {
+      "id": "DET-RHY-MEASURE-001",
+      "target": "rhythm.sentence-length mean",
+      "layer": "deterministic",
+      "polarity": "positive",
+      "status": "pass",
+      "expected_outcome": "The mean of 4, 8, and 12 words is 8.",
+      "rationale": "Protects the raw mean promised by the bundled metric inventory.",
+      "kind": "python_call",
+      "call": {"function": "burstiness", "args": [[4, 8, 12]], "select": [0]},
+      "assert": {"equals": 8}
+    },
+    {
+      "id": "DET-RHY-MEASURE-002",
+      "target": "rhythm.sentence-length population standard deviation",
+      "layer": "deterministic",
+      "polarity": "positive",
+      "status": "pass",
+      "expected_outcome": "The population standard deviation of 4, 8, and 12 words is approximately 3.266.",
+      "rationale": "Protects the raw standard-deviation measurement independently of CV.",
+      "kind": "python_call",
+      "call": {"function": "burstiness", "args": [[4, 8, 12]], "select": [1]},
+      "assert": {"approx": {"value": 3.265986, "tolerance": 0.00001}}
+    },
+    {
       "id": "DET-RHY-BURST-002",
       "target": "rhythm.burstiness bands",
       "layer": "deterministic",
@@ -58,7 +82,7 @@
       "expected_outcome": "Straight and curly apostrophe contractions are counted alongside formal forms.",
       "rationale": "Unicode apostrophes must not change the contraction metric.",
       "kind": "python_call",
-      "call": {"function": "contraction_stats", "args": ["It isn't late, we're ready, and it is open."]},
+      "call": {"function": "contraction_stats", "args": ["It isn't late, we’re ready, and it is open."]},
       "assert": {"equals": [2, 1, 0.6666666666666666]}
     },
     {
@@ -134,6 +158,66 @@
       "assert": {"equals": []}
     },
     {
+      "id": "DET-RHY-CLOSER-003",
+      "target": "rhythm.aphoristic short-closer boundary",
+      "layer": "deterministic",
+      "polarity": "boundary",
+      "status": "pass",
+      "expected_outcome": "A 14-word generalizing ending remains eligible as a short closer.",
+      "rationale": "Locks the inclusive short-closer threshold.",
+      "kind": "python_call",
+      "call": {"function": "aphoristic_closers", "args": [["After every retry and timeout today, the missing lock still remains the only problem."]], "select": [0]},
+      "assert": {"equals": [["short", 14, "After every retry and timeout today, the missing lock still remains the only problem."]]}
+    },
+    {
+      "id": "DET-RHY-CLOSER-004",
+      "target": "rhythm.aphoristic short-closer boundary",
+      "layer": "deterministic",
+      "polarity": "boundary",
+      "status": "pass",
+      "expected_outcome": "A 15-word generalizing ending without a comma tail is not a short closer.",
+      "rationale": "Protects the first value above the short-closer threshold.",
+      "kind": "python_call",
+      "call": {"function": "aphoristic_closers", "args": [["After every retry plus timeout today the missing lock still remains the only unresolved problem."]], "select": [0]},
+      "assert": {"equals": []}
+    },
+    {
+      "id": "DET-RHY-CLOSER-005",
+      "target": "rhythm.aphoristic comma-tail branch",
+      "layer": "deterministic",
+      "polarity": "positive",
+      "status": "pass",
+      "expected_outcome": "A long sentence resolving into a short generalizing comma tail is surfaced.",
+      "rationale": "Exercises the separate comma-tail detection branch.",
+      "kind": "python_call",
+      "call": {"function": "aphoristic_closers", "args": [["The team checked the logs, interviewed both operators, and replayed the transaction twice, but that is the problem."]], "select": [0]},
+      "assert": {"equals": [["tail", 18, "The team checked the logs, interviewed both operators, and replayed the transaction twice, but that is the problem."]]}
+    },
+    {
+      "id": "DET-RHY-CLOSER-006",
+      "target": "rhythm.aphoristic comma-tail boundary",
+      "layer": "deterministic",
+      "polarity": "boundary",
+      "status": "pass",
+      "expected_outcome": "A 10-word generalizing comma tail remains eligible.",
+      "rationale": "Locks the inclusive comma-tail threshold.",
+      "kind": "python_call",
+      "call": {"function": "aphoristic_closers", "args": [["The team checked the logs and replayed every transaction before dawn, and that is still the central unresolved question before us."]], "select": [0]},
+      "assert": {"equals": [["tail", 21, "The team checked the logs and replayed every transaction before dawn, and that is still the central unresolved question before us."]]}
+    },
+    {
+      "id": "DET-RHY-CLOSER-007",
+      "target": "rhythm.aphoristic comma-tail boundary",
+      "layer": "deterministic",
+      "polarity": "boundary",
+      "status": "pass",
+      "expected_outcome": "An 11-word comma tail is not surfaced.",
+      "rationale": "Protects the first value above the comma-tail threshold.",
+      "kind": "python_call",
+      "call": {"function": "aphoristic_closers", "args": [["The team checked the logs and replayed every transaction before dawn, and that is still the central unresolved question before us today."]], "select": [0]},
+      "assert": {"equals": []}
+    },
+    {
       "id": "DET-SEGMENT-001",
       "target": "sentence segmentation",
       "layer": "deterministic",
@@ -178,6 +262,7 @@
       "owner": "#8",
       "desired_result": "Keep link label prose but exclude destination URLs from rhythm measurements.",
       "current_failure": "strip_markdown preserves the full Markdown destination.",
+      "expected_failure": {"path": "value.not_contains", "contains": "https://example.test/a.b"},
       "expected_outcome": "The extracted prose contains the label and no URL destination.",
       "rationale": "URL path segments can distort words and sentence boundaries.",
       "kind": "python_call",
@@ -245,6 +330,18 @@
       "assert": {"returncode": 1, "stdout": {"equals": ""}, "stderr": {"contains": ["FileNotFoundError", "does-not-exist.txt"]}}
     },
     {
+      "id": "DET-RHY-LENGTH-001",
+      "target": "rhythm.short and long sentence-count boundaries",
+      "layer": "deterministic",
+      "polarity": "boundary",
+      "status": "pass",
+      "expected_outcome": "Sentences of exactly 8 and 30 words increment the short and long counters respectively.",
+      "rationale": "Locks both inclusive sentence-length count boundaries exposed by the CLI.",
+      "kind": "rhythm_cli",
+      "cli": {"stdin": "One two three four five six seven eight. One two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen nineteen twenty twentyone twentytwo twentythree twentyfour twentyfive twentysix twentyseven twentyeight twentynine thirty."},
+      "assert": {"returncode": 0, "stdout": {"contains": ["short (<=8w): 1    long (>=30w): 1", "shortest 8w   longest 30w"]}, "stderr": {"equals": ""}}
+    },
+    {
       "id": "DET-PUNCT-001",
       "target": "punctuation raw counts",
       "layer": "deterministic",
@@ -265,6 +362,7 @@
       "owner": "#9",
       "desired_result": "Quoted typography should be measured without a blanket ChatGPT-tell judgment.",
       "current_failure": "The CLI labels every curly quote as a ChatGPT tell.",
+      "expected_failure": {"path": "stdout.not_contains", "contains": "curly quotes are a ChatGPT tell"},
       "expected_outcome": "A quotation using curly marks has no blanket provenance claim.",
       "rationale": "Quotation typography can be intentional or source-preserving.",
       "kind": "rhythm_cli",
@@ -280,6 +378,7 @@
       "owner": "#13",
       "desired_result": "One contextual em dash should not trigger a zero-tolerance fix instruction.",
       "current_failure": "Any non-zero count prints `target zero em dashes`.",
+      "expected_failure": {"path": "stdout.not_contains", "contains": "target zero em dashes"},
       "expected_outcome": "A single em dash is counted without a zero-tolerance severity instruction.",
       "rationale": "Severity requires passage context, not only a non-zero raw count.",
       "kind": "rhythm_cli",
@@ -367,6 +466,7 @@
       "owner": "#14",
       "desired_result": "Catalogue policy decides whether an ordinary noun sense should avoid the AI-vocabulary hit.",
       "current_failure": "The scorer reports the noun `delves` exactly like the verb.",
+      "expected_failure": {"path": "stdout.not_contains", "contains": "\"delves\":"},
       "expected_outcome": "The geographic noun use of `delves` has no actionable lexical hit.",
       "rationale": "Meaning-sensitive catalogue policy is unresolved and must not be silently baselined.",
       "kind": "real_scorer",

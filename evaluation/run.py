@@ -46,7 +46,15 @@ def load_rhythm():
 RHYTHM = load_rhythm()
 
 
-def compare(actual: Any, assertion: dict[str, Any]) -> None:
+class FixtureMismatch(AssertionError):
+    """A behavioral assertion mismatch with a stable path for XFAIL matching."""
+
+    def __init__(self, path: str, message: str):
+        super().__init__(message)
+        self.path = path
+
+
+def compare(actual: Any, assertion: dict[str, Any], path: str = "value") -> None:
     def json_shape(value: Any) -> Any:
         if isinstance(value, (list, tuple)):
             return [json_shape(item) for item in value]
@@ -56,23 +64,35 @@ def compare(actual: Any, assertion: dict[str, Any]) -> None:
 
     actual = json_shape(actual)
     if "equals" in assertion and actual != assertion["equals"]:
-        raise AssertionError(f"expected {assertion['equals']!r}, got {actual!r}")
+        raise FixtureMismatch(
+            f"{path}.equals", f"expected {assertion['equals']!r}, got {actual!r}"
+        )
     if "approx" in assertion:
         wanted = assertion["approx"]
         if abs(float(actual) - float(wanted["value"])) > float(wanted["tolerance"]):
-            raise AssertionError(
+            raise FixtureMismatch(
+                f"{path}.approx",
                 f"expected {wanted['value']} ± {wanted['tolerance']}, got {actual}"
             )
     rendered = str(actual)
     for needle in assertion.get("contains", []):
         if needle not in rendered:
-            raise AssertionError(f"expected output to contain {needle!r}; got {rendered!r}")
+            raise FixtureMismatch(
+                f"{path}.contains",
+                f"expected output to contain {needle!r}; got {rendered!r}",
+            )
     for needle in assertion.get("not_contains", []):
         if needle in rendered:
-            raise AssertionError(f"expected output not to contain {needle!r}; got {rendered!r}")
+            raise FixtureMismatch(
+                f"{path}.not_contains",
+                f"expected output not to contain {needle!r}; got {rendered!r}",
+            )
     for pattern in assertion.get("matches", []):
         if not re.search(pattern, rendered, re.MULTILINE):
-            raise AssertionError(f"expected output to match {pattern!r}; got {rendered!r}")
+            raise FixtureMismatch(
+                f"{path}.matches",
+                f"expected output to match {pattern!r}; got {rendered!r}",
+            )
 
 
 def run_python_call(fixture: dict[str, Any]) -> Any:
@@ -150,10 +170,10 @@ def run_wrapper(fixture: dict[str, Any]) -> dict[str, Any]:
 def run_real_scorer(fixture: dict[str, Any]) -> dict[str, Any]:
     wanted_version = (EVALUATION / "SCORER_VERSION").read_text(encoding="utf-8").strip()
     if not SCORER_PATH.is_file() or not SCORER_PACKAGE.is_file():
-        raise AssertionError("pinned scorer is missing; run `npm ci` before evaluation")
+        raise RuntimeError("pinned scorer is missing; run `npm ci` before evaluation")
     installed_version = load_json(SCORER_PACKAGE)["version"]
     if installed_version != wanted_version:
-        raise AssertionError(
+        raise RuntimeError(
             f"expected slop-detector {wanted_version}, installed {installed_version}"
         )
     completed = subprocess.run(
@@ -177,24 +197,31 @@ def run_real_scorer(fixture: dict[str, Any]) -> dict[str, Any]:
 
 def assert_process(actual: dict[str, Any], assertion: dict[str, Any]) -> None:
     if "returncode" in assertion and actual["returncode"] != assertion["returncode"]:
-        raise AssertionError(
+        raise FixtureMismatch(
+            "returncode.equals",
             f"expected exit {assertion['returncode']}, got {actual['returncode']}; "
             f"stderr={actual['stderr']!r}"
         )
     for stream in ("stdout", "stderr"):
         rules = assertion.get(stream, {})
-        compare(actual[stream], rules)
+        compare(actual[stream], rules, stream)
     if "version" in assertion:
-        compare(actual.get("version"), {"equals": assertion["version"]})
+        compare(actual.get("version"), {"equals": assertion["version"]}, "version")
     if "score" in assertion:
         score = actual.get("score")
         if score is None:
-            raise AssertionError(f"scorer output had no Final Score: {actual['stdout']!r}")
+            raise FixtureMismatch(
+                "score.missing", f"scorer output had no Final Score: {actual['stdout']!r}"
+            )
         limits = assertion["score"]
         if "min" in limits and score < limits["min"]:
-            raise AssertionError(f"expected score >= {limits['min']}, got {score}")
+            raise FixtureMismatch(
+                "score.min", f"expected score >= {limits['min']}, got {score}"
+            )
         if "max" in limits and score > limits["max"]:
-            raise AssertionError(f"expected score <= {limits['max']}, got {score}")
+            raise FixtureMismatch(
+                "score.max", f"expected score <= {limits['max']}, got {score}"
+            )
 
 
 def execute(fixture: dict[str, Any]) -> None:
@@ -236,9 +263,21 @@ def validate_fixture_contract(fixture: dict[str, Any], seen: set[str]) -> None:
     if fixture["polarity"] not in {"positive", "negative", "boundary", "contract"}:
         raise AssertionError(f"invalid polarity {fixture['polarity']!r}")
     if fixture["status"] == "xfail":
-        for field in ("owner", "desired_result", "current_failure"):
+        for field in ("owner", "desired_result", "current_failure", "expected_failure"):
             if not fixture.get(field):
                 raise AssertionError(f"xfail {fixture['id']} missing {field}")
+        expected_failure = fixture["expected_failure"]
+        if set(expected_failure) != {"path", "contains"}:
+            raise AssertionError(
+                f"xfail {fixture['id']} expected_failure needs path and contains"
+            )
+        if not all(
+            isinstance(expected_failure[field], str) and expected_failure[field]
+            for field in ("path", "contains")
+        ):
+            raise AssertionError(
+                f"xfail {fixture['id']} expected_failure values must be non-empty strings"
+            )
     elif fixture["status"] != "pass":
         raise AssertionError(f"invalid status {fixture['status']!r}")
 
@@ -274,12 +313,22 @@ def validate_coverage(fixtures: list[dict[str, Any]]) -> None:
 def validate_baseline(fixtures: list[dict[str, Any]]) -> None:
     baseline = load_json(EVALUATION / "baseline.json")
     fixture_xfails = {
-        fixture["id"]: fixture["owner"]
+        fixture["id"]: {
+            "owner": fixture["owner"],
+            "expected_assertion": (
+                f"{fixture['expected_failure']['path']}: "
+                f"{fixture['expected_failure']['contains']}"
+            ),
+        }
         for fixture in fixtures
         if fixture["status"] == "xfail"
     }
     baseline_xfails = {
-        item["id"]: item["owner"] for item in baseline["expected_failures"]
+        item["id"]: {
+            "owner": item["owner"],
+            "expected_assertion": item["expected_assertion"],
+        }
+        for item in baseline["expected_failures"]
     }
     if fixture_xfails != baseline_xfails:
         raise AssertionError(
@@ -325,6 +374,15 @@ def validate_golden_cases() -> int:
     return len(cases)
 
 
+def matches_expected_failure(fixture: dict[str, Any], mismatch: FixtureMismatch) -> bool:
+    expected = fixture.get("expected_failure", {})
+    return (
+        fixture["status"] == "xfail"
+        and mismatch.path == expected.get("path")
+        and expected.get("contains", "") in str(mismatch)
+    )
+
+
 def run_all(selected: str | None = None) -> int:
     payload = load_json(EVALUATION / "fixtures/deterministic.json")
     fixtures = payload["fixtures"]
@@ -341,8 +399,8 @@ def run_all(selected: str | None = None) -> int:
             continue
         try:
             execute(fixture)
-        except Exception as exc:  # the fixture ID and expectation make failures diagnosable
-            if fixture["status"] == "xfail":
+        except FixtureMismatch as exc:
+            if matches_expected_failure(fixture, exc):
                 xfail_count += 1
                 print(f"XFAIL {fixture['id']} [{fixture['owner']}] {exc}")
             else:
@@ -352,6 +410,13 @@ def run_all(selected: str | None = None) -> int:
                     f"      expected: {fixture['expected_outcome']}\n"
                     f"      actual:   {exc}"
                 )
+        except Exception as exc:
+            fail_count += 1
+            print(
+                f"FAIL  {fixture['id']}\n"
+                f"      expected: {fixture['expected_outcome']}\n"
+                f"      actual:   unexpected {type(exc).__name__}: {exc}"
+            )
         else:
             if fixture["status"] == "xfail":
                 xpass_count += 1

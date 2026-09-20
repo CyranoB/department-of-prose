@@ -5,27 +5,31 @@
     {
       "id": "DET-EXTRACT-002",
       "owner": "#8",
+      "expected_assertion": "value.not_contains: https://example.test/a.b",
       "desired_result": "Exclude Markdown link destinations while retaining label prose.",
       "current_failure": "The destination remains in extracted prose."
     },
     {
       "id": "DET-PUNCT-002",
       "owner": "#9",
+      "expected_assertion": "stdout.not_contains: curly quotes are a ChatGPT tell",
       "desired_result": "Measure quotation punctuation without a blanket provenance judgment.",
       "current_failure": "Any curly quote is labeled a ChatGPT tell."
     },
     {
       "id": "DET-PUNCT-003",
       "owner": "#13",
+      "expected_assertion": "stdout.not_contains: target zero em dashes",
       "desired_result": "Use passage context before assigning punctuation severity.",
       "current_failure": "One em dash triggers a zero-tolerance instruction."
     },
     {
       "id": "DET-SCORER-WORD-003",
       "owner": "#14",
+      "expected_assertion": "stdout.not_contains: \"delves\":",
       "desired_result": "Apply the eventual catalogue policy to literal noun uses.",
       "current_failure": "The pinned scorer reports the noun `delves` as a lexical hit."
     }
   ],
-  "policy": "Expected failures execute their desired assertions. A failure is reported as XFAIL; an unexpected pass exits non-zero until the exemption and baseline entry are deliberately removed. All other assertion failures also exit non-zero."
+  "policy": "Expected failures execute their desired assertions and match only the documented assertion path and message fragment. A failure is reported as XFAIL; an unexpected pass exits non-zero until the exemption and baseline entry are deliberately removed. Execution errors, precondition failures, different assertion failures, and process/version failures exit non-zero."
 }

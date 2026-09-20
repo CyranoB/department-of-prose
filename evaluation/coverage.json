@@ -3,10 +3,10 @@
   "scope_statement": "The deterministic scope is the public behavior of rhythm.py, score.sh, and representative rule families exposed by the exactly pinned slop-detector integration. The integration inventory covers each scorer metric family and stable CLI output contract; it does not claim one fixture per private upstream word, trigram, or regex entry.",
   "inventory": [
     {
-      "target": "rhythm.burstiness calculation and LOW/MODERATE boundary",
-      "positive": ["DET-RHY-BURST-001"],
+      "target": "rhythm sentence-length mean, population standard deviation, coefficient of variation, short/long counts, and classification boundaries",
+      "positive": ["DET-RHY-BURST-001", "DET-RHY-MEASURE-001", "DET-RHY-MEASURE-002"],
       "negative": ["DET-RHY-BURST-002"],
-      "boundary": ["DET-RHY-BURST-003", "DET-RHY-BURST-004"]
+      "boundary": ["DET-RHY-BURST-003", "DET-RHY-BURST-004", "DET-RHY-LENGTH-001"]
     },
     {
       "target": "rhythm.contraction and formal-form counts, including Unicode apostrophes",
@@ -23,10 +23,9 @@
     },
     {
       "target": "rhythm.aphoristic closer candidate extraction",
-      "positive": ["DET-RHY-CLOSER-001"],
+      "positive": ["DET-RHY-CLOSER-001", "DET-RHY-CLOSER-005"],
       "negative": ["DET-RHY-CLOSER-002"],
-      "boundary": [],
-      "not_applicable": {"boundary": "The current contract covers the generalization predicate; contextual frequency policy remains editorial."}
+      "boundary": ["DET-RHY-CLOSER-003", "DET-RHY-CLOSER-004", "DET-RHY-CLOSER-006", "DET-RHY-CLOSER-007"]
     },
     {
       "target": "sentence segmentation across terminals, decimals, and abbreviations",
