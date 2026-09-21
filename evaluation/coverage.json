@@ -124,7 +124,7 @@
     "Register, voice, author intent, and whether a raw signal warrants editing remain editorial unless a later deterministic policy explicitly implements them."
   ],
   "future_behavior": [
-    {"owner": "#7", "decision": "Fact-preservation behavior may become enforceable beyond the golden rubric."},
+    {"owner": "#19", "decision": "Fact-preservation behavior may become enforceable beyond the golden rubric. #7 stated the safeguard in SKILL.md and is closed; the GOLD-VERIFY-* family records it editorially until a deterministic checker exists."},
     {"owner": "#8", "decision": "Link destinations and other Markdown extraction gaps should be excluded from prose metrics."},
     {"owner": "#9", "decision": "Punctuation advice should account for quotations and deliberate authorial use."},
     {"owner": "#10", "decision": "Verification behavior may add deterministic evidence checks while preserving qualified claims."},

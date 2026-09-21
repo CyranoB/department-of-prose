@@ -80,10 +80,43 @@ behavior. These cases are reviewed with [`RUBRIC.md`](RUBRIC.md), not exact
 rewrite equality. CI validates that every golden case contains all required
 contract fields but does not call a model.
 
+The `GOLD-VERIFY-*` family covers the fact-preservation safeguard in
+`skills/slop-sense/SKILL.md`. Each case pairs a real pattern the rewrite must
+fix with the factual trap that fix walks into, so no case can be passed by
+declining to edit:
+
+- `GOLD-VERIFY-001` — filler removal must not harden an unverified estimate;
+- `GOLD-VERIFY-002` — removing a vague attribution must not invent a statistic
+  or a source, because the input supplies neither;
+- `GOLD-VERIFY-003` — reducing stacked hedges must not upgrade a suggested
+  effect to an established one;
+- `GOLD-VERIFY-004` — compression must not detach a result from its scope limits
+  (`self-reported`, `among the 40 who finished`);
+- `GOLD-VERIFY-005` — fixing repetition must not merge a legal name into a trade
+  name or turn an expected date into a scheduled one.
+
 Start a review by copying [`golden/review-template.json`](golden/review-template.json).
 Review records belong in a branch or PR under `evaluation/golden/reviews/`; they
 are evidence for a proposed skill, prompt, model, or baseline change, not a
 required artifact for ordinary deterministic runs.
+
+Two conventions exist because the first `GOLD-VERIFY-*` review got a critical
+dimension wrong and had to amend itself:
+
+- **Record independence and the revision reviewed.** A review by the model that
+  produced the outputs is a smoke test, not evidence. State so in the record, and
+  state whether the `skill_revision` is the one on `main` — a review of an
+  unmerged draft does not describe shipped behavior.
+- **Paste captured tool output; never a remembered measurement.** Word counts,
+  burstiness, and scores go in as the tools printed them, including the values
+  that flatter the rewrite least. Hand-counted numbers have been wrong here
+  before.
+
+When you request a review from someone else, hand them a `*-REQUEST.json`
+scaffold: the same schema with the case contracts and the outputs filled in and
+every verdict left as a placeholder. `RUBRIC.md` asks for review blind where
+practical, and a scaffold carrying someone else's verdicts anchors the next
+reviewer.
 
 ## Scorer reproducibility and upgrades
 
