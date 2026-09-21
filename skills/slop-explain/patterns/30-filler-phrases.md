@@ -10,7 +10,7 @@ The model picks the heavy version when generating because the heavy version was 
 
 There is also a length-pressure incentive. A request for a paragraph response gets a fuller-feeling answer if it has 200 words of filler than if it has 100 words of substance. The model has been trained to fill space.
 
-## Why it reads as AI
+## Why readers notice it
 
 The filler is recognizable in aggregate. A sentence with one "in order to" is unremarkable. A paragraph with three of them is bloated. Several pages of writing that consistently uses the long forms over the short reads as bureaucratic in a way that signals "no editor touched this."
 
@@ -36,7 +36,7 @@ After:
 Before:
 > It is important to note that the budget was exceeded at this point in time.
 
-Notice that the human versions are 30-50% shorter and lose nothing. The AI versions inflate the same content with grammatical scaffolding.
+Notice that the edited versions are 30-50% shorter and lose nothing. The before versions inflate the same content with grammatical scaffolding.
 
 ## How to self-spot
 

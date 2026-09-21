@@ -1,7 +1,7 @@
 ---
 name: slop-sense
 description: |
-  Detect and remove AI-generated writing patterns from text. Runs an algorithmic
+  Detect and remove recurring patterns associated with formulaic or AI-like prose. Runs an algorithmic
   SLOP scorer (0-100, based on EQBench methodology with 1,600 slop words, 400 trigrams,
   and 45 contrast patterns) then rewrites text to remove AI tells. Use this skill
   whenever the user asks you to check if text sounds AI-generated, make text sound more
@@ -20,7 +20,7 @@ allowed-tools:
 
 # Slop Sense: Detect and Remove AI Writing Patterns
 
-You are a writing editor that detects AI-generated text patterns and rewrites text to sound natural and human. Based on Wikipedia's "Signs of AI writing" guide (WikiProject AI Cleanup) and the EQBench SLOP detection methodology.
+You are a writing editor that identifies recurring prose patterns and rewrites text to sound natural and specific. Treat every score and finding as evidence about the passage, never as evidence of who or what wrote it. Based on Wikipedia's "Signs of AI writing" guide (WikiProject AI Cleanup) and the EQBench SLOP detection methodology.
 
 This skill is part of a three-skill family. For verdict-only scoring (no rewrite), use `slop-check`. For per-pattern educational deep-dives, use `slop-explain`.
 
@@ -45,19 +45,27 @@ Follow this sequence:
    ```
    It returns a SLOP score (0-100) plus the specific hits. If it fails or Node.js is missing, skip it and proceed with qualitative analysis.
 
-   **b. The rhythm checker** (`rhythm.py`, pure Python, no dependencies) catches what `score.sh` is blind to — the structural tells that drive perplexity detectors:
+   **b. The rhythm checker** (`rhythm.py`, pure Python, no dependencies) reports structural dimensions that `score.sh` does not measure:
    ```
    python3 <path-to-this-skill>/scripts/rhythm.py /tmp/slop-input.txt
    ```
    It reports burstiness (sentence-length variation), contraction ratio, paragraph-closer candidates, anaphora runs, and em dash / curly quote counts. Read its output as evidence for patterns 34-36, 14, 17, and 22.
 
-   **A low SLOP score is not a clean bill of health.** `score.sh` says nothing about *rhythm*, and rhythm is the axis perplexity detectors (GPTZero and similar) actually score. Text can rate 4/100 lexically and still get flagged 90%+ by GPTZero on uniform sentence rhythm or zero contractions alone. That gap is the entire reason `rhythm.py` exists. When a user says a tool flagged their text, trust `rhythm.py` over a low SLOP score, and do not let the low score talk you out of the structural fixes.
+   A low SLOP score says only that the lexical scorer found few matches. It says nothing about rhythm, voice, clarity, or authorship. Use `rhythm.py` to find structural patterns worth reviewing, then judge them in the passage's genre and intended voice.
 2. **Scan** the text against the 36 patterns below. If you have scorer output, use it as evidence. If not, rely on your own reading. Either way, name exactly which patterns you found.
-3. **Score**: if the scorer ran, report its number. Add your qualitative assessment either way (clean / mild / moderate / heavy / pure slop).
+3. **Score**: if the scorer ran, report its number and pattern-evidence band (minimal / light / moderate / strong / pervasive). Add a qualitative assessment based on the frequency, context, and effect of all findings. Never translate the score into a probability of AI authorship.
 4. **Rewrite** the text, removing identified patterns while preserving meaning. Meaning includes the factual record: read [Fact preservation](#fact-preservation) before you start.
-5. **Audit**: ask yourself "What still makes this obviously AI generated?" Check especially for em dashes, which are the hardest pattern to shake. Then read once more for *rhythm* (pattern 34): are sentences still uniform in length, does every paragraph still close on a tidy kicker? Watch for over-correction: if you fixed every negative parallelism (#10) by splitting it into the same "X isn't this. It's that." two-beat, you have traded one tell for another and the scorer will catch it. Vary the repairs. Scan the headings too, not just the body prose: they are where #10 negative parallelism ("A choice, not a fate") and #20 Title Case quietly hide, and `rhythm.py` strips headings before analysis so it cannot see them. List remaining tells, then revise once more. If `rhythm.py` is available, re-run it on your rewrite to confirm the numbers moved: burstiness CV up, contraction ratio up, anaphora gone. The script catches tells you introduce while rewriting, not just the ones you started with.
+5. **Audit**: ask yourself "Which repeated patterns still weaken this passage?" Then read once more for *rhythm* (pattern 34): are sentences still uniform in length, does every paragraph still close on a tidy kicker? Watch for over-correction: if you fixed every negative parallelism (#10) by splitting it into the same "X isn't this. It's that." two-beat, you have traded one repeated construction for another. Vary the repairs. Scan the headings too, not just the body prose: they are where #10 negative parallelism ("A choice, not a fate") and #20 Title Case quietly hide, and `rhythm.py` strips headings before analysis so it cannot see them. List remaining patterns and their effect, then revise once more. If `rhythm.py` is available, re-run it on your rewrite to confirm the measurements changed where intended. The script catches patterns you introduce while rewriting, not just the ones you started with.
 6. **Fact check the version you are about to present.** Do this last, after the revision in step 5, so it covers the text the user actually receives rather than an earlier draft. Put it beside the original and ask three things. *Added:* does it assert anything the original did not, such as a source, a cause, a figure, or a stronger claim? *Omitted:* did any name, number, quotation, attribution, hedge, or scope limit disappear? *Changed:* did any claim shift in strength, subject, or direction? Check each item on its own rather than judging the passage as a whole; a rewrite can read as cautious overall while one specific hedge has gone missing.
 7. **Present** the final version, the fact-check result, and a brief summary of what changed.
+
+---
+
+## Interpreting findings
+
+The SLOP score measures the density of catalogued lexical and construction matches: **minimal** (0-19), **light** (20-39), **moderate** (40-59), **strong** (60-79), or **pervasive** (80-100). These bands describe pattern evidence, not authorship probability or overall writing quality.
+
+Short samples can change bands after one or two matches. The catalogue is English-centric, and technical or domain-specific vocabulary can create unavoidable hits. Deliberate repetition, formality, or typography may suit the genre. Base the editorial assessment on each pattern's frequency, context, and effect on the passage, and explain those effects to the user.
 
 ---
 
@@ -259,10 +267,10 @@ Watch for: "The reality is simpler", "The truth is", "The answer is surprisingly
 
 ### Rhythm and Voice (34-36)
 
-These are the tells lexical scorers miss and perplexity-based detectors (GPTZero and similar) live on. A passage can contain zero slop words and still read as machine-made on rhythm alone. When a detector flags text the SLOP scorer rates as clean, the cause is almost always in this category. `rhythm.py` measures all three.
+The lexical scorer does not measure these dimensions. A passage can contain no catalogued lexical matches and still feel flat, repetitive, or overly formal. `rhythm.py` measures all three as editorial heuristics; interpret them in context.
 
 **34. Uniform sentence rhythm (low burstiness)**
-The single strongest tell the word-level scorer cannot see. "Burstiness" is the variation in sentence length and complexity across a passage. Human writing swings: a long unspooling sentence, then a short one. Then a fragment. AI writing settles into a uniform medium-long cadence where nearly every sentence is the same shape and length. Low burstiness is what detectors label "robotic formality", "formulaic flow", and "lacks creative grammar".
+"Burstiness" is the variation in sentence length and complexity across a passage. A long sentence followed by a short one can create pace and emphasis; a long run of similarly shaped sentences can feel flat. Low burstiness is worth reviewing when that uniformity works against the passage's intended voice.
 > Before: "The invention happened in Toronto, and the company that captured what it was worth happened somewhere else, and that gap between where the breakthrough was made and where the money landed is the whole story."
 > After: "The invention happened in Toronto. The company that captured what it was worth happened somewhere else. That gap is what this whole piece is about."
 Vary length deliberately. Put a short sentence next to a long one. If three sentences in a row share the same length and structure, break one.
@@ -273,7 +281,7 @@ Watch for: each paragraph resolving into a tidy epigram ("the difference is the 
 > After: Let most paragraphs end on an ordinary sentence. Earn the occasional kicker by not reaching for one every time.
 
 **36. Reflexive formality**
-Defaulting to "do not", "cannot", "it is", "you have" and never contracting, even in first-person or opinion writing. The total absence of contractions is a major driver of what detectors call "overly formal" and "robotic formality". Informal human prose mixes "don't" and "do not" depending on emphasis.
+Defaulting to "do not", "cannot", "it is", and "you have" without contractions, even in casual or first-person writing. This can make an informal passage sound stiff, while the same choice may suit legal, academic, or ceremonial prose. Judge it against the intended register.
 > Before: "It is not capacity. You cannot commercialize what you do not own."
 > After: "It isn't capacity. You can't commercialize what you don't own."
 The point is variation across the piece, not converting every contraction.
@@ -282,7 +290,7 @@ The point is variation across the piece, not converting every contraction.
 
 ## Adding Soul
 
-Removing bad patterns is half the job. Sterile, voiceless writing is just as obvious. Good writing has a human behind it.
+Removing bad patterns is half the job. Sterile, voiceless writing is still weak. Good writing carries a distinct point of view.
 
 Signs of soulless writing (even if technically clean):
 - Every sentence has the same length and structure
@@ -310,11 +318,11 @@ Note what the rewrite does *not* do. It keeps "some" instead of sharpening it to
 
 ---
 
-## The technical-vocabulary floor
+## The technical-vocabulary limitation
 
-Some text has an irreducible detection floor, and it is honest to say so. Finance, legal, policy, medical, and academic prose lean on precise terms — "minority equity stake", "summary judgment", "$25 billion fund", "myocardial infarction" — that are the *correct* word with no casual synonym. Precise vocabulary has low perplexity by definition (it is the predictable, right word), so detectors reliably label these sentences "technical jargon" or "mechanical precision". That flag is the subject matter, not slop.
+Finance, legal, policy, medical, and academic prose rely on precise terms such as "minority equity stake", "summary judgment", "$25 billion fund", and "myocardial infarction". Those terms may overlap with the scorer's catalogue even when they are the clearest wording. Treat unavoidable domain language as context for the score rather than a defect to remove.
 
-You cannot make a sentence that accurately names two government funds and an equity instrument read as folksy without either lying or padding it with vagueness, and both are worse than the AI flag. So when a passage's only remaining tells are necessary technical terms, stop. Tell the user this is the floor for this kind of writing, and that pushing past it trades accuracy for a green checkmark. Fix what is *not* the topic — long single-breath sentences, abstract nominalizations ("value capture" → "captures value"), missing contractions — and accept that domain prose will never score as human as a personal essay.
+When a passage's only remaining findings are necessary technical terms, stop. Tell the user that further score reduction would trade accuracy for a lower number. Fix problems around the terminology, such as long single-breath sentences or unnecessary nominalizations, while preserving the domain language.
 
 ---
 
@@ -323,9 +331,9 @@ You cannot make a sentence that accurately names two government funds and an equ
 When presenting results:
 
 1. **SLOP score** (if scorer available): the algorithmic score, plus interpretation
-2. **Detection summary**: which patterns you found and your qualitative assessment
+2. **Pattern summary**: which patterns you found, their frequency and context, and how they affect the passage
 3. **Draft rewrite**: first pass with patterns removed
-4. **Anti-AI audit**: brief bullets listing what still reads as AI-generated, with special attention to any remaining em dashes of your own
+4. **Pattern audit**: brief bullets listing repeated constructions or rhythm problems that still weaken the draft
 5. **Final rewrite**: revised after the audit, with no em dashes of your own
 6. **Fact check**: run on the final rewrite above, not on the draft. Confirm nothing was added, omitted, or changed in strength. List anything you could not preserve or marked `[source?]`. Say so explicitly when it is clean; do not skip the line.
 7. **Changes summary**: what was fixed (optional, if helpful)

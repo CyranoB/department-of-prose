@@ -8,9 +8,9 @@ Training data is full of articles and essays that end on an upbeat note, especia
 
 The model also has no specific information about what should come next in the actual situation it is writing about. Lacking specifics, it reaches for the unspecific positive: bright futures, exciting times, promising horizons. The vagueness is what makes the closer usable in any context, which is also what makes it meaningless.
 
-## Why it reads as AI
+## Why readers notice it
 
-The closers are interchangeable. Any AI essay about any topic can end with "the future looks bright" and the sentence will technically work. That property (fitting anywhere) is exactly what makes the closer empty. A sentence that could end any article ends no article well.
+The closers are interchangeable. "The future looks bright" can end an article about almost any topic and still sound grammatical. That portability is what makes the sentence empty: it adds no consequence, commitment, or specific next step.
 
 The phrasing is also recognizable. "The future looks bright," "Exciting times lie ahead," "The possibilities are endless," "The journey has just begun." Each is a stock ending. None is doing work.
 
@@ -36,7 +36,7 @@ After:
 Before:
 > The possibilities are endless, and the future of the industry looks bright.
 
-Notice that the human versions end on something specific and consequential. The AI versions end on a generic feeling.
+Notice that the edited versions end on something specific and consequential. The before versions end on a generic feeling.
 
 ## How to self-spot
 

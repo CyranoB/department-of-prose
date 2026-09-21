@@ -8,9 +8,9 @@ The training data rewards closure. Essays, op-eds, and blog posts in the corpus 
 
 The aphorism is also a structurally convenient landing. After a few sentences of setup, a short balanced clause — "and the difference is the entire argument", "that gap is the whole story" — provides a clean exit without requiring the model to commit to a messy, specific, or unresolved thought. It is the prose equivalent of a sitcom button: the scene needs to end, so deliver a line that sounds like an ending.
 
-## Why it reads as AI
+## Why readers notice it
 
-A great closing line is a gift. A great closing line in *every paragraph* is a tell, because real writing does not resolve that neatly that often. Human paragraphs trail off, hand directly to the next one, end on a plain fact, or stop mid-thought because the thought is not finished. When every paragraph instead snaps shut on a balanced epigram, the reader starts to feel handled — the rhythm becomes predictable, and predictability is what perplexity detectors measure.
+A great closing line is a gift. A polished closing line in *every paragraph* can become predictable. Paragraphs can hand directly to the next one, end on a plain fact, or stop with some tension unresolved. When every paragraph instead snaps shut on a balanced epigram, the reader may start to feel handled. The issue is the repeated effect across the passage, not the authorship of any one line.
 
 Crucially, the tell is the *relentlessness*, not any single kicker. Each line, read alone, looks like good writing. Read as a set, they feel interchangeable: the same "X is Y, and that is the point" shape, over and over. The cumulative effect is a piece that sounds like it is constantly concluding.
 
@@ -30,7 +30,7 @@ After (vary the endings; let most be ordinary):
 >
 > The critics noticed within hours. Several of them had been consulted on the plan.
 
-Notice the human version ends paragraphs on a plain sentence, a concrete number, an unresolved observation — not a polished button each time.
+Notice the edited version ends paragraphs on a plain sentence, a concrete number, or an unresolved observation rather than a polished button each time.
 
 ## How to self-spot
 

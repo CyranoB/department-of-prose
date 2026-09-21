@@ -1,7 +1,7 @@
 {
   "name": "department-of-prose",
-  "version": "3.1.1",
-  "description": "Detect, score, explain, and rewrite AI-generated text.",
+  "version": "3.1.2",
+  "description": "Score, explain, and rewrite recurring patterns associated with formulaic or AI-like prose.",
   "author": {
     "name": "CyranoB"
   },

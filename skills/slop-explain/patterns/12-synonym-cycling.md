@@ -8,13 +8,13 @@ Many style guides (especially high-school and college writing guides) tell write
 
 The problem is that the rule is bad. "Elegant variation," as Fowler called it, was a Victorian instinct that even Victorian editors warned against. Modern good writing repeats the clearest term, because repetition is invisible and the synonym dance is not.
 
-## Why it reads as AI
+## Why readers notice it
 
 The synonyms get progressively worse as the cycle continues. The first term is the right one. The second is acceptable. The third is a reach. The fourth is comically off. "Protagonist... main character... central figure... hero... primary actor" sounds like a thesaurus exploding.
 
-The reader notices the dance even when they cannot name the pattern. They feel that the writer is straining to avoid saying the same word, and they wonder why. The strain is the AI tell. A human writer would have just said "the protagonist" four times and moved on.
+The reader notices the dance even when they cannot name the pattern. The prose appears to strain against repeating the clearest word, forcing the reader to track whether each new synonym names the same thing. Repeating "the protagonist" may be clearer.
 
-The pattern is especially visible in articles about a single subject (a person, a company, a place) where the noun must be referred to repeatedly. AI text becomes a guided tour through every available synonym.
+The pattern is especially visible in articles about a single subject, such as a person, company, or place, where the noun must recur. Too many substitutes turn the paragraph into a guided tour through every available synonym.
 
 ## Examples
 
@@ -30,7 +30,7 @@ After:
 Before:
 > The bridge is in Pittsburgh. The structure was built in 1928 and renovated in 2003. The crossing carries about 12,000 cars a day.
 
-Notice that the human versions repeat the clearest word. The reader reads "Tesfaye" or "bridge" three times and does not notice. The AI versions force the reader to track what "the agriculturalist" or "the crossing" refers to.
+Notice that the edited versions repeat the clearest word. The reader reads "Tesfaye" or "bridge" three times and does not notice. The before versions force the reader to track what "the agriculturalist" or "the crossing" refers to.
 
 ## How to self-spot
 

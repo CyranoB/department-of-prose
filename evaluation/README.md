@@ -63,8 +63,6 @@ deterministic implementations.
 red today. These are executable expected failures, never skips:
 
 - `DET-EXTRACT-002` — Markdown link extraction, owned by #8;
-- `DET-PUNCT-002` — contextual punctuation guidance, owned by #9;
-- `DET-PUNCT-003` — contextual severity, owned by #13;
 - `DET-SCORER-WORD-003` — unresolved catalogue policy, owned by #14.
 
 An expected failure prints `XFAIL` only when its documented assertion path and

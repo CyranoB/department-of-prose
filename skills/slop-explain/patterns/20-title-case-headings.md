@@ -8,7 +8,7 @@ Title Case is the older convention. It survives in newspaper headlines, academic
 
 But web writing has largely moved to sentence case for headings. Most modern blogs, technical documentation, and online publications use sentence case because it reads more naturally and matches how the rest of the text is capitalized. The model is overweighted toward the older convention and applies Title Case even when sentence case would fit the surrounding prose better.
 
-## Why it reads as AI
+## Why readers notice it
 
 Sentence case is dominant on the modern web. When a piece uses Title Case headings, the reader notices, especially in casual or conversational writing. The headings read as formal or old-fashioned in a way that does not match the body text.
 

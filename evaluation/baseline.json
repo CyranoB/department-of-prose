@@ -10,20 +10,6 @@
       "current_failure": "The destination remains in extracted prose."
     },
     {
-      "id": "DET-PUNCT-002",
-      "owner": "#9",
-      "expected_assertion": "stdout.not_contains: curly quotes are a ChatGPT tell",
-      "desired_result": "Measure quotation punctuation without a blanket provenance judgment.",
-      "current_failure": "Any curly quote is labeled a ChatGPT tell."
-    },
-    {
-      "id": "DET-PUNCT-003",
-      "owner": "#13",
-      "expected_assertion": "stdout.not_contains: target zero em dashes",
-      "desired_result": "Use passage context before assigning punctuation severity.",
-      "current_failure": "One em dash triggers a zero-tolerance instruction."
-    },
-    {
       "id": "DET-SCORER-WORD-003",
       "owner": "#14",
       "expected_assertion": "stdout.not_contains: \"delves\":",

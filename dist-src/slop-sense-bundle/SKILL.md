@@ -1,7 +1,7 @@
 ---
 name: slop-sense
 description: |
-  Detect, score, rewrite, and explain AI writing patterns (36 known tells,
+  Detect, score, rewrite, and explain recurring patterns associated with formulaic or AI-like prose (36 catalogued patterns,
   EQBench SLOP methodology). Four modes:
   (1) Rewrite — humanize text, remove AI tells. Triggers: "rewrite this",
   "humanize", "deslop", "remove AI tells", "make it sound human".
@@ -23,7 +23,7 @@ allowed-tools:
 
 # Slop Sense
 
-A bundled writing editor that detects AI-generated text patterns, scores them, rewrites or explains them on demand. Based on Wikipedia's "Signs of AI writing" guide (WikiProject AI Cleanup) and the EQBench SLOP detection methodology.
+A bundled writing editor that identifies recurring prose patterns, scores them, and rewrites or explains them on demand. Scores and findings describe the passage, not who or what wrote it. Based on Wikipedia's "Signs of AI writing" guide (WikiProject AI Cleanup) and the EQBench SLOP detection methodology.
 
 ## How to dispatch
 
@@ -58,21 +58,27 @@ python3 scripts/rhythm.py /tmp/slop-input.txt     # structural: burstiness, cont
 
 `score.sh` wraps `npx slop-detector` and is **optional by design** — if it fails or exits with `SCORER_NOT_AVAILABLE`, skip the numeric score and say so (e.g. `SLOP score: scorer unavailable, qualitative only`). `rhythm.py` is pure Python (no dependencies).
 
-**A low SLOP score is not a clean bill of health.** `score.sh` says nothing about rhythm, and rhythm is the axis perplexity detectors like GPTZero actually score. Text can rate 4/100 lexically and still get flagged 90%+ on uniform sentence rhythm or zero contractions alone — that gap is why `rhythm.py` exists (patterns 34-36).
+A low SLOP score says only that the lexical scorer found few matches. It says nothing about rhythm, voice, clarity, or authorship. Use `rhythm.py` to find structural patterns worth reviewing, then judge them in the passage's genre and intended voice.
+
+### Interpreting findings
+
+The SLOP score measures the density of catalogued lexical and construction matches: **minimal** (0-19), **light** (20-39), **moderate** (40-59), **strong** (60-79), or **pervasive** (80-100). These bands describe pattern evidence, not authorship probability or overall writing quality.
+
+Short samples can change bands after one or two matches. The catalogue is English-centric, and technical or domain-specific vocabulary can create unavoidable hits. Deliberate repetition, formality, or typography may suit the genre. Base the editorial assessment on each pattern's frequency, context, and effect on the passage, and explain those effects to the user.
 
 ---
 
 ## Mode 1: Rewrite
 
-You are a writing editor. Detect AI patterns and rewrite to sound natural and human.
+You are a writing editor. Identify recurring patterns and rewrite the passage to sound natural and specific.
 
 ### Workflow
 
 1. **Try the scorer.** Save the user's text to `/tmp/slop-input.txt`, then run `bash scripts/score.sh /tmp/slop-input.txt`. If it returns a score, use it as evidence. If it fails, proceed without.
 2. **Scan** the text against the [36 patterns catalog](#the-36-patterns-catalog) below. Name exactly which ones you found.
-3. **Score** — report the algorithmic number if available, plus a qualitative band (clean / mild / moderate / heavy / pure slop).
+3. **Score** — report the algorithmic number if available, plus its pattern-evidence band (minimal / light / moderate / strong / pervasive). Add a qualitative assessment based on the frequency, context, and effect of all findings. Never translate the score into a probability of AI authorship.
 4. **Rewrite** the text, removing the identified patterns while preserving meaning. Meaning includes the factual record: read [Fact preservation](#fact-preservation) first.
-5. **Audit** — ask yourself "What still makes this obviously AI generated?" Check especially for em dashes (pattern #17), the hardest to shake. Then read once more for rhythm (pattern 34) and watch for over-correction: do not fix every negative parallelism (#10) by splitting it into the same "X isn't this. It's that." two-beat. Scan the headings too, not just body prose — they host #10 negative parallelism ("A choice, not a fate") and #20 Title Case, and `rhythm.py` strips headings so it cannot see them. Re-run `python3 scripts/rhythm.py` on your rewrite to confirm burstiness and contraction ratio rose. List remaining tells, then revise once more.
+5. **Audit** — ask yourself "Which repeated patterns still weaken this passage?" Read once more for rhythm (pattern 34) and watch for over-correction: do not fix every negative parallelism (#10) by splitting it into the same "X isn't this. It's that." two-beat. Scan the headings too, not just body prose — they host #10 negative parallelism ("A choice, not a fate") and #20 Title Case, and `rhythm.py` strips headings so it cannot see them. Re-run `python3 scripts/rhythm.py` on your rewrite to confirm the measurements changed where intended. List remaining patterns and their effect, then revise once more.
 6. **Fact check the version you are about to present.** Do this last, after the revision in step 5, so it covers the delivered text rather than an earlier draft. Beside the original, ask whether anything was *added* (a source, cause, figure, or stronger claim the original lacked), *omitted* (a name, number, quotation, attribution, hedge, or scope limit), or *changed* in strength, subject, or direction. Check each item on its own; a rewrite can read as cautious overall while one specific hedge has gone missing.
 7. **Present** the final version, the fact-check result, and a brief summary of what changed.
 
@@ -93,16 +99,16 @@ If a pattern can only be removed by adding specifics the input does not contain,
 ### Output format
 
 1. **SLOP score** (if scorer ran) — algorithmic score plus interpretation
-2. **Detection summary** — which patterns you found and your qualitative band
+2. **Pattern summary** — which patterns you found, their frequency and context, and how they affect the passage
 3. **Draft rewrite** — first pass with patterns removed
-4. **Anti-AI audit** — bullets listing what still reads as AI, with special attention to remaining em dashes of your own
+4. **Pattern audit** — bullets listing repeated constructions or rhythm problems that still weaken the draft
 5. **Final rewrite** — revised after the audit, no em dashes of your own
 6. **Fact check** — run on the final rewrite above, not the draft. Confirm nothing was added, omitted, or changed in strength; list anything you could not preserve or marked `[source?]`. State it explicitly when clean, never skip the line
 7. **Changes summary** — what was fixed (optional, if helpful)
 
 ### Adding soul
 
-Removing bad patterns is half the job. Sterile, voiceless writing is just as obvious. Good writing has a human behind it.
+Removing bad patterns is half the job. Sterile, voiceless writing is still weak. Good writing carries a distinct point of view.
 
 Signs of soulless writing (even if technically clean):
 - Every sentence has the same length and structure
@@ -132,19 +138,19 @@ Note what the rewrite does *not* do. It keeps "some" instead of sharpening it to
 
 ## Mode 2: Verdict only
 
-Read-only AI-pattern detection. Score and report. **Do not rewrite. Do not suggest specific edits.**
+Read-only writing-pattern review. Score and report. **Do not rewrite. Do not suggest specific edits.**
 
 ### Workflow
 
 1. **Get the text** using the input handling above. If pasted, save it to `/tmp/slop-check-input.txt`.
-2. **Run both scripts**: `bash scripts/score.sh /tmp/slop-check-input.txt` and `python3 scripts/rhythm.py /tmp/slop-check-input.txt`. If either fails, skip it and continue with what you have. A low SLOP score with poor rhythm numbers still warrants a "will likely flag" verdict.
+2. **Run both scripts**: `bash scripts/score.sh /tmp/slop-check-input.txt` and `python3 scripts/rhythm.py /tmp/slop-check-input.txt`. If either fails, skip it and continue with what you have. A low lexical score does not cancel repeated structural findings.
 3. **Scan** the text against the [36 patterns catalog](#the-36-patterns-catalog) below. Name every pattern present. For each, attach one short evidence snippet (a quoted phrase or count) — not a sentence of explanation.
 4. **Emit the verdict and stop.** Do not produce a rewrite. The closing line points the user at Rewrite mode or Pattern deep-dive mode.
 
 ### Output format
 
 ```
-SLOP score: 78 / 100 (heavy)
+SLOP score: 78 / 100 (strong pattern evidence)
 
 Patterns detected (7):
   #4  Promotional language     — "vibrant", "nestled", "boasts"
@@ -155,16 +161,18 @@ Patterns detected (7):
   #23 Chatbot artifacts        — "I hope this helps!"
   #30 Filler phrases           — "in order to" (×2)
 
-Verdict: heavy AI tells. Would benefit from a rewrite.
+Assessment: strong pattern evidence. Several repeated patterns affect the passage's tone and rhythm.
 Next: ask for a rewrite, or "explain pattern N" to learn about a specific pattern.
 ```
 
-Verdict bands:
-- **clean** — score < 20, zero or one minor patterns
-- **mild** — score 20-39, 2-3 patterns
-- **moderate** — score 40-59, 4-5 patterns
-- **heavy** — score 60-79, 6+ patterns
-- **pure slop** — score 80+, the text reads as nearly unedited LLM output
+Score bands describe the density of matches from `score.sh`:
+- **minimal** — 0-19; few catalogued lexical or construction matches
+- **light** — 20-39; some matches recur
+- **moderate** — 40-59; several matches recur or cluster
+- **strong** — 60-79; frequent or concentrated matches
+- **pervasive** — 80-100; matches dominate substantial parts of the passage
+
+The final assessment must account for frequency, context, and effect across the scorer, structural measurements, and qualitative scan. State what the patterns do to the passage. Do not infer authorship.
 
 If the scorer was unavailable, omit the numeric score line and say so: `SLOP score: scorer unavailable, qualitative only`. Keep the rest of the format identical.
 
@@ -172,7 +180,7 @@ If the scorer was unavailable, omit the numeric score line and say so: `SLOP sco
 
 ## Mode 3: Pattern deep-dive
 
-You are a teacher. The user wants to understand one pattern in depth — not fix their text, not score it.
+You are a teacher. The user wants to understand one pattern in depth — not fix their text, not score it. Explain the pattern's frequency, context, and effect. A pattern may be common in model output without proving AI authorship.
 
 ### Workflow
 
@@ -433,10 +441,10 @@ Watch for: "The reality is simpler", "The truth is", "The answer is surprisingly
 
 ### Rhythm and Voice (34-36)
 
-The tells lexical scoring misses and perplexity detectors (GPTZero) live on. `rhythm.py` measures all three.
+The lexical scorer does not measure these dimensions. `rhythm.py` reports all three as editorial heuristics; interpret them in context.
 
 **34. Uniform sentence rhythm (low burstiness)**
-Sentences barely vary in length or shape, producing a flat, even cadence. "Burstiness" is the variation detectors score; human writing swings long-then-short, AI averages to a uniform medium-long. This is what reads as "robotic" even when the words are clean.
+Sentences barely vary in length or shape, producing a flat, even cadence. Variation can create pace and emphasis, while a long run of similarly shaped sentences can feel monotonous. Genre matters: procedural prose may benefit from consistency.
 > Before: "The invention happened in Toronto, and the company that captured what it was worth happened somewhere else, and that gap is the whole story."
 > After: "The invention happened in Toronto. The company that captured what it was worth happened somewhere else. That gap is what this whole piece is about."
 Put short sentences next to long ones. If three in a row share a shape, break one.
@@ -446,7 +454,7 @@ Ending nearly every paragraph on a polished, balanced kicker. One or two read as
 > After: Let most paragraphs end on an ordinary sentence. Earn the occasional kicker.
 
 **36. Reflexive formality**
-Never contracting — "do not", "cannot", "it is" everywhere, even in casual or first-person writing. The total absence of contractions drives "overly formal" and "robotic" flags.
+Never contracting — "do not", "cannot", "it is" everywhere, even in casual or first-person writing. This can make an informal passage sound stiff, while the same choice may suit legal, academic, or ceremonial prose.
 > Before: "It is not capacity. You cannot commercialize what you do not own."
 > After: "It isn't capacity. You can't commercialize what you don't own."
 Mix registers; the point is variation, not contracting everything.

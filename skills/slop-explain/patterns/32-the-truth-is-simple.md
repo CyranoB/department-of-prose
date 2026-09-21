@@ -10,11 +10,11 @@ LLMs learned the form and deploy it whenever they want a claim to feel definitiv
 
 There is also a closure incentive. A paragraph that ends with "the truth is X" feels complete in a way that a paragraph ending with a tentative claim does not. The model reaches for the construction to wrap things up.
 
-## Why it reads as AI
+## Why readers notice it
 
 The pattern is empty assertion. The writer has not demonstrated that the claim is true or that it is simple; they have only said both. The reader notices the missing argument and discounts the assertion accordingly.
 
-The phrasing is also recognizable. "The reality is simpler and less flattering." "The truth is, most companies are just." "The answer is surprisingly straightforward." Each appears far more in AI essays than in human ones, because human essayists are more wary of the move.
+The phrasing is recognizable: "The reality is simpler and less flattering", "The truth is, most companies are just", "The answer is surprisingly straightforward". Any one may suit an argumentative voice. Repeated without supporting evidence, the construction asks the reader to accept certainty instead of earning it.
 
 When the construction is used to deliver a controversial claim, it is especially galling. "The truth is, this entire industry is a scam" relies entirely on the reader trusting the writer's authority, which the writer has not earned.
 
@@ -38,7 +38,7 @@ After:
 Before:
 > The truth, often missed, is that compounding returns matter more than starting capital.
 
-Notice that the human versions present the claim and let the reader judge it. The AI versions assert that the claim is "simple" or "the truth" without demonstrating either.
+Notice that the edited versions present the claim and let the reader judge it. The before versions assert that the claim is "simple" or "the truth" without demonstrating either.
 
 ## How to self-spot
 

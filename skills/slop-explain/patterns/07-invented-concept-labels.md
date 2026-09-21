@@ -8,9 +8,9 @@ The training data is full of essays and analyses that name new phenomena: "the g
 
 So when an LLM is reasoning through a topic and wants to mark a tension or pattern as important, it generates a new compound: domain word + paradox / trap / creep / loop / problem. The compound has the cadence of a known concept. It is not one.
 
-There is also a self-citation move. A human writer might coin a term and then defend it across multiple sources. LLMs sometimes invent a term mid-paragraph, give it a name, and then refer to it as if it were established. "This is what I call the supervision paradox" reads as confident because real essayists do this. The difference is that real essayists are introducing a term that already exists in their thinking, not generating one on the spot.
+There is also a self-citation move: the passage coins a term mid-paragraph and then refers to it as if it were established. A new label can be useful when it is defined, defended, and reused to clarify an argument. Without that work, "what I call the supervision paradox" adds confidence without analysis.
 
-## Why it reads as AI
+## Why readers notice it
 
 The reader cannot find the term anywhere else. Search "supervision paradox" in scholarly databases and you find either nothing or a different unrelated concept. The term has no community, no literature, no definition beyond what the model just made up.
 
@@ -30,7 +30,7 @@ After:
 Before:
 > This is the acceleration trap in action: speed today eats capability tomorrow.
 
-Notice that the human versions describe the dynamic in concrete terms and let the reader draw the framing conclusion. The AI versions skip the description and ship a brand name.
+Notice that the edited versions describe the dynamic in concrete terms and let the reader draw the framing conclusion. The before versions skip the description and ship a brand name.
 
 ## How to self-spot
 

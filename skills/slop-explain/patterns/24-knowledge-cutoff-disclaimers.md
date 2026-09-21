@@ -6,15 +6,15 @@
 
 The disclaimers exist for honest reasons. An LLM with a January 2024 training cutoff genuinely cannot speak to what happened in March 2024. The model is trained to flag the uncertainty so users do not treat its output as current.
 
-The problem is that the disclaimers ride along into published text. When the user takes the model's output and uses it in an article, the "as of my last training" line stays in. The published text now contains a phrase that only makes sense if the author is an LLM.
+The problem is that the disclaimers can ride along into published text. A phrase such as "as of my last training" belongs to a chat response and becomes misplaced when copied into an article. Its presence can reveal leftover interface framing, but it does not establish the authorship of the surrounding passage.
 
 The disclaimers also tend to appear when the model has nothing to say. Faced with a topic it cannot speak to, the model produces a hedge instead of admitting ignorance directly, and the hedge becomes part of the output.
 
-## Why it reads as AI
+## Why readers notice it
 
-The phrasing is unmistakable. "As of my last training," "I do not have access to real-time information," "specific details may have changed since," "while my knowledge is current as of." Humans do not use these constructions. They might say "I am not sure what has happened since 2023" but they would not say "as of my last training in 2023."
+Some phrases are specific to model interfaces: "as of my last training", "my knowledge cutoff", or references to lacking real-time access. Other phrases, such as "specific details may have changed since", are ordinary uncertainty language. Flag the model-specific residue directly; judge the generic wording by whether it identifies what may be outdated and since when.
 
-The disclaimers are also nearly useless as warnings. They tell the reader "this might be out of date" without telling them what specifically is out of date or what the writer is actually uncertain about. A real hedge ("the figures here are from the 2023 fiscal year and may not reflect post-merger changes") is informative. The LLM disclaimer is not.
+Generic disclaimers are weak warnings when they say only "this might be out of date" without naming what is uncertain. A specific hedge ("the figures here are from the 2023 fiscal year and may not reflect post-merger changes") gives the reader a date, scope, and reason to verify.
 
 ## Examples
 
@@ -30,7 +30,7 @@ After:
 Before:
 > While specific details about Senate Bill 4012 are limited as of my last training, it was at the committee stage and may have progressed since.
 
-Notice that the human versions name what they do and do not know, with specifics. The AI versions are vague meta-disclaimers about the writer's own training rather than about the topic.
+Notice that the edited versions name what they do and do not know, with specifics. The before versions are vague meta-disclaimers about the writer's own training rather than about the topic.
 
 ## How to self-spot
 

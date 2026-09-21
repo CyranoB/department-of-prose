@@ -4,13 +4,13 @@
 
 ## Why LLMs do this
 
-Expanded forms are the safe register. "Do not" is correct in every context; "don't" is correct in most but carries a casualness the model treats as risk. Instruction-tuned assistants are nudged toward a polished, professional default, and the uncontracted form is the lowest-common-denominator choice that never reads as too flip. So the model reaches for it by reflex, including in places where a human writer would never be that stiff.
+Expanded forms are a safe register. "Do not" is broadly acceptable; "don't" carries a casualness the model may treat as risk. Instruction-tuned assistants are often nudged toward a polished, professional default, so they may favor uncontracted forms even when the intended voice is conversational.
 
-The result is consistency where humans are inconsistent. A real writer contracts when the sentence wants to move quickly and expands when they want weight or emphasis — "I don't think that's right" versus "I do not, under any circumstances, agree." The mix is unconscious and constant. The model does not mix; it picks the formal form and stays there.
+The result can be a passage that stays in one register. Contractions often help a sentence move quickly, while expanded forms can add weight or emphasis: "I don't think that's right" versus "I do not, under any circumstances, agree." The editorial question is whether the mix serves the genre and voice.
 
-## Why it reads as AI
+## Why readers notice it
 
-The total absence of contractions is one of the most reliable surface signals of generated text, and it is a major driver of what detectors and readers label "overly formal", "robotic", or "impersonal". It is especially damning in genres where informality is expected: a personal essay, an opinion column, a blog post. A first-person argument that never once says "I'm" or "don't" reads as though it were translated from a more formal language, or written by something that does not have a casual register at all.
+The absence of contractions can make casual or first-person prose sound overly formal, robotic, or impersonal. In a personal essay, opinion column, or blog post, a first-person argument that never says "I'm" or "don't" may feel out of register. In legal, academic, ceremonial, or translated prose, the same choice may be appropriate. The mismatch with the intended voice is the finding; it is not proof of how the text was produced.
 
 It is also easy to over-correct in the wrong direction. The fix is not to contract everything — that produces its own uniform, flattened tone. The fix is variation, which is exactly what the model fails to produce.
 

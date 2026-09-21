@@ -10,7 +10,7 @@ There is also a hedging incentive. A specific attribution ("Smith argued in his 
 
 Finally, news writing genuinely uses this construction sometimes for sourced reporting that aggregates multiple background sources. The model learned the form there and over-applies it everywhere.
 
-## Why it reads as AI
+## Why readers notice it
 
 The vagueness flags itself. "Experts believe" raises the question "which experts?" and the answer never arrives. The reader is left with an unsupported claim wearing the costume of a sourced one.
 
@@ -32,7 +32,7 @@ After:
 Before:
 > Industry reports suggest that a significant portion of enterprise AI projects are at risk of failure.
 
-Notice that the human versions tell you who, when, and what specifically. The AI versions tell you that someone, somewhere, has an opinion related to the topic.
+Notice that the edited versions tell you who, when, and what specifically. The before versions tell you that someone, somewhere, has an opinion related to the topic.
 
 ## How to self-spot
 

@@ -6,13 +6,13 @@
 
 Markdown is well-represented in training data, especially in technical documentation, blog posts, and "how-to" content. In those genres, key terms are often bolded so readers scanning the page can find them. The model learned that bold means "important" and applies it to anything that seems definition-like or topic-introducing.
 
-The model also has no way to feel embarrassment about over-bolding. A human writer who bolds three phrases in a paragraph notices the visual noise and pulls some back. The model has no such feedback loop and keeps adding bold wherever a term seems load-bearing.
+The model has no visual feedback loop while generating markup, so it may keep adding bold wherever a term seems important. In the rendered passage, repeated emphasis creates visual noise and makes the hierarchy harder to see.
 
-## Why it reads as AI
+## Why readers notice it
 
 Bold loses its meaning when it is everywhere. If every paragraph has three bolded phrases, none of them feel important. The reader's eye has nothing to anchor to. The page looks like a textbook study guide rather than prose.
 
-The selection also tends to be arbitrary. A human writer bolds the genuinely key term once, near its first use. An LLM bolds nearly every concept noun, including ones the reader could find without help.
+The selection may also feel arbitrary: nearly every concept noun is bold, including terms the reader could find without help. Effective emphasis is sparse and tied to a clear reading purpose.
 
 Bold is most jarring in narrative or argumentative prose where it has no functional role. A blog post about a personal experience does not need bolded **fear** and **hope** and **discovery**. The bolding suggests the writer is afraid the reader will miss the words.
 
@@ -30,7 +30,7 @@ After:
 Before:
 > What surprised me was the **resistance** that came from **middle management**.
 
-Notice that the human versions trust the reader to find the important words on their own. The AI versions decorate them, which only flattens the emphasis.
+Notice that the edited versions trust the reader to find the important words on their own. The before versions decorate them, which only flattens the emphasis.
 
 ## How to self-spot
 

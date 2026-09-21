@@ -8,11 +8,11 @@ The form is common in opinion writing, Substack essays, and motivational content
 
 The model defaults to these transitions whenever it wants to mark a sentence as important. Because the model has weak commitments about what is actually important, it deploys the transitions broadly, including before claims that are not surprising at all.
 
-## Why it reads as AI
+## Why readers notice it
 
 The promise rarely cashes out. "Here's the kicker: it was never about the technology." If the surrounding paragraph already implied the point, the kicker reveals nothing. The reader feels the buildup and then the deflation, and learns to discount any sentence that begins with this scaffolding.
 
-The forms also cluster. AI essays often have three or four "Here's the X" sentences in a single piece, which makes each one feel scripted. Real writers use the construction sparingly because they know it cheapens if overused.
+The forms also cluster. Three or four "Here's the X" sentences in one piece make each reveal feel scripted. Used sparingly, the construction can direct attention; repeated, it cheapens its own suspense.
 
 The pattern overlaps with rhetorical Q&A (pattern 16). Both stage a reveal that the writer did not actually earn.
 
@@ -36,7 +36,7 @@ After:
 Before:
 > Here's where it gets interesting: the cost of context switching is the real bottleneck.
 
-Notice that the human versions assert the point directly. The AI versions perform suspense before delivering a claim that did not need a runway.
+Notice that the edited versions assert the point directly. The before versions perform suspense before delivering a claim that did not need a runway.
 
 ## How to self-spot
 

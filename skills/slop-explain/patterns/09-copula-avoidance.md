@@ -10,11 +10,11 @@ The substitutes also feel safer in some contexts. "Serves as" sounds more analyt
 
 Many of the substitute verbs are also genre-tied. "Boasts" comes from real-estate listings and tourism copy. "Stands as" comes from monument inscriptions. "Serves as" comes from institutional descriptions. The model learned each in its native register and over-applies them everywhere.
 
-## Why it reads as AI
+## Why readers notice it
 
 The variants are almost always heavier and less precise than "is." "Gallery 825 serves as the exhibition space" gives you no more information than "Gallery 825 is the exhibition space," and the word "serves" suggests an active role the gallery is not actually performing.
 
-The variants also cluster. A human writer might use "serves as" once in a long article. An LLM uses "serves as," "stands as," and "features" in consecutive sentences, because each is the variant the model reached for in turn.
+The variants also cluster. One "serves as" may fit the sentence. A run of "serves as", "stands as", and "features" can make simple identity claims sound needlessly ceremonial.
 
 The pattern is most visible at the *exact* moments when "is" would be clearest. Definitions, identifications, classifications: places where the writer's job is to say "this thing is this other thing." Swapping in a verb of action or representation distorts the basic identity claim.
 
@@ -38,7 +38,7 @@ After:
 Before:
 > The Mona Lisa resides in the Louvre, where it serves as one of the museum's most iconic holdings.
 
-Notice that the human versions are shorter, clearer, and lose no meaning. The AI versions add verbal ceremony around an identity claim.
+Notice that the edited versions are shorter, clearer, and lose no meaning. The before versions add verbal ceremony around an identity claim.
 
 ## How to self-spot
 

@@ -10,7 +10,7 @@ LLMs learned the form but apply it to non-continuums. "From the Big Bang to dark
 
 The pattern serves the model's coverage instinct. When asked what something covers, the model wants to claim breadth. The from-to construction lets it claim breadth without listing everything in between, because there is no "in between" to list.
 
-## Why it reads as AI
+## Why readers notice it
 
 The reader half-tries to imagine the continuum and fails. "The course covers everything from neural networks to ethics" prompts the question "what is between neural networks and ethics on what scale?" The answer is nothing. They are two topics in the same field, not endpoints of a range.
 
@@ -38,7 +38,7 @@ After:
 Before:
 > The festival features everything from rock to traditional Ethiopian music.
 
-Notice that the human versions list the actual items. The AI versions imply that the listed endpoints are just samples of an unstated continuum, when they are actually the whole set.
+Notice that the edited versions list the actual items. The before versions imply that the listed endpoints are just samples of an unstated continuum, when they are actually the whole set.
 
 ## How to self-spot
 
