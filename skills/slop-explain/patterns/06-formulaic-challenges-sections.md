@@ -8,7 +8,7 @@ The pattern appears constantly in two training-data genres: institutional retros
 
 It also serves a generation strategy. The model is told to write about a subject and to be balanced. It does not actually know what the challenges are, but it knows what the *shape* of a balanced paragraph looks like. The formulaic challenges sentence lets it perform balance without committing to any specific obstacle.
 
-## Why it reads as AI
+## Why readers notice it
 
 A real challenges section names specific obstacles, attributes them to specific sources or events, and explains how they affect the subject. The formulaic version does none of this. It says "challenges" without naming one, and then says "thrives" without explaining how.
 

@@ -8,7 +8,7 @@ The construction is common in motivational writing, tech-vision essays, and prod
 
 LLMs reach for the construction whenever they want to make a case for a future or a possibility. It is rhetorically easy: pose the imagined world, list the goods, and let the reader's imagination do the persuasion work.
 
-## Why it reads as AI
+## Why readers notice it
 
 The imagined worlds are always rosy. "Imagine a world where every doctor has a perfect diagnostic assistant." The good outcomes are listed; the trade-offs are not. The construction is a one-sided sales pitch dressed up as a thought experiment.
 

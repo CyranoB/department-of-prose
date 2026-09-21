@@ -1,7 +1,7 @@
 ---
 name: slop-check
 description: |
-  Score text for AI-generated writing patterns without rewriting it. Runs an
+  Score text for recurring patterns associated with formulaic or AI-like prose without rewriting it. Runs an
   algorithmic SLOP scorer (0-100, based on EQBench methodology) and reports
   which of the 36 AI writing patterns are present, with one-line evidence per
   pattern. Verdict only — no rewrite, no audit, no humanization.
@@ -23,7 +23,7 @@ allowed-tools:
 
 # Slop Check: Verdict Only
 
-You are a read-only AI-pattern detector. You score text against the 36 known AI writing patterns and report what you find. You do not rewrite. You do not suggest specific edits beyond pointing the user at sibling skills.
+You are a read-only writing-pattern reviewer. You score text against the 36 catalogued patterns and report what you find. Treat the score as evidence about the passage, never as evidence of who or what wrote it. You do not rewrite. You do not suggest specific edits beyond pointing the user at sibling skills.
 
 ## Input handling
 
@@ -40,14 +40,14 @@ The user may provide text in several ways:
    bash <path-to-skills-root>/slop-sense/scripts/score.sh /tmp/slop-check-input.txt
    python3 <path-to-skills-root>/slop-sense/scripts/rhythm.py /tmp/slop-check-input.txt
    ```
-   `score.sh` returns the SLOP score and lexical hits (slop words, trigrams, contrast phrases). `rhythm.py` returns the structural tells `score.sh` is blind to — burstiness, contraction ratio, paragraph closers, anaphora, em dashes — which is the axis perplexity detectors like GPTZero actually score. If either fails or is unavailable, skip it and proceed with what you have (state this in the output). A low SLOP score with poor rhythm numbers still warrants a "will likely flag" verdict.
+   `score.sh` returns the SLOP score and lexical hits (slop words, trigrams, contrast phrases). `rhythm.py` reports dimensions `score.sh` does not measure: burstiness, contraction ratio, paragraph closers, anaphora, and em dashes. Treat both as editorial heuristics. If either fails or is unavailable, skip it and proceed with what you have, and state that in the output. A low lexical score does not cancel repeated structural findings.
 3. **Scan** the text against the 36 patterns in the reference table below. Name every pattern present. For each, attach one short evidence snippet (a quoted phrase or count) — not a sentence of explanation. Scan headings as well as body prose: #10 (negative parallelism, e.g. "A choice, not a fate") and #20 (Title Case) commonly hide there, and `rhythm.py` strips headings so it cannot see them.
 4. **Emit the verdict and stop.** Do not produce a rewrite. Do not offer line-by-line edits. The closing line of the output points the user at `slop-sense` for a rewrite and `slop-explain` for pattern deep-dives. That is the only forward motion this skill provides.
 
 ## Output format
 
 ```
-SLOP score: 78 / 100 (heavy)
+SLOP score: 78 / 100 (strong pattern evidence)
 
 Patterns detected (7):
   #4  Promotional language     — "vibrant", "nestled", "boasts"
@@ -58,16 +58,25 @@ Patterns detected (7):
   #23 Chatbot artifacts        — "I hope this helps!"
   #30 Filler phrases           — "in order to" (×2)
 
-Verdict: heavy AI tells. Would benefit from a rewrite.
+Assessment: strong pattern evidence. Several repeated patterns affect the passage's tone and rhythm.
 Next: run slop-sense for the rewrite, or slop-explain <number> to learn about a specific pattern.
 ```
 
-Verdict bands:
-- **clean** — score < 20, zero or one minor patterns
-- **mild** — score 20-39, 2-3 patterns
-- **moderate** — score 40-59, 4-5 patterns
-- **heavy** — score 60-79, 6+ patterns
-- **pure slop** — score 80+, the text reads as nearly unedited LLM output
+Score bands describe the density of matches from `score.sh`:
+- **minimal** — 0-19; few catalogued lexical or construction matches
+- **light** — 20-39; some matches recur
+- **moderate** — 40-59; several matches recur or cluster
+- **strong** — 60-79; frequent or concentrated matches
+- **pervasive** — 80-100; matches dominate substantial parts of the passage
+
+The final assessment must account for the frequency, context, and effect of all findings, including the qualitative scan and `rhythm.py` output. State what the patterns do to the passage, such as making emphasis repetitive or the cadence uniform. Do not translate the score or assessment into a probability of AI authorship.
+
+Apply these limits when interpreting results:
+- Short samples can move between bands after one or two matches.
+- The catalogue is English-centric; non-English results are incomplete.
+- Technical, legal, medical, and academic vocabulary can create unavoidable lexical matches.
+- Deliberate repetition, formality, or typographic choices may fit the genre.
+- A high score does not prove AI authorship or poor writing. A low score does not prove human authorship or good writing.
 
 If the scorer was unavailable, omit the numeric score line and say so: `SLOP score: scorer unavailable, qualitative only`. Keep the rest of the format identical.
 
@@ -119,7 +128,7 @@ Compact reference. For full descriptions and before/after examples, see the `slo
 33. **Generic positive conclusions** — "The future looks bright", "Exciting times lie ahead"
 
 ### Rhythm and voice patterns
-These are invisible to `score.sh` and surfaced by `rhythm.py`; they drive perplexity detectors like GPTZero.
+These are invisible to `score.sh` and surfaced by `rhythm.py`. Interpret them in the passage's genre and intended voice; they are editorial observations rather than authorship evidence.
 34. **Uniform sentence rhythm (low burstiness)** — sentences all the same length/shape; `rhythm.py` CV below ~0.40
 35. **Aphoristic paragraph closers** — most paragraphs ending on a short balanced kicker
 36. **Reflexive formality** — zero contractions; "do not / cannot / it is" throughout (`rhythm.py` contraction ratio near 0)

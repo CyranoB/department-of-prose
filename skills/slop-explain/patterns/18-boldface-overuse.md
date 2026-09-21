@@ -8,7 +8,7 @@ Markdown is well-represented in training data, especially in technical documenta
 
 The model also has no way to feel embarrassment about over-bolding. A human writer who bolds three phrases in a paragraph notices the visual noise and pulls some back. The model has no such feedback loop and keeps adding bold wherever a term seems load-bearing.
 
-## Why it reads as AI
+## Why readers notice it
 
 Bold loses its meaning when it is everywhere. If every paragraph has three bolded phrases, none of them feel important. The reader's eye has nothing to anchor to. The page looks like a textbook study guide rather than prose.
 

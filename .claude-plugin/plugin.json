@@ -5,8 +5,8 @@
     "./skills/slop-check",
     "./skills/slop-explain"
   ],
-  "description": "Detect, score, explain, and rewrite AI writing patterns in Claude Code and Codex. Three skills: slop-sense (detect + rewrite + ai;dr), slop-check (score only, no rewrite), slop-explain (per-pattern deep-dives). 36 AI writing patterns, algorithmic SLOP scorer (0-100), plus a rhythm checker for burstiness and structural tells.",
-  "version": "3.1.1",
+  "description": "Score recurring patterns associated with formulaic or AI-like prose, explain them, and rewrite the passage in Claude Code and Codex. Three skills: slop-sense (score + rewrite + ai;dr), slop-check (score only, no rewrite), and slop-explain (per-pattern deep-dives). Includes a 0-100 SLOP scorer and a separate rhythm checker.",
+  "version": "3.1.2",
   "author": {
     "name": "CyranoB"
   },

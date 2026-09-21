@@ -8,7 +8,7 @@ LLMs are trained to avoid overclaiming. Hedging is rewarded by safety and accura
 
 The hedges also stack. "Could" softens, "potentially" softens further, "possibly" further still, "it might be argued that" pulls back even more. Each layer is individually defensible. The cumulative effect is a sentence that has retreated so far from its own claim that there is nothing left to evaluate.
 
-## Why it reads as AI
+## Why readers notice it
 
 The stacking is the tell. A human writer uses one hedge per claim, sometimes none. An LLM uses three or four, because each layer was selected independently by a model trying to be careful.
 

@@ -1,20 +1,20 @@
 # Pattern 22: Curly quotes
 
-**Typographic ("smart") quotes appearing in contexts where straight quotes would be standard.**
+**Typographic ("smart") quotes appearing where the document's format or house style calls for straight quotes.**
 
 ## Why LLMs do this
 
-ChatGPT in particular converts straight quotes to curly quotes by default in its output. The behavior comes from training on typeset prose (books, magazines, well-edited articles) where curly quotes are correct, combined with rendering settings that default to typography-friendly characters.
+Language models may reproduce curly quotes from typeset training material or from the interface rendering their output. Word processors and publishing tools also convert straight quotes automatically.
 
-Other LLMs vary, but the pattern is associated strongly enough with ChatGPT that the curly quote alone is treated as a likely AI tell.
+Because many human-operated tools make the same conversion, quote style alone carries no useful authorship conclusion. It matters when it conflicts with the surrounding format.
 
-## Why it reads as AI
+## Why readers notice it
 
-In informal web writing, technical documentation, code, and most blogging, straight quotes are the norm. Most keyboards produce straight quotes by default. When a user pastes prose into a chat box or types directly, they get straight quotes. So when curly quotes appear in a casual context, the reader's brain notes the mismatch.
+In technical documentation, code, JSON, and some web publishing systems, straight quotes are required or conventional. In typeset prose, curly quotes may be preferred. Readers notice inconsistency more than either choice by itself.
 
 The mismatch is especially visible in code blocks or technical content, where curly quotes are actively wrong. They will break a string literal or fail a JSON parser.
 
-The pattern is one of the most reliable "ChatGPT did this" tells, more reliable than any vocabulary pattern, because it is unconscious. Most users do not even know how to type a curly quote on purpose.
+The editorial question is therefore consistency and compatibility: use the quote style the medium requires, and do not treat typography as proof of provenance.
 
 ## Examples
 

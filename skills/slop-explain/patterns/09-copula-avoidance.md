@@ -10,7 +10,7 @@ The substitutes also feel safer in some contexts. "Serves as" sounds more analyt
 
 Many of the substitute verbs are also genre-tied. "Boasts" comes from real-estate listings and tourism copy. "Stands as" comes from monument inscriptions. "Serves as" comes from institutional descriptions. The model learned each in its native register and over-applies them everywhere.
 
-## Why it reads as AI
+## Why readers notice it
 
 The variants are almost always heavier and less precise than "is." "Gallery 825 serves as the exhibition space" gives you no more information than "Gallery 825 is the exhibition space," and the word "serves" suggests an active role the gallery is not actually performing.
 

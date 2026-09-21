@@ -1,25 +1,21 @@
 #!/usr/bin/env python3
 """
-rhythm.py - structural AI-tell checker for slop-sense.
+rhythm.py - structural writing-pattern checker for slop-sense.
 
-The bundled `score.sh` (slop-detector) measures *lexical* tells: slop words,
-trigrams, contrast phrases. It is blind to *rhythm*, which is exactly what
-perplexity-and-burstiness detectors (GPTZero and similar) score. Text can rate
-"very human" on score.sh and still get flagged 90%+ by GPTZero on uniform
-sentence rhythm alone.
+The bundled `score.sh` (slop-detector) measures lexical matches: slop words,
+trigrams, and contrast phrases. It does not measure rhythm or register.
 
 This script measures the dimensions score.sh can't see, so the model has ground
 truth instead of having to eyeball them:
 
-  - Burstiness: sentence-length variation (low = the uniform cadence detectors hate)
+  - Burstiness: sentence-length variation
   - Contraction ratio: contractions vs. uncontracted "do not / it is" forms
   - Aphoristic closers: paragraphs ending on a short, balanced kicker (pattern 35)
   - Anaphora runs: consecutive sentences opening with the same word (pattern 14)
-  - Em dashes & curly quotes: cheap typographic tells (patterns 17, 22)
+  - Em dashes & curly quotes: typographic observations (patterns 17, 22)
 
-All thresholds are heuristics, not verdicts. Treat the numbers as evidence that
-points at which structural patterns to attack, not as a pass/fail gate. The only
-real test is pasting the rewrite back through the detector that flagged it.
+All thresholds are editing heuristics, not authorship verdicts. Treat the numbers
+as prompts to inspect frequency, context, and effect in the passage.
 
 Usage:
     python3 rhythm.py <file>
@@ -179,10 +175,10 @@ def anaphora_runs(sentences, min_run=3):
 
 def band(cv):
     if cv < 0.40:
-        return "LOW — uniform cadence, the rhythm detectors flag"
+        return "LOW VARIATION — sentence lengths cluster closely"
     if cv < 0.55:
-        return "MODERATE — some variation, could burst harder"
-    return "HEALTHY — human-like variation"
+        return "MODERATE VARIATION — sentence lengths vary somewhat"
+    return "HIGH VARIATION — sentence lengths vary widely"
 
 
 def main():
@@ -214,7 +210,7 @@ def main():
     print("Contractions vs. formal forms:")
     print(f"  contractions: {c}    uncontracted (do not / it is / cannot): {f}    ratio {ratio:.2f}")
     if c == 0 and f > 0:
-        print("  fix: zero contractions reads as robotic formality; mix in don't/can't/it's (pattern 36)")
+        print("  review: no contractions; check whether this fits the passage's intended register (pattern 36)")
     print()
 
     closers, n_par = aphoristic_closers(paras)
@@ -241,15 +237,15 @@ def main():
 
     em = raw.count("—") + len(re.findall(r"(?<!-)--(?!-)", raw))
     curly = raw.count("“") + raw.count("”") + raw.count("‘") + raw.count("’")
-    print("Typographic tells:")
+    print("Typographic observations:")
     print(f"  em dashes (— or --): {em}   curly quotes: {curly}")
     if em:
-        print("  fix: target zero em dashes; use commas, periods, or parentheses (pattern 17)")
+        print("  review: inspect dash frequency and effect; isolated uses may fit the passage (pattern 17)")
     if curly:
-        print("  note: curly quotes are a ChatGPT tell; straight quotes read more human (pattern 22)")
+        print("  review: make quote style consistent with the document's house style (pattern 22)")
     print()
 
-    # --- synthesized verdict ---
+    # --- synthesized summary ---
     flags = []
     if cv < 0.40:
         flags.append("low burstiness")
@@ -261,14 +257,13 @@ def main():
         flags.append("anaphora")
     if em:
         flags.append("em dashes")
-    print("Verdict:")
+    print("Structural pattern summary:")
     if flags:
-        print(f"  Structural tells present: {', '.join(flags)}.")
-        print("  These are invisible to score.sh but drive perplexity/burstiness detectors.")
-        print("  A clean SLOP score does not mean this will pass GPTZero.")
+        print(f"  Review in context: {', '.join(flags)}.")
+        print("  score.sh does not measure these dimensions; assess their frequency and effect separately.")
     else:
-        print("  No strong structural tells. Rhythm reads human; combine with a low SLOP score")
-        print("  for a real shot at clearing perplexity detectors.")
+        print("  No strong structural patterns under these heuristic thresholds.")
+        print("  This result does not establish authorship or overall writing quality.")
 
 
 if __name__ == "__main__":

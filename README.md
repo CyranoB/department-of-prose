@@ -6,24 +6,24 @@
 
 > The Department of Prose believes every sentence should say what it means, a principle widely supported until it is applied to love letters. Several promising courtships have survived the removal of “celestial.” Fewer have survived the plain-language summary.
 
-A plugin for Claude Code and Codex with three writing skills: `slop-check` flags and scores common AI writing patterns, `slop-explain` explains them, and `slop-sense` rewrites the text. Accepts pasted text, URLs, or files.
+A plugin for Claude Code and Codex with three writing skills: `slop-check` flags and scores recurring patterns associated with formulaic or AI-like prose, `slop-explain` explains them, and `slop-sense` rewrites the text. Accepts pasted text, URLs, or files.
 
 ## The three skills
 
 | Skill | Use when you want to... | Output |
 |---|---|---|
-| `slop-sense` | Rewrite AI text to sound human | score + named patterns + draft + audit + final rewrite |
+| `slop-sense` | Rewrite formulaic text in a more natural voice | score + named patterns + draft + audit + final rewrite |
 | `slop-check` | Just score the text, no rewrite | score + named patterns + one-line evidence per pattern |
-| `slop-explain` | Learn why a specific pattern is a tell | per-pattern deep-dive (why LLMs do it, why it reads as AI, how to self-spot) |
+| `slop-explain` | Learn why a specific pattern matters | per-pattern deep-dive (why LLMs may produce it, why readers notice it, how to self-spot) |
 
 All three share the same 36-pattern catalog and the same scoring scripts. They differ in workflow and output.
 
 ## What slop-sense does
 
 1. Runs the [slop-detector](https://github.com/CyranoB/slop-detector) algorithmic scorer via `npx` (no install needed, just Node.js). Returns a 0-100 SLOP score with specific word hits, trigram matches, and contrast patterns found.
-2. Runs a bundled rhythm checker (`rhythm.py`, pure Python, no dependencies) that measures what the SLOP scorer can't: sentence-length variation (burstiness), contraction ratio, aphoristic paragraph closers, and anaphora. These are the structural tells perplexity detectors like GPTZero score, and a text can rate "very human" on SLOP while failing badly here.
-3. Scans for 36 qualitative AI writing patterns: significance inflation, promotional language, AI vocabulary, copula avoidance, em dash overuse, sycophantic tone, invented concept labels, rhetorical Q&A, false vulnerability, uniform sentence rhythm (low burstiness), and more.
-4. Rewrites the text with a two-pass process: draft, then an anti-AI audit that catches what the first pass missed.
+2. Runs a bundled rhythm checker (`rhythm.py`, pure Python, no dependencies) that measures what the SLOP scorer can't: sentence-length variation (burstiness), contraction ratio, aphoristic paragraph closers, and anaphora. These measurements add structural context to the lexical score; neither script determines who wrote the text.
+3. Scans for 36 qualitative writing patterns associated with formulaic or AI-like prose: significance inflation, promotional language, AI vocabulary, copula avoidance, em dash overuse, sycophantic tone, invented concept labels, rhetorical Q&A, false vulnerability, uniform sentence rhythm (low burstiness), and more.
+4. Rewrites the text with a two-pass process: draft, then a pattern audit that catches what the first pass missed.
 5. **ai;dr mode**: extracts the probable prompt that generated a piece of AI text, with an inflation ratio showing how many words the AI used to say something simple.
 
 Both scripts are optional. The SLOP scorer needs Node.js; the rhythm checker needs only Python 3. Without either, the skill still does the full qualitative analysis and rewrite.
@@ -53,7 +53,7 @@ Triggers on requests like "score this," "rate this text," "how AI is this," "ver
 
 ## What slop-explain does
 
-A teaching skill. Ask "explain pattern 17" or "why is the rule of three a tell" and get a deep-dive on that single pattern: why LLMs produce it, why it reads as AI to a reader, two or three example rewrites, and a checklist for spotting the pattern in your own writing. Pairs naturally with `slop-check` — check flags pattern #17, explain teaches you why it matters.
+A teaching skill. Ask "explain pattern 17" or "why is the rule of three a tell" and get a deep-dive on that single pattern: why LLMs may produce it, why readers notice it, two or three example rewrites, and a checklist for spotting the pattern in your own writing. Pairs naturally with `slop-check` — check flags pattern #17, explain teaches you why it matters.
 
 Triggers on requests like "explain pattern N," "why is X a tell," "teach me about em dash overuse."
 
@@ -209,15 +209,17 @@ triggers automatically.
 
 ## Score interpretation
 
-| Score | Meaning |
-|-------|---------|
-| 0-20 | Reads like a human wrote it |
-| 20-40 | Mostly human, some AI characteristics |
-| 40-60 | Could go either way |
-| 60-80 | Probably AI-generated |
-| 80-100 | Almost certainly AI-generated |
+The SLOP score measures the density of catalogued words, phrases, and constructions. It is pattern evidence, not an estimate of the probability that AI wrote the text.
 
-Anything above 30 is worth a second look.
+| Score | Pattern evidence | Practical reading |
+|-------|------------------|-------------------|
+| 0-19 | Minimal | Few catalogued patterns; review any isolated findings in context |
+| 20-39 | Light | Some recurring patterns may be worth editing |
+| 40-59 | Moderate | Several patterns recur or cluster in the passage |
+| 60-79 | Strong | Frequent or concentrated patterns are likely to affect the prose |
+| 80-100 | Pervasive | Catalogued patterns dominate substantial parts of the passage |
+
+Use the score to decide where to look, then judge each finding by its frequency, context, and effect on the passage. Short samples can swing sharply. Technical, legal, medical, academic, and non-English text may not fit the scorer's English-language catalogue. Deliberate repetition or formality can also raise the score. A high score does not prove AI authorship or poor writing, and a low score does not prove human authorship or good writing.
 
 ## The 36 patterns
 
@@ -233,7 +235,7 @@ The skill checks for these AI writing tells, grouped by category:
 
 **Filler** (30-33): filler phrases, excessive hedging, "the truth is simple" assertions, generic positive conclusions
 
-**Rhythm and Voice** (34-36): uniform sentence rhythm (low burstiness), aphoristic paragraph closers, reflexive formality (contraction avoidance). These are the tells lexical scorers miss and perplexity detectors like GPTZero live on; the bundled `rhythm.py` measures them.
+**Rhythm and Voice** (34-36): uniform sentence rhythm (low burstiness), aphoristic paragraph closers, reflexive formality (contraction avoidance). The lexical scorer does not measure these features; the bundled `rhythm.py` reports them as separate editorial evidence.
 
 Based on [Wikipedia: Signs of AI writing](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing), the [EQBench SLOP score](https://eqbench.com/slop-score.html) methodology, and [tropes.fyi](https://tropes.fyi/).
 

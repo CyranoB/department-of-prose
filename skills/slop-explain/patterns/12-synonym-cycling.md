@@ -8,7 +8,7 @@ Many style guides (especially high-school and college writing guides) tell write
 
 The problem is that the rule is bad. "Elegant variation," as Fowler called it, was a Victorian instinct that even Victorian editors warned against. Modern good writing repeats the clearest term, because repetition is invisible and the synonym dance is not.
 
-## Why it reads as AI
+## Why readers notice it
 
 The synonyms get progressively worse as the cycle continues. The first term is the right one. The second is acceptable. The third is a reach. The fourth is comically off. "Protagonist... main character... central figure... hero... primary actor" sounds like a thesaurus exploding.
 

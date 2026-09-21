@@ -10,7 +10,7 @@ So when an LLM is reasoning through a topic and wants to mark a tension or patte
 
 There is also a self-citation move. A human writer might coin a term and then defend it across multiple sources. LLMs sometimes invent a term mid-paragraph, give it a name, and then refer to it as if it were established. "This is what I call the supervision paradox" reads as confident because real essayists do this. The difference is that real essayists are introducing a term that already exists in their thinking, not generating one on the spot.
 
-## Why it reads as AI
+## Why readers notice it
 
 The reader cannot find the term anywhere else. Search "supervision paradox" in scholarly databases and you find either nothing or a different unrelated concept. The term has no community, no literature, no definition beyond what the model just made up.
 

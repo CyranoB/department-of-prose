@@ -8,7 +8,7 @@ Three-item lists have a long history in rhetoric, from Cicero to advertising cop
 
 The model also has a generation-side incentive. When listing items, it has to stop somewhere. Two items can feel thin. Four can feel awkward. Three is the safest stopping point that still produces a list. So the model lands on three whether the underlying topic has three items or five or just one.
 
-## Why it reads as AI
+## Why readers notice it
 
 The rule of three is everywhere in AI text, which is the tell. Every list is three. Every series of adjectives is three. Every conclusion has three things to remember. The rhythm becomes a chant.
 

@@ -10,9 +10,9 @@ A small set of words happen to win that competition disproportionately often. "D
 
 Some of these words are also relics of human writing styles that the training data over-represented: academic papers, marketing copy, opinion essays. The model learned that "landscape" is the right metaphor for "the state of a field" because thousands of consulting reports said so. Now it uses the word for everything.
 
-## Why it reads as AI
+## Why readers notice it
 
-The tell is not any one word. Plenty of human writers use "showcase" or "vibrant." The tell is the density and the company those words keep. Find "additionally" connected to "underscore" connected to "intricate tapestry" in the same paragraph and you are almost certainly looking at AI output.
+The finding is not any one word. Plenty of writers use "showcase" or "vibrant." What matters is density, repetition, and the company those words keep. A cluster such as "additionally", "underscore", and "intricate tapestry" in one paragraph is worth reviewing because it can make the prose feel generic; it does not establish who wrote it.
 
 Some of the words also have a recognizable timbre. "Delve" has become almost a meme. African English speakers have pointed out that "delve" is more common in their dialect, and that the word's sudden ubiquity in LLM output may reflect outsourced RLHF labor. Whatever the cause, the word now signals AI to most readers.
 

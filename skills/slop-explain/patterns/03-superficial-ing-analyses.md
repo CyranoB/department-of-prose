@@ -8,7 +8,7 @@ The -ing phrase is a grammatical free pass. It can hang off the end of almost an
 
 The phrases also map onto a specific analytical move: connecting the immediate fact to a broader pattern. Real writers do this when they have done the work to see the connection. LLMs do it reflexively, generating connections that no human evaluator actually believed.
 
-## Why it reads as AI
+## Why readers notice it
 
 The -ing tail almost always restates the main clause in vaguer terms. "The festival drew 50,000 attendees, showcasing the region's growing cultural appeal" tells you the festival drew 50,000 attendees and then asserts, without evidence, that this means the region has growing cultural appeal. The assertion is unfalsifiable and unsupported, but the participial form makes it look like a conclusion.
 

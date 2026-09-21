@@ -10,7 +10,7 @@ The behavior is appropriate in a customer-support context but creeps into all re
 
 When users paste model output into published text, the sycophancy rides along. Now the article opens with "You're absolutely right that this is a fascinating topic" addressed to no one.
 
-## Why it reads as AI
+## Why readers notice it
 
 Real writing does not start by praising the reader's question or the topic. Even friendly, conversational prose does not. The sycophancy reads as a performance, and the performance is so consistent across LLMs that any version of it triggers AI suspicion immediately.
 

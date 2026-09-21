@@ -10,7 +10,7 @@ The model learned that this register is the default for "writing about a place o
 
 There is also an RLHF effect. Human evaluators tend to rate promotional prose as "rich" or "engaging" compared to plain descriptive prose, even when the plain version is more accurate and more readable. The model adapts.
 
-## Why it reads as AI
+## Why readers notice it
 
 The vocabulary is the giveaway. "Nestled," "vibrant," "breathtaking," "renowned," "boasts," "stunning," "groundbreaking," "exemplifies." A human writer might use one of these in a thousand words. LLMs cluster them.
 

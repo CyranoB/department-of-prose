@@ -10,7 +10,7 @@ The problem is that the disclaimers ride along into published text. When the use
 
 The disclaimers also tend to appear when the model has nothing to say. Faced with a topic it cannot speak to, the model produces a hedge instead of admitting ignorance directly, and the hedge becomes part of the output.
 
-## Why it reads as AI
+## Why readers notice it
 
 The phrasing is unmistakable. "As of my last training," "I do not have access to real-time information," "specific details may have changed since," "while my knowledge is current as of." Humans do not use these constructions. They might say "I am not sure what has happened since 2023" but they would not say "as of my last training in 2023."
 

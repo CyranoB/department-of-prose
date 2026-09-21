@@ -10,7 +10,7 @@ The problem is that the model deploys the construction by default whenever intro
 
 The analogies themselves are also often worse than the actual thing. A highway is not a useful model of data flow. A library is not a useful model of a vector database. The analogy obscures more than it reveals.
 
-## Why it reads as AI
+## Why readers notice it
 
 The phrasing is recognizable. "Think of it like," "Imagine it as," "It's basically," "Picture it as," "It's a bit like." Each appears far more in AI text than in human writing, because human writers reach for analogies less reflexively and explain things more directly.
 

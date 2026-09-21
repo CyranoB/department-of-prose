@@ -10,7 +10,7 @@ The problem is that LLMs deploy the form when X and Y are nearly identical, or w
 
 There is also a sentence-extension incentive. "X" is short. "Not just X, but Y" is longer and sounds more thoughtful. For a model trying to fill space with appropriate weight, the construction is a reliable inflator.
 
-## Why it reads as AI
+## Why readers notice it
 
 When the construction is hollow, the reader feels the gap. "It's not just about the music, it's about the community" suggests the music and the community are non-trivially different things the writer is contrasting. In context, they are almost always overlapping aspects of the same thing, and the construction is just inflating one of them.
 

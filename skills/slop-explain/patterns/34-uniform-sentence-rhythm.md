@@ -8,11 +8,11 @@ A language model generates each sentence by predicting the most probable continu
 
 Human writers vary sentence length for reasons a model does not feel: to control pace, to land a point, to breathe. We write a long sentence that builds and qualifies and accumulates, and then we stop short. The short one hits harder because the long one set it up. That contrast — researchers call it "burstiness" — is a fingerprint of a mind deciding, sentence by sentence, how much room each thought needs. The model is not deciding that. It is averaging.
 
-## Why it reads as AI
+## Why readers notice it
 
-Burstiness is one of the two signals (with perplexity) that statistical AI detectors like GPTZero weigh most heavily, precisely because it is so hard to fake by accident and so consistently absent from raw model output. A passage where every sentence runs 18 to 24 words, each a tidy subject-verb-object with one subordinate clause, reads as machine-smooth even when the vocabulary is clean and the argument is sharp. This is what reviewers are reacting to when they call writing "robotic", "formulaic", or "lacking creative grammar" without being able to point at a single bad word.
+Sentence-length variation is one dimension readers notice when prose feels flat or over-smoothed. A passage where every sentence runs 18 to 24 words, each a tidy subject-verb-object with one subordinate clause, can sound monotonous even when the vocabulary is clean and the argument is sharp. Genre matters: procedural and technical writing may benefit from consistency, while an essay or speech often needs more movement.
 
-The tell is structural, not lexical, which is why a text can score "very human" on a word-level slop checker and still get flagged 90%+ by a perplexity model. The words are fine. The rhythm is a metronome.
+The pattern is structural rather than lexical, so a word-level score will not capture it. The words may be fine while the rhythm still feels like a metronome. That observation supports an editing decision, not an authorship conclusion.
 
 ## Examples
 
@@ -36,7 +36,7 @@ Read your draft and mark the word count of each sentence. If the numbers cluster
 
 Look for runs of three or more consecutive sentences with the same structure (subject, verb, object, trailing clause). Break one. Add a short declarative. Let a fragment stand. Combine two short ones into a long one so a later short one can punch.
 
-The `rhythm.py` script in the `slop-sense` skill reports this directly as a coefficient of variation (CV): below about 0.40 is the uniform cadence detectors flag; healthy human prose tends to run higher.
+The `rhythm.py` script in the `slop-sense` skill reports sentence-length coefficient of variation (CV). It marks values below about 0.40 as low variation, a heuristic threshold for finding passages worth reading aloud. Sample length and genre can move the number, so use the sentence list and the passage itself before deciding whether to edit.
 
 ## Related patterns
 

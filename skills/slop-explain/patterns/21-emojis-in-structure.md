@@ -8,7 +8,7 @@ A specific subgenre of training data, including corporate blog posts, social-med
 
 Some RLHF feedback also rewards emoji use as making content feel "approachable" or "human." This is exactly backwards in many contexts. The pattern is now so associated with corporate-tech writing that it reads as the opposite of human.
 
-## Why it reads as AI
+## Why readers notice it
 
 The decoration is mechanical and consistent. Every section heading gets an emoji. Every bullet starts with one. The selection is almost always the same small palette. The repetition flattens the meaning of each individual emoji into pure ornament.
 

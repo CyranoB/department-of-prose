@@ -10,7 +10,7 @@ Training data also rewards the habit. The corpora LLMs train on are full of poli
 
 Finally, there is no friction. A human typing on a standard keyboard has to reach for Option+Shift+Hyphen on macOS, or copy-paste, or rely on autocorrect. Most people use hyphens or comma-pause-comma instead, even when an em dash would technically be correct. LLMs have no fingers and no friction. Every dash is free.
 
-## Why it reads as AI
+## Why readers notice it
 
 The density is the tell, not any single usage. One em dash in an essay is fine. Three in a paragraph is suspicious. Six in 312 words is a flashing neon sign.
 
@@ -42,7 +42,7 @@ Notice that the human versions use different punctuation each time: commas, a pe
 
 ## How to self-spot
 
-Count em dashes per 100 words in your draft. Anything above 1 per 100 words is suspicious. Anything above 2 is almost certainly slop. A quick grep or your editor's find-and-replace will count them in seconds.
+Count em dashes per 100 words in your draft, then inspect how they function. A cluster may make the passage feel mannered or interrupt its pace, while a single dash or a dash-heavy house style may be entirely appropriate. A quick search in your editor will count them in seconds.
 
 When you have one, ask what it is doing. If it is interrupting a sentence, try a comma pair or parentheses. If it is introducing a clause, try a colon or a period. If it is at the end for emphasis, just end the sentence.
 

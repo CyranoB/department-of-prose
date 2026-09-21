@@ -10,7 +10,7 @@ The pattern is also useful for filling space with apparent weight. "It's a desig
 
 It is distinct from pattern 10 (the two-part "not just X, but Y" form) in being more dramatic. Three or four short fragments instead of one elaborated contrast.
 
-## Why it reads as AI
+## Why readers notice it
 
 The form is unmistakable once you notice it. Three or four short negations followed by the real claim, almost always punctuated with periods rather than commas for theatrical effect. Real essayists use it maybe once a piece for genuine emphasis. AI essays use it as a paragraph rhythm.
 

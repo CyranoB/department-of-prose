@@ -8,7 +8,7 @@ The training data is full of Wikipedia biographies and PR-style press releases. 
 
 There is also a defensive incentive. Listing real outlets is verifiably true. Saying anything specific about what those outlets actually wrote is harder to verify and easier to get wrong. The model picks the safer move.
 
-## Why it reads as AI
+## Why readers notice it
 
 Names without context are decorations, not information. When a human writer mentions that someone was interviewed by the New York Times, they say what the interview was about, when it happened, and what was notable about it. When an LLM mentions it, the writer-name combination just hangs there with no follow-through.
 

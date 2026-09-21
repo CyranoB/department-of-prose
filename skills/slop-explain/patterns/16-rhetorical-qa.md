@@ -10,7 +10,7 @@ For a model trying to add weight to a sentence, the question-answer split is a f
 
 The model also defaults to it when transitioning between ideas. Rather than build a smooth bridge, it can pose a question that the next sentence answers. The question acts as a hinge, and the model does not have to think about how the ideas actually connect.
 
-## Why it reads as AI
+## Why readers notice it
 
 The questions are almost always ones the reader was not asking. "The result? Devastating." The reader was not wondering about the result; the writer is performing curiosity on their behalf. The technique is so common in AI text that any one-word answer to a self-posed question reads as filler.
 

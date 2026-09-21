@@ -8,7 +8,7 @@ LLMs are trained to produce content that sounds substantive. The training signal
 
 There is also a coverage incentive. A specific factual claim ("the office collects census data for three provinces") could be wrong if the model misremembers. A sweeping claim ("plays a pivotal role in the evolving landscape of regional statistics") cannot be wrong, because it does not say anything checkable. Models hedge toward unfalsifiable inflation.
 
-## Why it reads as AI
+## Why readers notice it
 
 Real importance is shown, not asserted. A human writer describes what the subject does and lets the reader draw conclusions about its significance. An AI writer skips the description and tells you the thing is significant. The reader's instinct is to ask "significant how?" and find nothing to grab onto.
 

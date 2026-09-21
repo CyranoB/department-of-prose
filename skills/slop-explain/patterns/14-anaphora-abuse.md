@@ -10,7 +10,7 @@ The training data is full of speeches and persuasive essays that use this device
 
 The form also extends sentences in a predictable way. "X happens" is short. "X happens. X happens. X happens" is longer and feels more substantial. For a model padding toward an appropriate word count, the device is a reliable filler.
 
-## Why it reads as AI
+## Why readers notice it
 
 The repetition draws attention to itself, and once you notice it the magic dies. "They assume users will pay. They assume developers will build. They assume the market will grow" reads as theatrical when the underlying observation could have been a single sentence: "They assume too much."
 

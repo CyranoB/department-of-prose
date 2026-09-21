@@ -8,7 +8,7 @@ The form is common in opinion writing, Substack essays, and motivational content
 
 The model defaults to these transitions whenever it wants to mark a sentence as important. Because the model has weak commitments about what is actually important, it deploys the transitions broadly, including before claims that are not surprising at all.
 
-## Why it reads as AI
+## Why readers notice it
 
 The promise rarely cashes out. "Here's the kicker: it was never about the technology." If the surrounding paragraph already implied the point, the kicker reveals nothing. The reader feels the buildup and then the deflation, and learns to discount any sentence that begins with this scaffolding.
 

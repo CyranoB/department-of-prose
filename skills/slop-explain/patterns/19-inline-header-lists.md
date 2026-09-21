@@ -8,7 +8,7 @@ The format is everywhere in technical documentation, product specs, and listicle
 
 The model defaults to it whenever a topic has multiple aspects, even when the aspects are not really list items. A discussion of three trade-offs becomes three labeled bullets. A description of how a process works becomes labeled steps. The format imposes a list structure on content that would read better as connected prose.
 
-## Why it reads as AI
+## Why readers notice it
 
 Inline-header lists fragment ideas that belong together. Real lists work when the items are parallel and discrete: ingredients, steps, options, criteria. They fail when the items have relationships, dependencies, or narrative flow, because the bullets cannot show those relationships.
 

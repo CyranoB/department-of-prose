@@ -10,7 +10,7 @@ LLMs learned the form and deploy it whenever they want a claim to feel definitiv
 
 There is also a closure incentive. A paragraph that ends with "the truth is X" feels complete in a way that a paragraph ending with a tentative claim does not. The model reaches for the construction to wrap things up.
 
-## Why it reads as AI
+## Why readers notice it
 
 The pattern is empty assertion. The writer has not demonstrated that the claim is true or that it is simple; they have only said both. The reader notices the missing argument and discounts the assertion accordingly.
 
