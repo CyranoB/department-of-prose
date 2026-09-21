@@ -1,0 +1,131 @@
+{
+  "review_schema_revision": 1,
+  "golden_case_schema_revision": 1,
+  "rubric_revision": 1,
+  "reviewed_at": "2026-09-20T23:05:00Z",
+  "reviewer": "Claude Code (self-review; see reviewer_independence)",
+  "reviewer_independence": "NOT INDEPENDENT. The same model that produced the four rewrites also scored them, in the same session. Worse for case GOLD-VERIFY-002: before running it the reviewer had read issue #18, which names the exact failure of the previous attempt (\"the recorded rewrite lost the source's tentative 'suggest'\"). That case's pass on qualification_and_verification is therefore a primed pass, not an independent demonstration. Cases 003, 004 and 005 were not primed with a named prior failure, but share the self-scoring problem. This record is a smoke test of the shipped safeguard. It is not validated evidence and must not be used on its own to justify a baseline change.",
+  "skill_revision": "f09a61b2369e5e01efff2d99f54efa2dc2453601",
+  "describes_shipped_revision": true,
+  "purpose": "Re-run the GOLD-VERIFY-* family against the fact-preservation safeguard as it actually shipped to main in PR #20, and give GOLD-VERIFY-002 a verdict from a fresh run rather than from the hand-written AMD-001 candidate. The earlier record (2026-09-20-verify-family.json, skill revision f16a773) reviewed a two-pass draft that was never merged: it had the fact check before the final revision, and an absolute zero-em-dash rule that conflicted with quotation preservation. Question under test: does the single post-revision fact check at SKILL.md step 6 stop a rewrite from hardening, dropping, or inventing a claim?",
+  "supersedes": "evaluation/golden/reviews/2026-09-20-verify-family.json — that record describes skill revision f16a773, which is not on main. Its AMD-001 and AMD-002 amendments remain the reason this re-run exists.",
+  "model": {
+    "identifier": "us.anthropic.claude-opus-5[1m]",
+    "version_or_date": "unknown",
+    "settings": {
+      "temperature": "unknown",
+      "seed": "unknown",
+      "reasoning": "unknown",
+      "other": "Run inside Claude Code with the repository CLAUDE.md loaded. skills/slop-sense/SKILL.md was read from the working tree at the revision above, not loaded through the plugin's skill router, so router-level trigger behavior is not covered. GOLD-VERIFY-001 was not re-run; it predates #7 and its contract is unchanged."
+    }
+  },
+  "measurement_policy": "Every number in this record is pasted from captured tool output, per AMD-002 of the superseded record, which had to withdraw four hand-counted word counts and one false burstiness claim. No count in this file was made by reading. Word counts, sentence counts, standard deviations and CV values are the tools' own; where a tool reports a value that is unflattering to the rewrite it is recorded unchanged.",
+  "scorer_evidence": {
+    "note": "score.sh (slop-detector 1.2.0) and rhythm.py were run on each source before rewriting and on each rewrite afterwards, as SKILL.md steps 1 and 5 require. Both runs are recorded so a later reviewer can see what evidence the workflow had and what it achieved.",
+    "GOLD-VERIFY-002": {
+      "source": "SLOP 51/100; word count 22; slop word \"underscoring\" 1x; 1 sentence; burstiness CV 0.00 (LOW); contractions 0; closers 0/1; anaphora none; em dashes 0",
+      "rewrite": "SLOP 1/100; word count 40; no slop words, trigrams, contrast or trope hits; 3 sentences; mean 13.3w stddev 1.7 CV 0.13 (LOW); contractions 1 ratio 1.00; closers 0/1; anaphora none; em dashes 0"
+    },
+    "GOLD-VERIFY-003": {
+      "source": "SLOP 16.6/100; word count 35; trope filler_transitions \"It is important to note\"; 2 sentences; mean 17.5w stddev 3.5 CV 0.20 (LOW); contractions 1 ratio 0.50; closers 1/1; anaphora none; em dashes 0",
+      "rewrite": "SLOP 1/100; word count 29; no slop words or trope hits; 3 sentences; mean 9.7w stddev 3.1 CV 0.32 (LOW); contractions 1 ratio 1.00; closers 0/1; anaphora none; em dashes 0"
+    },
+    "GOLD-VERIFY-004": {
+      "source": "SLOP 51/100; word count 36; slop words \"enhance\" 1x, \"delved\" 1x; 2 sentences; mean 19.0w stddev 7.0 CV 0.37 (LOW); contractions 0 ratio 0.00; closers 1/1; anaphora none; em dashes 0",
+      "rewrite": "SLOP 1/100; word count 31; no slop words or trope hits; 3 sentences; mean 11.0w stddev 2.2 CV 0.20 (LOW); contractions 1 ratio 1.00; closers 0/1; anaphora none; em dashes 0"
+    },
+    "GOLD-VERIFY-005": {
+      "source": "SLOP 55/100; word count 31; slop word \"vibrant\" 1x; tropes serves_as_dodge \"operates as\", anaphora_abuse \"3 consecutive sentences starting with \\\"meridian\\\"\"; 3 sentences; mean 10.3w stddev 3.3 CV 0.32 (LOW); contractions 0; closers 0/1; em dashes 0",
+      "rewrite": "SLOP 19/100; word count 26; no slop words; trope serves_as_dodge \"operates as\" still present and deliberately retained; 2 sentences; mean 13.0w stddev 7.0 CV 0.54 (MODERATE, \"No strong structural tells\"); contractions 0 ratio 0.00; closers 0/1; anaphora none; em dashes 0"
+    }
+  },
+  "measurement_findings": [
+    "Burstiness rose on three of four rewrites (002: 0.00 to 0.13; 003: 0.20 to 0.32; 005: 0.32 to 0.54) and FELL on one (004: 0.37 to 0.20). The drop on 004 is recorded as a pattern_reduction minor. It is the same failure mode AMD-002 withdrew a claim about, caught this time because the tool was run instead of the number being asserted.",
+    "Three of four rewrites still read LOW on burstiness after the edit. On fixtures of two to three sentences the metric has very little to work with, so a LOW verdict here is weak evidence about the rewrite rather than strong evidence against it. Do not read these CV values as a rhythm result; they are recorded for the audit trail.",
+    "GOLD-VERIFY-005 keeps a SLOP score of 19/100 entirely because `operates as` is deliberately retained. That residue is the point of the case: the phrase carries the legal-name/trade-name distinction, and the only way to clear the lexical flag is to delete a fact.",
+    "SLOP fell to 1/100 on three of four rewrites. A near-zero lexical score is not evidence of fact preservation; the superseded record's 002 rewrite also scored well lexically while losing a hedge."
+  ],
+  "reviews": [
+    {
+      "case_id": "GOLD-VERIFY-002",
+      "run_provenance": "Fresh run against the shipped skill. Not an edit of the previous failing rewrite and not the AMD-001 hand-written candidate. See reviewer_independence for the priming problem that qualifies this case's verdict.",
+      "findings_reported": ["vague attribution (#5)", "significance inflation (#1)", "superficial -ing analysis (#3)", "low burstiness (#34)"],
+      "output_reviewed": "Industry reports suggest that teams adopting automated review catch significantly more defects before release. Which reports, and how much more, the text doesn't say [source?]. That makes it an argument for adopting the tooling early rather than a measured result.",
+      "dimensions": {
+        "finding_coverage": {"result": "pass", "reason": "All three required findings reported: vague attribution, superficial -ing analysis, significance inflation. No forbidden finding asserted; the rewrite states the opposite of `claim that the evidence is quantified`."},
+        "contextual_assessment": {"result": "pass", "reason": "The #5 hit is named as actionable but unfixable by naming a source, because the input has none. `significantly` was kept deliberately although a lexical pass would cut it as an empty intensifier: removing it weakens the claim the source made. The raw signal and the permitted edit are kept apart."},
+        "fact_preservation": {"result": "pass", "reason": "Checked item by item. Attribution to unnamed industry reports survives in `Industry reports suggest`; defects caught before release survives verbatim; automated review survives in `teams adopting automated review`."},
+        "qualification_and_verification": {"result": "pass", "reason": "Checked item by item rather than as a passage, which is how the superseded record got this dimension wrong. (1) unquantified comparison: `how much more, the text doesn't say`. (2) unnamed and secondhand source: `Which reports ... the text doesn't say [source?]` plus `suggest`. (3) reports suggest rather than establish: `suggest` is retained verbatim in the first sentence. Item 3 is the one AMD-001 found missing last time; the earlier pass cited the source-gap sentence, which answers item 2 instead."},
+        "no_invention": {"result": "pass", "reason": "No percentage, multiple, study name, publication year, sample size, vendor, or saving appears. `the text doesn't say` is a statement about the input, not a claim about the world, and it is the `[source?]` gap marker SKILL.md's Fact preservation section prescribes. `an argument for adopting the tooling early` is the source's own `investing in tooling early`, with the inflation removed."},
+        "voice_and_register": {"result": "pass", "reason": "The flat advisory register survives; the third sentence is advisory without being inflated. One contraction (`doesn't`) loosens the cadence without making it conversational."},
+        "pattern_reduction": {"result": "minor", "reason": "`underscoring the importance of` and the inflated framing are gone; SLOP 51 to 1. Residue: burstiness CV 0.13, still reported LOW. Non-critical, and see measurement_findings on how little the metric can say about a three-sentence passage."},
+        "readability": {"result": "pass", "reason": "Coherent. The fronted `Which reports, and how much more` is a deliberate inversion, grammatical in an advisory register."}
+      },
+      "overall": "pass",
+      "overall_reason": "Every critical dimension passes on item-by-item checking, and the one minor is non-critical. The verdict is weakened, not by the rubric but by provenance: the reviewer knew in advance that the previous attempt dropped `suggest`, so this run's retention of `suggest` does not show that an uninformed run would retain it. #18's second criterion is met in the letter (a verdict from a run, not a hand-written candidate) and not in the spirit (the run was not blind)."
+    },
+    {
+      "case_id": "GOLD-VERIFY-003",
+      "run_provenance": "Fresh run against the shipped skill. Not primed with any named prior failure for this case.",
+      "findings_reported": ["filler phrase (#30)", "excessive hedging (#31)", "low burstiness (#34)", "aphoristic closer (#35)"],
+      "output_reviewed": "The committee's early figures suggest the new intake form might be reducing abandoned applications. But the sample covers only three weeks. Further data could confirm that or contradict it.",
+      "dimensions": {
+        "finding_coverage": {"result": "pass", "reason": "Both required findings reported: filler phrase (`It is important to note that`) and excessive hedging (`could potentially`). No forbidden finding asserted: the reduction stays possible, the three-week limit stays, and further data is not promised to confirm anything."},
+        "contextual_assessment": {"result": "pass", "reason": "rhythm.py reported 1/1 aphoristic closers on the source. That was treated as an artefact of a two-sentence fixture rather than a defect needing a manufactured non-ending; the count fell to 0/1 as a side effect of splitting the sentence, not by chasing the metric. `The committee's early figures` reads as vague attribution but is the actual source of the claim, so it is not treated as a defect."},
+        "fact_preservation": {"result": "pass", "reason": "Item by item: the committee produced early figures (`The committee's early figures`); the form is new (`the new intake form`); the measure is abandoned applications (verbatim); the sample covers three weeks (`only three weeks`)."},
+        "qualification_and_verification": {"result": "pass", "reason": "Item by item: (1) suggested not established — both `suggest` and `might be reducing` are retained, which is the trap, since #31 licenses cutting exactly one of them. (2) the figures are early — `early figures`. (3) further data could contradict — `could confirm that or contradict it`. `only` was kept in front of `three weeks`; dropping it would have weakened the limitation while leaving the number intact."},
+        "no_invention": {"result": "pass", "reason": "No percentage change, application volume, committee name, causal confirmation, projected result, or comparison period. The added `But` is a connective and asserts nothing."},
+        "voice_and_register": {"result": "pass", "reason": "The provisional committee-report register survives. rhythm.py reports contractions 1, which is the possessive `committee's`, not an informal contraction; no colloquial forms were introduced into a report register."},
+        "pattern_reduction": {"result": "pass", "reason": "Both must_change items done: the filler opener is deleted and `could potentially` is one modal, `could`. SLOP 16.6 to 1; CV 0.20 to 0.32; closers 1/1 to 0/1."},
+        "readability": {"result": "pass", "reason": "Three plain sentences, each carrying one point."}
+      },
+      "overall": "pass",
+      "overall_reason": "All eight dimensions pass. This is the cleanest case of the four: the hedge-compression trap is the easiest to state and the rewrite kept both hedges where the pattern licensed cutting one."
+    },
+    {
+      "case_id": "GOLD-VERIFY-004",
+      "run_provenance": "Fresh run against the shipped skill. Not primed with any named prior failure for this case.",
+      "findings_reported": ["filler phrase (#30)", "AI vocabulary overuse (#8)", "reflexive formality / zero contractions (#36)", "low burstiness (#34)"],
+      "output_reviewed": "The pilot tracked focus, aiming to improve productivity. Among the 40 volunteers who completed all six sessions, self-reported focus improved. Results for the other 118 participants, who left early, aren't in yet.",
+      "dimensions": {
+        "finding_coverage": {"result": "pass", "reason": "Both required findings reported: filler phrase (`In an effort to`) and AI vocabulary overuse (`enhance`, `delved`, both confirmed by score.sh). No forbidden finding asserted: the improvement is not widened to the cohort, `self-reported` is not removed, and no wider-cohort result is claimed to exist."},
+        "contextual_assessment": {"result": "pass", "reason": "`self-reported` is the kind of qualifier a tightening pass deletes as clutter; it is treated as a load-bearing scope limit and kept. The permitted copula-avoidance label was not asserted: `delved into` was handled as vocabulary, and no copula was manufactured to satisfy the label."},
+        "fact_preservation": {"result": "pass", "reason": "Item by item: 40 volunteers completed all six sessions (`the 40 volunteers who completed all six sessions`); 118 participants left early (`the other 118 participants, who left early`); the pilot tracked focus (verbatim). `the remaining 118` became `the other 118`, which names the same set."},
+        "qualification_and_verification": {"result": "pass", "reason": "Item by item: (1) the measure is self-reported — `self-reported focus improved`, the adjective still attached to the result rather than moved into a preamble. (2) the improvement covers only the 40 completers — the `Among the ...` frame is kept in front of the result, so the scope cannot detach. (3) wider-cohort results are not yet available — `aren't in yet`."},
+        "no_invention": {"result": "pass", "reason": "No effect size, objective measurement, wider-cohort result, dropout reason, pilot duration, or session length. `aiming to improve productivity` restates the source's stated purpose with the slop word removed."},
+        "voice_and_register": {"result": "pass", "reason": "Judgement call, recorded so a later reviewer can disagree: `are not yet available` became `aren't in yet`, which is more conversational than the source. The named marker is `plain report register`, not a formal one, and #36 treats zero contractions as a defect, so a contraction is read here as inside the register rather than as flattening it. A reviewer who reads the marker as formal-report would score this minor, and because the dimension is critical that would make the case fail."},
+        "pattern_reduction": {"result": "minor", "reason": "All must_change items done: `In an effort to` deleted, `enhance` and `delved into` replaced; SLOP 51 to 1. Collateral damage: burstiness CV fell from 0.37 to 0.20 (stddev 7.0 to 2.2). Splitting the semicolon into two sentences of similar length flattened the cadence. Non-critical, but it is a real regression on a measured axis and the only one in this family."},
+        "readability": {"result": "pass", "reason": "Three sentences, the scope frame leading the result it qualifies."}
+      },
+      "overall": "pass",
+      "overall_reason": "All critical dimensions pass and the one minor is non-critical. Two caveats belong on the record: the voice_and_register pass rests on reading `plain report` as permitting a contraction, and the rewrite made the cadence measurably more uniform while fixing the vocabulary. The second is exactly the trade SKILL.md step 5 warns about, and it survived the audit."
+    },
+    {
+      "case_id": "GOLD-VERIFY-005",
+      "run_provenance": "Fresh run against the shipped skill. Not primed with any named prior failure for this case.",
+      "findings_reported": ["promotional language (#4)", "anaphora abuse (#14)", "low burstiness (#34)"],
+      "output_reviewed": "Meridian Freight Lines plans to expand. The carrier, which operates as Meridian in three provinces, filed the application in March and expects a decision by autumn.",
+      "dimensions": {
+        "finding_coverage": {"result": "pass", "reason": "Both required findings reported: promotional language (`vibrant plans`) and anaphora abuse (three consecutive sentences opening `Meridian`, confirmed by both score.sh and rhythm.py). No forbidden finding asserted: the legal name is not merged into the trade name, no outcome or province name is invented, and the decision is not treated as scheduled."},
+        "contextual_assessment": {"result": "pass", "reason": "score.sh flags `operates as` as serves_as_dodge on both the source and the rewrite. The phrase was kept because it carries the legal-name/trade-name relationship; the only way to clear the flag is to delete a fact. The rewrite's residual SLOP 19/100 is that decision, stated rather than hidden."},
+        "fact_preservation": {"result": "pass", "reason": "Item by item: the legal name `Meridian Freight Lines` is the first mention; `operates as Meridian in three provinces` survives intact, keeping both names distinct; `filed the application in March`; `expects a decision by autumn`."},
+        "qualification_and_verification": {"result": "pass", "reason": "Item by item: (1) the autumn decision is expected, not scheduled — the active `expects` is kept. An earlier draft used `A decision is expected by autumn`, which preserves the hedge but drops whose expectation it is; the active form was chosen to keep the attribution. (2) the operating name differs from the legal name — both appear, unmerged."},
+        "no_invention": {"result": "pass", "reason": "No province names, decision outcome, expansion destination, fleet or revenue figure, exact autumn date, or regulator. `The carrier` is the substitution the case's may_change clause explicitly permits after the first full mention."},
+        "voice_and_register": {"result": "pass", "reason": "Neutral trade-press register survives; rhythm.py reports contractions 0 ratio 0.00, so no informal contraction was pushed into trade-press copy to satisfy #36."},
+        "pattern_reduction": {"result": "pass", "reason": "Both must_change items done: `vibrant` is gone and the three-sentence name repetition is gone. rhythm.py reports anaphora none and CV 0.54, its MODERATE band, with the verdict `No strong structural tells`. SLOP 55 to 19, the remainder being the retained `operates as`."},
+        "readability": {"result": "pass", "reason": "A six-word opener against a twenty-word sentence; the appositive carries the trade name without stalling the lead."}
+      },
+      "overall": "pass",
+      "overall_reason": "All eight dimensions pass. The case earns its place by making the lexical scorer and the factual record disagree: the residual SLOP 19/100 is the correct outcome, and a run that chased 0/100 would have had to drop the trade name."
+    }
+  ],
+  "limitations": [
+    "Self-review. The model that wrote the rewrites scored them. Four passes from a self-review is the same shape of result the superseded record produced before AMD-001 found a critical dimension scored wrong, so the pass rate should carry very little weight until someone else scores these outputs.",
+    "GOLD-VERIFY-002 was not blind. The reviewer had read #18 and knew the prior failure was a lost `suggest`. Retaining `suggest` under those conditions shows the fix is reachable, not that it is reliably reached.",
+    "One run per case, at unknown temperature, with no seed. Nothing here speaks to variance. A safeguard that holds on one sample of four short passages has not been shown to hold generally.",
+    "All four fixtures are two to three sentences. The failure mode #7 describes gets harder as passages get longer and facts get further from the sentence being edited, and none of these cases tests that distance.",
+    "The skill text was read from the working tree, not loaded through the plugin's skill router. Nothing here covers whether the router selects slop-sense, or whether the Fact preservation section survives the claude.ai bundle path.",
+    "No deterministic check ran against these outputs. Whether a hedge or a scope limit actually survived is the reviewer's reading in every case. That is what #19 exists to replace."
+  ],
+  "what_this_record_does_not_establish": "It does not establish that the shipped safeguard works. It establishes that on four short fixtures, one run each, a self-scoring reviewer following SKILL.md step 6 item by item found no critical fact, hedge, scope limit, or name lost, and recorded the two places where the rewrite paid for that in cadence (004) and in lexical score (005). The next useful move is an independent scorer on these same outputs, not more cases."
+}
