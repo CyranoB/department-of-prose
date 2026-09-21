@@ -4,3 +4,6 @@ dist/
 node_modules/
 __pycache__/
 *.pyc
+
+# Keep the original header locally; publish the compressed WebP.
+/assets/header.png

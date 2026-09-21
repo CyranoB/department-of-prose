@@ -1,10 +1,10 @@
 # The Department of Prose
 
+![A goblin clerk reduces a wizard’s extravagant love letter to “Fancy a shag?”, delighting its recipient.](assets/header.webp)
+
 [![skills.sh](https://skills.sh/b/CyranoB/department-of-prose)](https://skills.sh/CyranoB/department-of-prose)
 
-The Department of Prose occupies a small office between what you wrote and what you meant. Its staff were originally employed to remove unnecessary words, but the arrival of artificial intelligence has required a second kettle.
-
-Documents are inspected for inflated importance, unlicensed metaphors, and conclusions which have continued trading after the point has closed. Most can be returned to their owners in working order. Occasionally a paragraph must be taken outside and quietly reduced to a sentence.
+> The Department of Prose believes every sentence should say what it means, a principle widely supported until it is applied to love letters. Several promising courtships have survived the removal of “celestial.” Fewer have survived the plain-language summary.
 
 A plugin for Claude Code and Codex with three writing skills: `slop-check` flags and scores common AI writing patterns, `slop-explain` explains them, and `slop-sense` rewrites the text. Accepts pasted text, URLs, or files.
 
