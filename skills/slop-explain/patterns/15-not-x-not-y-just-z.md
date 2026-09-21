@@ -12,7 +12,7 @@ It is distinct from pattern 10 (the two-part "not just X, but Y" form) in being 
 
 ## Why readers notice it
 
-The form is unmistakable once you notice it. Three or four short negations followed by the real claim, almost always punctuated with periods rather than commas for theatrical effect. Real essayists use it maybe once a piece for genuine emphasis. AI essays use it as a paragraph rhythm.
+The form is easy to notice once it repeats: three or four short negations followed by the real claim, often punctuated with periods for theatrical effect. One use can create genuine emphasis. Repeated across a passage, it becomes a predictable paragraph rhythm.
 
 The negations are usually trivial. "Not a bug. Not a feature." Does anyone think it is either? The construction defends against objections nobody made, which gives the final assertion an air of intellectual struggle that is fabricated.
 
@@ -38,7 +38,7 @@ After:
 Before:
 > Not buggy. Not poorly designed. Just slow.
 
-Notice that the human versions assert the actual claim without the staged negations. The AI versions perform the discovery for the reader, who has not been wondering about the alternatives.
+Notice that the edited versions assert the actual claim without the staged negations. The before versions perform the discovery for the reader, who has not been wondering about the alternatives.
 
 ## How to self-spot
 

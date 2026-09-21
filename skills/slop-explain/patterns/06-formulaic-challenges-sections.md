@@ -30,7 +30,7 @@ After:
 Before:
 > Despite various challenges in the publishing landscape, the journal has continued to play a pivotal role in the field.
 
-Notice that the human versions name the challenge, the timeline, and the recovery. The AI versions say "challenges happened, things got better" with no content in either half.
+Notice that the edited versions name the challenge, the timeline, and the recovery. The before versions say "challenges happened, things got better" with no content in either half.
 
 ## How to self-spot
 

@@ -14,7 +14,7 @@ The form also extends sentences in a predictable way. "X happens" is short. "X h
 
 The repetition draws attention to itself, and once you notice it the magic dies. "They assume users will pay. They assume developers will build. They assume the market will grow" reads as theatrical when the underlying observation could have been a single sentence: "They assume too much."
 
-The pattern also clusters with rule of three (pattern 11). Anaphora almost always comes in triplets, because four sounds wrong and two does not feel like a pattern. The three-line anaphora is the AI essay's signature rhythm.
+The pattern also clusters with rule of three (pattern 11). Anaphora often comes in triplets because three repetitions establish an obvious cadence. Used once, that cadence can land a point; repeated across sections, it becomes predictable.
 
 Real anaphora is rare and earns its weight by lining up genuinely distinct claims. AI anaphora lines up near-synonyms or trivially varied versions of the same claim.
 
@@ -32,7 +32,7 @@ After:
 Before:
 > The framework is fast. The framework is well-documented. The framework has a real community.
 
-Notice that the human versions either consolidate the repeated structure into a single sentence or vary the openings. The AI versions hammer the same opening for theatrical effect that the content does not earn.
+Notice that the edited versions either consolidate the repeated structure into a single sentence or vary the openings. The before versions hammer the same opening for theatrical effect that the content does not earn.
 
 ## How to self-spot
 

@@ -32,7 +32,7 @@ After:
 Before:
 > What a thoughtful question about contribution workflow! Many great projects struggle with this. The library uses a fork-and-PR contribution model.
 
-Notice that the human versions start with the answer. The AI versions warm up with flattery before getting to the point.
+Notice that the edited versions start with the answer. The before versions warm up with flattery before getting to the point.
 
 ## How to self-spot
 

@@ -4,9 +4,9 @@
 
 ## Why LLMs do this
 
-Expanded forms are the safe register. "Do not" is correct in every context; "don't" is correct in most but carries a casualness the model treats as risk. Instruction-tuned assistants are nudged toward a polished, professional default, and the uncontracted form is the lowest-common-denominator choice that never reads as too flip. So the model reaches for it by reflex, including in places where a human writer would never be that stiff.
+Expanded forms are a safe register. "Do not" is broadly acceptable; "don't" carries a casualness the model may treat as risk. Instruction-tuned assistants are often nudged toward a polished, professional default, so they may favor uncontracted forms even when the intended voice is conversational.
 
-The result is consistency where humans are inconsistent. A real writer contracts when the sentence wants to move quickly and expands when they want weight or emphasis — "I don't think that's right" versus "I do not, under any circumstances, agree." The mix is unconscious and constant. The model does not mix; it picks the formal form and stays there.
+The result can be a passage that stays in one register. Contractions often help a sentence move quickly, while expanded forms can add weight or emphasis: "I don't think that's right" versus "I do not, under any circumstances, agree." The editorial question is whether the mix serves the genre and voice.
 
 ## Why readers notice it
 

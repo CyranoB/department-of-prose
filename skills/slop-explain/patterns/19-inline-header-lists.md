@@ -28,7 +28,7 @@ Before:
 > - **Unstable configuration:** the configuration system changes between minor versions.
 > - **Small community:** most active discussion is in a private Discord.
 
-Notice that the human version connects the reasons with "first / second / third" and lets each one expand into a real sentence. The AI version chunks them into labels that strip the connective tissue.
+Notice that the edited version connects the reasons with "first / second / third" and lets each one expand into a real sentence. The before version chunks them into labels that strip the connective tissue.
 
 ## How to self-spot
 

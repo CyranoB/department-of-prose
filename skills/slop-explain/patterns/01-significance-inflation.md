@@ -10,9 +10,9 @@ There is also a coverage incentive. A specific factual claim ("the office collec
 
 ## Why readers notice it
 
-Real importance is shown, not asserted. A human writer describes what the subject does and lets the reader draw conclusions about its significance. An AI writer skips the description and tells you the thing is significant. The reader's instinct is to ask "significant how?" and find nothing to grab onto.
+Importance is shown through consequences, evidence, or specifics rather than asserted with ceremonial language. When a passage labels something significant without showing how, the reader has nothing concrete to evaluate.
 
-The vocabulary is also recognizable. "Stands as," "testament to," "pivotal," "indelible mark," "evolving landscape," "setting the stage." These phrases cluster in AI text because they appear in the same training subsets (eulogies, retrospectives, hagiographic profiles). One of them might fly. Three in a paragraph is a tell.
+The vocabulary is also recognizable: "stands as", "testament to", "pivotal", "indelible mark", "evolving landscape", "setting the stage". One phrase may fit a eulogy, retrospective, or ceremonial profile. Several in a paragraph can replace specific evidence with a posture of importance.
 
 ## Examples
 
@@ -28,7 +28,7 @@ After:
 Before:
 > The neighborhood library serves as a vibrant testament to the community's deep-rooted commitment to lifelong learning, playing a crucial role in the evolving landscape of civic engagement.
 
-Notice that the human versions tell you something concrete that you did not know. The AI versions describe an emotional posture toward the subject without adding facts.
+Notice that the edited versions tell you something concrete that you did not know. The before versions describe an emotional posture toward the subject without adding facts.
 
 ## How to self-spot
 

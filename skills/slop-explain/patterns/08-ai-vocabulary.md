@@ -1,12 +1,12 @@
 # Pattern 8: AI vocabulary
 
-**A handful of words appear far more often in post-2023 LLM output than in human writing.**
+**A cluster of polished, abstract words can make prose feel generic when they recur without adding precision.**
 
 ## Why LLMs do this
 
 LLMs do not have a vocabulary in the human sense. They have probability distributions over tokens. When a model is choosing the next word and several are plausible, it tends to pick the one that scored highest during training, weighted by RLHF reward signals.
 
-A small set of words happen to win that competition disproportionately often. "Delve" beats "explore" because it sounded sophisticated to evaluators. "Tapestry" beats "mix" because it scored as more vivid. "Underscore" beats "show" because it reads as more analytical. Each individual choice is defensible. The aggregate effect is a vocabulary that no human writer organically uses at that frequency.
+A small set of words happen to win that competition disproportionately often. "Delve" can displace "explore", "tapestry" can displace "mix", and "underscore" can displace "show" because the alternatives sound sophisticated, vivid, or analytical. Each individual choice is defensible. In aggregate, a dense cluster can make the vocabulary feel generic or selected for polish rather than precision.
 
 Some of these words are also relics of human writing styles that the training data over-represented: academic papers, marketing copy, opinion essays. The model learned that "landscape" is the right metaphor for "the state of a field" because thousands of consulting reports said so. Now it uses the word for everything.
 
@@ -32,7 +32,7 @@ After:
 Before:
 > The team meticulously crafted the groundbreaking new feature in just six weeks, ultimately delivering a pivotal milestone in the company's evolving landscape.
 
-Notice that the human versions are shorter and more specific. The AI versions add words that decorate without informing.
+Notice that the edited versions are shorter and more specific. The before versions add words that decorate without informing.
 
 ## How to self-spot
 

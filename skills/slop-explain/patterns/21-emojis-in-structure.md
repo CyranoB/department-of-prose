@@ -12,7 +12,7 @@ Some RLHF feedback also rewards emoji use as making content feel "approachable" 
 
 The decoration is mechanical and consistent. Every section heading gets an emoji. Every bullet starts with one. The selection is almost always the same small palette. The repetition flattens the meaning of each individual emoji into pure ornament.
 
-Human writers who use emojis tend to use them for genuine emphasis or humor, not as section decorations. When someone uses a star at the start of every paragraph, they have stopped using emoji as a communication choice and started using it as wallpaper.
+Emojis can carry tone, emphasis, or humor. When the same icon decorates every heading or paragraph without adding meaning, it becomes wallpaper rather than a communication choice. Genre and audience determine whether that decoration fits.
 
 The pattern is especially jarring in technical documentation or formal writing, where the decorative tone clashes with the content.
 
@@ -30,7 +30,7 @@ Before:
 > - ⚡ Reduced p95 latency by 40%
 > - 🎯 On track for Q4 goals
 
-Notice that the human version trusts the structure of headings and prose to do the visual work. The AI version uses emojis to substitute for that structure.
+Notice that the edited version trusts the structure of headings and prose to do the visual work. The before version uses emojis to substitute for that structure.
 
 ## How to self-spot
 

@@ -6,7 +6,7 @@
 
 A language model generates each sentence by predicting the most probable continuation. Left to its own devices, that process converges on a comfortable middle: clauses of similar weight, joined in similar ways, landing at a similar length. There is no internal pressure toward variety, because variety is not what "most probable next token" optimizes for. The safe, well-formed, medium-long sentence is always available, so the model reaches for it again and again.
 
-Human writers vary sentence length for reasons a model does not feel: to control pace, to land a point, to breathe. We write a long sentence that builds and qualifies and accumulates, and then we stop short. The short one hits harder because the long one set it up. That contrast — researchers call it "burstiness" — is a fingerprint of a mind deciding, sentence by sentence, how much room each thought needs. The model is not deciding that. It is averaging.
+Sentence length helps control pace and emphasis. A long sentence can build and qualify; a short one can land because the long one set it up. Some model output converges on a comfortable middle length, but many genres and writers also favor regular cadence. Treat variation as an editorial measurement, not a fingerprint of a mind or a production method.
 
 ## Why readers notice it
 
@@ -28,7 +28,7 @@ Before:
 After:
 > The framework is fast and well-documented. It has a real community. The maintainers actually answer issues. For production work, that reliability is the whole game.
 
-Notice that the human versions swing: a long sentence next to a three-word one, a fragment, a clause that runs on by design. The AI versions hold one length and one shape.
+Notice that the edited versions swing: a long sentence next to a three-word one, a fragment, a clause that runs on by design. The before versions hold one length and one shape.
 
 ## How to self-spot
 

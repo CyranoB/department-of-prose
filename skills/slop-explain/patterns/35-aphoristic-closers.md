@@ -30,7 +30,7 @@ After (vary the endings; let most be ordinary):
 >
 > The critics noticed within hours. Several of them had been consulted on the plan.
 
-Notice the human version ends paragraphs on a plain sentence, a concrete number, an unresolved observation — not a polished button each time.
+Notice the edited version ends paragraphs on a plain sentence, a concrete number, or an unresolved observation rather than a polished button each time.
 
 ## How to self-spot
 

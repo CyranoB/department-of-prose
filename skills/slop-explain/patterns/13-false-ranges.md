@@ -38,7 +38,7 @@ After:
 Before:
 > The festival features everything from rock to traditional Ethiopian music.
 
-Notice that the human versions list the actual items. The AI versions imply that the listed endpoints are just samples of an unstated continuum, when they are actually the whole set.
+Notice that the edited versions list the actual items. The before versions imply that the listed endpoints are just samples of an unstated continuum, when they are actually the whole set.
 
 ## How to self-spot
 

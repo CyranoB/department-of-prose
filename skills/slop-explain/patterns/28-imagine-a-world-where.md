@@ -12,7 +12,7 @@ LLMs reach for the construction whenever they want to make a case for a future o
 
 The imagined worlds are always rosy. "Imagine a world where every doctor has a perfect diagnostic assistant." The good outcomes are listed; the trade-offs are not. The construction is a one-sided sales pitch dressed up as a thought experiment.
 
-The phrasing is also unmistakable. "Imagine a world where," "Picture this future," "Envision the day when." Each appears far more often in AI text than in human writing, because human writers tend to be more specific about what they are proposing rather than asking the reader to imagine.
+The phrasing is easy to notice when it recurs: "Imagine a world where", "Picture this future", "Envision the day when". The invitation can work in a speech, campaign, or speculative essay. In analytical prose, it often delays the concrete proposal and its costs.
 
 Once you notice the form, the pattern is hard to unsee in any AI-generated essay about the future of anything.
 
@@ -30,7 +30,7 @@ After:
 Before:
 > Imagine a world where language is no longer a barrier, a world where every conversation flows freely, where understanding is universal, where humanity finally feels connected.
 
-Notice that the human versions make specific claims about possibilities and costs. The AI versions invite the reader into a curated daydream.
+Notice that the edited versions make specific claims about possibilities and costs. The before versions invite the reader into a curated daydream.
 
 ## How to self-spot
 

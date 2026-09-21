@@ -10,7 +10,7 @@ The hedges also stack. "Could" softens, "potentially" softens further, "possibly
 
 ## Why readers notice it
 
-The stacking is the tell. A human writer uses one hedge per claim, sometimes none. An LLM uses three or four, because each layer was selected independently by a model trying to be careful.
+Stacking is the finding. One hedge can preserve genuine uncertainty; three or four overlapping qualifiers can drain the claim of usable meaning. Keep the qualifier that carries the actual limit and remove the redundant layers.
 
 The resulting sentences cannot be acted on or disagreed with. They have nothing concrete to grip. Readers learn to skim past them, which means the writer has spent words for no information transfer.
 
@@ -36,7 +36,7 @@ After:
 Before:
 > It seems likely that the model may potentially handle this case in a way that could be considered correct, though there is some chance it might not.
 
-Notice that the human versions use one hedge (or none) per claim. The AI versions stack three or four, draining the sentence of any usable content.
+Notice that the edited versions use one hedge (or none) per claim. The before versions stack three or four, draining the sentence of any usable content.
 
 ## How to self-spot
 

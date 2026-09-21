@@ -6,7 +6,7 @@
 
 The -ing phrase is a grammatical free pass. It can hang off the end of almost any sentence without breaking syntax, and it sounds like it is adding meaning. For a model that has finished the main clause but feels the sentence is too short or too plain, the trailing -ing phrase is a low-risk way to inflate.
 
-The phrases also map onto a specific analytical move: connecting the immediate fact to a broader pattern. Real writers do this when they have done the work to see the connection. LLMs do it reflexively, generating connections that no human evaluator actually believed.
+The phrases also map onto a specific analytical move: connecting the immediate fact to a broader pattern. That move works when the passage supports the connection. It becomes empty when the trailing clause merely gestures at analysis without adding evidence or reasoning.
 
 ## Why readers notice it
 
@@ -34,7 +34,7 @@ After:
 Before:
 > The team open-sourced the framework in March, highlighting their commitment to transparency and community engagement, fostering broader collaboration in the developer ecosystem.
 
-Notice that the human versions stop when the fact is delivered. The AI versions keep going, but the additional words are never additional information.
+Notice that the edited versions stop when the fact is delivered. The before versions keep going, but the additional words are never additional information.
 
 ## How to self-spot
 

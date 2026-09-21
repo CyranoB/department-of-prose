@@ -32,7 +32,7 @@ After:
 Before:
 > Industry reports suggest that a significant portion of enterprise AI projects are at risk of failure.
 
-Notice that the human versions tell you who, when, and what specifically. The AI versions tell you that someone, somewhere, has an opinion related to the topic.
+Notice that the edited versions tell you who, when, and what specifically. The before versions tell you that someone, somewhere, has an opinion related to the topic.
 
 ## How to self-spot
 

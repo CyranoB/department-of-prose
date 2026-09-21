@@ -12,7 +12,7 @@ There is also an RLHF effect. Human evaluators tend to rate promotional prose as
 
 ## Why readers notice it
 
-The vocabulary is the giveaway. "Nestled," "vibrant," "breathtaking," "renowned," "boasts," "stunning," "groundbreaking," "exemplifies." A human writer might use one of these in a thousand words. LLMs cluster them.
+The vocabulary is easy to spot: "nestled", "vibrant", "breathtaking", "renowned", "boasts", "stunning", "groundbreaking", "exemplifies". One adjective may fit the subject or genre. A dense cluster can make informational prose read like undifferentiated advertising.
 
 The register mismatch is also obvious. A Wikipedia article about a small town in Ethiopia is not a sales pitch for that town, and writing it as if it were makes the article read as untrustworthy. The reader notices that the writer is selling something, and is not sure what.
 
@@ -32,7 +32,7 @@ After:
 Before:
 > The renowned biology department, a vibrant hub of cutting-edge research, boasts a stunning lineage of groundbreaking faculty whose pioneering work has left an indelible mark on the field.
 
-Notice that the human versions answer factual questions. The AI versions answer emotional questions ("how should I feel about this?") with no facts to support the suggested feeling.
+Notice that the edited versions answer factual questions. The before versions answer emotional questions ("how should I feel about this?") with no facts to support the suggested feeling.
 
 ## How to self-spot
 

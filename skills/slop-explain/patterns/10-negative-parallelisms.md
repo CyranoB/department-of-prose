@@ -14,7 +14,7 @@ There is also a sentence-extension incentive. "X" is short. "Not just X, but Y" 
 
 When the construction is hollow, the reader feels the gap. "It's not just about the music, it's about the community" suggests the music and the community are non-trivially different things the writer is contrasting. In context, they are almost always overlapping aspects of the same thing, and the construction is just inflating one of them.
 
-The form also clusters. AI essays tend to deploy negative parallelisms several times per page, often back-to-back. Once you see the pattern you cannot stop seeing it.
+The form becomes noticeable when it appears several times per page or back-to-back. A real contrast may justify it; repeated as a rhythm, it makes each claim feel staged.
 
 It often pairs with em dashes (pattern 17) and with rhetorical Q&A (pattern 16) to produce a recognizable AI rhythm: "It's not just X, it's Y. What does that mean? Everything."
 
@@ -38,7 +38,7 @@ After:
 Before:
 > The book wasn't just a book, it was a turning point.
 
-Notice that the human versions make the same point in fewer words and without theatrical contrast. When the contrast is real and informative, keep the construction. When it is just rhythm, cut it.
+Notice that the edited versions make the same point in fewer words and without theatrical contrast. When the contrast is real and informative, keep the construction. When it is just rhythm, cut it.
 
 ## How to self-spot
 

@@ -4,13 +4,13 @@
 
 ## Why LLMs do this
 
-Three-item lists have a long history in rhetoric, from Cicero to advertising copy. They feel complete, balanced, and memorable. Training data is saturated with three-item examples because human writers reach for them too. The difference is that human writers reach for them when three is actually the right number. LLMs reach for them by default.
+Three-item lists have a long history in rhetoric, from Cicero to advertising copy. They feel complete, balanced, and memorable, and model training data contains many examples. The construction works when three is the natural count. It becomes formulaic when every list is forced into that shape.
 
 The model also has a generation-side incentive. When listing items, it has to stop somewhere. Two items can feel thin. Four can feel awkward. Three is the safest stopping point that still produces a list. So the model lands on three whether the underlying topic has three items or five or just one.
 
 ## Why readers notice it
 
-The rule of three is everywhere in AI text, which is the tell. Every list is three. Every series of adjectives is three. Every conclusion has three things to remember. The rhythm becomes a chant.
+Frequency is the finding: every list has three items, every adjective arrives in a triplet, and every conclusion offers three things to remember. Across a passage, the rhythm becomes a chant.
 
 The forced version often shows its seams. The first two items are crisp; the third is a synonym for one of the first two, or a vaguer category that does not quite fit. "Innovation, inspiration, and industry insights" is the structure of a real triplet, but the third item was added to complete the count.
 
@@ -36,7 +36,7 @@ After:
 Before:
 > The cooperative is dedicated to growing, processing, and exporting premium coffee, embodying excellence, sustainability, and community at every step.
 
-Notice that the human versions use the natural count, which is sometimes two, sometimes five, sometimes one. The AI versions always find three.
+Notice that the edited versions use the natural count, which is sometimes two, sometimes five, sometimes one. The before versions always find three.
 
 ## How to self-spot
 

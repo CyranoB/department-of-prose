@@ -10,7 +10,7 @@ There is also a defensive incentive. Listing real outlets is verifiably true. Sa
 
 ## Why readers notice it
 
-Names without context are decorations, not information. When a human writer mentions that someone was interviewed by the New York Times, they say what the interview was about, when it happened, and what was notable about it. When an LLM mentions it, the writer-name combination just hangs there with no follow-through.
+Names without context are decorations, not information. A useful mention explains what an interview was about, when it happened, or why it matters. Without that follow-through, the outlet name merely borrows prestige.
 
 The reader notices the gap. A list of outlets like "her work has appeared in NYT, BBC, FT, and The Hindu" tells you nothing about her work. It tells you she has had work appear places. The reader can already assume that, since that is why you are writing about her.
 
@@ -30,7 +30,7 @@ After:
 Before:
 > The institute has been featured in numerous prominent outlets, including Reuters, Bloomberg, the Wall Street Journal, and the Financial Times.
 
-Notice that the human versions name the outlet because something happened there. The AI versions name outlets because naming outlets is what you do in this kind of paragraph.
+Notice that the edited versions name the outlet because something happened there. The before versions name outlets because naming outlets is what you do in this kind of paragraph.
 
 ## How to self-spot
 

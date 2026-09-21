@@ -12,7 +12,7 @@ The model also defaults to it when transitioning between ideas. Rather than buil
 
 ## Why readers notice it
 
-The questions are almost always ones the reader was not asking. "The result? Devastating." The reader was not wondering about the result; the writer is performing curiosity on their behalf. The technique is so common in AI text that any one-word answer to a self-posed question reads as filler.
+The weak questions are ones the reader was not asking. "The result? Devastating." Instead of creating real inquiry, the writer performs curiosity on the reader's behalf. A self-posed question earns its place when it opens uncertainty or structures an explanation; otherwise the one-word answer reads as filler.
 
 The form is also visually distinct. The fragment-plus-question-mark followed by a single-word answer creates a recognizable rhythm. When this rhythm repeats in a piece, every instance after the first becomes obviously mechanical.
 
@@ -38,7 +38,7 @@ After:
 Before:
 > What went wrong? The team underestimated the migration by six months.
 
-Notice that the human versions deliver the information directly. The AI versions stage a discovery the reader was not part of.
+Notice that the edited versions deliver the information directly. The before versions stage a discovery the reader was not part of.
 
 ## How to self-spot
 

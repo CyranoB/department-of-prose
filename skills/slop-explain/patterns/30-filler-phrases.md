@@ -36,7 +36,7 @@ After:
 Before:
 > It is important to note that the budget was exceeded at this point in time.
 
-Notice that the human versions are 30-50% shorter and lose nothing. The AI versions inflate the same content with grammatical scaffolding.
+Notice that the edited versions are 30-50% shorter and lose nothing. The before versions inflate the same content with grammatical scaffolding.
 
 ## How to self-spot
 
