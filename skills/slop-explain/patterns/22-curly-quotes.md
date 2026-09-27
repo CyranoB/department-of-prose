@@ -37,4 +37,4 @@ A regex like `[‘’“”]` will find all of them. A conversion tool can chang
 ## Related patterns
 
 - **Pattern 17 (em dash overuse):** another punctuation pattern whose frequency and effect need context.
-- **Pattern 18 (boldface overuse):** another formatting tell from the same generation pipeline.
+- **Pattern 18 (boldface overuse):** another formatting choice to assess in context.

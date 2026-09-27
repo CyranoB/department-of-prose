@@ -50,7 +50,7 @@
       "target": "raw punctuation counts and prose cadence candidates",
       "positive": ["DET-PUNCT-001", "DET-PUNCT-005", "DET-PUNCT-006", "DET-PUNCT-012", "DET-PUNCT-015"],
       "negative": ["DET-PUNCT-002", "DET-PUNCT-004", "DET-PUNCT-009", "DET-PUNCT-010", "DET-PUNCT-011"],
-      "boundary": ["DET-PUNCT-003", "DET-PUNCT-007", "DET-PUNCT-008", "DET-PUNCT-013", "DET-PUNCT-014"]
+      "boundary": ["DET-PUNCT-003", "DET-PUNCT-007", "DET-PUNCT-008", "DET-PUNCT-013", "DET-PUNCT-014", "DET-PUNCT-016"]
     },
     {
       "target": "score.sh selection order, exact npx pin, forwarding, status, and unavailable behavior",

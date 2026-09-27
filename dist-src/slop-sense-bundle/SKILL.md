@@ -91,7 +91,7 @@ The traps, each tied to the pattern that invites it:
 - Removing a vague attribution (#5) tempts you to supply the source it lacked. Report what the input said ("unnamed industry reports") or say it named none. "Name the source" applies when the source is elsewhere in the document, not when you would have to make it up.
 - Cutting excessive hedging (#31) means dropping the redundant qualifiers, not the doubt they carried. "May have reduced" is not "reduced".
 - Fixing synonym cycling (#12) means repeating a name, not paraphrasing it. A legal name is not its trade name.
-- Quoted text is off limits even when full of tells. Report a #10, #17, or #22 hit inside a quotation as the speaker's and fix the reporting clause instead. A quoted dash or semicolon stays; raw punctuation counts do not authorize changing a speaker's words.
+- Quoted text is off limits even when it contains a repeated construction or punctuation cadence. Attribute those words to the speaker, preserve the quotation exactly, and edit only the reporting clause when needed. Curly quotation marks alone are not a finding. A quoted dash or semicolon stays; raw punctuation counts do not authorize changing a speaker's words.
 - Scope limits go first in any tightening pass. "In the pilot group", "self-reported", "among the 40 who finished" are load-bearing.
 
 If a pattern can only be removed by adding specifics the input does not contain, leave it. Keep the general phrasing, or mark the gap (`[source?]`, `[date?]`) and raise it in the summary.

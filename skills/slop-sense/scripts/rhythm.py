@@ -177,46 +177,61 @@ WORD_RE = re.compile(r"\b[\w']+\b")
 
 
 def punctuation_cadence(text):
-    """Return conservative, prose-only punctuation candidates for review.
+    """Return conservative review candidates from already-extracted prose.
 
-    Windows stay within a paragraph. Counts are measurements; a candidate is
-    not a verdict about the author or an instruction to change punctuation.
+    Every 150-word window within a paragraph is considered. A candidate is
+    evidence to inspect, not an authorship verdict or an automatic edit.
     """
     candidates = []
     for paragraph_number, paragraph in enumerate(paragraphs(text), 1):
         word_starts = [match.start() for match in WORD_RE.finditer(paragraph)]
-        if not word_starts:
+        word_total = len(word_starts)
+        if not word_total:
             continue
         marks = []
+        counts = {"em dash": [0] * word_total, "semicolon": [0] * word_total, "all": [0] * word_total}
         for match in PAUSE_RE.finditer(paragraph):
             mark = match.group()
             kind = "em dash" if mark in ("—", "--") else "semicolon" if mark == ";" else "other"
-            marks.append((bisect.bisect_right(word_starts, match.start()), match.start(), match.end(), kind))
+            word_index = min(bisect.bisect_right(word_starts, match.start()), word_total - 1)
+            marks.append((word_index, match.start(), match.end(), kind))
+            counts["all"][word_index] += 1
+            if kind != "other":
+                counts[kind][word_index] += 1
+        if not marks:
+            continue
+        prefixes = {}
+        for kind, values in counts.items():
+            prefix = [0]
+            for value in values:
+                prefix.append(prefix[-1] + value)
+            prefixes[kind] = prefix
+        window_length = min(150, word_total)
         for kind in ("em dash", "semicolon"):
             best = None
-            starts = [0] if len(word_starts) <= 150 else [m[0] for m in marks if m[3] == kind]
-            for start in starts:
-                window = marks if len(word_starts) <= 150 else [m for m in marks if start <= m[0] < start + 150]
-                matching = [m for m in window if m[3] == kind]
-                if len(matching) < 3 or len(matching) / len(window) < 0.40:
+            for first_word in range(word_total - window_length + 1):
+                last_word = first_word + window_length
+                count = prefixes[kind][last_word] - prefixes[kind][first_word]
+                pause_count = prefixes["all"][last_word] - prefixes["all"][first_word]
+                if count < 3 or count / pause_count < 0.40:
                     continue
-                evidence = matching[:3]
-                snippets = [
-                    " ".join(paragraph[max(0, mark[1] - 18):min(len(paragraph), mark[2] + 18)].split())
-                    for mark in evidence
-                ]
-                excerpt = " … ".join(snippets)
-                candidate = {
-                    "mark": kind,
-                    "count": len(matching),
-                    "pause_count": len(window),
-                    "paragraph": paragraph_number,
-                    "excerpt": excerpt,
-                }
-                if best is None or (candidate["count"], -candidate["pause_count"]) > (best["count"], -best["pause_count"]):
-                    best = candidate
-            if best is not None:
-                candidates.append(best)
+                if best is None or (count, -pause_count) > (best[0], -best[1]):
+                    best = (count, pause_count, first_word, last_word)
+            if best is None:
+                continue
+            count, pause_count, first_word, last_word = best
+            evidence = [mark for mark in marks if mark[3] == kind and first_word <= mark[0] < last_word][:3]
+            snippets = [
+                " ".join(paragraph[max(0, mark[1] - 18):min(len(paragraph), mark[2] + 18)].split())
+                for mark in evidence
+            ]
+            candidates.append({
+                "mark": kind,
+                "count": count,
+                "pause_count": pause_count,
+                "paragraph": paragraph_number,
+                "excerpt": " … ".join(snippets),
+            })
     return candidates
 
 

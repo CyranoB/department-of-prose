@@ -379,8 +379,7 @@
       },
       "required_findings": [],
       "permitted_findings": [
-        "raw punctuation counts",
-        "punctuation cadence candidate"
+        "raw punctuation counts"
       ],
       "forbidden_findings": [
         "em-dash overuse"

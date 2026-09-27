@@ -730,5 +730,18 @@
       "call": {"function": "punctuation_cadence", "args": ["A--B--C--D."]},
       "assert": {"contains": ["em dash"]}
     }
+,
+    {
+      "id": "DET-PUNCT-016",
+      "target": "punctuation cadence candidate",
+      "layer": "deterministic",
+      "polarity": "boundary",
+      "status": "pass",
+      "expected_outcome": "A qualifying window can start before the first target mark in a long paragraph.",
+      "rationale": "Every rolling window must be assessed, not only windows starting at punctuation.",
+      "kind": "python_call",
+      "call": {"function": "punctuation_cadence", "args": ["w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w target—one—two—three w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w a,b,c,d,e,f w w w w w w w w w w w w w w w w w w w w "]},
+      "assert": {"contains": ["em dash"]}
+    }
   ]
 }
