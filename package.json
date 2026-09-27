@@ -2,7 +2,7 @@
   "name": "department-of-prose-evaluation",
   "private": true,
   "scripts": {
-    "evaluate": "python3 evaluation/run.py"
+    "evaluate": "python3 scripts/sync-catalogue.py --check && python3 evaluation/run.py"
   },
   "devDependencies": {
     "slop-detector": "1.2.0"

@@ -51,8 +51,6 @@ anaphora measurement while the editorial case requires that the repetition
 remain. Register and voice do not become deterministic merely because the
 catalogue discusses them.
 
-Punctuation cadence is a deterministic review candidate: three em dashes or three semicolons within 150 words of one paragraph, comprising at least 40% of nearby commas, colons, semicolons, and dashes. Raw source counts remain separate. A candidate does not require a rewrite; the golden cases decide whether the cadence fits the voice, quotation, or list.
-
 ## Coverage and known failures
 
 [`coverage.json`](coverage.json) is the auditable inventory. It maps every
@@ -64,8 +62,7 @@ deterministic implementations.
 [`baseline.json`](baseline.json) lists downstream behavior that is intentionally
 red today. These are executable expected failures, never skips:
 
-- `DET-EXTRACT-002` — Markdown link extraction, owned by #8;
-- `DET-SCORER-WORD-003` — unresolved catalogue policy, owned by #14.
+- `DET-EXTRACT-002` — Markdown link extraction, owned by #8.
 
 An expected failure prints `XFAIL` only when its documented assertion path and
 message fragment both match. Execution errors, precondition failures, process or

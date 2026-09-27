@@ -1,40 +1,23 @@
 # Pattern 22: Curly quotes
 
-**Typographic ("smart") quotes appearing where the document's format or house style calls for straight quotes.**
+Catalogue version **1.0.0**. [Full entry](../catalogue.md).
 
-## Why LLMs do this
+## What to assess
 
-Language models may reproduce curly quotes from typeset training material or from the interface rendering their output. Word processors and publishing tools also convert straight quotes automatically.
+Retire as an AI pattern. Smart quotes are normal in publishing and software. Handle inconsistent typography as a separate copyedit.
 
-Because many human-operated tools make the same conversion, quote style alone carries no useful authorship conclusion. It matters when it conflicts with the surrounding format.
+## Evidence and limits
 
-## Why readers notice it
+The audit does not support using this pattern as a current AI-style finding.
 
-In technical documentation, code, JSON, and some web publishing systems, straight quotes are required or conventional. In typeset prose, curly quotes may be preferred. Readers notice inconsistency more than either choice by itself.
+**Source and evidence type:** [WikiProject AI Cleanup, “Curly quotation marks and apostrophes”](https://en.wikipedia.org/w/index.php?title=Wikipedia:Signs_of_AI_writing&oldid=1376815715#Curly_quotation_marks_and_apostrophes) — explicitly weak field observation.
 
-The mismatch is especially visible in code blocks or technical content, where curly quotes are actively wrong. They will break a string literal or fail a JSON parser.
+**Evidence class:** observation; limited to the source's stated context.
 
-The editorial question is therefore consistency and compatibility: use the quote style the medium requires, and do not treat typography as proof of provenance.
+**Strength and scope:** The guide says curly marks alone do not prove LLM use; Word, macOS, iOS, grammar tools, and professional typesetting produce them, while some models typically do not. They are an issue only where the target format requires straight ASCII quotes, such as code or JSON. The [former unversioned entry](https://github.com/CyranoB/department-of-prose/blob/f09a61b2369e5e01efff2d99f54efa2dc2453601/skills/slop-explain/patterns/22-curly-quotes.md) overstates reliability. **Reviewed:** 2026-09-27.
 
-## Examples
+## Editorial use
 
-In a format that requires ASCII quotation marks, change:
-> She said “the meeting was a disaster” and walked out.
+This pattern creates no editorial finding or repair.
 
-to:
-> She said "the meeting was a disaster" and walked out.
-
-In typeset prose that uses curly quotation marks, keep the first version. The mark itself provides no authorship evidence.
-
-## How to self-spot
-
-Search your draft for the Unicode characters. The four common offenders are U+2018, U+2019, U+201C, and U+201D (left and right single and double typographic quotes). Change them only when the publication or rendering context calls for straight quotes; otherwise preserve the supplied typography, especially in quotations.
-
-If a tool auto-converts quote style, check the output against the document’s required format before publishing.
-
-A regex like `[‘’“”]` will find all of them. A conversion tool can change them when the house style requires it.
-
-## Related patterns
-
-- **Pattern 17 (em dash overuse):** another punctuation pattern whose frequency and effect need context.
-- **Pattern 18 (boldface overuse):** another formatting choice to assess in context.
+This entry is retired as an AI pattern. Curly quotes are normal in typeset prose; use straight quotes when a target format such as code or JSON requires them.

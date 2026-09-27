@@ -1,45 +1,23 @@
 # Pattern 36: Reflexive formality
 
-**Never contracting — defaulting to "do not", "cannot", "it is", "you have" everywhere, even in casual or first-person writing where a human would say "don't", "can't", "it's".**
+Catalogue version **1.0.0**. [Full entry](../catalogue.md).
 
-## Why LLMs do this
+## What to assess
 
-Expanded forms are a safe register. "Do not" is broadly acceptable; "don't" carries a casualness the model may treat as risk. Instruction-tuned assistants are often nudged toward a polished, professional default, so they may favor uncontracted forms even when the intended voice is conversational.
+Formal prose may require no contractions; change register only when the user's document calls for it and meaning survives.
 
-The result can be a passage that stays in one register. Contractions often help a sentence move quickly, while expanded forms can add weight or emphasis: "I don't think that's right" versus "I do not, under any circumstances, agree." The editorial question is whether the mix serves the genre and voice.
+## Evidence and limits
 
-## Why readers notice it
+The audit does not support using this pattern as a current AI-style finding.
 
-The absence of contractions can make casual or first-person prose sound overly formal, robotic, or impersonal. In a personal essay, opinion column, or blog post, a first-person argument that never says "I'm" or "don't" may feel out of register. In legal, academic, ceremonial, or translated prose, the same choice may be appropriate. The mismatch with the intended voice is the finding; it is not proof of how the text was produced.
+**Source and evidence type:** [Reinhart et al., PNAS study](https://doi.org/10.1073/pnas.2422455122) — broader register-comparison research; [WikiProject AI Cleanup, “Ineffective indicators”](https://en.wikipedia.org/w/index.php?title=Wikipedia:Signs_of_AI_writing&oldid=1376815715#Ineffective_indicators) — direct caution against using formal prose as a tell; [former unversioned entry](https://github.com/CyranoB/department-of-prose/blob/f09a61b2369e5e01efff2d99f54efa2dc2453601/skills/slop-explain/patterns/36-reflexive-formality.md) — unsupported contraction-specific claim.
 
-It is also easy to over-correct in the wrong direction. The fix is not to contract everything — that produces its own uniform, flattened tone. The fix is variation, which is exactly what the model fails to produce.
+**Evidence class:** empirical; limited for this specific pattern.
 
-## Examples
+**Strength and scope:** The study finds some model/genre register mismatch; it does not establish that absence of contractions is a reliable AI signal. The field guide explicitly says formal or academic prose is ineffective as a general indicator. Many human documents avoid contractions by house style or genre. The current entry's “most reliable” and detector assertions need removal or direct evidence. **Reviewed:** 2026-09-27.
 
-Before:
-> It is not a question of capacity. You cannot commercialize what you do not own, and that is the whole problem. We are not going to solve this by pretending it is simple.
+## Editorial use
 
-After:
-> It isn't a question of capacity. You can't commercialize what you don't own, and that's the whole problem. We're not going to solve this by pretending it's simple.
+This is optional style advice. Change it only when the user asks for that style.
 
-Before (over-corrected — now uniformly casual):
-> It's not capacity. You can't own it. That's the problem. We won't fix it by pretending it's easy.
-
-After (varied — contract by default, expand for emphasis):
-> It isn't capacity. You can't commercialize what you don't own. And we are not — not under any reading of the budget — going to fix that by pretending it is simple.
-
-The last version contracts where the prose moves and expands where it wants to land a blow. That mix is the human signal.
-
-## How to self-spot
-
-Search your draft for "do not", "does not", "cannot", "it is", "they are", "you are", "I am". Count them against the contracted forms. If the contracted forms are near zero in casual or first-person writing, you are being reflexively formal.
-
-Read a paragraph aloud. If it sounds like a press release or a legal notice when it is supposed to sound like a person talking, contractions are usually the missing ingredient. Then resist contracting *everything* — leave the expanded form where you genuinely want emphasis.
-
-The `rhythm.py` script reports a contraction ratio: a value near 0 with many expanded forms present is the flag.
-
-## Related patterns
-
-- **Pattern 34 (uniform sentence rhythm):** another structural/register tell that word-level scorers miss.
-- **Pattern 35 (aphoristic paragraph closers):** like this one, it comes from the model defaulting to a "polished" register instead of a human one.
-- **Pattern 25 (sycophantic tone):** part of the same instruction-tuned politeness that produces stiff, safe prose.
+A formal notice, technical report, or legal text may correctly avoid contractions.

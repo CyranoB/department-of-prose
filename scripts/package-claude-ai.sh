@@ -17,6 +17,7 @@ rm -rf "$REPO/dist/staging" "$OUT"
 mkdir -p "$STAGE/scripts" "$STAGE/patterns"
 
 cp "$REPO/dist-src/slop-sense-bundle/SKILL.md" "$STAGE/SKILL.md"
+cp "$REPO/dist-src/slop-sense-bundle/catalogue.md" "$STAGE/catalogue.md"
 cp "$REPO/skills/slop-sense/scripts/score.sh"  "$STAGE/scripts/score.sh"
 cp "$REPO/skills/slop-sense/scripts/rhythm.py" "$STAGE/scripts/rhythm.py"
 cp "$REPO/skills/slop-explain/patterns/"*.md   "$STAGE/patterns/"
@@ -46,8 +47,12 @@ fi
 
 ( cd "$REPO/dist/staging" && zip -rq "$OUT" slop-sense )
 
-if ! unzip -l "$OUT" | grep -q 'slop-sense/SKILL.md'; then
+if ! unzip -Z -1 "$OUT" | grep -Fxc 'slop-sense/SKILL.md' >/dev/null; then
   echo "error: ZIP missing slop-sense/SKILL.md at root" >&2
+  exit 1
+fi
+if ! unzip -Z -1 "$OUT" | grep -Fxc 'slop-sense/catalogue.md' >/dev/null; then
+  echo "error: ZIP missing slop-sense/catalogue.md" >&2
   exit 1
 fi
 

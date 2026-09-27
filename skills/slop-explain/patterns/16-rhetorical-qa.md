@@ -1,55 +1,21 @@
 # Pattern 16: Rhetorical Q&A
 
-**Self-posed questions answered immediately, asking questions nobody asked for dramatic effect.**
+Catalogue version **1.0.0**. [Full entry](../catalogue.md).
 
-## Why LLMs do this
+## What to assess
 
-The technique appears constantly in op-eds, motivational writing, and explainer content (three genres heavily represented in training data). The form gives a writer a way to introduce a claim with a beat of suspense: pose the question, deliver the answer.
+Note canned question-answer beats when they waste space; keep questions a reader needs answered.
 
-For a model trying to add weight to a sentence, the question-answer split is a free expansion. "It was devastating" becomes "The result? Devastating." The expansion adds zero content but doubles the word count and adds a rhetorical flourish.
+## Evidence and limits
 
-The model also defaults to it when transitioning between ideas. Rather than build a smooth bridge, it can pose a question that the next sentence answers. The question acts as a hinge, and the model does not have to think about how the ideas actually connect.
+The audit does not support using this pattern as a current AI-style finding.
 
-## Why readers notice it
+**Source and evidence type:** [Former unversioned entry](https://github.com/CyranoB/department-of-prose/blob/f09a61b2369e5e01efff2d99f54efa2dc2453601/skills/slop-explain/patterns/16-rhetorical-qa.md) — repo editorial judgment; no primary comparative evidence located for rhetorical question/answer pairs as a specific AI sign.
 
-The weak questions are ones the reader was not asking. "The result? Devastating." Instead of creating real inquiry, the writer performs curiosity on the reader's behalf. A self-posed question earns its place when it opens uncertainty or structures an explanation; otherwise the one-word answer reads as filler.
+**Evidence class:** editorial; unsubstantiated as an AI association.
 
-The form is also visually distinct. The fragment-plus-question-mark followed by a single-word answer creates a recognizable rhythm. When this rhythm repeats in a piece, every instance after the first becomes obviously mechanical.
+**Strength and scope:** A staged answer can waste space when the question is artificial; it can also aid teaching and live argument. Treat as a prose function judgment, not a provenance clue. **Reviewed:** 2026-09-27.
 
-It pairs with the "Here's the kicker" family (pattern 26) to produce paragraphs that are almost entirely transitions and reveals, with very little actual content in between.
+## Editorial use
 
-## Examples
-
-After:
-> The result was devastating.
-
-Before:
-> The result? Devastating.
-
-After:
-> The cost was hidden in the operational budget for years.
-
-Before:
-> Where did the cost go? Hidden in the operational budget for years.
-
-After:
-> The team underestimated the migration by six months.
-
-Before:
-> What went wrong? The team underestimated the migration by six months.
-
-Notice that the edited versions deliver the information directly. The before versions stage a discovery the reader was not part of.
-
-## How to self-spot
-
-Search for question marks followed by a sentence fragment or short clause. For each, ask: "was the reader wondering this?" If not, fold the question and answer into a single declarative sentence.
-
-The construction is legitimate when the question is one the reader genuinely is asking and you are answering it for them. Most of the time, however, it is the writer asking themselves a question to set up an answer they already knew.
-
-A useful test: read the surrounding paragraph aloud. If the question feels like a tap on the shoulder rather than a genuine pause, cut it.
-
-## Related patterns
-
-- **Pattern 26 ("Here's the kicker"):** another false-suspense transition.
-- **Pattern 14 (anaphora abuse):** rhetorical questions often repeat in clusters.
-- **Pattern 15 ("Not X. Not Y. Just Z."):** another theatrical reveal pattern.
+This is optional style advice. Change it only when the user asks for that style.

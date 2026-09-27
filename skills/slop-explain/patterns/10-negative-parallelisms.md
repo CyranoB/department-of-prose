@@ -1,57 +1,21 @@
 # Pattern 10: Negative parallelisms
 
-**The "not just X, but Y" / "not only... but also" structure, used for rhetorical lift instead of meaning.**
+Catalogue version **1.0.0**. [Full entry](../catalogue.md).
 
-## Why LLMs do this
+## What to assess
 
-The construction is genuinely useful when X and Y are non-trivially distinct and Y is the more important or surprising claim. "She is not just a good musician, but a great composer" works because the contrast carries real information.
+Repeated stock contrasts manufacture a surprise; keep a contrast that makes a real distinction.
 
-The problem is that LLMs deploy the form when X and Y are nearly identical, or when the contrast does not actually serve the sentence. The form does the work of *signaling* depth without requiring the underlying distinction to be real. Training data over-weights essayistic and motivational prose where the construction appears constantly, and the model learned it as a default rhythm.
+## Evidence and limits
 
-There is also a sentence-extension incentive. "X" is short. "Not just X, but Y" is longer and sounds more thoughtful. For a model trying to fill space with appropriate weight, the construction is a reliable inflator.
+The source describes a current, context-dependent AI-style association. It does not identify the author of a passage.
 
-## Why readers notice it
+**Source and evidence type:** [WikiProject AI Cleanup, “Negative parallelisms”](https://en.wikipedia.org/w/index.php?title=Wikipedia:Signs_of_AI_writing&oldid=1376815715#Negative_parallelisms) — field observation; [EQBench Slop Score methodology](https://eqbench.com/slop-score.html) — quantitative comparison for selected “not X, but Y” constructions.
 
-When the construction is hollow, the reader feels the gap. "It's not just about the music, it's about the community" suggests the music and the community are non-trivially different things the writer is contrasting. In context, they are almost always overlapping aspects of the same thing, and the construction is just inflating one of them.
+**Evidence class:** observation; limited to the source's stated context.
 
-The form becomes noticeable when it appears several times per page or back-to-back. A real contrast may justify it; repeated as a rhythm, it makes each claim feel staged.
+**Strength and scope:** Direct support for overuse of a defined family of contrasts in sampled genres. Both sources acknowledge ordinary human uses. The test is whether the contrast conveys a real distinction. **Reviewed:** 2026-09-27.
 
-It often pairs with em dashes (pattern 17) and with rhetorical Q&A (pattern 16) to produce a recognizable AI rhythm: "It's not just X, it's Y. What does that mean? Everything."
+## Editorial use
 
-## Examples
-
-After:
-> The community matters as much as the music.
-
-Before:
-> It's not just about the music, it's about the community.
-
-After:
-> The framework reduces bugs and ships in a quarter the time.
-
-Before:
-> The framework is not only a tool for reducing bugs, but a way to ship faster.
-
-After:
-> The book changed how I write code.
-
-Before:
-> The book wasn't just a book, it was a turning point.
-
-Notice that the edited versions make the same point in fewer words and without theatrical contrast. When the contrast is real and informative, keep the construction. When it is just rhythm, cut it.
-
-## How to self-spot
-
-Grep for "not just," "not only," "isn't just," "isn't only," "wasn't just," "wasn't merely." For each hit, ask:
-1. Is X meaningfully different from Y?
-2. Is Y the more important or more surprising claim?
-
-If the answer to either is no, the construction is hollow. Rewrite as a plain assertion of Y.
-
-A test: drop "not just X, but" and see if the remaining "Y" makes the point. Usually it does, and the cut version is stronger.
-
-## Related patterns
-
-- **Pattern 15 ("Not X. Not Y. Just Z."):** the three-part version of the same instinct.
-- **Pattern 17 (em dash overuse):** negative parallelisms are usually dashed.
-- **Pattern 16 (rhetorical Q&A):** often appears in the same paragraphs.
+An editorial repair can be useful when the exact passage shows the problem and the false-positive guard has been checked.

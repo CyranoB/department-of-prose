@@ -1,46 +1,23 @@
 # Pattern 12: Synonym cycling
 
-**Rotating synonyms to avoid repeating a word: "protagonist... main character... central figure... hero."**
+Catalogue version **1.0.0**. [Full entry](../catalogue.md).
 
-## Why LLMs do this
+## What to assess
 
-Many style guides (especially high-school and college writing guides) tell writers to avoid repetition. Training data includes a lot of writing that follows this advice, and RLHF evaluators sometimes flag word repetition as a defect. The model learned to swap in synonyms aggressively whenever the same noun would appear twice in close proximity.
+Needless synonym substitution obscures reference. Repair that clarity problem without calling it a current AI tell; keep deliberate variation and precise terms.
 
-The problem is that the rule is bad. "Elegant variation," as Fowler called it, was a Victorian instinct that even Victorian editors warned against. Modern good writing repeats the clearest term, because repetition is invisible and the synonym dance is not.
+## Evidence and limits
 
-## Why readers notice it
+The source treats this as a historical association. It is not a current AI-style finding.
 
-The synonyms get progressively worse as the cycle continues. The first term is the right one. The second is acceptable. The third is a reach. The fourth is comically off. "Protagonist... main character... central figure... hero... primary actor" sounds like a thesaurus exploding.
+**Source and evidence type:** [WikiProject AI Cleanup, “Lexical diversity/elegant variation”](https://en.wikipedia.org/w/index.php?title=Wikipedia:Signs_of_AI_writing&oldid=1376815715#Lexical_diversity/elegant_variation) — **historical** field observation.
 
-The reader notices the dance even when they cannot name the pattern. The prose appears to strain against repeating the clearest word, forcing the reader to track whether each new synonym names the same thing. Repeating "the protagonist" may be clearer.
+**Evidence class:** observation; limited to the source's stated context.
 
-The pattern is especially visible in articles about a single subject, such as a person, company, or place, where the noun must recur. Too many substitutes turn the paragraph into a guided tour through every available synonym.
+**Strength and scope:** The field guide moved this to historical indicators: older models and some Wikipedia comparisons showed it, but it is not presented as a strong current sign. Swapping a clear technical term for looser synonyms can still harm reference clarity. Do not infer current AI use from it. **Reviewed:** 2026-09-27.
 
-## Examples
+## Editorial use
 
-After:
-> Tesfaye is a coffee farmer in southern Ethiopia. Tesfaye took over the cooperative in 2019 after his uncle retired. Tesfaye says the work has gotten harder as the climate shifts.
+An editorial repair can be useful when the exact passage shows the problem and the false-positive guard has been checked.
 
-Before:
-> Tesfaye is a coffee farmer in southern Ethiopia. The agriculturalist took over the cooperative in 2019 after his uncle retired. The grower says the work has gotten harder as the climate shifts.
-
-After:
-> The bridge is in Pittsburgh. The bridge was built in 1928 and renovated in 2003. The bridge carries about 12,000 cars a day.
-
-Before:
-> The bridge is in Pittsburgh. The structure was built in 1928 and renovated in 2003. The crossing carries about 12,000 cars a day.
-
-Notice that the edited versions repeat the clearest word. The reader reads "Tesfaye" or "bridge" three times and does not notice. The before versions force the reader to track what "the agriculturalist" or "the crossing" refers to.
-
-## How to self-spot
-
-When you find yourself reaching for a synonym, ask why. If you have just used a noun in the previous sentence, the reflex is to vary. Resist it. Repetition of a clear noun is invisible. The synonym is visible.
-
-A useful test: replace all the synonyms in a paragraph with the original noun. If the paragraph reads more clearly, the synonyms were the problem.
-
-Pronouns ("he," "she," "it") are different. They are the natural alternative to a name and they do not draw attention. The issue is full-noun synonyms used as if pronouns were forbidden.
-
-## Related patterns
-
-- **Pattern 8 (AI vocabulary):** synonym cycling often reaches for AI-vocabulary alternatives ("the framework" then "the system" then "the infrastructure" then "the architecture").
-- **Pattern 9 (copula avoidance):** the verb-side equivalent of the same instinct.
+Confusing synonym swaps can still be repaired for clarity. Keep precise terms and intentional changes of referent.

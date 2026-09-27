@@ -1,49 +1,21 @@
 # Pattern 4: Promotional language
 
-**Neutral writing replaced by tourism-brochure or marketing-copy vocabulary, even when the genre does not call for it.**
+Catalogue version **1.0.0**. [Full entry](../catalogue.md).
 
-## Why LLMs do this
+## What to assess
 
-A large fraction of LLM training data is promotional. Hotel listings, real-estate descriptions, university brochures, corporate "About" pages, tourism websites, museum catalogs. All of these use a recognizable register: every place is "nestled," every program is "renowned," every amenity is "world-class."
+Sales language appears in neutral or analytical prose; keep suitable advertising copy and attributed quotations.
 
-The model learned that this register is the default for "writing about a place or institution." When asked to describe a town or a company, it reaches for the same vocabulary it learned from the brochure subset of its training. The result is a Wikipedia article that reads like a Booking.com listing.
+## Evidence and limits
 
-There is also an RLHF effect. Human evaluators tend to rate promotional prose as "rich" or "engaging" compared to plain descriptive prose, even when the plain version is more accurate and more readable. The model adapts.
+The source describes a current, context-dependent AI-style association. It does not identify the author of a passage.
 
-## Why readers notice it
+**Source and evidence type:** [WikiProject AI Cleanup, “Promotional and advertisement-like language”](https://en.wikipedia.org/w/index.php?title=Wikipedia:Signs_of_AI_writing&oldid=1376815715#Promotional_and_advertisement-like_language) — field observation.
 
-The vocabulary is easy to spot: "nestled", "vibrant", "breathtaking", "renowned", "boasts", "stunning", "groundbreaking", "exemplifies". One adjective may fit the subject or genre. A dense cluster can make informational prose read like undifferentiated advertising.
+**Evidence class:** observation; limited to the source's stated context.
 
-The register mismatch is also obvious. A Wikipedia article about a small town in Ethiopia is not a sales pitch for that town, and writing it as if it were makes the article read as untrustworthy. The reader notices that the writer is selling something, and is not sure what.
+**Strength and scope:** Direct examples in encyclopedic writing; Wikipedia's neutral register makes promotional words conspicuous. Promotional language is normal in ads and sales copy, and the source does not prove the training-data or RLHF account in the [former unversioned entry](https://github.com/CyranoB/department-of-prose/blob/f09a61b2369e5e01efff2d99f54efa2dc2453601/skills/slop-explain/patterns/04-promotional-language.md). **Reviewed:** 2026-09-27.
 
-Promotional language also reliably loses information. "Nestled in the breathtaking Gonder region" tells you less than "located in the Gonder region, 730 km north of Addis Ababa." Adjectives push facts off the page.
+## Editorial use
 
-## Examples
-
-After:
-> Birka is a town in the Gonder region of Ethiopia.
-
-Before:
-> Nestled within the breathtaking landscape of the renowned Gonder region, the vibrant town of Birka boasts a rich cultural heritage.
-
-After:
-> The university's biology department was founded in 1962 and has 14 faculty.
-
-Before:
-> The renowned biology department, a vibrant hub of cutting-edge research, boasts a stunning lineage of groundbreaking faculty whose pioneering work has left an indelible mark on the field.
-
-Notice that the edited versions answer factual questions. The before versions answer emotional questions ("how should I feel about this?") with no facts to support the suggested feeling.
-
-## How to self-spot
-
-Keep a block list of promotional adjectives: nestled, vibrant, breathtaking, renowned, stunning, groundbreaking, boasts, profound, exemplifies, world-class, premier, cutting-edge. Grep your draft. Almost every hit can be deleted or replaced with a concrete fact.
-
-A useful test: pretend you are the subject's neutral biographer, not its publicist. Would your biographer use this word? If not, cut it.
-
-Also watch for the verb "boasts." A factory does not "boast" 200 employees; it has 200 employees. The personification is brochure-speak.
-
-## Related patterns
-
-- **Pattern 1 (significance inflation):** same problem, different vocabulary. Inflation reaches for "pivotal" and "testament"; promotional reaches for "nestled" and "vibrant."
-- **Pattern 8 (AI vocabulary):** "vibrant" and "intricate" appear under both labels. Different angle, same words.
-- **Pattern 33 (generic positive conclusions):** "the future looks bright" is the brochure register applied to endings.
+An editorial repair can be useful when the exact passage shows the problem and the false-positive guard has been checked.

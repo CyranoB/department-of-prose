@@ -1,46 +1,21 @@
 # Pattern 7: Invented concept labels
 
-**Fabricated compound terms that sound analytical but are ungrounded: "the supervision paradox," "the acceleration trap," "the alignment creep."**
+Catalogue version **1.0.0**. [Full entry](../catalogue.md).
 
-## Why LLMs do this
+## What to assess
 
-The training data is full of essays and analyses that name new phenomena: "the great resignation," "the productivity paradox," "moral hazard," "the bullwhip effect." These named concepts are valuable when they refer to something real and well-defined. LLMs absorbed the pattern (specific noun + abstract noun = analytical insight) without absorbing the part where the named thing is real.
+A new label obscures meaning or lacks a definition; preserve defined, useful terms. This is a clarity edit, not an AI signal.
 
-So when an LLM is reasoning through a topic and wants to mark a tension or pattern as important, it generates a new compound: domain word + paradox / trap / creep / loop / problem. The compound has the cadence of a known concept. It is not one.
+## Evidence and limits
 
-There is also a self-citation move: the passage coins a term mid-paragraph and then refers to it as if it were established. A new label can be useful when it is defined, defended, and reused to clarify an argument. Without that work, "what I call the supervision paradox" adds confidence without analysis.
+The audit does not support using this pattern as a current AI-style finding.
 
-## Why readers notice it
+**Source and evidence type:** [Former unversioned entry](https://github.com/CyranoB/department-of-prose/blob/f09a61b2369e5e01efff2d99f54efa2dc2453601/skills/slop-explain/patterns/07-invented-concept-labels.md) — repo editorial judgment; no independent primary comparison located for the specific “X paradox/trap” pattern.
 
-The reader cannot find the term anywhere else. Search "supervision paradox" in scholarly databases and you find either nothing or a different unrelated concept. The term has no community, no literature, no definition beyond what the model just made up.
+**Evidence class:** editorial; unsubstantiated as an AI association.
 
-The construction is also recognizable. The compounds tend to use the same abstract nouns: paradox, trap, creep, problem, dilemma, loop, illusion, fallacy. Once you see the move, you cannot unsee it. Any phrase of the form "the X paradox" or "what I call the Y trap" in an AI-generated essay deserves immediate skepticism.
+**Strength and scope:** The useful question is whether a coined term is defined, attributed, and necessary. Coining a concept is legitimate, and absence from a web search does not show AI origin. The entry's training-data mechanism is unverified. **Reviewed:** 2026-09-27.
 
-## Examples
+## Editorial use
 
-After:
-> The more time managers spend reviewing AI-generated code, the more skeptical they become of their team's ability to write code independently. This creates a tension: oversight that was meant to maintain quality starts to erode the autonomy that produces quality.
-
-Before:
-> This creates what I call the "delegation paradox": the very act of supervising AI work undermines the human capability the supervision was meant to protect.
-
-After:
-> Companies that adopted AI tools faster reported higher short-term productivity but lower long-term retention. The cause appears to be that early adopters relied on tooling for tasks that were also the main on-the-job training for junior staff.
-
-Before:
-> This is the acceleration trap in action: speed today eats capability tomorrow.
-
-Notice that the edited versions describe the dynamic in concrete terms and let the reader draw the framing conclusion. The before versions skip the description and ship a brand name.
-
-## How to self-spot
-
-When you write the phrase "what I call the X paradox" or "the X trap" or "the X loop," stop. Either you are introducing an established term (in which case cite it) or you are inventing one (in which case the reader will not recognize it and you have not earned the naming move).
-
-A useful rewrite: describe the tension in two or three sentences and let the reader name it themselves. Names that catch on do so because the underlying observation was clear. Names that do not catch on are dead weight regardless of how clever they sound.
-
-If you genuinely want to introduce a new term, do it explicitly: "I want to give this a name because I will refer back to it. I will call it X." Then justify the name. Most of the time you will discover you did not need it.
-
-## Related patterns
-
-- **Pattern 1 (significance inflation):** both inflate without earning.
-- **Pattern 32 ("the truth is simple"):** both assert as a shortcut to argument.
+An editorial repair can be useful when the exact passage shows the problem and the false-positive guard has been checked.

@@ -1,58 +1,21 @@
 # Pattern 31: Excessive hedging
 
-**Stacked qualifiers: "could potentially possibly be argued that it might."**
+Catalogue version **1.0.0**. [Full entry](../catalogue.md).
 
-## Why LLMs do this
+## What to assess
 
-LLMs are trained to avoid overclaiming. Hedging is rewarded by safety and accuracy criteria: a sentence that says "this might be true" cannot be wrong in the way a sentence that says "this is true" can. The model learned to add hedges almost reflexively whenever a claim approaches anything contested.
+Stacked qualifiers hide the claim; preserve every real uncertainty and source limitation. An isolated hedge stays clean.
 
-The hedges also stack. "Could" softens, "potentially" softens further, "possibly" further still, "it might be argued that" pulls back even more. Each layer is individually defensible. The cumulative effect is a sentence that has retreated so far from its own claim that there is nothing left to evaluate.
+## Evidence and limits
 
-## Why readers notice it
+The audit does not support using this pattern as a current AI-style finding.
 
-Stacking is the finding. One hedge can preserve genuine uncertainty; three or four overlapping qualifiers can drain the claim of usable meaning. Keep the qualifier that carries the actual limit and remove the redundant layers.
+**Source and evidence type:** [WikiProject AI Cleanup, “Signs of human writing: Syntax”](https://en.wikipedia.org/w/index.php?title=Wikipedia:Signs_of_AI_writing&oldid=1376815715#Syntax) — counterevidence for simple hedges; [former unversioned entry](https://github.com/CyranoB/department-of-prose/blob/f09a61b2369e5e01efff2d99f54efa2dc2453601/skills/slop-explain/patterns/31-excessive-hedging.md) — editorial judgment about stacked qualifiers.
 
-The resulting sentences cannot be acted on or disagreed with. They have nothing concrete to grip. Readers learn to skim past them, which means the writer has spent words for no information transfer.
+**Evidence class:** observation; limited to the source's stated context.
 
-The pattern is especially common in policy writing, opinion pieces, and analysis where the writer (or the model) is afraid of being wrong. The fear shows.
+**Strength and scope:** The guide lists “perhaps,” “tends to,” and similar qualifiers as more frequent in human Wikipedia prose. It does not test the distinct case of several stacked hedges. Stacking can weaken a claim, but no AI association is established here; uncertainty may be essential in science and legal writing. **Reviewed:** 2026-09-27.
 
-## Examples
+## Editorial use
 
-After:
-> The new policy may reduce hiring in low-margin sectors.
-
-Before:
-> It could potentially be argued that the new policy might possibly lead to a reduction in hiring in certain low-margin sectors.
-
-After:
-> The migration will probably take two weeks.
-
-Before:
-> The migration could possibly potentially take approximately around two weeks, give or take.
-
-After:
-> The model probably handles this case correctly.
-
-Before:
-> It seems likely that the model may potentially handle this case in a way that could be considered correct, though there is some chance it might not.
-
-Notice that the edited versions use one hedge (or none) per claim. The before versions stack three or four, draining the sentence of any usable content.
-
-## How to self-spot
-
-Search for hedge clusters. The common stack:
-
-- modal: "may," "might," "could," "would"
-- adverb: "potentially," "possibly," "probably," "perhaps," "arguably"
-- frame: "it could be argued that," "it seems likely that," "there is some chance that"
-- range: "approximately," "around," "roughly," "give or take"
-
-Each of these alone is fine. Two together is suspect. Three or four is slop.
-
-The fix: pick at most one hedge per claim. If the claim genuinely needs more uncertainty, name the source of the uncertainty ("the 2023 figures may not reflect post-merger changes") rather than stacking modal verbs.
-
-## Related patterns
-
-- **Pattern 5 (vague attributions):** hedging often hides behind attribution.
-- **Pattern 24 (knowledge-cutoff disclaimers):** another hedge category.
-- **Pattern 30 (filler phrases):** the two stack frequently.
+An editorial repair can be useful when the exact passage shows the problem and the false-positive guard has been checked.

@@ -1,47 +1,21 @@
 # Pattern 6: Formulaic challenges sections
 
-**The "Despite challenges... continues to thrive" structure, where a vague obstacle is named and then dismissed in the same sentence.**
+Catalogue version **1.0.0**. [Full entry](../catalogue.md).
 
-## Why LLMs do this
+## What to assess
 
-The pattern appears constantly in two training-data genres: institutional retrospectives ("Despite the economic downturn, the company persevered...") and Wikipedia-style coverage of organizations or regions ("Despite ongoing political instability, the region continues to attract..."). The model learned the move as a way to acknowledge complication without losing the positive arc of the writing.
+A generic challenges-and-future paragraph contains no specific evidence; keep actual problems and outcomes.
 
-It also serves a generation strategy. The model is told to write about a subject and to be balanced. It does not actually know what the challenges are, but it knows what the *shape* of a balanced paragraph looks like. The formulaic challenges sentence lets it perform balance without committing to any specific obstacle.
+## Evidence and limits
 
-## Why readers notice it
+The source describes a current, context-dependent AI-style association. It does not identify the author of a passage.
 
-A real challenges section names specific obstacles, attributes them to specific sources or events, and explains how they affect the subject. The formulaic version does none of this. It says "challenges" without naming one, and then says "thrives" without explaining how.
+**Source and evidence type:** [WikiProject AI Cleanup, “Outline-like conclusions about challenges and future prospects”](https://en.wikipedia.org/w/index.php?title=Wikipedia:Signs_of_AI_writing&oldid=1376815715#Outline-like_conclusions_about_challenges_and_future_prospects) — field observation.
 
-The phrasing is also recognizable. "Despite [unnamed difficulties], [subject] continues to [vague positive action]." When you start noticing it, it appears in nearly every AI-written profile of any organization, region, or industry.
+**Evidence class:** observation; limited to the source's stated context.
 
-The pattern is structurally pleasing (acknowledgment plus reversal in one sentence), which is part of why models reach for it. But the reader's brain processes it as decoration, not information.
+**Strength and scope:** Direct support for a rigid, vague section formula in Wikipedia-style articles. The guide explicitly says mentioning real challenges is not the sign. **Reviewed:** 2026-09-27.
 
-## Examples
+## Editorial use
 
-After:
-> The cooperative lost 30% of its membership during the 2020-2022 drought. As of 2024 it has rebuilt to within 10% of its pre-drought numbers, mostly by recruiting from neighboring villages.
-
-Before:
-> Despite facing significant challenges in recent years, the cooperative continues to thrive and remains a vital part of the community.
-
-After:
-> The journal was nearly shut down in 2019 after losing its main funder. Reader subscriptions covered the gap by Q3 2020 and now provide 70% of revenue.
-
-Before:
-> Despite various challenges in the publishing landscape, the journal has continued to play a pivotal role in the field.
-
-Notice that the edited versions name the challenge, the timeline, and the recovery. The before versions say "challenges happened, things got better" with no content in either half.
-
-## How to self-spot
-
-Search for the trigger phrase: "despite challenges," "despite ongoing," "despite facing," "in spite of," "notwithstanding," followed by something positive within the same sentence.
-
-For each hit, ask: "what specific challenges? What does 'continues to thrive' mean in measurable terms?" If you cannot answer both, the sentence is decoration. Rewrite it with names, numbers, and dates, or delete it.
-
-If the topic genuinely has challenges and successes, give them their own paragraphs. Compression into "despite X, Y" almost always loses the substance.
-
-## Related patterns
-
-- **Pattern 1 (significance inflation):** both assert without supporting.
-- **Pattern 5 (vague attributions):** both refuse specifics.
-- **Pattern 33 (generic positive conclusions):** the same move applied to endings.
+An editorial repair can be useful when the exact passage shows the problem and the false-positive guard has been checked.
