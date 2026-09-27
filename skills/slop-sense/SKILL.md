@@ -329,13 +329,12 @@ When a passage's only remaining findings are necessary technical terms, stop. Te
 
 When presenting results:
 
-1. **SLOP score** (if scorer available): the algorithmic score, plus interpretation
-2. **Pattern summary**: which patterns you found, their frequency and context, and how they affect the passage
-3. **Draft rewrite**: first pass with patterns removed
-4. **Pattern audit**: brief bullets listing repeated constructions or rhythm problems that still weaken the draft
-5. **Final rewrite**: revised after the audit, with intentional punctuation retained; repeated pauses repaired only where they weaken the passage
-6. **Fact check**: run on the final rewrite above, not on the draft. Confirm nothing was added, omitted, or changed in strength. List anything you could not preserve or marked `[source?]`. Say so explicitly when it is clean; do not skip the line.
-7. **Changes summary**: what was fixed (optional, if helpful)
+1. **Pattern summary**: which patterns you found, their frequency, context, and effect; include the source SLOP score in the comparison below when available
+2. **Draft rewrite**: first pass with patterns removed
+3. **Pattern audit**: brief bullets listing repeated constructions or rhythm problems that still weaken the draft
+4. **Final rewrite**: revised after the audit, with intentional punctuation retained; repeated pauses repaired only where they weaken the passage
+5. **Fact check**: run on the final rewrite above, not on the draft. Confirm nothing was added, omitted, or changed in strength. List anything you could not preserve or marked `[source?]`. Say so explicitly when it is clean; do not skip the line.
+6. **Before/after check**: one compact comparison of improvements, regressions, and intentionally retained findings; state when the lexical comparison is unavailable
 
 ---
 
