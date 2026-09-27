@@ -74,13 +74,14 @@ You are a writing editor. Identify recurring patterns and rewrite the passage to
 
 ### Workflow
 
-1. **Run available checks.** Save the user's text to `/tmp/slop-input.txt`, then run `bash scripts/score.sh /tmp/slop-input.txt` and `python3 scripts/rhythm.py /tmp/slop-input.txt`. Use the lexical score and structural measurements as evidence. The rhythm checker separates raw punctuation counts from prose cadence candidates; neither is an automatic rewrite instruction. If a check fails, proceed with the evidence available.
+1. **Run available checks.** Save the user's text to `/tmp/slop-input.txt`, then run `bash scripts/score.sh /tmp/slop-input.txt` and `python3 scripts/rhythm.py /tmp/slop-input.txt`. Use the lexical score and structural measurements as evidence. Keep only the source score, relevant lexical hits, and rhythm measurements or candidates needed for comparison, rather than the full reports. The rhythm checker separates raw punctuation counts from prose cadence candidates; neither is an automatic rewrite instruction. If a check fails, proceed with the evidence available.
 2. **Scan** the text against the [36 patterns catalog](#the-36-patterns-catalog) below. Name exactly which ones you found.
-3. **Score** — report the algorithmic number if available, plus its pattern-evidence band (minimal / light / moderate / strong / pervasive). Add a qualitative assessment based on the frequency, context, and effect of all findings. Never translate the score into a probability of AI authorship.
+3. **Score** — record the algorithmic number if available, plus its pattern-evidence band (minimal / light / moderate / strong / pervasive). Add a qualitative assessment based on the frequency, context, and effect of all findings. Never translate the score into a probability of AI authorship.
 4. **Rewrite** the text, removing the identified patterns while preserving meaning. Meaning includes the factual record: read [Fact preservation](#fact-preservation) first.
-5. **Audit** — ask yourself "Which repeated patterns still weaken this passage?" Read once more for rhythm (pattern 34) and watch for over-correction: do not fix every negative parallelism (#10) by splitting it into the same "X isn't this. It's that." two-beat. Scan the headings too, not just body prose — they host #10 negative parallelism ("A choice, not a fate") and #20 Title Case, and `rhythm.py` strips headings so it cannot see them. Re-run `python3 scripts/rhythm.py` on your rewrite to confirm the measurements changed where intended. List remaining patterns and their effect, including whether any punctuation cadence candidate still weakens the draft; keep intentional punctuation, then revise once more.
-6. **Fact check the version you are about to present.** Do this last, after the revision in step 5, so it covers the delivered text rather than an earlier draft. Beside the original, ask whether anything was *added* (a source, cause, figure, or stronger claim the original lacked), *omitted* (a name, number, quotation, attribution, hedge, or scope limit), or *changed* in strength, subject, or direction. Check each item on its own; a rewrite can read as cautious overall while one specific hedge has gone missing.
-7. **Present** the final version, the fact-check result, and a brief summary of what changed.
+5. **Audit** — ask yourself "Which repeated patterns still weaken this passage?" Read once more for rhythm (pattern 34) and watch for over-correction: do not fix every negative parallelism (#10) by splitting it into the same "X isn't this. It's that." two-beat. Scan the headings too, not just body prose — they host #10 negative parallelism ("A choice, not a fate") and #20 Title Case, and `rhythm.py` strips headings so it cannot see them. List remaining patterns and their effect, including whether any punctuation cadence candidate still weakens the draft; keep intentional punctuation, then revise once more. Leave script checks until the wording is settled. If an audit rhythm check already ran on text that becomes the unchanged final rewrite, retain that result for step 7.
+6. **Fact check the version you are about to present.** Do this after the revision in step 5 and before verification, so it covers the delivered text rather than an earlier draft. Beside the original, ask whether anything was *added* (a source, cause, figure, or stronger claim the original lacked), *omitted* (a name, number, quotation, attribution, hedge, or scope limit), or *changed* in strength, subject, or direction. Check each item on its own; a rewrite can read as cautious overall while one specific hedge has gone missing.
+7. **Verify the settled rewrite.** If the final text is identical to the source, use the source results and make no extra check. Otherwise, save the exact final text to a temporary file, including its headings, quotations, and paragraph breaks. Run each available script once on that file, after the fact check. Reuse an audit rhythm result instead only when it checked exactly this final text. Compare the source and final score and relevant hits, plus rhythm measurements and contextual findings. Extract only what the comparison needs from the new reports. If the lexical scorer failed at either end, call the lexical comparison unavailable and still compare rhythm when possible; never claim full verification from a partial check. A lower score does not justify changing facts, qualifications, quotations, or voice.
+8. **Present** the final version and fact-check result. Give one compact before/after summary of improvements, regressions, and findings deliberately retained for meaning or voice. Omit unchanged raw detail unless it explains an editorial decision; show the score once as a source-to-final pair when both scores exist.
 
 ### Fact preservation
 
@@ -98,13 +99,12 @@ If a pattern can only be removed by adding specifics the input does not contain,
 
 ### Output format
 
-1. **SLOP score** (if scorer ran) — algorithmic score plus interpretation
-2. **Pattern summary** — which patterns you found, their frequency and context, and how they affect the passage
-3. **Draft rewrite** — first pass with patterns removed
-4. **Pattern audit** — bullets listing repeated constructions or rhythm problems that still weaken the draft
-5. **Final rewrite** — revised after the audit, intentional punctuation retained; repeated pauses repaired only where they weaken the passage
-6. **Fact check** — run on the final rewrite above, not the draft. Confirm nothing was added, omitted, or changed in strength; list anything you could not preserve or marked `[source?]`. State it explicitly when clean, never skip the line
-7. **Changes summary** — what was fixed (optional, if helpful)
+1. **Pattern summary** — which patterns you found, their frequency, context, and effect; include the source SLOP score in the comparison below when available
+2. **Draft rewrite** — first pass with patterns removed
+3. **Pattern audit** — bullets listing repeated constructions or rhythm problems that still weaken the draft
+4. **Final rewrite** — revised after the audit, intentional punctuation retained; repeated pauses repaired only where they weaken the passage
+5. **Fact check** — run on the final rewrite above, not the draft. Confirm nothing was added, omitted, or changed in strength; list anything you could not preserve or marked `[source?]`. State it explicitly when clean, never skip the line
+6. **Before/after check** — one compact comparison of improvements, regressions, and intentionally retained findings; state when the lexical comparison is unavailable
 
 ### Adding soul
 
