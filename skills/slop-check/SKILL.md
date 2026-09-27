@@ -40,7 +40,7 @@ The user may provide text in several ways:
    bash <path-to-skills-root>/slop-sense/scripts/score.sh /tmp/slop-check-input.txt
    python3 <path-to-skills-root>/slop-sense/scripts/rhythm.py /tmp/slop-check-input.txt
    ```
-   `score.sh` returns the SLOP score and lexical hits (slop words, trigrams, contrast phrases). `rhythm.py` reports dimensions `score.sh` does not measure: burstiness, contraction ratio, paragraph closers, anaphora, and em dashes. Treat both as editorial heuristics. If either fails or is unavailable, skip it and proceed with what you have, and state that in the output. A low lexical score does not cancel repeated structural findings.
+   `score.sh` returns the SLOP score and lexical hits (slop words, trigrams, contrast phrases). `rhythm.py` reports dimensions `score.sh` does not measure: burstiness, contraction ratio, paragraph closers, anaphora, and raw punctuation counts plus prose cadence candidates. Treat both as editorial heuristics. Raw punctuation counts and cadence candidates are separate; report #17 only when repeated pauses materially affect the passage, and preserve quoted or deliberate punctuation. If either fails or is unavailable, skip it and proceed with what you have, and state that in the output. A low lexical score does not cancel repeated structural findings.
 3. **Scan** the text against the 36 patterns in the reference table below. Name every pattern present. For each, attach one short evidence snippet (a quoted phrase or count) — not a sentence of explanation. Scan headings as well as body prose: #10 (negative parallelism, e.g. "A choice, not a fate") and #20 (Title Case) commonly hide there, and `rhythm.py` strips headings so it cannot see them.
 4. **Emit the verdict and stop.** Do not produce a rewrite. Do not offer line-by-line edits. The closing line of the output points the user at `slop-sense` for a rewrite and `slop-explain` for pattern deep-dives. That is the only forward motion this skill provides.
 
@@ -105,12 +105,12 @@ Compact reference. For full descriptions and before/after examples, see the `slo
 16. **Rhetorical Q&A** — "The result? Devastating." / "What does this mean? Everything."
 
 ### Style patterns
-17. **Em dash overuse** — em dashes (— or --) at LLM-typical density (multiple per paragraph)
+17. **Em dash overuse** — repeated em dashes that weaken nearby cadence; a raw count or cadence candidate alone is not a finding
 18. **Boldface overuse** — mechanical emphasis on terms
 19. **Inline-header lists** — bullets starting with "**Label:** description"
 20. **Title Case headings** — Capitalizing All Main Words
 21. **Emojis in structure** — emojis decorating headings or bullets
-22. **Curly quotes** — typographic quotes instead of straight quotes
+22. **Curly quotes** — a house-style or format mismatch, not an authorship signal
 
 ### Communication patterns
 23. **Chatbot artifacts** — "I hope this helps!", "Let me know if...", "Certainly!", "Great question!"

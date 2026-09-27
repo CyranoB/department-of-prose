@@ -20,33 +20,24 @@ The dash is also semantically flexible. It can stand in for so many other marks 
 
 ## Examples
 
-After:
-> The tools are useful, even essential, for modern teams.
+Before (the same pause in three nearby sentences):
+> The draft stalled—again. The meeting ran long—again. The decision slipped—again.
 
-Before:
-> The tools are useful — even essential — for modern teams.
+After (the facts remain, but the pauses vary):
+> The draft stalled again. The meeting ran long, and the decision slipped too.
 
-After:
-> It works most of the time.
+A single dash can also carry a useful hesitation:
+> The handle moved—barely. I tried it once more.
 
-Before:
-> It works — most of the time.
-
-After:
-> She arrived late. The meeting had already started.
-
-Before:
-> She arrived late — the meeting had already started.
-
-Notice that the edited versions use different punctuation each time: commas, a period, nothing at all. The before version reaches for the same mark every time.
+That last passage needs no punctuation edit. The question is what the repeated marks do to the passage, not whether a dash appears at all.
 
 ## How to self-spot
 
-Count em dashes per 100 words in your draft, then inspect how they function. A cluster may make the passage feel mannered or interrupt its pace, while a single dash or a dash-heavy house style may be entirely appropriate. A quick search in your editor will count them in seconds.
+Use the rhythm checker’s cadence candidate as a prompt to read the passage, not an automatic edit. It requires three dashes within 150 words of one paragraph and at least 40% of nearby pause marks. Count em dashes per 100 words in your draft, then inspect how they function. A cluster may make the passage feel mannered or interrupt its pace, while a single dash or a dash-heavy house style may be entirely appropriate. A quick search in your editor will count them in seconds.
 
 When you have one, ask what it is doing. If it is interrupting a sentence, try a comma pair or parentheses. If it is introducing a clause, try a colon or a period. If it is at the end for emphasis, just end the sentence.
 
-If several nearby sentences reach for the dash, pause and ask which punctuation best expresses each relationship. Keep the dashes that earn their interruption and restructure the rest.
+If several nearby sentences reach for the dash, pause and ask which punctuation best expresses each relationship. Keep the dashes that earn their interruption and restructure the rest. A similar semicolon cadence merits the same review; quoted punctuation stays intact.
 
 ## Related patterns
 

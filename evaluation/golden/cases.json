@@ -185,5 +185,228 @@
         "must_not_change": ["item identities", "socket quantity", "replacement instruction"]
       }
     }
+,
+    {
+      "id": "GOLD-PUNCT-002",
+      "target": "excessive em-dash cadence",
+      "layer": "editorial",
+      "expected_outcome": "Reduce the repetitive pauses while preserving the delayed decision.",
+      "rationale": "A raw punctuation count or cadence candidate does not by itself require a rewrite.",
+      "source": {
+        "provenance": "original",
+        "text": "The draft stalled—again. The meeting ran long—again. The decision slipped—again. The team finally left without a date."
+      },
+      "required_findings": [
+        "em-dash overuse"
+      ],
+      "permitted_findings": [
+        "raw punctuation counts",
+        "punctuation cadence candidate"
+      ],
+      "forbidden_findings": [
+        "curly quotes as an authorship tell"
+      ],
+      "facts_to_preserve": [
+        "The draft stalled.",
+        "The meeting ran long.",
+        "The decision was delayed.",
+        "The team left without a date."
+      ],
+      "qualifications_to_preserve": [],
+      "prohibited_additions": [
+        "new people",
+        "new causes",
+        "new outcomes"
+      ],
+      "voice_markers_to_retain": [
+        "restrained frustration"
+      ],
+      "rewrite_expectations": {
+        "must_change": [
+          "Vary the repeated dash pauses."
+        ],
+        "may_change": [
+          "Syntax outside quotations if meaning and voice survive."
+        ],
+        "must_not_change": [
+          "The meeting and decision sequence."
+        ]
+      }
+    },
+    {
+      "id": "GOLD-PUNCT-003",
+      "target": "excessive semicolon cadence",
+      "layer": "editorial",
+      "expected_outcome": "Reduce the repetitive pauses while preserving the sequence.",
+      "rationale": "A raw punctuation count or cadence candidate does not by itself require a rewrite.",
+      "source": {
+        "provenance": "original",
+        "text": "The queue grew; the clerk waited; the printer jammed; the room fell quiet. Nobody had a form to hand in."
+      },
+      "required_findings": [
+        "repetitive semicolon cadence"
+      ],
+      "permitted_findings": [
+        "raw punctuation counts",
+        "punctuation cadence candidate"
+      ],
+      "forbidden_findings": [
+        "em-dash overuse"
+      ],
+      "facts_to_preserve": [
+        "The queue grew.",
+        "The clerk waited.",
+        "The printer jammed.",
+        "The room became quiet.",
+        "Nobody had a form to hand in."
+      ],
+      "qualifications_to_preserve": [],
+      "prohibited_additions": [
+        "new people",
+        "new causes",
+        "new outcomes"
+      ],
+      "voice_markers_to_retain": [
+        "plain observational register"
+      ],
+      "rewrite_expectations": {
+        "must_change": [
+          "Vary the repeated semicolon pauses."
+        ],
+        "may_change": [
+          "Syntax outside quotations if meaning and voice survive."
+        ],
+        "must_not_change": [
+          "The sequence of queue, clerk, printer, and room."
+        ]
+      }
+    },
+    {
+      "id": "GOLD-PUNCT-004",
+      "target": "legitimate semicolon list",
+      "layer": "editorial",
+      "expected_outcome": "Keep the semicolons because they separate complex list items.",
+      "rationale": "A raw punctuation count or cadence candidate does not by itself require a rewrite.",
+      "source": {
+        "provenance": "original",
+        "text": "Bring the blue binder, which holds the permit; the red folder, which holds the map; the spare key, which opens the side gate; and the signed receipt."
+      },
+      "required_findings": [],
+      "permitted_findings": [
+        "raw punctuation counts",
+        "punctuation cadence candidate"
+      ],
+      "forbidden_findings": [
+        "repetitive semicolon cadence as an actionable defect"
+      ],
+      "facts_to_preserve": [
+        "The blue binder holds the permit.",
+        "The red folder holds the map.",
+        "The spare key opens the side gate.",
+        "The signed receipt must be brought."
+      ],
+      "qualifications_to_preserve": [],
+      "prohibited_additions": [
+        "new people",
+        "new causes",
+        "new outcomes"
+      ],
+      "voice_markers_to_retain": [
+        "clear list structure"
+      ],
+      "rewrite_expectations": {
+        "must_change": [],
+        "may_change": [
+          "Syntax outside quotations if meaning and voice survive."
+        ],
+        "must_not_change": [
+          "the four items and their descriptions",
+          "the semicolon list"
+        ]
+      }
+    },
+    {
+      "id": "GOLD-PUNCT-005",
+      "target": "quoted punctuation",
+      "layer": "editorial",
+      "expected_outcome": "Preserve the quoted cadence and distinguish it from the narrator’s prose.",
+      "rationale": "A raw punctuation count or cadence candidate does not by itself require a rewrite.",
+      "source": {
+        "provenance": "original",
+        "text": "Mara read the note aloud: “Wait—then listen; wait—then answer; wait—then leave.” She folded it and put it away."
+      },
+      "required_findings": [],
+      "permitted_findings": [
+        "raw punctuation counts",
+        "punctuation cadence candidate"
+      ],
+      "forbidden_findings": [
+        "quoted punctuation attributed to the narrator",
+        "curly quotes as an authorship tell"
+      ],
+      "facts_to_preserve": [
+        "Mara read the note aloud.",
+        "She folded it and put it away."
+      ],
+      "qualifications_to_preserve": [],
+      "prohibited_additions": [
+        "new people",
+        "new causes",
+        "new outcomes"
+      ],
+      "voice_markers_to_retain": [
+        "quoted words and typography"
+      ],
+      "rewrite_expectations": {
+        "must_change": [],
+        "may_change": [
+          "Syntax outside quotations if meaning and voice survive."
+        ],
+        "must_not_change": [
+          "the quotation verbatim"
+        ]
+      }
+    },
+    {
+      "id": "GOLD-PUNCT-006",
+      "target": "isolated intentional em dash",
+      "layer": "editorial",
+      "expected_outcome": "Leave the single intentional dash in place.",
+      "rationale": "A raw punctuation count or cadence candidate does not by itself require a rewrite.",
+      "source": {
+        "provenance": "original",
+        "text": "The handle moved—barely. I tried it once more, then stepped back."
+      },
+      "required_findings": [],
+      "permitted_findings": [
+        "raw punctuation counts"
+      ],
+      "forbidden_findings": [
+        "em-dash overuse"
+      ],
+      "facts_to_preserve": [
+        "The handle barely moved.",
+        "The narrator tried once more and then stepped back."
+      ],
+      "qualifications_to_preserve": [],
+      "prohibited_additions": [
+        "new people",
+        "new causes",
+        "new outcomes"
+      ],
+      "voice_markers_to_retain": [
+        "brief hesitation carried by the dash"
+      ],
+      "rewrite_expectations": {
+        "must_change": [],
+        "may_change": [
+          "Syntax outside quotations if meaning and voice survive."
+        ],
+        "must_not_change": [
+          "the em dash",
+          "event order"
+        ]
+      }
+    }
   ]
 }

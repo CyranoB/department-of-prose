@@ -21,7 +21,7 @@ All three share the same 36-pattern catalog and the same scoring scripts. They d
 ## What slop-sense does
 
 1. Runs the [slop-detector](https://github.com/CyranoB/slop-detector) algorithmic scorer via `npx` (no install needed, just Node.js). Returns a 0-100 SLOP score with specific word hits, trigram matches, and contrast patterns found.
-2. Runs a bundled rhythm checker (`rhythm.py`, pure Python, no dependencies) that measures what the SLOP scorer can't: sentence-length variation (burstiness), contraction ratio, aphoristic paragraph closers, and anaphora. These measurements add structural context to the lexical score; neither script determines who wrote the text.
+2. Runs a bundled rhythm checker (`rhythm.py`, pure Python, no dependencies) that measures what the SLOP scorer can't: sentence-length variation (burstiness), contraction ratio, aphoristic paragraph closers, anaphora, and punctuation cadence candidates. These measurements add structural context to the lexical score; neither script determines who wrote the text.
 3. Scans for 36 qualitative writing patterns associated with formulaic or AI-like prose: significance inflation, promotional language, AI vocabulary, copula avoidance, em dash overuse, sycophantic tone, invented concept labels, rhetorical Q&A, false vulnerability, uniform sentence rhythm (low burstiness), and more.
 4. Rewrites the text with a two-pass process: draft, then a pattern audit that catches what the first pass missed.
 5. **ai;dr mode**: extracts the probable prompt that generated a piece of AI text, with an inflation ratio showing how many words the AI used to say something simple.

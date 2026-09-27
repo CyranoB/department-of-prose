@@ -18,23 +18,23 @@ The editorial question is therefore consistency and compatibility: use the quote
 
 ## Examples
 
-After (straight quotes, the ASCII " character):
-> She said "the meeting was a disaster" and walked out.
-
-Before (curly quotes, the typographic characters U+201C and U+201D):
+In a format that requires ASCII quotation marks, change:
 > She said “the meeting was a disaster” and walked out.
 
-The shift is subtle visually but obvious to anyone running a script over the text, and to many readers' eyes once they know to look. The left and right typographic quotes are different Unicode characters from the straight double-quote.
+to:
+> She said "the meeting was a disaster" and walked out.
+
+In typeset prose that uses curly quotation marks, keep the first version. The mark itself provides no authorship evidence.
 
 ## How to self-spot
 
-Search your draft for the Unicode characters. The four common offenders are U+2018, U+2019, U+201C, and U+201D (left and right single and double typographic quotes). Replace them with straight quotes (' and ") unless the publication or rendering context specifically calls for typographic quotes.
+Search your draft for the Unicode characters. The four common offenders are U+2018, U+2019, U+201C, and U+201D (left and right single and double typographic quotes). Change them only when the publication or rendering context calls for straight quotes; otherwise preserve the supplied typography, especially in quotations.
 
-If you write in a tool that auto-converts (Word, Google Docs, some Markdown editors), turn off the auto-conversion or run a normalization pass before publishing.
+If a tool auto-converts quote style, check the output against the document’s required format before publishing.
 
-A regex like `[‘’“”]` will find all of them. A quick `tr` or sed substitution will fix them.
+A regex like `[‘’“”]` will find all of them. A conversion tool can change them when the house style requires it.
 
 ## Related patterns
 
-- **Pattern 17 (em dash overuse):** also a typographic-character pattern. ChatGPT outputs both.
-- **Pattern 18 (boldface overuse):** another formatting tell from the same generation pipeline.
+- **Pattern 17 (em dash overuse):** another punctuation pattern whose frequency and effect need context.
+- **Pattern 18 (boldface overuse):** another formatting choice to assess in context.

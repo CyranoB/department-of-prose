@@ -22,6 +22,7 @@ Usage:
     cat file.md | python3 rhythm.py
 """
 
+import bisect
 import re
 import sys
 import statistics
@@ -171,6 +172,69 @@ def anaphora_runs(sentences, min_run=3):
     return runs
 
 
+PAUSE_RE = re.compile(r"(?<!-)--(?!-)|—|[,:;]")
+WORD_RE = re.compile(r"\b[\w']+\b")
+
+
+def punctuation_cadence(text):
+    """Return conservative review candidates from already-extracted prose.
+
+    Every 150-word window within a paragraph is considered. A candidate is
+    evidence to inspect, not an authorship verdict or an automatic edit.
+    """
+    candidates = []
+    for paragraph_number, paragraph in enumerate(paragraphs(text), 1):
+        word_starts = [match.start() for match in WORD_RE.finditer(paragraph)]
+        word_total = len(word_starts)
+        if not word_total:
+            continue
+        marks = []
+        counts = {"em dash": [0] * word_total, "semicolon": [0] * word_total, "all": [0] * word_total}
+        for match in PAUSE_RE.finditer(paragraph):
+            mark = match.group()
+            kind = "em dash" if mark in ("—", "--") else "semicolon" if mark == ";" else "other"
+            word_index = min(bisect.bisect_right(word_starts, match.start()), word_total - 1)
+            marks.append((word_index, match.start(), match.end(), kind))
+            counts["all"][word_index] += 1
+            if kind != "other":
+                counts[kind][word_index] += 1
+        if not marks:
+            continue
+        prefixes = {}
+        for kind, values in counts.items():
+            prefix = [0]
+            for value in values:
+                prefix.append(prefix[-1] + value)
+            prefixes[kind] = prefix
+        window_length = min(150, word_total)
+        for kind in ("em dash", "semicolon"):
+            best = None
+            for first_word in range(word_total - window_length + 1):
+                last_word = first_word + window_length
+                count = prefixes[kind][last_word] - prefixes[kind][first_word]
+                pause_count = prefixes["all"][last_word] - prefixes["all"][first_word]
+                if count < 3 or count / pause_count < 0.40:
+                    continue
+                if best is None or (count, -pause_count) > (best[0], -best[1]):
+                    best = (count, pause_count, first_word, last_word)
+            if best is None:
+                continue
+            count, pause_count, first_word, last_word = best
+            evidence = [mark for mark in marks if mark[3] == kind and first_word <= mark[0] < last_word][:3]
+            snippets = [
+                " ".join(paragraph[max(0, mark[1] - 18):min(len(paragraph), mark[2] + 18)].split())
+                for mark in evidence
+            ]
+            candidates.append({
+                "mark": kind,
+                "count": count,
+                "pause_count": pause_count,
+                "paragraph": paragraph_number,
+                "excerpt": " … ".join(snippets),
+            })
+    return candidates
+
+
 # --- report -----------------------------------------------------------------
 
 def band(cv):
@@ -236,13 +300,19 @@ def main():
     print()
 
     em = raw.count("—") + len(re.findall(r"(?<!-)--(?!-)", raw))
+    semicolons = raw.count(";")
     curly = raw.count("“") + raw.count("”") + raw.count("‘") + raw.count("’")
-    print("Typographic observations:")
-    print(f"  em dashes (— or --): {em}   curly quotes: {curly}")
-    if em:
-        print("  review: inspect dash frequency and effect; isolated uses may fit the passage (pattern 17)")
+    print("Typographic observations (raw source counts):")
+    print(f"  em dashes (— or --): {em}   semicolons: {semicolons}   curly quotes: {curly}")
     if curly:
         print("  review: make quote style consistent with the document's house style (pattern 22)")
+    cadence = punctuation_cadence(text)
+    print("Punctuation cadence candidates (prose only; review in context):")
+    if cadence:
+        for item in cadence:
+            print(f"  paragraph {item['paragraph']}: {item['mark']} {item['count']}/{item['pause_count']} nearby pause marks — {item['excerpt']}")
+    else:
+        print("  none under the conservative threshold")
     print()
 
     # --- synthesized summary ---
@@ -255,8 +325,8 @@ def main():
         flags.append("relentless aphoristic closers")
     if runs:
         flags.append("anaphora")
-    if em:
-        flags.append("em dashes")
+    if cadence:
+        flags.append("punctuation cadence candidate")
     print("Structural pattern summary:")
     if flags:
         print(f"  Review in context: {', '.join(flags)}.")
