@@ -12,7 +12,7 @@ The source describes a current, context-dependent AI-style association. It does 
 
 **Source and evidence type:** [WikiProject AI Cleanup, “Inline-header vertical lists”](https://en.wikipedia.org/w/index.php?title=Wikipedia:Signs_of_AI_writing&oldid=1376815715#Inline-header_vertical_lists) — field observation.
 
-**Evidence class:** observation; limited to the source's stated context.
+**Evidence type:** observation. **AI-association support:** limited.
 
 **Strength and scope:** Direct support for a distinctive list shape in Wikipedia, especially when Markdown is pasted into wikitext. In documentation and UI copy, the same form is often useful and conventional. **Reviewed:** 2026-09-27.
 

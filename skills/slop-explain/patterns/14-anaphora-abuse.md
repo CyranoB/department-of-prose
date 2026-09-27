@@ -12,7 +12,7 @@ The audit does not support using this pattern as a current AI-style finding.
 
 **Source and evidence type:** [Former unversioned entry](https://github.com/CyranoB/department-of-prose/blob/f09a61b2369e5e01efff2d99f54efa2dc2453601/skills/slop-explain/patterns/14-anaphora-abuse.md) — repo editorial judgment; no primary comparison located for excessive anaphora in LLM output.
 
-**Evidence class:** editorial; unsubstantiated as an AI association.
+**Evidence type:** editorial. **AI-association support:** unsubstantiated.
 
 **Strength and scope:** Repetition can produce empty emphasis in a passage, but anaphora is a standard human rhetorical device. The entry's causal and frequency claims are unsupported. **Reviewed:** 2026-09-27.
 

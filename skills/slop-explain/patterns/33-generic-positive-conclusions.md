@@ -12,7 +12,7 @@ The audit does not support using this pattern as a current AI-style finding.
 
 **Source and evidence type:** [WikiProject AI Cleanup, “Outline-like conclusions about challenges and future prospects”](https://en.wikipedia.org/w/index.php?title=Wikipedia:Signs_of_AI_writing&oldid=1376815715#Outline-like_conclusions_about_challenges_and_future_prospects) — partial field observation; [former unversioned entry](https://github.com/CyranoB/department-of-prose/blob/f09a61b2369e5e01efff2d99f54efa2dc2453601/skills/slop-explain/patterns/33-generic-positive-conclusions.md) — wider editorial claim.
 
-**Evidence class:** observation; limited to the source's stated context.
+**Evidence type:** observation. **AI-association support:** unsubstantiated.
 
 **Strength and scope:** The source documents a particular upbeat ending inside Wikipedia's rigid “Challenges/Future Prospects” template. It does not validate every optimistic conclusion as an AI sign. Judge whether the conclusion says something specific and supported. **Reviewed:** 2026-09-27.
 

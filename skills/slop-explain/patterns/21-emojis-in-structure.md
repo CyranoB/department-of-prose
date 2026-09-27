@@ -12,7 +12,7 @@ The source treats this as a historical association. It is not a current AI-style
 
 **Source and evidence type:** [WikiProject AI Cleanup, “Emoji as formatting”](https://en.wikipedia.org/w/index.php?title=Wikipedia:Signs_of_AI_writing&oldid=1376815715#Emoji_as_formatting) — historical/qualified field observation.
 
-**Evidence class:** observation; limited to the source's stated context.
+**Evidence type:** observation. **AI-association support:** limited.
 
 **Strength and scope:** The guide says the examples were mostly on Wikipedia talk pages and edit summaries and have become rare. Emoji can be deliberate in informal copy, accessible UI labels, or social posts. **Reviewed:** 2026-09-27.
 

@@ -12,7 +12,7 @@ The source describes a current, context-dependent AI-style association. It does 
 
 **Source and evidence type:** [WikiProject AI Cleanup, “Overuse of boldface”](https://en.wikipedia.org/w/index.php?title=Wikipedia:Signs_of_AI_writing&oldid=1376815715#Overuse_of_boldface) — field observation.
 
-**Evidence class:** observation; limited to the source's stated context.
+**Evidence type:** observation. **AI-association support:** limited.
 
 **Strength and scope:** Supports a mechanical, repeated emphasis pattern in Wikipedia content. Bold is normal for scannability in many genres. The issue is whether emphasis helps the reader. **Reviewed:** 2026-09-27.
 

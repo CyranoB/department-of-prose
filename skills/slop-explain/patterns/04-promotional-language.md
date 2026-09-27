@@ -12,7 +12,7 @@ The source describes a current, context-dependent AI-style association. It does 
 
 **Source and evidence type:** [WikiProject AI Cleanup, “Promotional and advertisement-like language”](https://en.wikipedia.org/w/index.php?title=Wikipedia:Signs_of_AI_writing&oldid=1376815715#Promotional_and_advertisement-like_language) — field observation.
 
-**Evidence class:** observation; limited to the source's stated context.
+**Evidence type:** observation. **AI-association support:** limited.
 
 **Strength and scope:** Direct examples in encyclopedic writing; Wikipedia's neutral register makes promotional words conspicuous. Promotional language is normal in ads and sales copy, and the source does not prove the training-data or RLHF account in the [former unversioned entry](https://github.com/CyranoB/department-of-prose/blob/f09a61b2369e5e01efff2d99f54efa2dc2453601/skills/slop-explain/patterns/04-promotional-language.md). **Reviewed:** 2026-09-27.
 

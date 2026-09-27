@@ -12,7 +12,7 @@ The source describes a current, context-dependent AI-style association. It does 
 
 **Source and evidence type:** [WikiProject AI Cleanup, “Superficial analyses”](https://en.wikipedia.org/w/index.php?title=Wikipedia:Signs_of_AI_writing&oldid=1376815715#Superficial_analyses) — field observation.
 
-**Evidence class:** observation; limited to the source's stated context.
+**Evidence type:** observation. **AI-association support:** limited.
 
 **Strength and scope:** Direct observation of trailing participial phrases that attach unsupported significance or impact claims. The problem is the unsupported inference, not the `-ing` grammar alone. **Reviewed:** 2026-09-27.
 

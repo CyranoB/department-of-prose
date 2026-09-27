@@ -12,7 +12,7 @@ The audit does not support using this pattern as a current AI-style finding.
 
 **Source and evidence type:** [WikiProject AI Cleanup, “Overuse of em dashes”](https://en.wikipedia.org/w/index.php?title=Wikipedia:Signs_of_AI_writing&oldid=1376815715#Overuse_of_em_dashes) — qualified field observation.
 
-**Evidence class:** observation; limited to the source's stated context.
+**Evidence type:** observation. **AI-association support:** unsubstantiated.
 
 **Strength and scope:** The source itself says this may need moving to historical indicators, is most useful with other signals, and cites a July 2026 comparison in which only Claude among contemporary models exceeded professional writers' em dash rate while ChatGPT used fewer. Human writers and style guides also use em dashes. **Reviewed:** 2026-09-27.
 

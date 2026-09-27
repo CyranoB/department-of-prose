@@ -12,7 +12,7 @@ The source describes a current, context-dependent AI-style association. It does 
 
 **Source and evidence type:** [WikiProject AI Cleanup, “Knowledge-cutoff disclaimers and speculation about gaps in sources”](https://en.wikipedia.org/w/index.php?title=Wikipedia:Signs_of_AI_writing&oldid=1376815715#Knowledge-cutoff_disclaimers_and_speculation_about_gaps_in_sources) — first-hand field examples.
 
-**Evidence class:** observation; limited to the source's stated context.
+**Evidence type:** observation. **AI-association support:** limited.
 
 **Strength and scope:** Literal “my last training update” is an assistant artifact in ordinary published prose. The guide says these date-cutoff formulations were more common in older models; vague claims that sources are unavailable require separate factual checking. A quoted transcript is exempt. **Reviewed:** 2026-09-27.
 

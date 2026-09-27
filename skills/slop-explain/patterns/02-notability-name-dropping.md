@@ -12,7 +12,7 @@ The source describes a current, context-dependent AI-style association. It does 
 
 **Source and evidence type:** [WikiProject AI Cleanup, “Canned emphasis on notability, attribution, and media coverage”](https://en.wikipedia.org/w/index.php?title=Wikipedia:Signs_of_AI_writing&oldid=1376815715#Canned_emphasis_on_notability,_attribution,_and_media_coverage) — field observation.
 
-**Evidence class:** observation; limited to the source's stated context.
+**Evidence type:** observation. **AI-association support:** limited.
 
 **Strength and scope:** Direct in Wikipedia biographies and drafts, where notability is a policy concept. The field guide distinguishes this narrow source-focused phrasing from ordinary press releases. Transfer to general bios or essays is uncertain. **Reviewed:** 2026-09-27.
 

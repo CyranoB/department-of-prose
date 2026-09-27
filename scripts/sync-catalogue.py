@@ -15,16 +15,28 @@ TARGETS = (
     ROOT / "dist-src/slop-sense-bundle/catalogue.md",
 )
 POLICY = {"Current": "current_contextual", "Past": "historical_only", "None": "none"}
+EVIDENCE_TYPES = {"empirical", "observation", "editorial"}
+EVIDENCE_STRENGTHS = {"supported", "limited", "unsubstantiated"}
 
 
-def evidence_class(number, source):
-    if number == 25:
-        return "empirical", "supported within interactive assistant responses"
-    if number in (34, 36):
-        return "empirical", "limited for this specific pattern"
-    if "repo editorial judgment" in source or "project editorial judgment" in source:
-        return "editorial", "unsubstantiated as an AI association"
-    return "observation", "limited to the source's stated context"
+def catalogue_metadata(spec, audit):
+    matches = re.findall(
+        r"^Status: implemented catalogue policy, version `([0-9]+\.[0-9]+\.[0-9]+)` "
+        r"\((\d{4}-\d{2}-\d{2})\)\.",
+        spec,
+        re.MULTILINE,
+    )
+    if len(matches) != 1:
+        raise ValueError("Spec needs one implemented catalogue version and review date")
+    version, reviewed = matches[0]
+    vocabulary = re.search(
+        r"^## Pattern #8 editorial vocabulary, version `([^`]+)`$", spec, re.MULTILINE
+    )
+    if not vocabulary or vocabulary.group(1) != version:
+        raise ValueError("Pattern #8 vocabulary version must match the catalogue version")
+    if not re.search(rf"^Reviewed: \*\*{reviewed}\*\*\.", audit, re.MULTILINE):
+        raise ValueError("Source audit review date must match the catalogue date")
+    return version, reviewed
 
 
 def read_entries(spec, audit):
@@ -52,19 +64,29 @@ def read_entries(spec, audit):
 def source_lines(section):
     source = re.search(r"^- \*\*Source/type:\*\* (.+)$", section, re.MULTILINE)
     limit = re.search(r"^- \*\*Strength/limit:\*\* (.+)$", section, re.MULTILINE)
-    if not source or not limit:
-        raise ValueError("Every audit entry needs source/type and strength/limit")
+    evidence_types = re.findall(r"^- \*\*Evidence type:\*\* ([^\n]+)$", section, re.MULTILINE)
+    evidence_strengths = re.findall(r"^- \*\*Evidence strength:\*\* ([^\n]+)$", section, re.MULTILINE)
+    if not source or not limit or len(evidence_types) != 1 or len(evidence_strengths) != 1:
+        raise ValueError("Every audit entry needs source, limit, evidence type, and strength")
+    evidence_type = evidence_types[0].removesuffix(".")
+    evidence_strength = evidence_strengths[0].removesuffix(".")
+    if evidence_type not in EVIDENCE_TYPES:
+        raise ValueError(f"Invalid evidence type: {evidence_type}")
+    if evidence_strength not in EVIDENCE_STRENGTHS:
+        raise ValueError(f"Invalid evidence strength: {evidence_strength}")
+    if evidence_type == "editorial" and evidence_strength != "unsubstantiated":
+        raise ValueError("Editorial judgment cannot establish an AI association")
     source_text = source.group(1)
     limit_text = limit.group(1)
-    return source_text, limit_text
+    return source_text, limit_text, evidence_type, evidence_strength
 
 
-def render(spec, audit):
+def render(spec, audit, version, reviewed):
     rows, sections = read_entries(spec, audit)
     parts = [
         "# Slop Sense editorial pattern catalogue",
         "",
-        "Catalogue version: **1.0.0**. Reviewed: **2026-09-27**.",
+        f"Catalogue version: **{version}**. Reviewed: **{reviewed}**.",
         "",
         "The optional scorer's score and hits are raw measurements. This catalogue",
         "governs contextual editorial findings. `current_contextual` permits a",
@@ -79,8 +101,9 @@ def render(spec, audit):
     ]
     for number, name, signal, action, guard in rows:
         n = int(number)
-        source, limit = source_lines(sections[n])
-        evidence_type, evidence_strength = evidence_class(n, source)
+        source, limit, evidence_type, evidence_strength = source_lines(sections[n])
+        if signal == "Current" and evidence_strength == "unsubstantiated":
+            raise ValueError(f"Pattern {number} needs evidence for current AI-signal use")
         parts.extend(
             [
                 f"## {number} {name}",
@@ -89,7 +112,7 @@ def render(spec, audit):
                 f"**AI signal:** {POLICY[signal]}. **Editorial action:** {action.lower()}.",
                 f"- **Trigger and false-positive guard:** {guard}",
                 f"- **Source and evidence type:** {source}",
-                f"- **Evidence class:** {evidence_type}; {evidence_strength}.",
+                f"- **Evidence type:** {evidence_type}. **AI-association support:** {evidence_strength}.",
                 f"- **Evidence strength and scope:** {limit}",
             ]
         )
@@ -97,7 +120,7 @@ def render(spec, audit):
             parts.append("- **Previous name:** False vulnerability (lookup alias).")
         parts.append("")
     vocabulary = re.search(
-        r"^## Pattern #8 editorial vocabulary, version .*?\n(.*?)(?=^## Deduplication and migration)",
+        r"^## Pattern #8 editorial vocabulary, version `[^`]+`\n(.*?)(?=^## Deduplication and migration)",
         spec,
         re.MULTILINE | re.DOTALL,
     )
@@ -118,7 +141,7 @@ def render(spec, audit):
             "",
             "## Change from the unversioned catalogue",
             "",
-            "Version 1.0.0 adds source provenance, evidence limits, false-positive",
+            f"Version {version} includes source provenance, evidence limits, false-positive",
             "guards, and separate AI-signal and editorial-action decisions for all",
             "36 IDs. #12 moves to historical-only AI use; #17 loses its current",
             "AI-signal use; #21 is historical-only; #22 is retired as an AI",
@@ -131,10 +154,9 @@ def render(spec, audit):
     return "\n".join(parts)
 
 
-def render_deep_dive(row, audit_section):
+def render_deep_dive(row, audit_section, version):
     number, name, signal, action, guard = row
-    source, limit = source_lines(audit_section)
-    evidence_type, evidence_strength = evidence_class(int(number), source)
+    source, limit, evidence_type, evidence_strength = source_lines(audit_section)
     signal_text = {
         "Current": (
             "The source describes a current, context-dependent AI-style "
@@ -206,7 +228,7 @@ def render_deep_dive(row, audit_section):
     lines = [
         f"# Pattern {int(number)}: {name}",
         "",
-        "Catalogue version **1.0.0**. [Full entry](../catalogue.md).",
+        f"Catalogue version **{version}**. [Full entry](../catalogue.md).",
         "",
         "## What to assess",
         "",
@@ -218,7 +240,7 @@ def render_deep_dive(row, audit_section):
         "",
         f"**Source and evidence type:** {source}",
         "",
-        f"**Evidence class:** {evidence_type}; {evidence_strength}.",
+        f"**Evidence type:** {evidence_type}. **AI-association support:** {evidence_strength}.",
         "",
         f"**Strength and scope:** {limit}",
         "",
@@ -239,7 +261,8 @@ def main():
     args = parser.parse_args()
     spec = SPEC.read_text(encoding="utf-8")
     audit = AUDIT.read_text(encoding="utf-8")
-    content = render(spec, audit)
+    version, reviewed = catalogue_metadata(spec, audit)
+    content = render(spec, audit, version, reviewed)
     rows, sections = read_entries(spec, audit)
     outputs = {target: content for target in TARGETS}
     pattern_dir = ROOT / "skills/slop-explain/patterns"
@@ -248,7 +271,7 @@ def main():
         files = list(pattern_dir.glob(number + "-*.md"))
         if len(files) != 1:
             raise ValueError(f"Expected one deep-dive file for pattern {number}")
-        outputs[files[0]] = render_deep_dive(row, sections[int(number)])
+        outputs[files[0]] = render_deep_dive(row, sections[int(number)], version)
     stale = []
     for target, expected in outputs.items():
         if args.check:

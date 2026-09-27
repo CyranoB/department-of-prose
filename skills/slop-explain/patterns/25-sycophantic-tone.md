@@ -12,7 +12,7 @@ The source describes a current, context-dependent AI-style association. It does 
 
 **Source and evidence type:** [Anthropic, “Towards understanding sycophancy in language models”](https://www.anthropic.com/research/towards-understanding-sycophancy-in-language-models) — primary model-behavior research; [OpenAI's GPT-4o postmortem](https://openai.com/index/sycophancy-in-gpt-4o/) — first-party product incident; [WikiProject “Collaborative communication”](https://en.wikipedia.org/w/index.php?title=Wikipedia:Signs_of_AI_writing&oldid=1376815715#Collaborative_communication) — pasted-output examples.
 
-**Evidence class:** empirical; supported within interactive assistant responses.
+**Evidence type:** empirical. **AI-association support:** supported.
 
 **Strength and scope:** The research supports model agreement and flattery in interactive assistant responses. It does not establish that compliments in published prose are AI-written. The proposed catalogue therefore limits #25 to assistant responses; promotional praise in published prose is assessed under #04. **Reviewed:** 2026-09-27.
 

@@ -12,7 +12,7 @@ The source describes a current, context-dependent AI-style association. It does 
 
 **Source and evidence type:** [WikiProject AI Cleanup, “High density of ‘AI vocabulary’ words”](https://en.wikipedia.org/w/index.php?title=Wikipedia:Signs_of_AI_writing&oldid=1376815715#High_density_of_%22AI_vocabulary%22_words) — field observation; [EQBench Slop Score methodology](https://eqbench.com/slop-score.html) — corpus benchmark for its *separate, versioned* word and trigram lists.
 
-**Evidence class:** observation; limited to the source's stated context.
+**Evidence type:** observation. **AI-association support:** limited.
 
 **Strength and scope:** Both support looking at concentration relative to genre and meaning, never treating a single word as proof. EQBench's sampled model outputs and human baseline do not validate this editorial entry's whole list, dialect claims, or proposed causes of individual choices. **Reviewed:** 2026-09-27.
 

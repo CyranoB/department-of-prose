@@ -12,7 +12,7 @@ The source describes a current, context-dependent AI-style association. It does 
 
 **Source and evidence type:** [WikiProject AI Cleanup, “Negative parallelisms”](https://en.wikipedia.org/w/index.php?title=Wikipedia:Signs_of_AI_writing&oldid=1376815715#Negative_parallelisms) — field observation; [EQBench Slop Score methodology](https://eqbench.com/slop-score.html) — quantitative comparison for selected “not X, but Y” constructions.
 
-**Evidence class:** observation; limited to the source's stated context.
+**Evidence type:** observation. **AI-association support:** limited.
 
 **Strength and scope:** Direct support for overuse of a defined family of contrasts in sampled genres. Both sources acknowledge ordinary human uses. The test is whether the contrast conveys a real distinction. **Reviewed:** 2026-09-27.
 

@@ -12,7 +12,7 @@ The source describes a current, context-dependent AI-style association. It does 
 
 **Source and evidence type:** [WikiProject AI Cleanup, “Collaborative communication”](https://en.wikipedia.org/w/index.php?title=Wikipedia:Signs_of_AI_writing&oldid=1376815715#Collaborative_communication) and [“Internal formatting and reference markup bugs”](https://en.wikipedia.org/w/index.php?title=Wikipedia:Signs_of_AI_writing&oldid=1376815715#Internal_formatting_and_reference_markup_bugs) — first-hand field examples.
 
-**Evidence class:** observation; limited to the source's stated context.
+**Evidence type:** observation. **AI-association support:** limited.
 
 **Strength and scope:** Unedited assistant-addressed text or model-specific markup in a published article is strong evidence of a misplaced chat response, but generic politeness is not. Quoted dialogue, documentation, and intentionally preserved transcripts are legitimate. **Reviewed:** 2026-09-27.
 

@@ -12,7 +12,7 @@ The source treats this as a historical association. It is not a current AI-style
 
 **Source and evidence type:** [WikiProject AI Cleanup, “Lexical diversity/elegant variation”](https://en.wikipedia.org/w/index.php?title=Wikipedia:Signs_of_AI_writing&oldid=1376815715#Lexical_diversity/elegant_variation) — **historical** field observation.
 
-**Evidence class:** observation; limited to the source's stated context.
+**Evidence type:** observation. **AI-association support:** limited.
 
 **Strength and scope:** The field guide moved this to historical indicators: older models and some Wikipedia comparisons showed it, but it is not presented as a strong current sign. Swapping a clear technical term for looser synonyms can still harm reference clarity. Do not infer current AI use from it. **Reviewed:** 2026-09-27.
 

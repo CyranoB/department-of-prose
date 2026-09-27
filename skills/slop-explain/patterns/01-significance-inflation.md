@@ -12,7 +12,7 @@ The source describes a current, context-dependent AI-style association. It does 
 
 **Source and evidence type:** [WikiProject AI Cleanup, “Undue emphasis on significance, legacy, and broader trends”](https://en.wikipedia.org/w/index.php?title=Wikipedia:Signs_of_AI_writing&oldid=1376815715#Undue_emphasis_on_significance,_legacy,_and_broader_trends) — field observation.
 
-**Evidence class:** observation; limited to the source's stated context.
+**Evidence type:** observation. **AI-association support:** limited.
 
 **Strength and scope:** Direct match to the editorial pattern, with concrete Wikipedia examples. It supports checking whether the asserted significance is earned; it does not establish that a given writer used AI or that the training incentives asserted in the [former unversioned entry](https://github.com/CyranoB/department-of-prose/blob/f09a61b2369e5e01efff2d99f54efa2dc2453601/skills/slop-explain/patterns/01-significance-inflation.md) caused it. **Reviewed:** 2026-09-27.
 
