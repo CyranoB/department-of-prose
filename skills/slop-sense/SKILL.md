@@ -49,13 +49,13 @@ Follow this sequence:
    ```
    python3 <path-to-this-skill>/scripts/rhythm.py /tmp/slop-input.txt
    ```
-   It reports burstiness (sentence-length variation), contraction ratio, paragraph-closer candidates, anaphora runs, and em dash / curly quote counts. Read its output as evidence for patterns 34-36, 14, 17, and 22.
+   It reports burstiness (sentence-length variation), contraction ratio, paragraph-closer candidates, anaphora runs, and raw em-dash / semicolon / curly-quote counts plus prose cadence candidates. Read candidates in context before naming pattern 17 or proposing an edit.
 
    A low SLOP score says only that the lexical scorer found few matches. It says nothing about rhythm, voice, clarity, or authorship. Use `rhythm.py` to find structural patterns worth reviewing, then judge them in the passage's genre and intended voice.
 2. **Scan** the text against the 36 patterns below. If you have scorer output, use it as evidence. If not, rely on your own reading. Either way, name exactly which patterns you found.
 3. **Score**: if the scorer ran, report its number and pattern-evidence band (minimal / light / moderate / strong / pervasive). Add a qualitative assessment based on the frequency, context, and effect of all findings. Never translate the score into a probability of AI authorship.
 4. **Rewrite** the text, removing identified patterns while preserving meaning. Meaning includes the factual record: read [Fact preservation](#fact-preservation) before you start.
-5. **Audit**: ask yourself "Which repeated patterns still weaken this passage?" Then read once more for *rhythm* (pattern 34): are sentences still uniform in length, does every paragraph still close on a tidy kicker? Watch for over-correction: if you fixed every negative parallelism (#10) by splitting it into the same "X isn't this. It's that." two-beat, you have traded one repeated construction for another. Vary the repairs. Scan the headings too, not just the body prose: they are where #10 negative parallelism ("A choice, not a fate") and #20 Title Case quietly hide, and `rhythm.py` strips headings before analysis so it cannot see them. List remaining patterns and their effect, then revise once more. If `rhythm.py` is available, re-run it on your rewrite to confirm the measurements changed where intended. The script catches patterns you introduce while rewriting, not just the ones you started with.
+5. **Audit**: ask yourself "Which repeated patterns still weaken this passage?" Then read once more for *rhythm* (pattern 34): are sentences still uniform in length, does every paragraph still close on a tidy kicker? Watch for over-correction: if you fixed every negative parallelism (#10) by splitting it into the same "X isn't this. It's that." two-beat, you have traded one repeated construction for another. Vary the repairs. Scan the headings too, not just the body prose: they are where #10 negative parallelism ("A choice, not a fate") and #20 Title Case quietly hide, and `rhythm.py` strips headings before analysis so it cannot see them. List remaining patterns and their effect, including whether any punctuation cadence candidate still weakens the draft; keep intentional punctuation, then revise once more. If `rhythm.py` is available, re-run it on your rewrite to confirm the measurements changed where intended. The script catches patterns you introduce while rewriting, not just the ones you started with.
 6. **Fact check the version you are about to present.** Do this last, after the revision in step 5, so it covers the text the user actually receives rather than an earlier draft. Put it beside the original and ask three things. *Added:* does it assert anything the original did not, such as a source, a cause, a figure, or a stronger claim? *Omitted:* did any name, number, quotation, attribution, hedge, or scope limit disappear? *Changed:* did any claim shift in strength, subject, or direction? Check each item on its own rather than judging the passage as a whole; a rewrite can read as cautious overall while one specific hedge has gone missing.
 7. **Present** the final version, the fact-check result, and a brief summary of what changed.
 
@@ -181,14 +181,11 @@ Self-posed questions answered immediately. Asking questions nobody asked for dra
 
 ### Style Patterns (17-22)
 
-**17. Em dash overuse (the hardest pattern to fix)**
-LLMs use em dashes (— and --) far more than human writers do. This is one of the strongest AI tells and also the one you are most likely to leave in your own rewrites, because dashes feel natural to you. They are not natural at the rate you use them. A human writer might use one em dash per page. LLMs use multiple per paragraph.
-Every time you are about to write an em dash, stop and use a comma, a period, or parentheses instead. If the sentence needs restructuring to work without the dash, restructure it.
-> Before: "The tools are useful — even essential — for modern teams."
-> After: "The tools are useful, even essential, for modern teams."
-> Before: "It works — most of the time."
-> After: "It works most of the time."
-Zero em dashes *of your own* in the final rewrite is the target. If you find yourself reaching for one, that is the habit talking. A dash inside a quotation you are preserving belongs to the speaker: leave it, and do not count it against the rewrite.
+**17. Em dash overuse**
+Repeated em dashes can give nearby sentences the same stop-start rhythm. Count them, then inspect their frequency, function, and effect in this passage. A single dash or a deliberate pair does not require an edit; neither does a cadence candidate by itself. Semicolon clusters deserve the same review, without becoming a separate numbered pattern.
+When repeated pauses weaken the prose, keep the marks that carry meaning and vary only the others. A comma, colon, period, or restructure may work better, but do not flatten the author's voice to reduce a count. Preserve punctuation inside quotations exactly.
+> Before: "The draft stalled—again. The meeting ran long—again. The decision slipped—again."
+> After: "The draft stalled again. The meeting ran long, and the decision slipped too."
 
 **18. Boldface overuse**
 Mechanical emphasis on terms.
@@ -207,8 +204,7 @@ Decorating headings or bullets with emojis.
 > After: Remove them.
 
 **22. Curly quotes**
-ChatGPT uses curly quotes instead of straight quotes.
-> After: Use straight quotes.
+Curly quotes are a typography choice, not evidence of authorship. Note them as a raw observation. Suggest a change only when the document's house style or format calls for straight quotes, and preserve quoted material unless the user asks for typography normalization.
 
 ### Communication Patterns (23-29)
 
@@ -334,7 +330,7 @@ When presenting results:
 2. **Pattern summary**: which patterns you found, their frequency and context, and how they affect the passage
 3. **Draft rewrite**: first pass with patterns removed
 4. **Pattern audit**: brief bullets listing repeated constructions or rhythm problems that still weaken the draft
-5. **Final rewrite**: revised after the audit, with no em dashes of your own
+5. **Final rewrite**: revised after the audit, with intentional punctuation retained; repeated pauses repaired only where they weaken the passage
 6. **Fact check**: run on the final rewrite above, not on the draft. Confirm nothing was added, omitted, or changed in strength. List anything you could not preserve or marked `[source?]`. Say so explicitly when it is clean; do not skip the line.
 7. **Changes summary**: what was fixed (optional, if helpful)
 
@@ -360,4 +356,4 @@ The goal: compress AI-generated verbosity back to the instruction that likely pr
 >
 > **Original:** 2,847 words | **Prompt:** 12 words | **Inflation:** 237x
 >
-> **Detected patterns:** negative parallelism, em dash addiction, grandiose stakes inflation, invented concept labels
+> **Detected patterns:** negative parallelism, repetitive dash cadence, grandiose stakes inflation, invented concept labels

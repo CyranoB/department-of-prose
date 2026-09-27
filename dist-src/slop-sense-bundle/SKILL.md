@@ -51,7 +51,7 @@ Two scripts ship in this skill's `scripts/` directory and measure different, com
 
 ```bash
 bash scripts/score.sh /tmp/slop-input.txt        # lexical: slop words, trigrams, contrast phrases
-python3 scripts/rhythm.py /tmp/slop-input.txt     # structural: burstiness, contractions, closers, anaphora
+python3 scripts/rhythm.py /tmp/slop-input.txt     # structural: burstiness, contractions, closers, anaphora, punctuation cadence
 ```
 
 (Save pasted text to `/tmp/slop-input.txt` first. If running from outside the skill directory, use absolute paths.)
@@ -74,11 +74,11 @@ You are a writing editor. Identify recurring patterns and rewrite the passage to
 
 ### Workflow
 
-1. **Try the scorer.** Save the user's text to `/tmp/slop-input.txt`, then run `bash scripts/score.sh /tmp/slop-input.txt`. If it returns a score, use it as evidence. If it fails, proceed without.
+1. **Run available checks.** Save the user's text to `/tmp/slop-input.txt`, then run `bash scripts/score.sh /tmp/slop-input.txt` and `python3 scripts/rhythm.py /tmp/slop-input.txt`. Use the lexical score and structural measurements as evidence. The rhythm checker separates raw punctuation counts from prose cadence candidates; neither is an automatic rewrite instruction. If a check fails, proceed with the evidence available.
 2. **Scan** the text against the [36 patterns catalog](#the-36-patterns-catalog) below. Name exactly which ones you found.
 3. **Score** — report the algorithmic number if available, plus its pattern-evidence band (minimal / light / moderate / strong / pervasive). Add a qualitative assessment based on the frequency, context, and effect of all findings. Never translate the score into a probability of AI authorship.
 4. **Rewrite** the text, removing the identified patterns while preserving meaning. Meaning includes the factual record: read [Fact preservation](#fact-preservation) first.
-5. **Audit** — ask yourself "Which repeated patterns still weaken this passage?" Read once more for rhythm (pattern 34) and watch for over-correction: do not fix every negative parallelism (#10) by splitting it into the same "X isn't this. It's that." two-beat. Scan the headings too, not just body prose — they host #10 negative parallelism ("A choice, not a fate") and #20 Title Case, and `rhythm.py` strips headings so it cannot see them. Re-run `python3 scripts/rhythm.py` on your rewrite to confirm the measurements changed where intended. List remaining patterns and their effect, then revise once more.
+5. **Audit** — ask yourself "Which repeated patterns still weaken this passage?" Read once more for rhythm (pattern 34) and watch for over-correction: do not fix every negative parallelism (#10) by splitting it into the same "X isn't this. It's that." two-beat. Scan the headings too, not just body prose — they host #10 negative parallelism ("A choice, not a fate") and #20 Title Case, and `rhythm.py` strips headings so it cannot see them. Re-run `python3 scripts/rhythm.py` on your rewrite to confirm the measurements changed where intended. List remaining patterns and their effect, including whether any punctuation cadence candidate still weakens the draft; keep intentional punctuation, then revise once more.
 6. **Fact check the version you are about to present.** Do this last, after the revision in step 5, so it covers the delivered text rather than an earlier draft. Beside the original, ask whether anything was *added* (a source, cause, figure, or stronger claim the original lacked), *omitted* (a name, number, quotation, attribution, hedge, or scope limit), or *changed* in strength, subject, or direction. Check each item on its own; a rewrite can read as cautious overall while one specific hedge has gone missing.
 7. **Present** the final version, the fact-check result, and a brief summary of what changed.
 
@@ -91,7 +91,7 @@ The traps, each tied to the pattern that invites it:
 - Removing a vague attribution (#5) tempts you to supply the source it lacked. Report what the input said ("unnamed industry reports") or say it named none. "Name the source" applies when the source is elsewhere in the document, not when you would have to make it up.
 - Cutting excessive hedging (#31) means dropping the redundant qualifiers, not the doubt they carried. "May have reduced" is not "reduced".
 - Fixing synonym cycling (#12) means repeating a name, not paraphrasing it. A legal name is not its trade name.
-- Quoted text is off limits even when full of tells. Report a #10, #17, or #22 hit inside a quotation as the speaker's and fix the reporting clause instead. This outranks #17's zero-em-dash target: a quoted dash stays.
+- Quoted text is off limits even when full of tells. Report a #10, #17, or #22 hit inside a quotation as the speaker's and fix the reporting clause instead. A quoted dash or semicolon stays; raw punctuation counts do not authorize changing a speaker's words.
 - Scope limits go first in any tightening pass. "In the pilot group", "self-reported", "among the 40 who finished" are load-bearing.
 
 If a pattern can only be removed by adding specifics the input does not contain, leave it. Keep the general phrasing, or mark the gap (`[source?]`, `[date?]`) and raise it in the summary.
@@ -102,7 +102,7 @@ If a pattern can only be removed by adding specifics the input does not contain,
 2. **Pattern summary** — which patterns you found, their frequency and context, and how they affect the passage
 3. **Draft rewrite** — first pass with patterns removed
 4. **Pattern audit** — bullets listing repeated constructions or rhythm problems that still weaken the draft
-5. **Final rewrite** — revised after the audit, no em dashes of your own
+5. **Final rewrite** — revised after the audit, intentional punctuation retained; repeated pauses repaired only where they weaken the passage
 6. **Fact check** — run on the final rewrite above, not the draft. Confirm nothing was added, omitted, or changed in strength; list anything you could not preserve or marked `[source?]`. State it explicitly when clean, never skip the line
 7. **Changes summary** — what was fixed (optional, if helpful)
 
@@ -143,7 +143,7 @@ Read-only writing-pattern review. Score and report. **Do not rewrite. Do not sug
 ### Workflow
 
 1. **Get the text** using the input handling above. If pasted, save it to `/tmp/slop-check-input.txt`.
-2. **Run both scripts**: `bash scripts/score.sh /tmp/slop-check-input.txt` and `python3 scripts/rhythm.py /tmp/slop-check-input.txt`. If either fails, skip it and continue with what you have. A low lexical score does not cancel repeated structural findings.
+2. **Run both scripts**: `bash scripts/score.sh /tmp/slop-check-input.txt` and `python3 scripts/rhythm.py /tmp/slop-check-input.txt`. If either fails, skip it and continue with what you have. Treat raw punctuation counts and cadence candidates as separate observations; report a punctuation finding only when repetition weakens the passage. A low lexical score does not cancel repeated structural findings.
 3. **Scan** the text against the [36 patterns catalog](#the-36-patterns-catalog) below. Name every pattern present. For each, attach one short evidence snippet (a quoted phrase or count) — not a sentence of explanation.
 4. **Emit the verdict and stop.** Do not produce a rewrite. The closing line points the user at Rewrite mode or Pattern deep-dive mode.
 
@@ -255,7 +255,7 @@ Goal: compress AI-generated verbosity back to the instruction that likely produc
 >
 > **Original:** 2,847 words | **Prompt:** 12 words | **Inflation:** 237x
 >
-> **Detected patterns:** negative parallelism, em dash addiction, grandiose stakes inflation, invented concept labels
+> **Detected patterns:** negative parallelism, repetitive dash cadence, grandiose stakes inflation, invented concept labels
 
 ---
 
@@ -355,14 +355,11 @@ Self-posed questions answered immediately. Asking questions nobody asked for dra
 
 ### Style patterns (17-22)
 
-**17. Em dash overuse (the hardest pattern to fix)**
-LLMs use em dashes (— and --) far more than human writers do. This is one of the strongest AI tells and also the one you are most likely to leave in your own rewrites, because dashes feel natural to you. They are not natural at the rate you use them. A human writer might use one em dash per page. LLMs use multiple per paragraph.
-Every time you are about to write an em dash, stop and use a comma, a period, or parentheses instead. If the sentence needs restructuring to work without the dash, restructure it.
-> Before: "The tools are useful — even essential — for modern teams."
-> After: "The tools are useful, even essential, for modern teams."
-> Before: "It works — most of the time."
-> After: "It works most of the time."
-Zero em dashes *of your own* in the final rewrite is the target. If you find yourself reaching for one, that is the habit talking. A dash inside a quotation you are preserving belongs to the speaker: leave it, and do not count it against the rewrite.
+**17. Em dash overuse**
+Repeated em dashes can give nearby sentences the same stop-start rhythm. Count them, then inspect their frequency, function, and effect in this passage. A single dash or a deliberate pair does not require an edit; neither does a cadence candidate by itself. Semicolon clusters deserve the same review, without becoming a separate numbered pattern.
+When repeated pauses weaken the prose, keep the marks that carry meaning and vary only the others. A comma, colon, period, or restructure may work better, but do not flatten the author's voice to reduce a count. Preserve punctuation inside quotations exactly.
+> Before: "The draft stalled—again. The meeting ran long—again. The decision slipped—again."
+> After: "The draft stalled again. The meeting ran long, and the decision slipped too."
 
 **18. Boldface overuse**
 Mechanical emphasis on terms.
@@ -381,8 +378,7 @@ Decorating headings or bullets with emojis.
 > After: Remove them.
 
 **22. Curly quotes**
-ChatGPT uses curly quotes instead of straight quotes.
-> After: Use straight quotes.
+Curly quotes are a typography choice, not evidence of authorship. Note them as a raw observation. Suggest a change only when the document's house style or format calls for straight quotes, and preserve quoted material unless the user asks for typography normalization.
 
 ### Communication patterns (23-29)
 

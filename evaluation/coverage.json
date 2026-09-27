@@ -47,10 +47,10 @@
       "boundary": ["DET-CLI-003"]
     },
     {
-      "target": "raw punctuation counts and contextual guidance/severity",
-      "positive": ["DET-PUNCT-001"],
-      "negative": ["DET-PUNCT-002"],
-      "boundary": ["DET-PUNCT-003"]
+      "target": "raw punctuation counts and prose cadence candidates",
+      "positive": ["DET-PUNCT-001", "DET-PUNCT-005", "DET-PUNCT-006", "DET-PUNCT-012", "DET-PUNCT-015"],
+      "negative": ["DET-PUNCT-002", "DET-PUNCT-004", "DET-PUNCT-009", "DET-PUNCT-010", "DET-PUNCT-011"],
+      "boundary": ["DET-PUNCT-003", "DET-PUNCT-007", "DET-PUNCT-008", "DET-PUNCT-013", "DET-PUNCT-014"]
     },
     {
       "target": "score.sh selection order, exact npx pin, forwarding, status, and unavailable behavior",
@@ -102,7 +102,7 @@
     "contraction and enumerated formal-form counts plus contraction ratio",
     "candidate aphoristic paragraph closers",
     "three-or-more identical sentence-opening runs",
-    "em-dash and curly-quote raw counts"
+    "em-dash, semicolon, and curly-quote raw counts; em-dash and semicolon prose cadence candidates"
   ],
   "external_integration": {
     "package": "slop-detector",
@@ -126,7 +126,6 @@
   "future_behavior": [
     {"owner": "#7", "decision": "Fact-preservation behavior may become enforceable beyond the golden rubric."},
     {"owner": "#8", "decision": "Link destinations and other Markdown extraction gaps should be excluded from prose metrics."},
-    {"owner": "#9", "decision": "Punctuation advice should account for quotations and deliberate authorial use."},
     {"owner": "#10", "decision": "Verification behavior may add deterministic evidence checks while preserving qualified claims."},
     {"owner": "#13", "decision": "Severity should use passage context instead of any-match escalation."},
     {"owner": "#14", "decision": "Catalogue policy must decide how literal and legitimate domain uses affect actionable findings."}

@@ -585,5 +585,150 @@
       "scorer": {"stdin": "The kicker scored before halftime."},
       "assert": {"returncode": 0, "version": "1.2.0", "stdout": {"not_contains": ["false_suspense"]}, "stderr": {"equals": ""}}
     }
+,
+    {
+      "id": "DET-PUNCT-004",
+      "target": "punctuation cadence candidate",
+      "layer": "deterministic",
+      "polarity": "negative",
+      "status": "pass",
+      "expected_outcome": "No candidate for two dashes.",
+      "rationale": "Separates a measured punctuation cluster from the editorial decision to change it.",
+      "kind": "python_call",
+      "call": {"function": "punctuation_cadence", "args": ["One—two—three."]},
+      "assert": {"equals": []}
+    },
+    {
+      "id": "DET-PUNCT-005",
+      "target": "punctuation cadence candidate",
+      "layer": "deterministic",
+      "polarity": "positive",
+      "status": "pass",
+      "expected_outcome": "em dash",
+      "rationale": "Separates a measured punctuation cluster from the editorial decision to change it.",
+      "kind": "python_call",
+      "call": {"function": "punctuation_cadence", "args": ["One—two—three—four."]},
+      "assert": {"contains": ["em dash"]}
+    },
+    {
+      "id": "DET-PUNCT-006",
+      "target": "punctuation cadence candidate",
+      "layer": "deterministic",
+      "polarity": "positive",
+      "status": "pass",
+      "expected_outcome": "semicolon",
+      "rationale": "Separates a measured punctuation cluster from the editorial decision to change it.",
+      "kind": "python_call",
+      "call": {"function": "punctuation_cadence", "args": ["One; two; three; four."]},
+      "assert": {"contains": ["semicolon"]}
+    },
+    {
+      "id": "DET-PUNCT-007",
+      "target": "punctuation cadence candidate",
+      "layer": "deterministic",
+      "polarity": "boundary",
+      "status": "pass",
+      "expected_outcome": "em dash",
+      "rationale": "Separates a measured punctuation cluster from the editorial decision to change it.",
+      "kind": "python_call",
+      "call": {"function": "punctuation_cadence", "args": ["One—two—three—four, five, six, seven, eight."]},
+      "assert": {"contains": ["em dash"]}
+    },
+    {
+      "id": "DET-PUNCT-008",
+      "target": "punctuation cadence candidate",
+      "layer": "deterministic",
+      "polarity": "boundary",
+      "status": "pass",
+      "expected_outcome": "No candidate below a 40% punctuation share.",
+      "rationale": "Separates a measured punctuation cluster from the editorial decision to change it.",
+      "kind": "python_call",
+      "call": {"function": "punctuation_cadence", "args": ["One—two—three—four, five, six, seven, eight, nine."]},
+      "assert": {"equals": []}
+    },
+    {
+      "id": "DET-PUNCT-009",
+      "target": "punctuation cadence candidate",
+      "layer": "deterministic",
+      "polarity": "negative",
+      "status": "pass",
+      "expected_outcome": "No candidate across paragraph boundaries.",
+      "rationale": "Separates a measured punctuation cluster from the editorial decision to change it.",
+      "kind": "python_call",
+      "call": {"function": "punctuation_cadence", "args": ["One—two—three.\n\nFour—five—six."]},
+      "assert": {"equals": []}
+    },
+    {
+      "id": "DET-PUNCT-010",
+      "target": "punctuation cadence candidate",
+      "layer": "deterministic",
+      "polarity": "negative",
+      "status": "pass",
+      "expected_outcome": "No candidate when marks are dispersed beyond 150 words.",
+      "rationale": "Separates a measured punctuation cluster from the editorial decision to change it.",
+      "kind": "python_call",
+      "call": {"function": "punctuation_cadence", "args": ["One—two—three. w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w  Four—five."]},
+      "assert": {"equals": []}
+    },
+    {
+      "id": "DET-PUNCT-011",
+      "target": "punctuation cadence candidate",
+      "layer": "deterministic",
+      "polarity": "negative",
+      "status": "pass",
+      "expected_outcome": "No candidate from fenced code.",
+      "rationale": "Separates a measured punctuation cluster from the editorial decision to change it.",
+      "kind": "rhythm_cli",
+      "cli": {"stdin": "```text\nOne—two—three—four; five; six; seven.\n```\n\nA plain sentence follows."},
+      "assert": {"returncode": 0, "stdout": {"contains": ["em dashes (— or --): 3   semicolons: 3", "none under the conservative threshold"]}, "stderr": {"equals": ""}}
+    },
+    {
+      "id": "DET-PUNCT-012",
+      "target": "raw punctuation counts",
+      "layer": "deterministic",
+      "polarity": "positive",
+      "status": "pass",
+      "expected_outcome": "em dashes (— or --): 3   semicolons: 2",
+      "rationale": "Separates a measured punctuation cluster from the editorial decision to change it.",
+      "kind": "rhythm_cli",
+      "cli": {"stdin": "A—B; C, D: E—F; G—H."},
+      "assert": {"returncode": 0, "stdout": {"contains": ["em dashes (— or --): 3   semicolons: 2"]}, "stderr": {"equals": ""}}
+    },
+    {
+      "id": "DET-PUNCT-013",
+      "target": "punctuation cadence candidate",
+      "layer": "deterministic",
+      "polarity": "boundary",
+      "status": "pass",
+      "expected_outcome": "em dash",
+      "rationale": "Locks the nearby pause-mark share and dash representation.",
+      "kind": "python_call",
+      "call": {"function": "punctuation_cadence", "args": ["A—B—C—D—E, F, G, H, I, J, K."]},
+      "assert": {"contains": ["em dash"]}
+    },
+    {
+      "id": "DET-PUNCT-014",
+      "target": "punctuation cadence candidate",
+      "layer": "deterministic",
+      "polarity": "boundary",
+      "status": "pass",
+      "expected_outcome": "No candidate below exactly four of ten pause marks.",
+      "rationale": "Locks the nearby pause-mark share and dash representation.",
+      "kind": "python_call",
+      "call": {"function": "punctuation_cadence", "args": ["A—B—C—D—E, F, G, H, I, J, K, L."]},
+      "assert": {"equals": []}
+    },
+    {
+      "id": "DET-PUNCT-015",
+      "target": "punctuation cadence candidate",
+      "layer": "deterministic",
+      "polarity": "positive",
+      "status": "pass",
+      "expected_outcome": "em dash",
+      "rationale": "Locks the nearby pause-mark share and dash representation.",
+      "kind": "python_call",
+      "call": {"function": "punctuation_cadence", "args": ["A--B--C--D."]},
+      "assert": {"contains": ["em dash"]}
+    }
   ]
 }
