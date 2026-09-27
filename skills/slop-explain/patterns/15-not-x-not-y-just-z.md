@@ -1,55 +1,23 @@
-# Pattern 15: "Not X. Not Y. Just Z."
+# Pattern 15: `Not X. Not Y. Just Z.`
 
-**Dramatic countdown negating multiple items before delivering the actual point.**
+Catalogue version **1.0.0**. [Full entry](../catalogue.md).
 
-## Why LLMs do this
+## What to assess
 
-The construction is theatrical. It builds rhythm through repetition and creates suspense for the final assertion. Training data is full of motivational essays, opinion pieces, and marketing copy that use the form because it scans as confident and punchy. The model learned to deploy it as a signal of authority.
+Treat as a narrower shape of #10; do not create a second finding or extra weight. Preserve a purposeful contrast.
 
-The pattern is also useful for filling space with apparent weight. "It's a design flaw" is a flat assertion. "Not a bug. Not a feature. A fundamental design flaw" sounds harder-won, even though the writer has done no extra work to earn the punch.
+## Evidence and limits
 
-It is distinct from pattern 10 (the two-part "not just X, but Y" form) in being more dramatic. Three or four short fragments instead of one elaborated contrast.
+The audit does not support using this pattern as a current AI-style finding.
 
-## Why readers notice it
+**Source and evidence type:** [WikiProject AI Cleanup, “Negative parallelisms”](https://en.wikipedia.org/w/index.php?title=Wikipedia:Signs_of_AI_writing&oldid=1376815715#Negative_parallelisms) — related field observation; [EQBench contrast-pattern methodology](https://github.com/sam-paech/slop-score#not-x-but-y-pattern-detection) — related benchmark family.
 
-The form is easy to notice once it repeats: three or four short negations followed by the real claim, often punctuated with periods for theatrical effect. One use can create genuine emphasis. Repeated across a passage, it becomes a predictable paragraph rhythm.
+**Evidence type:** observation. **AI-association support:** unsubstantiated.
 
-The negations are usually trivial. "Not a bug. Not a feature." Does anyone think it is either? The construction defends against objections nobody made, which gives the final assertion an air of intellectual struggle that is fabricated.
+**Strength and scope:** The broader negative-contrast family is supported; neither source establishes this exact three-sentence template as a distinct indicator. Avoid double-counting with #10. **Reviewed:** 2026-09-27.
 
-The fragments also break the writer's usual sentence structure, which makes them visible as a stylistic move rather than as natural prose. The reader feels the writer reaching for drama.
+## Editorial use
 
-## Examples
+This is optional style advice. Change it only when the user asks for that style.
 
-After:
-> It's a fundamental design flaw.
-
-Before:
-> Not a bug. Not a feature. A fundamental design flaw.
-
-After:
-> She is a serious researcher.
-
-Before:
-> Not a pundit. Not a commentator. A serious researcher.
-
-After:
-> The framework is just slow.
-
-Before:
-> Not buggy. Not poorly designed. Just slow.
-
-Notice that the edited versions assert the actual claim without the staged negations. The before versions perform the discovery for the reader, who has not been wondering about the alternatives.
-
-## How to self-spot
-
-Watch for sequences of short negative fragments followed by an affirmative. The punctuation is usually periods, not commas, because periods give each negation its own beat.
-
-For each instance, ask: "did anyone propose the things I am negating?" If not, the negations are scaffolding for false drama. Drop them and assert the point.
-
-If the affirmation is weak without the runway, the answer is to write a stronger affirmation, not to keep the runway.
-
-## Related patterns
-
-- **Pattern 10 (negative parallelisms):** the two-part version of the same instinct.
-- **Pattern 14 (anaphora abuse):** repetition for false weight.
-- **Pattern 17 (em dash overuse):** sometimes appears as "Not X, not Y, just Z" with dashes between.
+This is a narrower form of #10. One span receives one primary finding, not two.

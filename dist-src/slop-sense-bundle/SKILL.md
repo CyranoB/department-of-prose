@@ -1,11 +1,11 @@
 ---
 name: slop-sense
 description: |
-  Detect, score, rewrite, and explain recurring patterns associated with formulaic or AI-like prose (36 catalogued patterns,
-  EQBench SLOP methodology). Four modes:
-  (1) Rewrite — humanize text, remove AI tells. Triggers: "rewrite this",
+  Review, rewrite, and explain 36 numbered writing patterns. Keep the
+  optional raw scorer separate from contextual editorial findings. Four modes:
+  (1) Rewrite — revise actionable findings. Triggers: "rewrite this",
   "humanize", "deslop", "remove AI tells", "make it sound human".
-  (2) Verdict only — score 0-100 and list patterns, no rewrite. Triggers:
+  (2) Verdict only — report raw score and editorial findings, no rewrite. Triggers:
   "rate this", "score this", "is this slop", "AI detection only",
   "don't rewrite, just check".
   (3) Pattern deep-dive — explain one of the 36 patterns. Triggers:
@@ -23,7 +23,10 @@ allowed-tools:
 
 # Slop Sense
 
-A bundled writing editor that identifies recurring prose patterns, scores them, and rewrites or explains them on demand. Scores and findings describe the passage, not who or what wrote it. Based on Wikipedia's "Signs of AI writing" guide (WikiProject AI Cleanup) and the EQBench SLOP detection methodology.
+A bundled writing editor that reports raw scoring separately from contextual
+editorial findings. The versioned [catalogue](catalogue.md) is the authority
+for pattern evidence, AI-signal status, editorial action, and false-positive
+guards. Neither the scorer nor the catalogue identifies the author.
 
 ## How to dispatch
 
@@ -51,146 +54,123 @@ Two scripts ship in this skill's `scripts/` directory and measure different, com
 
 ```bash
 bash scripts/score.sh /tmp/slop-input.txt        # lexical: slop words, trigrams, contrast phrases
-python3 scripts/rhythm.py /tmp/slop-input.txt     # structural: burstiness, contractions, closers, anaphora, punctuation cadence
+python3 scripts/rhythm.py /tmp/slop-input.txt     # descriptive: rhythm, punctuation counts and cadence candidates
 ```
 
 (Save pasted text to `/tmp/slop-input.txt` first. If running from outside the skill directory, use absolute paths.)
 
-`score.sh` wraps `npx slop-detector` and is **optional by design** — if it fails or exits with `SCORER_NOT_AVAILABLE`, skip the numeric score and say so (e.g. `SLOP score: scorer unavailable, qualitative only`). `rhythm.py` is pure Python (no dependencies).
-
-A low SLOP score says only that the lexical scorer found few matches. It says nothing about rhythm, voice, clarity, or authorship. Use `rhythm.py` to find structural patterns worth reviewing, then judge them in the passage's genre and intended voice.
-
-### Interpreting findings
-
-The SLOP score measures the density of catalogued lexical and construction matches: **minimal** (0-19), **light** (20-39), **moderate** (40-59), **strong** (60-79), or **pervasive** (80-100). These bands describe pattern evidence, not authorship probability or overall writing quality.
-
-Short samples can change bands after one or two matches. The catalogue is English-centric, and technical or domain-specific vocabulary can create unavoidable hits. Deliberate repetition, formality, or typography may suit the genre. Base the editorial assessment on each pattern's frequency, context, and effect on the passage, and explain those effects to the user.
+`score.sh` wraps `npx slop-detector` and is optional. If it fails or exits
+with `SCORER_NOT_AVAILABLE`, say `Raw scorer output: unavailable` and
+continue qualitatively. `rhythm.py` is pure Python. Its measurements are
+descriptive; neither script's numbers are authorship probabilities or
+automatic editorial severity bands.
 
 ---
 
 ## Mode 1: Rewrite
 
-You are a writing editor. Identify recurring patterns and rewrite the passage to sound natural and specific.
+Edit actionable findings using [catalogue.md](catalogue.md). A raw scorer hit
+can remain clean. A pattern with no current AI association can still warrant
+an editorial repair when the passage itself has a problem.
 
 ### Workflow
 
-1. **Run available checks.** Save the user's text to `/tmp/slop-input.txt`, then run `bash scripts/score.sh /tmp/slop-input.txt` and `python3 scripts/rhythm.py /tmp/slop-input.txt`. Use the lexical score and structural measurements as evidence. Keep only the source score, relevant lexical hits, and rhythm measurements or candidates needed for comparison, rather than the full reports. The rhythm checker separates raw punctuation counts from prose cadence candidates; neither is an automatic rewrite instruction. If a check fails, proceed with the evidence available.
-2. **Scan** the text against the [36 patterns catalog](#the-36-patterns-catalog) below. Name exactly which ones you found.
-3. **Score** — record the algorithmic number if available, plus its pattern-evidence band (minimal / light / moderate / strong / pervasive). Add a qualitative assessment based on the frequency, context, and effect of all findings. Never translate the score into a probability of AI authorship.
-4. **Rewrite** the text, removing the identified patterns while preserving meaning. Meaning includes the factual record: read [Fact preservation](#fact-preservation) first.
-5. **Audit** — ask yourself "Which repeated patterns still weaken this passage?" Read once more for rhythm (pattern 34) and watch for over-correction: do not fix every negative parallelism (#10) by splitting it into the same "X isn't this. It's that." two-beat. Scan the headings too, not just body prose — they host #10 negative parallelism ("A choice, not a fate") and #20 Title Case, and `rhythm.py` strips headings so it cannot see them. List remaining patterns and their effect, including whether any punctuation cadence candidate still weakens the draft; keep intentional punctuation, then revise once more. Leave script checks until the wording is settled. If an audit rhythm check already ran on text that becomes the unchanged final rewrite, retain that result for step 7.
-6. **Fact check the version you are about to present.** Do this after the revision in step 5 and before verification, so it covers the delivered text rather than an earlier draft. Beside the original, ask whether anything was *added* (a source, cause, figure, or stronger claim the original lacked), *omitted* (a name, number, quotation, attribution, hedge, or scope limit), or *changed* in strength, subject, or direction. Check each item on its own; a rewrite can read as cautious overall while one specific hedge has gone missing.
-7. **Verify the settled rewrite.** If the final text is identical to the source, use the source results and make no extra check. Otherwise, save the exact final text to a temporary file, including its headings, quotations, and paragraph breaks. Run each available script once on that file, after the fact check. Reuse an audit rhythm result instead only when it checked exactly this final text. Compare the source and final score and relevant hits, plus rhythm measurements and contextual findings. Extract only what the comparison needs from the new reports. If the lexical scorer failed at either end, call the lexical comparison unavailable and still compare rhythm when possible; never claim full verification from a partial check. A lower score does not justify changing facts, qualifications, quotations, or voice.
-8. **Present** the final version and fact-check result. Give one compact before/after summary of improvements, regressions, and findings deliberately retained for meaning or voice. Omit unchanged raw detail unless it explains an editorial decision; show the score once as a source-to-final pair when both scores exist.
+1. Get the text and run both optional scripts. Label their output as raw
+   measurements. Keep only the score, hits, and measurements needed for the
+   final comparison; a punctuation-cadence candidate is not an edit instruction.
+2. Read the catalogue. For each candidate finding, quote the exact passage,
+   check its false-positive guard and the document register, and explain why
+   this instance needs a change. Keep current AI-style observations separate
+   from editorial findings.
+3. Rewrite only actionable findings. Preserve names, numbers, dates, sources,
+   quotations, qualifications, scope limits, and the author's deliberate voice.
+   If a safe repair needs facts the input lacks, mark the gap instead of
+   inventing them.
+4. Audit the draft against the original and catalogue. Repair stock phrasing
+   introduced by the draft and inspect cadence candidates in context. Settle
+   the wording before final script checks.
+5. Fact check the settled version against the original for added, omitted,
+   or strengthened claims, including quotations and scope limits.
+6. If the final text is unchanged, reuse the source results. Otherwise run
+   each available script once on the exact final text after the fact check.
+   Compare source and final scores, relevant hits, rhythm measurements, and
+   contextual findings. An audit rhythm result may be reused only when it
+   checked the exact final text. State when either script was unavailable.
+7. Present the current contextual AI-style observations with source limits,
+   editorial findings, final rewrite, fact check, and a compact before/after
+   comparison of improvements, regressions, and findings deliberately kept.
 
-### Fact preservation
-
-The rewrite changes how the text sounds, never what it claims. Names, numbers, dates, quotations, sources, hedges, and scope limits survive the edit even where cutting one would read better.
-
-The traps, each tied to the pattern that invites it:
-
-- Removing a vague attribution (#5) tempts you to supply the source it lacked. Report what the input said ("unnamed industry reports") or say it named none. "Name the source" applies when the source is elsewhere in the document, not when you would have to make it up.
-- Cutting excessive hedging (#31) means dropping the redundant qualifiers, not the doubt they carried. "May have reduced" is not "reduced".
-- Fixing synonym cycling (#12) means repeating a name, not paraphrasing it. A legal name is not its trade name.
-- Quoted text is off limits even when it contains a repeated construction or punctuation cadence. Attribute those words to the speaker, preserve the quotation exactly, and edit only the reporting clause when needed. Curly quotation marks alone are not a finding. A quoted dash or semicolon stays; raw punctuation counts do not authorize changing a speaker's words.
-- Scope limits go first in any tightening pass. "In the pilot group", "self-reported", "among the 40 who finished" are load-bearing.
-
-If a pattern can only be removed by adding specifics the input does not contain, leave it. Keep the general phrasing, or mark the gap (`[source?]`, `[date?]`) and raise it in the summary.
+A quoted phrase belongs to its speaker. Keep quoted wording intact and edit
+only the surrounding text. A technical term with an exact meaning stays even
+when the raw lexical scorer matches it. For #12, a confusing synonym can be
+fixed for clarity without calling it a current AI signal. For #17, repeated
+dashes can be edited for readability without treating them as authorship
+evidence. #22 is retired as an AI pattern; preserve supplied typography unless
+the output format requires a change.
 
 ### Output format
 
-1. **Pattern summary** — which patterns you found, their frequency, context, and effect; include the source SLOP score in the comparison below when available
-2. **Draft rewrite** — first pass with patterns removed
-3. **Pattern audit** — bullets listing repeated constructions or rhythm problems that still weaken the draft
-4. **Final rewrite** — revised after the audit, intentional punctuation retained; repeated pauses repaired only where they weaken the passage
-5. **Fact check** — run on the final rewrite above, not the draft. Confirm nothing was added, omitted, or changed in strength; list anything you could not preserve or marked `[source?]`. State it explicitly when clean, never skip the line
-6. **Before/after check** — one compact comparison of improvements, regressions, and intentionally retained findings; state when the lexical comparison is unavailable
+1. **Raw scorer output:** external number and matches if available; otherwise
+   state that it was unavailable.
+2. **Current AI-style observations:** only `current_contextual` entries with
+   exact passages and source limits; state “none” if there are none.
+3. **Editorial findings:** actionable pattern IDs, exact supporting passages,
+   reasons, and safe repair directions. Give a qualitative editorial assessment.
+4. **Draft and final rewrite:** show the revision and its final audited form.
+5. **Fact check:** confirm the final version adds, omits, or strengthens no
+   claims; list any unresolved gap explicitly.
+6. **Before/after check:** show the score once as a source-to-final pair when
+   available, plus relevant measurement and finding changes. Omit unchanged
+   raw detail and state when a script comparison is unavailable.
 
-### Adding soul
-
-Removing bad patterns is half the job. Sterile, voiceless writing is still weak. Good writing carries a distinct point of view.
-
-Signs of soulless writing (even if technically clean):
-- Every sentence has the same length and structure
-- No opinions, just neutral reporting
-- No acknowledgment of uncertainty or mixed feelings
-- No humor, no edge, no personality
-
-How to fix this:
-- **Have opinions.** React to facts, don't just report them.
-- **Vary rhythm.** Short sentences. Then longer ones that take their time.
-- **Acknowledge complexity.** "This is impressive but also kind of unsettling" beats "This is impressive."
-- **Use "I" when it fits.** First person signals a real person thinking.
-- **Let some mess in.** Perfect structure feels algorithmic.
-- **Be specific about feelings.** Not "this is concerning" but name the actual feeling.
-
-Example:
-
-Before (clean but soulless):
-> The experiment produced interesting results. The agents generated 3 million lines of code. Some developers were impressed while others were skeptical.
-
-After (has a pulse):
-> I genuinely don't know how to feel about this one. 3 million lines of code, all of it agent-written. Some developers are impressed. Some are sceptical. I can't tell which camp I'm in either.
-
-Note what the rewrite does *not* do. It keeps "some" instead of sharpening it to "half", and it keeps "developers" instead of widening to "the dev community". The voice comes from the narrator taking a position, not from making someone else's facts more definite than they were.
+Preserve the voice the author actually used. Do not add an opinion, personal
+experience, or contraction merely to make a passage look less formal.
 
 ---
 
 ## Mode 2: Verdict only
 
-Read-only writing-pattern review. Score and report. **Do not rewrite. Do not suggest specific edits.**
+Review without rewriting. Give a short repair direction for each actionable
+editorial finding while leaving the supplied passage intact.
 
-### Workflow
+1. Get the text and run both optional scripts. Report their outputs as raw
+   measurements and state when either is unavailable.
+2. Read [catalogue.md](catalogue.md), including its #8 vocabulary and guards.
+   Scan headings and body text. Quote exact evidence and explain why an
+   editorial candidate is actionable in this passage. A raw match can remain
+   clean. An entry with `ai_signal_use: none` or `historical_only` is
+   not a current AI-style observation.
+3. Report current contextual AI-style observations with source limits,
+   editorial findings, a qualitative editorial assessment, and brief repair
+   directions. State “none” when there are no AI-style observations.
+   Do not rewrite text or claim a probability of AI authorship.
 
-1. **Get the text** using the input handling above. If pasted, save it to `/tmp/slop-check-input.txt`.
-2. **Run both scripts**: `bash scripts/score.sh /tmp/slop-check-input.txt` and `python3 scripts/rhythm.py /tmp/slop-check-input.txt`. If either fails, skip it and continue with what you have. Treat raw punctuation counts and cadence candidates as separate observations; report a punctuation finding only when repetition weakens the passage. A low lexical score does not cancel repeated structural findings.
-3. **Scan** the text against the [36 patterns catalog](#the-36-patterns-catalog) below. Name every pattern present. For each, attach one short evidence snippet (a quoted phrase or count) — not a sentence of explanation.
-4. **Emit the verdict and stop.** Do not produce a rewrite. The closing line points the user at Rewrite mode or Pattern deep-dive mode.
+Example:
 
-### Output format
-
+```text
+Raw scorer output: 78 / 100 (external lexical score)
+Current AI-style observations:
+  #4 "vibrant" and "nestled"; #10 repeated "not just X, but Y" contrasts.
+  The cited field guide describes these in Wikipedia-style neutral prose.
+  This resemblance does not identify the passage's author.
+Editorial findings:
+  #4 Promotional language — "vibrant" and "nestled" in a neutral report.
+     Repair direction: describe the named features without praise.
+  #10 Negative parallelisms — two repeated stock contrasts.
+     Repair direction: state each claim directly.
+Editorial assessment: the repeated stock phrasing warrants a rewrite.
 ```
-SLOP score: 78 / 100 (strong pattern evidence)
-
-Patterns detected (7):
-  #4  Promotional language     — "vibrant", "nestled", "boasts"
-  #8  AI vocabulary            — "additionally", "underscore", "tapestry" (×3)
-  #10 Negative parallelisms    — "not just X, but Y" (×2)
-  #11 Rule of three            — 4 instances
-  #17 Em dash overuse          — 6 em dashes in 312 words
-  #23 Chatbot artifacts        — "I hope this helps!"
-  #30 Filler phrases           — "in order to" (×2)
-
-Assessment: strong pattern evidence. Several repeated patterns affect the passage's tone and rhythm.
-Next: ask for a rewrite, or "explain pattern N" to learn about a specific pattern.
-```
-
-Score bands describe the density of matches from `score.sh`:
-- **minimal** — 0-19; few catalogued lexical or construction matches
-- **light** — 20-39; some matches recur
-- **moderate** — 40-59; several matches recur or cluster
-- **strong** — 60-79; frequent or concentrated matches
-- **pervasive** — 80-100; matches dominate substantial parts of the passage
-
-The final assessment must account for frequency, context, and effect across the scorer, structural measurements, and qualitative scan. State what the patterns do to the passage. Do not infer authorship.
-
-If the scorer was unavailable, omit the numeric score line and say so: `SLOP score: scorer unavailable, qualitative only`. Keep the rest of the format identical.
 
 ---
 
 ## Mode 3: Pattern deep-dive
 
-You are a teacher. The user wants to understand one pattern in depth — not fix their text, not score it. Explain the pattern's frequency, context, and effect. A pattern may be common in model output without proving AI authorship.
-
-### Workflow
-
-1. **Resolve the user's request to a pattern number (1-36).** Use the [lookup table](#pattern-lookup-table) below. Match on number ("pattern 17"), canonical name ("em dash overuse"), or short phrase ("the dash thing", "those vibrant adjectives").
-2. **If ambiguous,** list 2-4 plausible candidates with numbers and short names, and ask the user to pick. Do not guess.
-3. **If the pattern does not exist** (e.g. "pattern 99", or a tic outside the 36), say so explicitly and state the range (1-36). Do not invent a pattern.
-4. **Read the deep-dive file**: `patterns/NN-name.md` from this skill's directory, where `NN` is zero-padded and `name` is the kebab-case slug from the table.
-5. **Present the deep-dive.** Render the markdown directly. Do not summarize, paraphrase, or add commentary unless the user asked a follow-up.
-
-If the user asks about multiple patterns in one message ("explain 17 and 11"), present them sequentially in number order. If a follow-up is genuinely a different pattern's territory, name the pattern number and offer to switch.
+Use [catalogue.md](catalogue.md) for the pattern's source, AI-signal status,
+editorial action, scope, and false-positive guard. Read its `patterns/NN-name.md`
+file for a concise evidence note. Explain the evidence limit and any safe
+repair. Give one short invented example that fits the trigger and one that
+stays clean under the guard; label both as illustrative. A retired entry
+explains why the old AI signal was withdrawn.
 
 ### Pattern lookup table
 
@@ -224,7 +204,7 @@ If the user asks about multiple patterns in one message ("explain 17 and 11"), p
 | 26 | "Here's the kicker" | `26-heres-the-kicker` | "Here's the thing", false-suspense transitions |
 | 27 | "Think of it as..." | `27-think-of-it-as` | "Think of it like", "Imagine it as" |
 | 28 | "Imagine a world where..." | `28-imagine-a-world-where` | AI futurism invitations |
-| 29 | False vulnerability | `29-false-vulnerability` | performative honesty, safe vulnerability |
+| 29 | Disclosure without substance | `29-false-vulnerability` | former name: false vulnerability; disclosure without a point |
 | 30 | Filler phrases | `30-filler-phrases` | "in order to", "due to the fact that" |
 | 31 | Excessive hedging | `31-excessive-hedging` | "could potentially possibly be argued" |
 | 32 | "The truth is simple" | `32-the-truth-is-simple` | "the reality is simpler", asserted obviousness |
@@ -254,203 +234,11 @@ Goal: compress AI-generated verbosity back to the instruction that likely produc
 > **Probable prompt:** "Write a blog post about why platform businesses beat product businesses"
 >
 > **Original:** 2,847 words | **Prompt:** 12 words | **Inflation:** 237x
->
-> **Detected patterns:** negative parallelism, repetitive dash cadence, grandiose stakes inflation, invented concept labels
 
 ---
 
-## The 36 patterns catalog
+## The 36 patterns catalogue
 
-Used by Modes 1 and 2 for scanning. Pattern deep-dives (Mode 3) live in `patterns/NN-name.md`.
-
-Some After-examples below draw on facts from elsewhere in the source document (a date, a named outlet, a place). They are shorthand for "replace the puffery with the specifics the source already gives you", never licence to supply specifics the text does not contain. See [Fact preservation](#fact-preservation).
-
-### Content patterns (1-7)
-
-**1. Significance inflation**
-Puffing up importance with sweeping claims about legacy, broader trends, pivotal moments.
-Watch for: "stands as", "testament to", "pivotal/crucial/vital role", "evolving landscape", "setting the stage", "indelible mark", "deeply rooted", "reflects broader"
-> Before: "marking a pivotal moment in the evolution of regional statistics"
-> After: "was established in 1989 to collect regional statistics"
-
-**2. Notability name-dropping**
-Listing media outlets or credentials without context.
-> Before: "cited in NYT, BBC, FT, and The Hindu"
-> After: "In a 2024 NYT interview, she argued..."
-
-**3. Superficial -ing analyses**
-Tacking "-ing" phrases onto sentences for fake depth.
-Watch for: "highlighting...", "showcasing...", "reflecting...", "underscoring...", "fostering..."
-> Before: "symbolizing the community's deep connection to the land"
-> After: Remove entirely, or replace with sourced claim.
-
-**4. Promotional language**
-Neutral tone lost to tourism-brochure writing.
-Watch for: "vibrant", "nestled", "breathtaking", "renowned", "groundbreaking", "stunning", "boasts", "profound", "exemplifies", "commitment to"
-> Before: "Nestled within the breathtaking region..."
-> After: "is a town in the Gonder region"
-
-**5. Vague attributions**
-Opinions attributed to unnamed authorities.
-Watch for: "Experts believe", "Industry reports suggest", "Some critics argue"
-> After: Name the source, date, and specific claim.
-
-**6. Formulaic challenges sections**
-"Despite challenges... continues to thrive" structure.
-> After: State specific facts about actual challenges.
-
-**7. Invented concept labels**
-Fabricated compound terms that sound analytical but are ungrounded. Appending abstract nouns (paradox, trap, creep) to domain words.
-Watch for: "the supervision paradox", "the acceleration trap", "the alignment creep", "the delegation paradox"
-> Before: "This creates what I call the 'delegation paradox'"
-> After: State the tension directly without branding it.
-
-### Language patterns (8-16)
-
-**8. AI vocabulary**
-Words that appear far more often in post-2023 LLM text.
-High-frequency tells: "Additionally", "delve", "tapestry", "landscape" (abstract), "pivotal", "testament", "underscore", "showcase", "foster", "garner", "interplay", "intricate", "enhance", "vibrant", "crucial", "enduring", "align with", "bolstered", "meticulous", "valuable", "key" (adjective), "highlighting" (verb)
-> Before: "Additionally, an enduring testament to... in the culinary landscape, showcasing..."
-> After: "also includes... remain common"
-
-**9. Copula avoidance**
-Replacing "is/are/has" with fancier constructions.
-Watch for: "serves as", "stands as", "features", "boasts", "represents"
-> Before: "Gallery 825 serves as the exhibition space"
-> After: "Gallery 825 is the exhibition space"
-
-**10. Negative parallelisms**
-Common forms: "Not just X, but Y" / "Not only... but also..." / "It's not X, it's Y". Splitting it across two sentences ("It isn't X. It's Y.") is the same construction in disguise, and repeating that two-beat is its own tell, so vary the repair. See also #15 for the triple-negation variant.
-> Before: "It's not just about the music, it's about the community."
-> After: "The community matters as much as the music."
-
-**11. Rule of three**
-Forcing ideas into groups of three for rhetorical effect.
-> Before: "innovation, inspiration, and industry insights"
-> After: Use the natural number of items.
-
-**12. Synonym cycling**
-Rotating synonyms to avoid repeating words ("protagonist... main character... central figure... hero").
-> After: Repeat the clearest term. Repetition is fine.
-
-**13. False ranges**
-"From X to Y" where X and Y aren't on a meaningful scale.
-> Before: "from the Big Bang to dark matter"
-> After: List topics directly.
-
-**14. Anaphora abuse**
-Repeating identical sentence openings in quick succession for false emphasis. Even three consecutive sentences opening with the same word ("The..., The..., The...") trips automated trope detectors.
-> Before: "They assume users will pay. They assume developers will build. They assume the market will grow."
-> After: Vary the structure. Combine related points.
-
-**15. "Not X. Not Y. Just Z."**
-Dramatic countdown negating multiple items before the actual point. Distinct from the two-part negative parallelism in #10.
-> Before: "Not a bug. Not a feature. A fundamental design flaw."
-> After: "It's a design flaw."
-
-**16. Rhetorical Q&A**
-Self-posed questions answered immediately. Asking questions nobody asked for dramatic effect.
-> Before: "The result? Devastating."
-> After: "The result was devastating."
-
-### Style patterns (17-22)
-
-**17. Em dash overuse**
-Repeated em dashes can give nearby sentences the same stop-start rhythm. Count them, then inspect their frequency, function, and effect in this passage. A single dash or a deliberate pair does not require an edit; neither does a cadence candidate by itself. Semicolon clusters deserve the same review, without becoming a separate numbered pattern.
-When repeated pauses weaken the prose, keep the marks that carry meaning and vary only the others. A comma, colon, period, or restructure may work better, but do not flatten the author's voice to reduce a count. Preserve punctuation inside quotations exactly.
-> Before: "The draft stalled—again. The meeting ran long—again. The decision slipped—again."
-> After: "The draft stalled again. The meeting ran long, and the decision slipped too."
-
-**18. Boldface overuse**
-Mechanical emphasis on terms.
-> After: Remove boldface unless genuinely needed.
-
-**19. Inline-header lists**
-Bullet points starting with "**Label:** description"
-> After: Convert to prose.
-
-**20. Title Case headings**
-Capitalizing All Main Words In Headings.
-> After: Sentence case.
-
-**21. Emojis in structure**
-Decorating headings or bullets with emojis.
-> After: Remove them.
-
-**22. Curly quotes**
-Curly quotes are a typography choice, not evidence of authorship. Note them as a raw observation. Suggest a change only when the document's house style or format calls for straight quotes, and preserve quoted material unless the user asks for typography normalization.
-
-### Communication patterns (23-29)
-
-**23. Chatbot artifacts**
-"I hope this helps!", "Let me know if...", "Certainly!", "Of course!", "Great question!"
-> After: Remove entirely.
-
-**24. Knowledge-cutoff disclaimers**
-"While specific details are limited...", "as of my last training..."
-> After: Find the actual information, or remove the hedge.
-
-**25. Sycophantic tone**
-"Great question! You're absolutely right!"
-> After: Respond to the substance directly.
-
-**26. "Here's the kicker"**
-False suspense transitions promising revelations before unremarkable observations.
-Watch for: "Here's the thing", "Here's where it gets interesting", "Here's what most people miss"
-> Before: "Here's the kicker: it was never about the technology."
-> After: Just make the point.
-
-**27. "Think of it as..."**
-Patronizing analogies assuming readers need metaphors. Often produces less-clear explanations than just describing the actual thing.
-Watch for: "Think of it like", "Imagine it as", "It's basically"
-> Before: "Think of it like a highway system for data."
-> After: Explain the actual thing.
-
-**28. "Imagine a world where..."**
-AI futurism invitation listing wonderful outcomes if readers agree with the premise.
-> Before: "Imagine a world where every tool you use has quiet intelligence behind it."
-> After: State the specific capability being proposed.
-
-**29. False vulnerability**
-Simulated self-awareness or honesty that reads as performative. Real vulnerability is specific and uncomfortable; AI vulnerability is polished and safe.
-> Before: "And yes, I'm openly in love with the platform model."
-> After: State the actual opinion with real stakes.
-
-### Filler and hedging (30-33)
-
-**30. Filler phrases**
-"In order to" -> "To". "Due to the fact that" -> "Because". "At this point in time" -> "Now". "It is important to note that" -> delete.
-
-**31. Excessive hedging**
-"could potentially possibly be argued that it might"
-> After: "may"
-
-**32. "The truth is simple"**
-Asserting obviousness instead of proving arguments. Declaring simplicity rather than demonstrating it.
-Watch for: "The reality is simpler", "The truth is", "The answer is surprisingly straightforward"
-> Before: "The reality is simpler and less flattering."
-> After: Present the reality and let the reader judge.
-
-**33. Generic positive conclusions**
-"The future looks bright. Exciting times lie ahead."
-> After: State specific plans or facts.
-
-### Rhythm and Voice (34-36)
-
-The lexical scorer does not measure these dimensions. `rhythm.py` reports all three as editorial heuristics; interpret them in context.
-
-**34. Uniform sentence rhythm (low burstiness)**
-Sentences barely vary in length or shape, producing a flat, even cadence. Variation can create pace and emphasis, while a long run of similarly shaped sentences can feel monotonous. Genre matters: procedural prose may benefit from consistency.
-> Before: "The invention happened in Toronto, and the company that captured what it was worth happened somewhere else, and that gap is the whole story."
-> After: "The invention happened in Toronto. The company that captured what it was worth happened somewhere else. That gap is what this whole piece is about."
-Put short sentences next to long ones. If three in a row share a shape, break one.
-
-**35. Aphoristic paragraph closers**
-Ending nearly every paragraph on a polished, balanced kicker. One or two read as sharp; a dozen read as a machine that learned the move. The tell is the relentlessness, not any single line.
-> After: Let most paragraphs end on an ordinary sentence. Earn the occasional kicker.
-
-**36. Reflexive formality**
-Never contracting — "do not", "cannot", "it is" everywhere, even in casual or first-person writing. This can make an informal passage sound stiff, while the same choice may suit legal, academic, or ceremonial prose.
-> Before: "It is not capacity. You cannot commercialize what you do not own."
-> After: "It isn't capacity. You can't commercialize what you don't own."
-Mix registers; the point is variation, not contracting everything.
+The versioned [catalogue.md](catalogue.md) contains every numbered pattern,
+source, evidence limit, current AI-signal use, editorial action, and
+false-positive guard. It is shared with the three individual skills.

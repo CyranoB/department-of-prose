@@ -3,7 +3,7 @@
   "scope_statement": "The deterministic scope is the public behavior of rhythm.py, score.sh, and representative rule families exposed by the exactly pinned slop-detector integration. The integration inventory covers each scorer metric family and stable CLI output contract; it does not claim one fixture per private upstream word, trigram, or regex entry.",
   "inventory": [
     {
-      "target": "rhythm sentence-length mean, population standard deviation, coefficient of variation, short/long counts, and classification boundaries",
+      "target": "rhythm sentence-length mean, population standard deviation, coefficient of variation, descriptive variation labels, and short/long counts",
       "positive": ["DET-RHY-BURST-001", "DET-RHY-MEASURE-001", "DET-RHY-MEASURE-002"],
       "negative": ["DET-RHY-BURST-002"],
       "boundary": ["DET-RHY-BURST-003", "DET-RHY-BURST-004", "DET-RHY-LENGTH-001"]

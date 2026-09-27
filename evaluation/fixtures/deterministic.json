@@ -454,16 +454,12 @@
       "target": "pinned scorer lexical literal meanings",
       "layer": "deterministic",
       "polarity": "negative",
-      "status": "xfail",
-      "owner": "#14",
-      "desired_result": "Catalogue policy decides whether an ordinary noun sense should avoid the AI-vocabulary hit.",
-      "current_failure": "The scorer reports the noun `delves` exactly like the verb.",
-      "expected_failure": {"path": "stdout.not_contains", "contains": "\"delves\":"},
-      "expected_outcome": "The geographic noun use of `delves` has no actionable lexical hit.",
-      "rationale": "Meaning-sensitive catalogue policy is unresolved and must not be silently baselined.",
+      "status": "pass",
+      "expected_outcome": "The scorer keeps the exact raw noun match; catalogue review determines whether it warrants any finding.",
+      "rationale": "The pinned scorer is lexical, while meaning-sensitive editorial policy belongs to the catalogue.",
       "kind": "real_scorer",
       "scorer": {"stdin": "The delves were narrow valleys marked on the survey."},
-      "assert": {"returncode": 0, "version": "1.2.0", "stdout": {"not_contains": ["\"delves\":"]}, "stderr": {"equals": ""}}
+      "assert": {"returncode": 0, "version": "1.2.0", "stdout": {"contains": ["\"delves\": 1×"]}, "stderr": {"equals": ""}}
     },
     {
       "id": "DET-SCORER-WORD-004",

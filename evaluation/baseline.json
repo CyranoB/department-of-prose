@@ -8,13 +8,6 @@
       "expected_assertion": "value.not_contains: https://example.test/a.b",
       "desired_result": "Exclude Markdown link destinations while retaining label prose.",
       "current_failure": "The destination remains in extracted prose."
-    },
-    {
-      "id": "DET-SCORER-WORD-003",
-      "owner": "#14",
-      "expected_assertion": "stdout.not_contains: \"delves\":",
-      "desired_result": "Apply the eventual catalogue policy to literal noun uses.",
-      "current_failure": "The pinned scorer reports the noun `delves` as a lexical hit."
     }
   ],
   "policy": "Expected failures execute their desired assertions and match only the documented assertion path and message fragment. A failure is reported as XFAIL; an unexpected pass exits non-zero until the exemption and baseline entry are deliberately removed. Execution errors, precondition failures, different assertion failures, and process/version failures exit non-zero."

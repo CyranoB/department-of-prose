@@ -1,42 +1,21 @@
 # Pattern 20: Title Case headings
 
-**Capitalizing All Main Words In Headings, which is uncommon in modern web prose.**
+Catalogue version **1.0.0**. [Full entry](../catalogue.md).
 
-## Why LLMs do this
+## What to assess
 
-Title Case is the older convention. It survives in newspaper headlines, academic paper titles, and many books, so the training data contains a lot of it. RLHF and instruction tuning reinforce it as the polite default. Many style guides for formal writing still prefer Title Case.
+Follow the document's house style; Title Case alone is never an actionable finding, and source observations are specific to Wikipedia headings.
 
-But web writing has largely moved to sentence case for headings. Most modern blogs, technical documentation, and online publications use sentence case because it reads more naturally and matches how the rest of the text is capitalized. The model is overweighted toward the older convention and applies Title Case even when sentence case would fit the surrounding prose better.
+## Evidence and limits
 
-## Why readers notice it
+The source describes a current, context-dependent AI-style association. It does not identify the author of a passage.
 
-Sentence case is dominant on the modern web. When a piece uses Title Case headings, the reader notices, especially in casual or conversational writing. The headings read as formal or old-fashioned in a way that does not match the body text.
+**Source and evidence type:** [WikiProject AI Cleanup, “Title case”](https://en.wikipedia.org/w/index.php?title=Wikipedia:Signs_of_AI_writing&oldid=1376815715#Title_case) — field observation.
 
-The tell is not Title Case itself. Many publications still use it well. The tell is Title Case in a context that otherwise reads as informal, blog-like, or technical. The mismatch suggests the model defaulted to its training convention rather than matching the actual register.
+**Evidence type:** observation. **AI-association support:** limited.
 
-## Examples
+**Strength and scope:** Wikipedia's heading convention makes this relevant there. Other style guides require title case. Do not use title case alone as an AI sign or edit it against a document's house style. **Reviewed:** 2026-09-27.
 
-After:
-> ## How the migration broke production
+## Editorial use
 
-Before:
-> ## How The Migration Broke Production
-
-After:
-> ### A short note on naming things
-
-Before:
-> ### A Short Note On Naming Things
-
-Notice that sentence case is unobtrusive and matches the body text. Title Case stands out in a way the heading content does not earn.
-
-## How to self-spot
-
-Look at the headings in any draft. If they are Title Case ("How To Build A Robot") and the body text is informal, switch to sentence case ("How to build a robot"). The exception: if the publication explicitly uses Title Case (some still do), match the house style.
-
-A useful test: imagine the heading as the title of a tweet, blog post, or doc page in your normal style. Would you capitalize it that way? If not, the heading is in the wrong register.
-
-## Related patterns
-
-- **Pattern 18 (boldface overuse):** both decorate text in ways that do not match modern web conventions.
-- **Pattern 21 (emojis in structure):** same instinct to dress up headings.
+This is optional style advice. Change it only when the user asks for that style.

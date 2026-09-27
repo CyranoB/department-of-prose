@@ -1,46 +1,21 @@
 # Pattern 2: Notability name-dropping
 
-**Listing media outlets, awards, or credentials without context, as if the names themselves constitute information.**
+Catalogue version **1.0.0**. [Full entry](../catalogue.md).
 
-## Why LLMs do this
+## What to assess
 
-The training data is full of Wikipedia biographies and PR-style press releases. Both genres establish notability by listing credentials. Wikipedia does this because notability is a sourcing requirement; PR does it because credentials are a sales pitch. LLMs absorb both as templates for "writing about a person or institution" and produce credential lists whether or not the surrounding context calls for them.
+Credentials or outlet lists that substitute for a relevant claim, especially in encyclopedic prose; keep coverage that explains why it matters.
 
-There is also a defensive incentive. Listing real outlets is verifiably true. Saying anything specific about what those outlets actually wrote is harder to verify and easier to get wrong. The model picks the safer move.
+## Evidence and limits
 
-## Why readers notice it
+The source describes a current, context-dependent AI-style association. It does not identify the author of a passage.
 
-Names without context are decorations, not information. A useful mention explains what an interview was about, when it happened, or why it matters. Without that follow-through, the outlet name merely borrows prestige.
+**Source and evidence type:** [WikiProject AI Cleanup, “Canned emphasis on notability, attribution, and media coverage”](https://en.wikipedia.org/w/index.php?title=Wikipedia:Signs_of_AI_writing&oldid=1376815715#Canned_emphasis_on_notability,_attribution,_and_media_coverage) — field observation.
 
-The reader notices the gap. A list of outlets like "her work has appeared in NYT, BBC, FT, and The Hindu" tells you nothing about her work. It tells you she has had work appear places. The reader can already assume that, since that is why you are writing about her.
+**Evidence type:** observation. **AI-association support:** limited.
 
-The pattern is especially common in introductory paragraphs and bios, where the LLM mistakes credential-stacking for establishing the subject's importance.
+**Strength and scope:** Direct in Wikipedia biographies and drafts, where notability is a policy concept. The field guide distinguishes this narrow source-focused phrasing from ordinary press releases. Transfer to general bios or essays is uncertain. **Reviewed:** 2026-09-27.
 
-## Examples
+## Editorial use
 
-After:
-> In a 2024 New York Times interview, she argued that climate adaptation policy has been dangerously underfunded in the Global South.
-
-Before:
-> Her work has been cited in the New York Times, BBC, Financial Times, and The Hindu, establishing her as a leading voice in climate policy discourse.
-
-After:
-> The institute's 2023 study on rural broadband was covered by Reuters and Bloomberg and is now the basis for two pending Senate bills.
-
-Before:
-> The institute has been featured in numerous prominent outlets, including Reuters, Bloomberg, the Wall Street Journal, and the Financial Times.
-
-Notice that the edited versions name the outlet because something happened there. The before versions name outlets because naming outlets is what you do in this kind of paragraph.
-
-## How to self-spot
-
-Every time you list a publication, organization, or credential in your draft, ask: "what is this name doing here?" If the answer is "establishing notability," cut it and write a specific claim instead.
-
-A rough test: can the reader retell what they just read about the subject without using the listed names? If the names disappear and the sentence loses no information, the names were not doing work.
-
-Allow lists when they ARE the information ("the company has acquired five startups in the last year: A, B, C, D, E"). Cut them when they are stand-ins for information.
-
-## Related patterns
-
-- **Pattern 1 (significance inflation):** similar move, different mechanism. Inflation asserts importance via adjectives. Name-dropping asserts it via lists.
-- **Pattern 5 (vague attributions):** the opposite failure mode. Both refuse to attach a specific claim to a specific source.
+An editorial repair can be useful when the exact passage shows the problem and the false-positive guard has been checked.

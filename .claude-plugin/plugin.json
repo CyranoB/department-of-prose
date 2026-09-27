@@ -5,8 +5,8 @@
     "./skills/slop-check",
     "./skills/slop-explain"
   ],
-  "description": "Score recurring patterns associated with formulaic or AI-like prose, explain them, and rewrite the passage in Claude Code and Codex. Three skills: slop-sense (score + rewrite + ai;dr), slop-check (score only, no rewrite), and slop-explain (per-pattern deep-dives). Includes a 0-100 SLOP scorer and a separate rhythm checker.",
-  "version": "3.3.0",
+  "description": "Review and revise writing with a source-audited, versioned catalogue. Three skills: slop-sense (review and rewrite), slop-check (review only), and slop-explain (pattern explanations). An optional lexical scorer and rhythm checker provide raw measurements separate from editorial findings.",
+  "version": "3.4.0",
   "author": {
     "name": "CyranoB"
   },
@@ -14,7 +14,7 @@
   "repository": "https://github.com/CyranoB/department-of-prose",
   "license": "MIT",
   "keywords": [
-    "ai-detection",
+    "writing-analysis",
     "slop-score",
     "humanizer",
     "writing"

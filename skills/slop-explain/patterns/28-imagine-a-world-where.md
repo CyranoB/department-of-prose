@@ -1,46 +1,21 @@
-# Pattern 28: "Imagine a world where..."
+# Pattern 28: `Imagine a world where`
 
-**AI futurism invitations that list wonderful outcomes if readers agree with the premise.**
+Catalogue version **1.0.0**. [Full entry](../catalogue.md).
 
-## Why LLMs do this
+## What to assess
 
-The construction is common in motivational writing, tech-vision essays, and product marketing. The form gives the writer permission to describe a hypothetical without committing to it as a prediction or a plan. The reader is invited to imagine, which softens any pushback against the specifics.
+This is ordinary speculative or persuasive language; assess unsupported promises under #01 or #04.
 
-LLMs reach for the construction whenever they want to make a case for a future or a possibility. It is rhetorically easy: pose the imagined world, list the goods, and let the reader's imagination do the persuasion work.
+## Evidence and limits
 
-## Why readers notice it
+The audit does not support using this pattern as a current AI-style finding.
 
-The imagined worlds are always rosy. "Imagine a world where every doctor has a perfect diagnostic assistant." The good outcomes are listed; the trade-offs are not. The construction is a one-sided sales pitch dressed up as a thought experiment.
+**Source and evidence type:** [Former unversioned entry](https://github.com/CyranoB/department-of-prose/blob/f09a61b2369e5e01efff2d99f54efa2dc2453601/skills/slop-explain/patterns/28-imagine-a-world-where.md) — repo editorial judgment; no primary comparative source located for this exact opening.
 
-The phrasing is easy to notice when it recurs: "Imagine a world where", "Picture this future", "Envision the day when". The invitation can work in a speech, campaign, or speculative essay. In analytical prose, it often delays the concrete proposal and its costs.
+**Evidence type:** editorial. **AI-association support:** unsubstantiated.
 
-Once you notice the form, the pattern is hard to unsee in any AI-generated essay about the future of anything.
+**Strength and scope:** It is a normal marketing and speculative-writing frame. Flag only an unsupported, one-sided claim in a genre where evidence is expected. No independent AI association established. **Reviewed:** 2026-09-27.
 
-## Examples
+## Editorial use
 
-After:
-> If voice interfaces work as well as the demos suggest, most household tasks could be voice-controlled within five years.
-
-Before:
-> Imagine a world where every appliance in your home responds to your voice, where mornings flow effortlessly, and where technology fades into the background.
-
-After:
-> A widely deployed translation assistant could reduce travel friction for non-English speakers, with adoption costs concentrated in education and accessibility.
-
-Before:
-> Imagine a world where language is no longer a barrier, a world where every conversation flows freely, where understanding is universal, where humanity finally feels connected.
-
-Notice that the edited versions make specific claims about possibilities and costs. The before versions invite the reader into a curated daydream.
-
-## How to self-spot
-
-Search for the openers: "Imagine a world where," "Picture this future," "Envision the day when," "Imagine if every," "What if every."
-
-For each hit, replace the invitation with a specific proposal or prediction. State what you actually think will happen, what would have to be true for it to happen, and what costs might come with it.
-
-If the imagined future is meant rhetorically, ask whether the rhetorical move is worth it. Usually a concrete claim is more persuasive than a vague vision.
-
-## Related patterns
-
-- **Pattern 27 ("Think of it as..."):** both invite the reader to imagine rather than directly informing them.
-- **Pattern 33 (generic positive conclusions):** the closing-paragraph version of the same vision-painting.
+This is optional style advice. Change it only when the user asks for that style.

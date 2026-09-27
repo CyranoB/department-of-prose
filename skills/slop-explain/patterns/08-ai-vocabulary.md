@@ -1,65 +1,23 @@
 # Pattern 8: AI vocabulary
 
-**A cluster of polished, abstract words can make prose feel generic when they recur without adding precision.**
+Catalogue version **1.0.0**. [Full entry](../catalogue.md).
 
-## Why LLMs do this
+## What to assess
 
-LLMs do not have a vocabulary in the human sense. They have probability distributions over tokens. When a model is choosing the next word and several are plausible, it tends to pick the one that scored highest during training, weighted by RLHF reward signals.
+A cluster of stock senses appears relative to passage length; preserve isolated precise, technical, literal, or quoted uses. Apply the versioned #8 list below.
 
-A small set of words happen to win that competition disproportionately often. "Delve" can displace "explore", "tapestry" can displace "mix", and "underscore" can displace "show" because the alternatives sound sophisticated, vivid, or analytical. Each individual choice is defensible. In aggregate, a dense cluster can make the vocabulary feel generic or selected for polish rather than precision.
+## Evidence and limits
 
-Some of these words are also relics of human writing styles that the training data over-represented: academic papers, marketing copy, opinion essays. The model learned that "landscape" is the right metaphor for "the state of a field" because thousands of consulting reports said so. Now it uses the word for everything.
+The source describes a current, context-dependent AI-style association. It does not identify the author of a passage.
 
-## Why readers notice it
+**Source and evidence type:** [WikiProject AI Cleanup, “High density of ‘AI vocabulary’ words”](https://en.wikipedia.org/w/index.php?title=Wikipedia:Signs_of_AI_writing&oldid=1376815715#High_density_of_%22AI_vocabulary%22_words) — field observation; [EQBench Slop Score methodology](https://eqbench.com/slop-score.html) — corpus benchmark for its *separate, versioned* word and trigram lists.
 
-The finding is not any one word. Plenty of writers use "showcase" or "vibrant." What matters is density, repetition, and the company those words keep. A cluster such as "additionally", "underscore", and "intricate tapestry" in one paragraph is worth reviewing because it can make the prose feel generic; it does not establish who wrote it.
+**Evidence type:** observation. **AI-association support:** limited.
 
-Some of the words also have a recognizable timbre. "Delve" has become almost a meme. African English speakers have pointed out that "delve" is more common in their dialect, and that the word's sudden ubiquity in LLM output may reflect outsourced RLHF labor. Whatever the cause, the word now signals AI to most readers.
+**Strength and scope:** Both support looking at concentration relative to genre and meaning, never treating a single word as proof. EQBench's sampled model outputs and human baseline do not validate this editorial entry's whole list, dialect claims, or proposed causes of individual choices. **Reviewed:** 2026-09-27.
 
-The category overlaps with promotional language (pattern 4). "Vibrant" and "intricate" can appear under either label. The difference: pattern 4 is about tone (brochure-like), pattern 8 is about vocabulary frequency (these specific words at this specific rate).
+## Editorial use
 
-## Examples
+An editorial repair can be useful when the exact passage shows the problem and the false-positive guard has been checked.
 
-After:
-> The festival also includes street performances and food stalls. Both have been part of the event since the 1970s.
-
-Before:
-> Additionally, an enduring testament to the city's cultural tapestry, the festival showcases a vibrant array of street performances and food stalls, underscoring its commitment to fostering community.
-
-After:
-> The team built the new feature in six weeks. It shipped on time.
-
-Before:
-> The team meticulously crafted the groundbreaking new feature in just six weeks, ultimately delivering a pivotal milestone in the company's evolving landscape.
-
-Notice that the edited versions are shorter and more specific. The before versions add words that decorate without informing.
-
-## How to self-spot
-
-Keep a personal block list. The highest-frequency AI tells:
-
-- delve
-- tapestry
-- landscape (used abstractly, as in "the X landscape")
-- pivotal
-- testament
-- underscore
-- showcase
-- foster (as a verb for things that are not children)
-- intricate
-- vibrant
-- crucial
-- meticulous
-- enduring
-- align with
-- additionally (especially as a sentence opener)
-
-Run a grep over your draft for these. Each hit is a candidate for replacement. The replacements are almost always shorter and more concrete.
-
-Also notice the cumulative effect. One "underscore" is fine. Two "underscores" and a "showcase" in a single paragraph is slop.
-
-## Related patterns
-
-- **Pattern 4 (promotional language):** overlapping vocabulary, different angle. Both flag tone problems.
-- **Pattern 9 (copula avoidance):** "serves as a testament" stacks both tells.
-- **Pattern 11 (rule of three):** AI vocab loves triplets. "Vibrant, intricate, and enduring" is two patterns in one phrase.
+Use the explicit versioned word and sense list in [catalogue.md](../catalogue.md#pattern-8-vocabulary). A lone listed word is not a finding.

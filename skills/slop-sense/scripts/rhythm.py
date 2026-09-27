@@ -12,10 +12,11 @@ truth instead of having to eyeball them:
   - Contraction ratio: contractions vs. uncontracted "do not / it is" forms
   - Aphoristic closers: paragraphs ending on a short, balanced kicker (pattern 35)
   - Anaphora runs: consecutive sentences opening with the same word (pattern 14)
-  - Em dashes & curly quotes: typographic observations (patterns 17, 22)
+  - Em dashes, semicolons, and curly quotes: raw typography counts
+  - Punctuation cadence: conservative prose-window candidates (pattern 17)
 
-All thresholds are editing heuristics, not authorship verdicts. Treat the numbers
-as prompts to inspect frequency, context, and effect in the passage.
+All thresholds are descriptive heuristics, not authorship verdicts or edit
+instructions. Apply the versioned catalogue before making a finding.
 
 Usage:
     python3 rhythm.py <file>
@@ -131,13 +132,10 @@ def _is_generalization(segment):
 
 
 def aphoristic_closers(paras):
-    """Surface candidate paragraph-ending kickers. Two forms catch the common
-    AI shapes: a short punchy closer, and a long sentence resolving into a short
-    balanced tail after the final comma ("..., and the difference is the entire
-    argument"). This is the noisiest signal in the script: deliberate short
-    fragments are good writing, not tells. The point is to read the closers as a
-    *set* — the tell is when many paragraphs land the same way and the lines feel
-    interchangeable, not any single one."""
+    """Surface short generalizing closers and balanced comma tails for review.
+
+    These are candidates only; deliberate concise endings may suit the passage.
+    """
     flagged = []
     multi = [p for p in paras if split_sentences(p)]
     for p in multi:
@@ -266,27 +264,19 @@ def main():
     print(f"  mean {mean:.1f}w  stddev {sd:.1f}  CV {cv:.2f}  <- {band(cv)}")
     print(f"  short (<=8w): {short}    long (>=30w): {long_}")
     print(f"  shortest {min(lengths)}w   longest {max(lengths)}w")
-    if cv < 0.40:
-        print("  fix: put short sentences next to long ones; break up uniform runs (pattern 34)")
     print()
 
     c, f, ratio = contraction_stats(text)
     print("Contractions vs. formal forms:")
     print(f"  contractions: {c}    uncontracted (do not / it is / cannot): {f}    ratio {ratio:.2f}")
-    if c == 0 and f > 0:
-        print("  review: no contractions; check whether this fits the passage's intended register (pattern 36)")
     print()
 
     closers, n_par = aphoristic_closers(paras)
-    print("Paragraph closers (pattern 35) — read these as a set, not individually:")
-    print(f"  {len(closers)}/{n_par} paragraphs resolve into a balanced kicker")
+    print("Candidate paragraph closers (pattern 35):")
+    print(f"  {len(closers)}/{n_par} paragraphs match the heuristic")
     for kind, wc, txt in closers[:10]:
         snippet = txt if len(txt) <= 72 else "..." + txt[-69:]
         print(f"    [{kind} {wc}w] {snippet}")
-    if n_par and len(closers) / n_par > 0.5:
-        print("  the tell is the relentlessness: if these feel interchangeable, vary the endings (pattern 35)")
-    else:
-        print("  (a handful is fine; the tell is when most paragraphs land the same way)")
     print()
 
     runs = anaphora_runs(sentences)
@@ -294,7 +284,6 @@ def main():
     if runs:
         for word, length in runs:
             print(f"  {length} consecutive sentences open with \"{word}\"")
-        print("  fix: vary sentence openings; combine related points")
     else:
         print("  none (no 3+ consecutive sentences with the same opening word)")
     print()
@@ -304,8 +293,6 @@ def main():
     curly = raw.count("“") + raw.count("”") + raw.count("‘") + raw.count("’")
     print("Typographic observations (raw source counts):")
     print(f"  em dashes (— or --): {em}   semicolons: {semicolons}   curly quotes: {curly}")
-    if curly:
-        print("  review: make quote style consistent with the document's house style (pattern 22)")
     cadence = punctuation_cadence(text)
     print("Punctuation cadence candidates (prose only; review in context):")
     if cadence:
@@ -329,7 +316,7 @@ def main():
         flags.append("punctuation cadence candidate")
     print("Structural pattern summary:")
     if flags:
-        print(f"  Review in context: {', '.join(flags)}.")
+        print(f"  Measurements and candidates to review in context: {', '.join(flags)}.")
         print("  score.sh does not measure these dimensions; assess their frequency and effect separately.")
     else:
         print("  No strong structural patterns under these heuristic thresholds.")

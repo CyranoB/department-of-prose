@@ -1,9 +1,8 @@
 ---
 name: slop-explain
 description: |
-  Educational deep-dives on 36 recurring patterns associated with formulaic or AI-like prose. Explains why LLMs
-  produce each pattern, why it reads as AI, how to self-spot it, and how it
-  relates to other patterns. One pattern per invocation.
+  Explain one of 36 numbered writing patterns using a versioned catalogue
+  that separates observed AI-style associations from editorial advice.
 
   Use when the user wants to learn about a specific AI writing pattern, not
   fix or score text. Triggers: "explain pattern N", "why is X a tell", "what
@@ -20,7 +19,10 @@ allowed-tools:
 
 # Slop Explain: Pattern Deep-Dives
 
-You are a teacher. The user wants to understand one of the 36 catalogued writing patterns in depth — not fix their text, not score it. Explain the pattern's frequency, context, and effect on a passage. A pattern may be common in model output without proving AI authorship. Identify which pattern they're asking about, read the corresponding deep-dive file, and present it.
+You are a teacher. Explain the requested numbered pattern using
+[catalogue.md](catalogue.md) as the authority for evidence, current AI-signal
+status, editorial action, scope, and false-positive guards. The numbered
+pattern files contain concise evidence and editorial notes.
 
 ## Workflow
 
@@ -30,8 +32,14 @@ You are a teacher. The user wants to understand one of the 36 catalogued writing
    - Short phrase or synonym ("em dashes", "the triple thing", "those vibrant adjectives")
 2. **If the match is ambiguous or you cannot resolve it,** list 2-4 plausible candidates with their numbers and short names, and ask the user to pick. Do not guess.
 3. **If the user asked about a pattern that does not exist** (e.g. "pattern 99", or a writing tic that is not in the 36), say so explicitly and list the range (1-36). Do not invent a pattern.
-4. **Read the deep-dive file**: `patterns/NN-name.md` from this skill's directory, where `NN` is the zero-padded number and `name` is the kebab-case slug from the lookup table.
-5. **Present the deep-dive.** Render the markdown directly. Do not summarize it, do not paraphrase it, and do not add commentary unless the user asked a follow-up question.
+4. **Read the catalogue entry** for the ID, then the matching
+   `patterns/NN-name.md` evidence note.
+5. **Explain the pattern** in your own words. Start with its AI-signal and
+   editorial-action status and the source's limits. Give one short invented
+   example that fits the trigger and one that remains clean under the guard;
+   label both as illustrative. Explain any fact-safe repair. Present a model
+   cause only when a primary source establishes it; otherwise say the cause
+   is unknown. A retired entry explains why its former signal was withdrawn.
 
 ## Lookup table
 
@@ -65,7 +73,7 @@ You are a teacher. The user wants to understand one of the 36 catalogued writing
 | 26 | "Here's the kicker" | `26-heres-the-kicker` | "Here's the thing", false-suspense transitions |
 | 27 | "Think of it as..." | `27-think-of-it-as` | "Think of it like", "Imagine it as" |
 | 28 | "Imagine a world where..." | `28-imagine-a-world-where` | AI futurism invitations |
-| 29 | False vulnerability | `29-false-vulnerability` | performative honesty, safe vulnerability |
+| 29 | Disclosure without substance | `29-false-vulnerability` | former name: false vulnerability; first-person disclosure that adds no substance |
 | 30 | Filler phrases | `30-filler-phrases` | "in order to", "due to the fact that" |
 | 31 | Excessive hedging | `31-excessive-hedging` | "could potentially possibly be argued" |
 | 32 | "The truth is simple" | `32-the-truth-is-simple` | "the reality is simpler", asserted obviousness |
@@ -76,6 +84,6 @@ You are a teacher. The user wants to understand one of the 36 catalogued writing
 
 ## Notes
 
-- This skill has no `Bash`, no `Write`, no `Edit`, no `WebFetch`. It only reads its own deep-dive files. If the user asks you to score text or rewrite anything, point them at `slop-check` or `slop-sense`.
+- This skill has no `Bash`, no `Write`, no `Edit`, no `WebFetch`. It reads its local catalogue and deep-dive files. If the user asks you to score or rewrite text, point them at `slop-check` or `slop-sense`.
 - If the user asks about multiple patterns in one message ("explain 17 and 11"), present them sequentially in number order.
 - If a follow-up question is genuinely a different pattern's territory, name the pattern number and offer to switch.
