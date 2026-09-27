@@ -1,0 +1,260 @@
+{
+  "review_schema_revision": 1,
+  "golden_case_schema_revision": 1,
+  "rubric_revision": 1,
+  "reviewed_at": "2026-09-27T04:17:00Z",
+  "reviewer": "Codex reviewer agent",
+  "skill_revision": "7e1216c5b8829df32849b6a25008bf5f6e1b8e2a",
+  "model": {
+    "identifier": "OpenAI GPT-6 (Codex agent; exact variant unavailable)",
+    "version_or_date": "unknown",
+    "settings": {
+      "temperature": "unknown",
+      "seed": "unknown",
+      "reasoning": "unknown",
+      "other": "Ran the current slop-sense skill workflow against each original case. score.sh and rhythm.py were run from this skill revision. Full system and prompt settings are unavailable."
+    }
+  },
+  "reviews": [
+    {
+      "case_id": "GOLD-PUNCT-001",
+      "output_reviewed": "Score: 19/100 (minimal pattern evidence). The lexical scorer reports dash and short-fragment matches, and rhythm.py counts two dashes with no punctuation cadence candidate.\nPattern summary: No actionable punctuation finding. The two dashes and fragments give this narrator a hesitant pace.\nDraft rewrite: The key turned—almost. A click, a pause, another try. Then nothing. I kept my hand on the lock—as if patience could move brass.\nPattern audit: The repeated pause threshold is not met. The fragments and brass comparison carry the voice, so I kept them. The rhythm check has no cadence candidate.\nFinal rewrite: The key turned—almost. A click, a pause, another try. Then nothing. I kept my hand on the lock—as if patience could move brass.\nFact check: No fact, qualification, or event order was added, omitted, or changed; the final text matches the source.\nChanges summary: None; the punctuation is intentional.",
+      "dimensions": {
+        "finding_coverage": {
+          "result": "pass",
+          "reason": "The output treats the lexical dash match as a raw signal and reports no actionable finding."
+        },
+        "contextual_assessment": {
+          "result": "pass",
+          "reason": "Two dashes do not reach the cadence threshold; the authorial timing is preserved."
+        },
+        "fact_preservation": {
+          "result": "pass",
+          "reason": "The key, click, later failed attempt, and hand on the lock remain in the identical final text."
+        },
+        "qualification_and_verification": {
+          "result": "pass",
+          "reason": "The brass comparison remains a comparison, not a literal claim."
+        },
+        "no_invention": {
+          "result": "pass",
+          "reason": "The final text is identical to the source."
+        },
+        "voice_and_register": {
+          "result": "pass",
+          "reason": "Both em dashes, the fragments, and the dry brass comparison remain."
+        },
+        "pattern_reduction": {
+          "result": "pass",
+          "reason": "No edit was required; the two-dash cadence remains as permitted."
+        },
+        "readability": {
+          "result": "pass",
+          "reason": "The original fragmentary prose remains clear in its narrative register."
+        }
+      },
+      "overall": "pass",
+      "overall_reason": "All six critical dimensions pass; pattern reduction and readability also pass."
+    },
+    {
+      "case_id": "GOLD-PUNCT-002",
+      "output_reviewed": "Score: 19/100 (minimal pattern evidence). The lexical scorer reports a dash match; rhythm.py counts three dashes and a 3/3 dash cadence candidate.\nPattern summary: The repeated dash before “again” makes three nearby sentences stop the same way. This is actionable em-dash overuse in this passage, though the count alone would not decide it.\nDraft rewrite: The draft stalled again. The meeting ran long again. The decision slipped—again. The team finally left without a date.\nPattern audit: One dash remains to carry the final hesitation; rerunning rhythm.py finds one dash and no cadence candidate. The three “again” beats keep the restrained frustration without repeating the same punctuation pause.\nFinal rewrite: The draft stalled again. The meeting ran long again. The decision slipped—again. The team finally left without a date.\nFact check: The stalled draft, long meeting, delayed decision, and team leaving without a date remain. The three instances of “again” remain. No cause or outcome was added.\nChanges summary: Two repeated dash pauses became plain sentence endings; one intentional dash remains.",
+      "dimensions": {
+        "finding_coverage": {
+          "result": "pass",
+          "reason": "Actionable em-dash overuse is named and supported by three identical pauses."
+        },
+        "contextual_assessment": {
+          "result": "pass",
+          "reason": "The output explains the effect of repetition instead of relying on the raw 3/3 candidate alone."
+        },
+        "fact_preservation": {
+          "result": "pass",
+          "reason": "Draft, meeting, decision, and departure without a date all survive in order."
+        },
+        "qualification_and_verification": {
+          "result": "pass",
+          "reason": "The three again beats, including recurrence, are retained."
+        },
+        "no_invention": {
+          "result": "pass",
+          "reason": "No people, causes, or outcomes were supplied."
+        },
+        "voice_and_register": {
+          "result": "pass",
+          "reason": "The repeated again and the single final dash retain restrained frustration."
+        },
+        "pattern_reduction": {
+          "result": "pass",
+          "reason": "The rewrite cuts three matching dash pauses to one; rerun found no candidate."
+        },
+        "readability": {
+          "result": "pass",
+          "reason": "The shorter sentences remain grammatical and clear."
+        }
+      },
+      "overall": "pass",
+      "overall_reason": "All six critical dimensions pass; pattern reduction and readability also pass."
+    },
+    {
+      "case_id": "GOLD-PUNCT-003",
+      "output_reviewed": "Score: 1/100 (minimal pattern evidence). The lexical scorer has no punctuation trope match; rhythm.py counts three semicolons and a 3/3 semicolon cadence candidate.\nPattern summary: Four short observations joined by three semicolons produce an overly regular pause. The repeated semicolon cadence weakens this plain account.\nDraft rewrite: The queue grew. The clerk waited. The printer jammed, and the room fell quiet. Nobody had a form to hand in.\nPattern audit: Rerunning rhythm.py finds zero semicolons and no cadence candidate. The event sequence and plain register remain.\nFinal rewrite: The queue grew. The clerk waited. The printer jammed, and the room fell quiet. Nobody had a form to hand in.\nFact check: The queue grew, the clerk waited, the printer jammed, the room fell quiet, and nobody had a form to submit. No cause or new event was added.\nChanges summary: Replaced the repeated semicolon pauses with sentence endings and one comma.",
+      "dimensions": {
+        "finding_coverage": {
+          "result": "pass",
+          "reason": "Repetitive semicolon cadence is explicitly identified; no dash finding is asserted."
+        },
+        "contextual_assessment": {
+          "result": "pass",
+          "reason": "The effect of three identical pauses, rather than their count alone, motivates the edit."
+        },
+        "fact_preservation": {
+          "result": "pass",
+          "reason": "All five events and their order are preserved."
+        },
+        "qualification_and_verification": {
+          "result": "pass",
+          "reason": "The output does not strengthen or weaken a qualification; none appears in the source."
+        },
+        "no_invention": {
+          "result": "pass",
+          "reason": "No new people, causes, or outcomes appear."
+        },
+        "voice_and_register": {
+          "result": "pass",
+          "reason": "The rewrite keeps a plain observational register."
+        },
+        "pattern_reduction": {
+          "result": "pass",
+          "reason": "The final text has no semicolons and the rerun has no candidate."
+        },
+        "readability": {
+          "result": "pass",
+          "reason": "The account remains grammatical and easy to follow."
+        }
+      },
+      "overall": "pass",
+      "overall_reason": "All six critical dimensions pass; pattern reduction and readability also pass."
+    },
+    {
+      "case_id": "GOLD-PUNCT-004",
+      "output_reviewed": "Score: 1/100 (minimal pattern evidence). rhythm.py counts three semicolons and a 3/6 semicolon cadence candidate.\nPattern summary: No actionable punctuation defect. The semicolons separate four list items whose descriptions already contain commas.\nDraft rewrite: Bring the blue binder, which holds the permit; the red folder, which holds the map; the spare key, which opens the side gate; and the signed receipt.\nPattern audit: The cadence candidate is a raw prompt to inspect the sentence. Removing these semicolons would make the item boundaries less clear, so I retained the list.\nFinal rewrite: Bring the blue binder, which holds the permit; the red folder, which holds the map; the spare key, which opens the side gate; and the signed receipt.\nFact check: All four items and each description remain. Nothing was added, omitted, or changed.\nChanges summary: None; the semicolons are functional list separators.",
+      "dimensions": {
+        "finding_coverage": {
+          "result": "pass",
+          "reason": "No actionable semicolon defect is asserted; the raw candidate is permitted."
+        },
+        "contextual_assessment": {
+          "result": "pass",
+          "reason": "The output explains why three semicolons help disambiguate complex list items."
+        },
+        "fact_preservation": {
+          "result": "pass",
+          "reason": "The binder, folder, key, receipt, and their stated roles remain verbatim."
+        },
+        "qualification_and_verification": {
+          "result": "pass",
+          "reason": "No qualification or verification claim is changed."
+        },
+        "no_invention": {
+          "result": "pass",
+          "reason": "The final text is identical to the source."
+        },
+        "voice_and_register": {
+          "result": "pass",
+          "reason": "The clear semicolon list is unchanged."
+        },
+        "pattern_reduction": {
+          "result": "pass",
+          "reason": "No change was required to the legitimate list."
+        },
+        "readability": {
+          "result": "pass",
+          "reason": "Semicolons continue to separate the complex items clearly."
+        }
+      },
+      "overall": "pass",
+      "overall_reason": "All six critical dimensions pass; pattern reduction and readability also pass."
+    },
+    {
+      "case_id": "GOLD-PUNCT-005",
+      "output_reviewed": "Score: 19/100 (minimal pattern evidence). The lexical scorer reports a dash match; rhythm.py counts three dashes, two semicolons, two curly quote marks, and a 3/6 dash cadence candidate.\nPattern summary: No narrator-level punctuation defect. The clustered pauses belong to the note Mara reads aloud; the curly quotes are typography, not authorship evidence.\nDraft rewrite: Mara read the note aloud: “Wait—then listen; wait—then answer; wait—then leave.” She folded it and put it away.\nPattern audit: The cadence candidate points inside the quotation. The quoted words and punctuation stay intact; the narrator's prose does not repeat the pattern.\nFinal rewrite: Mara read the note aloud: “Wait—then listen; wait—then answer; wait—then leave.” She folded it and put it away.\nFact check: Mara still reads the same note aloud, then folds it and puts it away. The quotation and typography are unchanged. No addition or omission.\nChanges summary: None; the punctuation belongs to the quoted speaker.",
+      "dimensions": {
+        "finding_coverage": {
+          "result": "pass",
+          "reason": "No narrator-level dash or curly-quote authorship finding is asserted."
+        },
+        "contextual_assessment": {
+          "result": "pass",
+          "reason": "The output attributes the raw cadence candidate to the quoted note, not the narrator."
+        },
+        "fact_preservation": {
+          "result": "pass",
+          "reason": "Mara's reading and later folding and putting away remain unchanged."
+        },
+        "qualification_and_verification": {
+          "result": "pass",
+          "reason": "No uncertainty or verification status is altered."
+        },
+        "no_invention": {
+          "result": "pass",
+          "reason": "The final text is identical to the source."
+        },
+        "voice_and_register": {
+          "result": "pass",
+          "reason": "The quotation, including curly marks, dashes, and semicolons, is verbatim."
+        },
+        "pattern_reduction": {
+          "result": "pass",
+          "reason": "No edit was required to quoted punctuation."
+        },
+        "readability": {
+          "result": "pass",
+          "reason": "The quoted instruction remains clear and intact."
+        }
+      },
+      "overall": "pass",
+      "overall_reason": "All six critical dimensions pass; pattern reduction and readability also pass."
+    },
+    {
+      "case_id": "GOLD-PUNCT-006",
+      "output_reviewed": "Score: 19/100 (minimal pattern evidence). The lexical scorer reports a dash match; rhythm.py counts one dash and no punctuation cadence candidate.\nPattern summary: No actionable punctuation finding. The single dash supplies a brief hesitation before “barely.”\nDraft rewrite: The handle moved—barely. I tried it once more, then stepped back.\nPattern audit: The one dash does not meet the three-mark threshold and carries the narrator's timing. I left it in place.\nFinal rewrite: The handle moved—barely. I tried it once more, then stepped back.\nFact check: The handle barely moved; the narrator tried once more and then stepped back. No fact or event order changed.\nChanges summary: None; the intentional dash remains.",
+      "dimensions": {
+        "finding_coverage": {
+          "result": "pass",
+          "reason": "No em-dash overuse is asserted; the lexical match is treated as raw."
+        },
+        "contextual_assessment": {
+          "result": "pass",
+          "reason": "The single dash cannot be a cadence candidate and is not edited."
+        },
+        "fact_preservation": {
+          "result": "pass",
+          "reason": "The movement, another try, and stepping back remain in order."
+        },
+        "qualification_and_verification": {
+          "result": "pass",
+          "reason": "Barely remains; the limited movement is not strengthened."
+        },
+        "no_invention": {
+          "result": "pass",
+          "reason": "The final text is identical to the source."
+        },
+        "voice_and_register": {
+          "result": "pass",
+          "reason": "The brief hesitation carried by the dash remains."
+        },
+        "pattern_reduction": {
+          "result": "pass",
+          "reason": "No edit was required for the isolated dash."
+        },
+        "readability": {
+          "result": "pass",
+          "reason": "The original concise passage remains clear."
+        }
+      },
+      "overall": "pass",
+      "overall_reason": "All six critical dimensions pass; pattern reduction and readability also pass."
+    }
+  ]
+}
